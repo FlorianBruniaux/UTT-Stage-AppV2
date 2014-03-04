@@ -16,6 +16,7 @@ Durant un projet en groupe réalisé dans le cadre de l'UV IF10 nous avons donc 
 Pour en savoir plus vous pouvez consulter les documents suivant : 
 - [Le dossier complet](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/Dossier.pdf)
 - [Le diapo de soutenance](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/Soutenance.pdf)
+- [L'ensemble des maquettes basse-fidélité](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/Maquettes.pdf)
 
 #Le projet
 
