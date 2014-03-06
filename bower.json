@@ -1,0 +1,37 @@
+{
+  "name": "UTT-Stage-AppV2",
+  "description": "Prototype de la version 2 de l'application des stages de l'UTT",
+  "version": "0.0.1",
+  "keywords": [
+    "UTT",
+    "stages",
+    "TX",
+    "ISI",
+    "IF10"
+  ],
+  "author": {
+    "name": "Florian BRUNIAUX",
+    "email": "f.bruniaux@gmail.com"
+  },
+  "ignore": [],
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "backbone.picky": "~0.2.0",
+    "backbone.syphon": "~0.4.1",
+    "bootbox.js": "makeusabrew/bootbox#~4.2.0",
+    "html5shiv": "~3.7.0",
+    "jasny-bootstrap": "jasny/bootstrap#~3.1.0",
+    "jquery": "~1.10.2",
+    "jquery-ui-bootstrap": "jquery-ui-bootstrap/jquery-ui-bootstrap",
+    "marionette": "~1.5.1",
+    "requirejs": "~2.1.5",
+    "requirejs-tpl": "*",
+    "require-css": "~0.1.0",
+    "respond": "~1.4.2",
+    "underscore": ">=1.5.2",
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "bootstrap": ">= 3.0.0"
+  }
+}
