@@ -1,27 +1,33 @@
-var requirejs = require('requirejs'),
-    mongo = require('mongodb');
+var requirejs = require('requirejs');
     
 requirejs.config({
     nodeRequire: require
 });
 
 requirejs([
-    'jquery'
-], function ($) {
+    'jquery',
+    'mongoose'
+], function ($, mongoose) {
     
     'use strict';
     
-    var Server = mongo.Server,
-        Db = mongo.Db,
-        BSON = mongo.BSONPure,
-        
-        server = new Server('localhost', 27017, {auto_reconnect: true}),
-        db = new Db('winedb', server, {safe: true});
-    
-    
-    
     exports.API = {
         
+        get: function(_req, _res){
+            
+        },
+        
+        insert: function(_req, _res){
+            
+        },
+        
+        update: function(_req, _res){
+            
+        },
+        
+        delete: function(_req, _res){
+            
+        }
         
     }; 
 });

@@ -33,16 +33,16 @@ requirejs([
     });
     
     //Get
-    //app.get('/db/', dbController.API.get);
+    app.get('/db/', dbController.API.get);
     
     //Post
-    //app.post('/db/', dbController.API.insert);
+    app.post('/db/', dbController.API.insert);
 
     //Update
-    //app.put('/db/', dbController.API.update);
+    app.put('/db/', dbController.API.update);
 
     //Delete
-    //app.delete('/db/', dbController.API.delete);
+    app.delete('/db/', dbController.API.delete);
     
     //Creates HTTP server
     http.createServer(app).listen(app.get('port'), function(){
