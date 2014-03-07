@@ -1,5 +1,8 @@
 define([
-    'marionette'
+    'marionette',
+    'bootstrap',
+    'collapsibleMenu',
+    'dropdown'
 ], function (Marionette) {
 
     'use strict';
@@ -19,7 +22,7 @@ define([
     // method, to be processed by the router.
     AppManager.navigate = function(route, options){
         
-        if(DEBUG) console.info("AppManager.navigate()");
+        if(DEBUG) console.info("AppManager.navigate("+route+")");
         
         options || (options = {});
         Backbone.history.navigate(route, options);
