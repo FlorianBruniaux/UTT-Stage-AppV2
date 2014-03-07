@@ -2,6 +2,10 @@
   "name": "UTT-Stage-AppV2",
   "description": "Prototype de la version 2 de l'application des stages de l'UTT",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FlorianBruniaux/UTT-Stage-AppV2"
+  },
   "keywords": [
     "UTT",
     "stages",
@@ -24,7 +28,9 @@
   },
   "dependencies": {
     "express": ">=3.4.4",
+    "jquery": "~1.8.3",
+    "mongoose": "~3.8.8",
     "requirejs": ">=2.1.9",
-    "jquery": "~1.8.3"
+    "socket.io": "~0.9.16"
   }
 }
