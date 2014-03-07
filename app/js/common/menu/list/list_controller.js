@@ -18,10 +18,6 @@ define([
                     var links = AppManager.request('menu:entities');
                     var menu = new View.Menu({collection: links});
                     
-                    menu.on('logo:clicked', function(){
-                        AppManager.trigger('home:root');
-                    });
-                    
                     menu.on('itemview:navigate', function(childView, model){
                         var trigger = model.get('navigationTrigger');
                         AppManager.trigger(trigger);
@@ -33,7 +29,7 @@ define([
             
             setActiveMenuItem: function(menuItemUrl){
                 
-                if(DEBUG) console.info("menu.list.list_controller.setActiveMenuItem()")
+                if(DEBUG) console.info("menu.list.list_controller.setActiveMenuItem("+menuItemUrl+")")
                 
                 var links = AppManager.request('menu:entities');
                 

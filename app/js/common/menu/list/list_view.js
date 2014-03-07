@@ -30,19 +30,9 @@ define([
         });
         
         View.Menu = Marionette.CompositeView.extend({
-        
             template: ListTpl,
             itemView: View.MenuItems,
-            itemViewContainer: 'ul',
-            
-            events: {
-                'click a#logo': 'logoClicked'
-            },
-
-            logoClicked: function(e){
-                e.preventDefault();
-                this.trigger("logo:clicked");
-            }
+            itemViewContainer: 'ul.navigation'
         });
         
     });

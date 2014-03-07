@@ -28,6 +28,7 @@ define([
             if (Entities.menuItems === undefined) {
                 Entities.menuItems = new Entities.MenuCollection([
                     { name: "Accueil", url: "home", icon: "icon-home", navigationTrigger: "home:root" },
+                    { name: "Utilisateurs", url: "users", icon: "icon-users", navigationTrigger: "users:root" },
                     
                 ]);
             }
