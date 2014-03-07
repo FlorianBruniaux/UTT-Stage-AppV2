@@ -1,7 +1,7 @@
 define([
     'app',
     'tpl!modules/home/root/templates/root.tpl',
-    'tpl!modules/home/root/templates/root_list_item.tpl'
+    'tpl!modules/home/root/templates/root_list_items.tpl'
 ], function(AppManager, ListTpl, ListItemTpl){
     
     // HomeModule Root OptionsList View
@@ -11,8 +11,7 @@ define([
             template: ListItemTpl,
             
             tagName: "div",
-            className: "",
-            
+
             events: {
                 'click a': 'navigate'
             },
@@ -29,7 +28,7 @@ define([
         View.optionsList = Marionette.CompositeView.extend({
             template: ListTpl,
             itemView: View.optionsListItem,
-            itemViewContainer: ''
+            itemViewContainer: '.panel-body'
         });
         
     });
