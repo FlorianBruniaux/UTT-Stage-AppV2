@@ -20,6 +20,14 @@ requirejs.config({
         
         bootbox: ["jquery","bootstrap"],
         
+        bootstrap: ["jquery"],
+        
+        collapsible: ["jquery"],
+        
+        collapsibleMenu : ["collapsible"],
+        
+        dropdown: ["jquery"],
+        
         entitiesHelpers: ["jquery"],
         
         jasnybootstrap : ["jquery"],
@@ -55,8 +63,14 @@ requirejs.config({
         
         bootstrap: "../bower_components/bootstrap/dist/js/bootstrap.min",
         
+        collapsible: "vendors/collapsible.min",
+        
+        collapsibleMenu: "common/utilities/collapsible_menu.perso",
+        
         //To deak with .css files
         css: "../bower_components/require-css/css",
+        
+        dropdown: "common/utilities/dropdown.perso",
         
         entitiesHelpers: "common/utilities/entities_helpers.perso",
         
