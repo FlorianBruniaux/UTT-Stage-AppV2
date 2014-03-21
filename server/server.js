@@ -19,7 +19,7 @@ requirejs([
     //Configuration
     app.configure(function(){
         //Path to static data
-        app.use(express.static(path.join(__dirname, 'app')));
+        app.use(express.static(path.join(__dirname, '../app')));
         //Debug mode = true
         app.use(express.logger('dev'));
         //The port in which the app will be available
