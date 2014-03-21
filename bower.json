@@ -25,10 +25,64 @@
     "jquery-ui-bootstrap": "jquery-ui-bootstrap/jquery-ui-bootstrap",
     "marionette": "~1.5.1",
     "requirejs": "~2.1.5",
-    "requirejs-tpl": "*",
     "require-css": "~0.1.0",
+    "requirejs-tpl": "*",
     "respond": "~1.4.2",
     "underscore": ">=1.5.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "exportsOverride": {
+    "backbone": {
+      "js": "backbone.js"
+    },
+    "backbone.picky": {
+      "js": "src/backbone.picky.js"
+    },
+    "backbone.syphon": {
+      "js": "lib/backbone.syphon.js"
+    },
+    "backbone.babysitter": {
+      "js": "lib/backbone.babysitter.js"
+    },
+    "backbone.wreqr": {
+      "js": "lib/backbone.wreqr.js"
+    },
+    "bootbox.js": {
+      "js": "bootbox.js"
+    },
+    "bootstrap": {
+      "js": "dist/js/bootstrap.js"
+    },
+    "html5shiv": {
+      "js": "dist/html5shiv.js"
+    },
+    "jasny-bootstrap": {
+      "js": "dist/js/jasny-bootstrap.js"
+    },
+    "jquery": {
+      "js": "jquery.js"
+    },
+    "jquery-ui-bootstrap": {
+      "js": "assets/js/jquery-ui-1.10.0.custom.min.js",
+      "css": "css/custom-theme/jquery-ui-1.10.0.custom.css"
+    },
+    "marionette": {
+      "js": "lib/backbone.marionette.js"
+    },
+    "requirejs": {
+      "js": "require.js"
+    },
+    "require-css": {
+      "js": "css.js"
+    },
+    "requirejs-tpl": {
+      "js": "tpl.js"
+    },
+    "respond": {
+      "js": "dest/respond.min.js"
+    },
+    "underscore": {
+      "js": "underscore.js"
+    }
+  }
 }
