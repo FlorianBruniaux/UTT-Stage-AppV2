@@ -50,38 +50,35 @@ requirejs.config({
     
     paths: {
         
-        backbone: "../bower_components/backbone/backbone",
+        backbone: "vendors/bower/backbone/js/backbone",
         
         //Selectable entities as mixins for Backbone.Model and Backbone.Collection!
-        "backbone.picky": "../bower_components/backbone.picky/src/backbone.picky",
+        "backbone.picky": "vendors/bower/backbone.picky/js/backbone.picky",
         
         //Serialize the forms in your Backbone.Views into a JSON object for use with Backbone"s models.
-        "backbone.syphon": "../bower_components/backbone.syphon/lib/backbone.syphon",
+        "backbone.syphon": "vendors/bower/backbone.syphon/js/backbone.syphon",
         
         //To deal with alert boxes etc
-        bootbox: "../bower_components/bootbox.js/bootbox",
+        bootbox: "vendors/bower/bootbox.js/js/bootbox",
         
-        bootstrap: "../bower_components/bootstrap/dist/js/bootstrap.min",
+        bootstrap: "vendors/bower/bootstrap/js/bootstrap.min",
         
         collapsible: "vendors/collapsible.min",
         
         collapsibleMenu: "common/utilities/collapsible_menu.perso",
         
         //To deak with .css files
-        css: "../bower_components/require-css/css",
+        css: "vendors/bower/require-css/js/css",
         
-        dropdown: "common/utilities/dropdown.perso",
-        
-        entitiesHelpers: "common/utilities/entities_helpers.perso",
         
         //To deal with bootstrap dropdow menu
-        jasnybootstrap: "../bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min",
+        jasnybootstrap: "vendors/bower/jasny-bootstrap/js/jasny-bootstrap.min",
         
-        jquery: "../bower_components/jquery/jquery",
+        jquery: "vendors/bower/jquery/jquery",
         
-        "jquery-ui": "../bower_components/jquery-ui-bootstrap/assets/js/jquery-ui-1.10.0.custom.min",
+        "jquery-ui": "vendors/bower/jquery-ui-bootstrap/js/jquery-ui-1.10.0.custom.min",
 
-        marionette: "../bower_components/marionette/lib/backbone.marionette",
+        marionette: "vendors/bower/marionette/js/backbone.marionette",
        
         //An animated CSS3 loading spinner with VML fallback for IE.
         spin: "vendors/loader/spin",
@@ -89,9 +86,9 @@ requirejs.config({
         "spin.jquery": "vendors/loader/spin.jquery",
         
         //To deal with .tpl files with underscore
-        tpl: "../bower_components/requirejs-tpl/tpl",
+        tpl: "vendors/bower/requirejs-tpl/js/tpl",
 
-        underscore: "../bower_components/underscore/underscore"
+        underscore: "vendors/bower/underscore/js/underscore"
     }
 });
 
