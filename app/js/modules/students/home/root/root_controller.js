@@ -14,7 +14,7 @@ define([
                 if(DEBUG) console.info("home.root.list_controller.listRootOptions()");
                 
                 // Updates breadcrumb
-                AppManager.trigger("breadcrumb:update", null);
+                AppManager.trigger('breadcrumb:update', null);
                     
                 require([
                     "entities/students/roots"
