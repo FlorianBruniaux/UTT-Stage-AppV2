@@ -9,9 +9,9 @@ define([
         
         View.optionsListItem = Marionette.ItemView.extend({
             template: ListItemTpl,
+            tagName: "li",
+            className: "bg-info",
             
-            tagName: "div",
-
             events: {
                 'click a': 'navigate'
             },
@@ -28,7 +28,7 @@ define([
         View.optionsList = Marionette.CompositeView.extend({
             template: ListTpl,
             itemView: View.optionsListItem,
-            itemViewContainer: '.panel-body'
+            itemViewContainer: '.info-blocks'
         });
         
     });
