@@ -26,10 +26,6 @@ requirejs.config({
         
         collapsibleMenu : ["collapsible"],
         
-        dropdown: ["jquery"],
-        
-        entitiesHelpers: ["jquery"],
-        
         jasnybootstrap : ["jquery"],
         
         underscore: {
@@ -45,7 +41,14 @@ requirejs.config({
         marionette: {
             deps: ["backbone"],
             exports: "Marionette"
-        }
+        },
+        
+        "utt.stages": {
+            deps: [
+                "underscore",
+                "jquery"
+            ]
+        },
     },
     
     paths: {
@@ -61,7 +64,7 @@ requirejs.config({
         //To deal with alert boxes etc
         bootbox: "vendors/bower/bootbox.js/js/bootbox",
         
-        bootstrap: "vendors/bower/bootstrap/js/bootstrap.min",
+        bootstrap: "vendors/bower/bootstrap/js/bootstrap",
         
         collapsible: "vendors/collapsible.min",
         
@@ -70,11 +73,10 @@ requirejs.config({
         //To deak with .css files
         css: "vendors/bower/require-css/js/css",
         
-        
         //To deal with bootstrap dropdow menu
         jasnybootstrap: "vendors/bower/jasny-bootstrap/js/jasny-bootstrap.min",
         
-        jquery: "vendors/bower/jquery/jquery",
+        jquery: "vendors/bower/jquery/js/jquery",
         
         "jquery-ui": "vendors/bower/jquery-ui-bootstrap/js/jquery-ui-1.10.0.custom.min",
 
@@ -88,7 +90,9 @@ requirejs.config({
         //To deal with .tpl files with underscore
         tpl: "vendors/bower/requirejs-tpl/js/tpl",
 
-        underscore: "vendors/bower/underscore/js/underscore"
+        underscore: "vendors/bower/underscore/js/underscore",
+        
+        "utt.stages": "vendors/utt_stages_api"
     }
 });
 
