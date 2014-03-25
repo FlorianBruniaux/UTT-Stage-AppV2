@@ -7,16 +7,20 @@ define([
         
         List.Controller = {
             
+            userCategory : 'students',
+            
             listMenu: function(){
                 
-                if(DEBUG) console.info("menu.list.list_controller.listMenu()")
+                if(DEBUG) console.info("common.menu.list.list_controller.listMenu()")
+                
+                var self = this;
                 
                 require([
-                    'entities/menu'
+                    'entities/'+self.userCategory+'/menu'
                 ], function(){
                     
-                    var links = AppManager.request('menu:entities');
-                    var menu = new View.Menu({collection: links});
+                    var links = AppManager.request(self.userCategory+':menu:entities'),
+                        menu = new View.Menu({collection: links});
                     
                     menu.on('itemview:navigate', function(childView, model){
                         var trigger = model.get('navigationTrigger');
@@ -29,9 +33,9 @@ define([
             
             setActiveMenuItem: function(menuItemUrl){
                 
-                if(DEBUG) console.info("menu.list.list_controller.setActiveMenuItem("+menuItemUrl+")")
+                if(DEBUG) console.info("common.menu.list.list_controller.setActiveMenuItem("+menuItemUrl+")")
                 
-                var links = AppManager.request('menu:entities');
+                var links = AppManager.request(this.userCategory+':menu:entities');
                 
                 var menuItemToSelect = links.find(function(menu){
                     return menu.get('url') === menuItemUrl;
