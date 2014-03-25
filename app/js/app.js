@@ -13,6 +13,7 @@ define([
     
     // Creates regions
     AppManager.addRegions({
+        breadcrumbRegion: "#breadcrumb-region",
         menuRegion:"#menu-region",
         contentRegion: "#content-region"
     })
