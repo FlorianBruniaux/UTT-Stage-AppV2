@@ -1,9 +1,8 @@
 define([
     'marionette',
-    'bootstrap',
-    'collapsibleMenu',
-    'dropdown'
-], function (Marionette) {
+    'utt.stages',
+    'bootstrap'
+], function (Marionette, UttStages) {
 
     'use strict';
     
@@ -65,6 +64,11 @@ define([
             ], function(){
                 
                 Backbone.history.start();
+                
+                //  New API
+                var API = new UttStages.Application(AppManager);
+                API.misc.initDropDown();//  To init dropdowns
+                API.misc.initCollapsibleMenu();//  To init collapsible Menu
                 
                 if (AppManager.getCurrentRoute() === "") {
                     AppManager.trigger("home:root")
