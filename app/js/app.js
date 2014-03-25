@@ -60,7 +60,14 @@ define([
     AppManager.on('initialize:after', function(){
         if (Backbone.history) {
             require([
-                'modules/home/home_module',
+                //  Students
+                'modules/students/home/home_module'
+                
+                //  Teachers
+
+                
+                //  Internship managers
+
             ], function(){
                 
                 Backbone.history.start();
@@ -71,7 +78,8 @@ define([
                 API.misc.initCollapsibleMenu();//  To init collapsible Menu
                 
                 if (AppManager.getCurrentRoute() === "") {
-                    AppManager.trigger("home:root")
+                    var userCategory = 'students';  
+                    AppManager.trigger(userCategory+":home:root")   
                 }
                 
             });
