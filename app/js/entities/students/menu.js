@@ -27,7 +27,11 @@ define([
             if (Entities.menuItems === undefined) {
                 Entities.menuItems = new Entities.MenuCollection([
                     { name: "Accueil", url: "home", icon: "icon-home", navigationTrigger: "home:root" },
-                    { name: "Contacts", url: "users", icon: "icon-users", navigationTrigger: "users:root" }
+                    { name: "Offres", url: "offers", icon: "icon-newspaper", navigationTrigger: "offers:list" },
+                    { name: "Recherche", url: "research", icon: "icon-search3", navigationTrigger: "search:root" },
+                    { name: "Suivi", url: "monitoring", icon: "icon-list", navigationTrigger: "monitoring:root" },
+                    { name: "Messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "messages:list" },
+                    { name: "Contacts", url: "users", icon: "icon-users", navigationTrigger: "users:list" }
                 ]);
             }
             return Entities.menuItems;
