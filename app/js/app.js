@@ -71,7 +71,6 @@ define([
             ], function(){
 
                 Backbone.history.start();
-                
                 var API = new UttStages.Application(AppManager);
                 API.misc.initDropDown();//  To init dropdowns
 
