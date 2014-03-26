@@ -6477,10 +6477,17 @@
 {
     position:absolute;
     left:50%;
-    top:50%;
+    top:10%;
     width:300px;
     margin-left:-150px;
-    margin-top:-150px
+   
+}
+
+.login-wrapper #logo
+{
+    width: 290px;
+    margin-bottom: 100px;
+   
 }
 .login-wrapper .checkbox,.login-wrapper .radio
 {
