@@ -24,11 +24,13 @@
     "jquery": "~1.10.2",
     "jquery-ui-bootstrap": "jquery-ui-bootstrap/jquery-ui-bootstrap",
     "marionette": "~1.5.1",
+    "polyglot": "~0.3.0",
     "requirejs": "~2.1.5",
     "require-css": "~0.1.0",
     "requirejs-tpl": "*",
     "respond": "~1.4.2",
     "underscore": ">=1.5.2"
+    
   },
   "devDependencies": {},
   "exportsOverride": {
@@ -68,6 +70,9 @@
     },
     "marionette": {
       "js": "lib/backbone.marionette.js"
+    },
+    "polyglot": {
+      "js": "lib/polyglot.js"
     },
     "requirejs": {
       "js": "require.js"
