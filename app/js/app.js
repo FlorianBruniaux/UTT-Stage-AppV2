@@ -13,6 +13,7 @@ define([
     
     // Creates regions
     AppManager.addRegions({
+        mainlayoutRegion:"#main-layout-region",
         breadcrumbRegion: "#breadcrumb-region",
         menuRegion:"#menu-region",
         contentRegion: "#content-region"
@@ -59,30 +60,22 @@ define([
     
     // After initialization, run backbone history method
     AppManager.on('initialize:after', function(){
+        
         if (Backbone.history) {
             require([
                 //  Students
-                'modules/students/home/home_module'
-                
-                //  Teachers
-
-                
-                //  Internship managers
-
+                'modules/students/home/home_module',
+                'common/menu/menu_module',
+                'common/breadcrumb/breadcrumb_module'
             ], function(){
-                
+
                 Backbone.history.start();
                 
-                //  New API
                 var API = new UttStages.Application(AppManager);
                 API.misc.initDropDown();//  To init dropdowns
-                API.misc.initCollapsibleMenu();//  To init collapsible Menu
-                
-                if (AppManager.getCurrentRoute() === "") {
-                    var userCategory = 'students';  
-                    AppManager.trigger(userCategory+":home:root")   
-                }
-                
+
+                API.ajax.isAuth("/home");
+  
             });
         }
     });
