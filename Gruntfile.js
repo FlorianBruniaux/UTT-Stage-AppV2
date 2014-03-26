@@ -1,7 +1,8 @@
 'use strict';
 
-var LIVERELOAD_PORT = 35729;
-var SERVER_PORT = 8080;
+var LIVERELOAD_PORT = 35729,
+    SERVER_PORT = 8080 ,
+    URL = "http://127.0.0.1:"+SERVER_PORT;
 
 module.exports = function (grunt) {
     
@@ -64,7 +65,7 @@ module.exports = function (grunt) {
         
         open: {
             server: {
-                path: 'http://localhost:<%= express.options.port %>'
+                path: URL
             }
         },
         
