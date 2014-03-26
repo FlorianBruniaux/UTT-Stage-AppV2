@@ -8,7 +8,7 @@ define([
     // MainPage
     AppManager.module('Common.MainPage.View', function(View, AppManager, Backbone, Marionette, $, _){
         
-        View.mainPage = Marionette.CompositeView.extend({
+        View.mainPage = Marionette.ItemView.extend({
             template: mainPageTpl,
             onRender: function(){
                 setTimeout(function(){
