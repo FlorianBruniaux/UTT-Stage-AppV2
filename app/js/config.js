@@ -27,11 +27,7 @@ requirejs.config({
         collapsibleMenu : ["collapsible"],
         
         jasnybootstrap : ["jquery"],
-        
-        underscore: {
-            exports: "_"
-        },
-        
+
         jquery: {
             exports: "$"
         },
@@ -41,6 +37,14 @@ requirejs.config({
         marionette: {
             deps: ["backbone"],
             exports: "Marionette"
+        },
+        
+        polyglot: {
+            exports: 'Polyglot'
+        },
+        
+        underscore: {
+            exports: "_"
         },
         
         "utt.stages": {
@@ -82,6 +86,8 @@ requirejs.config({
 
         marionette: "vendors/bower/marionette/js/backbone.marionette",
        
+        polyglot:"vendors/bower/polyglot/js/polyglot",
+        
         //An animated CSS3 loading spinner with VML fallback for IE.
         spin: "vendors/loader/spin",
         
