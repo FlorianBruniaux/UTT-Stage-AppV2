@@ -1,12 +1,12 @@
 define([
     'app',
-    'meeitb'
-], function(AppManager, MeeiTb){
+    'utt.stages'
+], function(AppManager, UttStages){
     
     // "USERS" ENTITIES
     AppManager.module('Entities', function(Entities, AppManager, Backbone, Marionette, $, _){
 
-        var MeeiTbApp = new MeeiTb.Application(AppManager);
+        var API = new UttStages.Application(AppManager);
         
         // Model
         Entities.User = Backbone.Model.extend({
@@ -17,8 +17,8 @@ define([
                 _objectType : 'user',
                 userCategory: '',
                 linkedinId: '',
-                nom : '',
-                prenom : '',
+                firstName : '',
+                lastName : '',
                 mobile: '',
                 email: '',
                 headline: '',
@@ -46,11 +46,11 @@ define([
         
         // Get all the entities
         AppManager.reqres.setHandler('users:entities', function(){
-            return MeeiTbApp.entities.getEntities(new Entities.UserCollection());
+            return API.entities.getEntities(new Entities.UserCollection());
         });
         
         AppManager.reqres.setHandler('user:entity', function(_id){
-            return MeeiTbApp.entities.getEntity(new Entities.User({'_id': _id}));
+            return API.entities.getEntity(new Entities.User({'_id': _id}));
         });
         
         AppManager.reqres.setHandler('user:entity:new', function(_user){

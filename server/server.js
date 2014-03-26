@@ -1,6 +1,7 @@
 var requirejs = require('requirejs'),
     dbController = require('./db_controller'),
-    LinkedInStrategy = require('passport-linkedin').Strategy;
+    models = require('./models');
+    // LinkedInStrategy = require('passport-linkedin').Strategy,
 
 requirejs.config({
     nodeRequire: require
@@ -12,17 +13,21 @@ requirejs([
     'path',
     'express',
     'fs',
-    'passport'
-], function (http, https, path, express, fs, passport) {
+    'passport',
+    'passport-linkedin',
+    'mongoose'
+], function (http, https, path, express, fs, passport, passportLinkedin, mongoose) {
     
     'use strict';
     
-    /*
-    var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8'),
-        certificate = fs.readFileSync('sslcert/server.crt', 'utf8'),
-        credentials = {key: privateKey, cert: certificate};
-    */
-    
+    //connect to the db server:
+    mongoose.connect('mongodb://127.0.0.1/UttStagesApp');
+    mongoose.connection.on('open', function() {
+        console.log("Connected to Mongoose...");
+    });
+
+    var LinkedInStrategy = passportLinkedin.Strategy;
+
     var app = express();
 
     //  Configuration
@@ -51,6 +56,7 @@ requirejs([
         //  To use router
         app.use(app.router);
     });
+    
     
     
     /****************************************/
@@ -97,11 +103,40 @@ requirejs([
         },
         function(token, tokenSecret, profile, done) {
             process.nextTick(function () {
-                // To keep the example simple, the user's LinkedIn profile is returned to
-                // represent the logged-in user.  In a typical application, you would want
-                // to associate the LinkedIn account with a user record in your database,
-                // and return that user instead.
-                return done(null, profile);
+                models['user'].findOne({'linkedinId' : profile.id}, function(err, user) {
+
+                    if ( !user ) {
+                        
+                        var obj = {
+                            _objectType : 'user',
+                            userCategory: 'students',
+                            linkedinId: profile.id,
+                            firstName : profile._json.firstName,
+                            lastName : profile._json.lastName,
+                            mobile: '',
+                            email:  profile._json.emailAddress,
+                            headline: profile._json.headline,
+                            photoUrl:  profile._json.pictureUrl
+                        }
+                        var newUser = new models['user'](obj);
+                        
+                        
+                        newUser.save(function(err, user) {
+                            if (err) {
+                                console.log('err');
+                                return done(null, null);
+                            } else {
+                                console.log('ok');
+                                return done(null, user);
+                            }
+                        });
+                        
+                    }
+                    else {
+                        return done(null, user);
+                    }
+                    
+                });
             });
         }
     ));
@@ -138,12 +173,14 @@ requirejs([
     // To check if user is auth
     app.get('/auth/linkedin/isauth', function(req, res){
         if (req.isAuthenticated()) {
-            res.send(true);
+            res.send(req.user);
         }
         else{
-            res.send(false);
+            res.send(null);
         }
     });
+    
+    
     
     /****************************************/
     /*  APP                                 */
@@ -169,6 +206,10 @@ requirejs([
     
     //Creates HTTPS server
     /*
+    var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8'),
+        certificate = fs.readFileSync('sslcert/server.crt', 'utf8'),
+        credentials = {key: privateKey, cert: certificate};
+
     https.createServer(credentials, app).listen(app.get('port'), function(){
         console.log("You can run the application on " + SERVER_URL);
     });

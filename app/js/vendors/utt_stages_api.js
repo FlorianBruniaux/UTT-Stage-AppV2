@@ -184,15 +184,21 @@ define([
                             
                             //  If _res == true, user is logged
                             if (_res) {
+
                                 require([
-                                    'modules/common/main_page/view'
-                                ],function(mainPageView){
-                                    APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+                                    'modules/common/main_page/view',
+                                    'modules/common/user/right_corner/view',
+                                    'entities/common/users'
+                                ],function(mainPageView, rightCornerView){
                                     
-                                    setTimeout(function(){
-                                        var userCategory = "students";
-                                        APPMANAGER.trigger(userCategory+":"+_event);
-                                    },500)
+                                    APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+
+                                    //setTimeout(function(){
+                                        var user = APPMANAGER.request("user:entity:new", _res);
+                                        APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
+                                        
+                                        APPMANAGER.trigger(_res.userCategory+":"+_event);
+                                    //},500)
                                 })
                                
                             }

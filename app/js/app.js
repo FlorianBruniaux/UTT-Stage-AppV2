@@ -16,6 +16,7 @@ define([
         mainlayoutRegion:"#main-layout-region",
         breadcrumbRegion: "#breadcrumb-region",
         menuRegion:"#menu-region",
+        profileRegion: "#profile-region",
         contentRegion: "#content-region"
     })
     

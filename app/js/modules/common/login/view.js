@@ -6,7 +6,7 @@ define([
     // Login 
     AppManager.module('Common.Login.View', function(View, AppManager, Backbone, Marionette, $, _){
         
-        View.login = Marionette.CompositeView.extend({
+        View.login = Marionette.ItemView.extend({
             template: loginTpl
         });
         

@@ -12,23 +12,11 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar"><span class="sr-only">Toggle navigation</span><i class="icon-paragraph-justify2"></i></button>
     </div>
   
-    <ul class="nav navbar-nav navbar-right collapse" id="navbar-icons">
+    <div id="profile-region">
         
-        <li class="user dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-                <img src="images/photos/users/florian-bruniaux.png" alt="">
-                <span>Florian BRUNIAUX</span>
-                <br /><span>Options</span>
-                <i class="caret"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right icons-right">
-                <li><a href="#"><i class="icon-profile"></i> Profile</a></li>
-                <li><a href="#"><i class="icon-cog"></i> Paramètres</a></li>
-                <li><a href="#"><i class="icon-exit"></i> Déconnexion</a></li>
-            </ul>
-        </li>
-        
-    </ul>
+    </div>
+    
+    
 </div>
 <!-- /Navbar -->
 

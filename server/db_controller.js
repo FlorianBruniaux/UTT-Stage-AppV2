@@ -1,23 +1,16 @@
 var requirejs = require('requirejs'),
-    models = require('./models')
+    models = require('./models');
     
 requirejs.config({
     nodeRequire: require
 });
 
 requirejs([
-    'jquery',
-    'mongoose'
-], function ($, mongoose) {
+
+], function () {
     
     'use strict';
     
-    //connect to the db server:
-    mongoose.connect('mongodb://127.0.0.1/UttStagesApp');
-    mongoose.connection.on('open', function() {
-        console.log("Connected to Mongoose...");
-    });
-
     exports.API = {
         
         get: {
