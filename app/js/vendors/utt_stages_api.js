@@ -151,8 +151,68 @@ define([
                 }();
             });
             
+        },
+        
+        
+    };
+    
+    var I18N = API.Application.prototype.i18n = {
+        
+        init : function(){
+
+            require([
+                'polyglot'
+            ],function(Polyglot){
+                var userLang = I18N.getPreferedLanguage();
+                console.log(userLang);
+                $.getJSON('js/i18n/' + userLang + '.json', function(data) {
+                    window.polyglot = new Polyglot({phrases: data});
+                }); 
+            });
+        },
+        
+        getPreferedLanguage: function(){
+            var languagePrefCookie = COOKIES.read("UttStagesLanguagePref");
+            
+            if (languagePrefCookie) {
+                console.log("Cookie exists !");
+                return languagePrefCookie;
+            }
+            else{
+                userLang = navigator.language || navigator.userLanguage;   
+                return (userLang.indexOf('fr') > -1) ? 'fr': 'en';
+            }
         }
     };
+    
+    var COOKIES = API.Application.prototype.cookies = {
+        
+        create: function (name,value,days) {
+            if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime()+(days*24*60*60*1000));
+                    var expires = "; expires="+date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
+        },
+        
+        read: function (name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        },
+        
+        delete: function (name) {
+            COOKIES.create(name,"",-1);
+        }
+
+    }
     
     var ERRORS = API.Application.prototype.errors = {
         
@@ -198,6 +258,7 @@ define([
                                         APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
                                         
                                         APPMANAGER.trigger(_res.userCategory+":"+_event);
+                                    
                                     //},500)
                                 })
                                
