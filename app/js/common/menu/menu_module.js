@@ -22,7 +22,8 @@ define([
         /**
          *  Event = 'start'
          */
-        Menu.on('start', function(){
+        AppManager.on('menu:start', function(){
+            console.log('menu starts!');
             API.listMenu(); 
         });
         

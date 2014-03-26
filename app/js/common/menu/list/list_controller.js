@@ -11,6 +11,8 @@ define([
             
             listMenu: function(){
                 
+                console.log(AppManager);
+                
                 if(DEBUG) console.info("common.menu.list.list_controller.listMenu()")
                 
                 var self = this;
@@ -19,15 +21,20 @@ define([
                     'entities/'+self.userCategory+'/menu'
                 ], function(){
                     
-                    var links = AppManager.request(self.userCategory+':menu:entities'),
-                        menu = new View.Menu({collection: links});
                     
+                    var links = AppManager.request(self.userCategory+':menu:entities'),
+                    menu = new View.Menu({collection: links});
+                
                     menu.on('itemview:navigate', function(childView, model){
                         var trigger = model.get('navigationTrigger');
                         AppManager.trigger(trigger);
                     });
                     
+                    
+                    
                     AppManager.menuRegion.show(menu);
+                    
+                    
                 });
             },
             
@@ -35,14 +42,21 @@ define([
                 
                 if(DEBUG) console.info("common.menu.list.list_controller.setActiveMenuItem("+menuItemUrl+")")
                 
-                var links = AppManager.request(this.userCategory+':menu:entities');
+                var self = this;
                 
-                var menuItemToSelect = links.find(function(menu){
-                    return menu.get('url') === menuItemUrl;
+                require([
+                    'entities/'+self.userCategory+'/menu'
+                ], function(){
+                    
+                    var links = AppManager.request(self.userCategory+':menu:entities');
+                    
+                    var menuItemToSelect = links.find(function(menu){
+                        return menu.get('url') === menuItemUrl;
+                    });
+                    
+                    menuItemToSelect.select();
+                    links.trigger('reset');
                 });
-                
-                menuItemToSelect.select();
-                links.trigger('reset');
             }
         };
     });
