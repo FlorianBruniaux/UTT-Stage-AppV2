@@ -1,7 +1,10 @@
 requirejs([
     'app',
+    'utt.stages'
+], function(AppManager, UttStages){
     
-], function(AppManager){
+    var API = new UttStages.Application(AppManager);
+    API.i18n.init();
     
     // Start the application manager
     AppManager.start()

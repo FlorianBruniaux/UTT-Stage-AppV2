@@ -11,8 +11,6 @@ define([
             
             listMenu: function(){
                 
-                console.log(AppManager);
-                
                 if(DEBUG) console.info("common.menu.list.list_controller.listMenu()")
                 
                 var self = this;
@@ -20,8 +18,7 @@ define([
                 require([
                     'entities/'+self.userCategory+'/menu'
                 ], function(){
-                    
-                    
+
                     var links = AppManager.request(self.userCategory+':menu:entities'),
                     menu = new View.Menu({collection: links});
                 
@@ -29,12 +26,9 @@ define([
                         var trigger = model.get('navigationTrigger');
                         AppManager.trigger(trigger);
                     });
-                    
-                    
-                    
+
                     AppManager.menuRegion.show(menu);
-                    
-                    
+
                 });
             },
             

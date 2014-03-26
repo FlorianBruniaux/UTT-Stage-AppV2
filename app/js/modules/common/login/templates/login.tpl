@@ -1,28 +1,33 @@
 <!-- Login wrapper -->
 <div class="login-wrapper">
     
-    <div class="popup-header"><span class="text-semibold">Identification </span>
+    <div id="logo">
+        <img src="images/logo_utt.jpg" width="100%">
+    </div>
+    
+        
+    <div class="popup-header"><span class="text-semibold"><%= polyglot.t('app.name') %></span>
 
     </div>
     
     <div class="well">
         <form action="#" role="form">
             <div class="form-group has-feedback">
-                <label>Adresse mail : </label>
-                <input type="text" class="form-control" placeholder="Email">
+                <label><%= polyglot.t('email') %> : </label>
+                <input type="text" class="form-control" placeholder="<%= polyglot.t('email') %>">
                 <i class="icon-user form-control-feedback"></i>
             </div>
             
             <div class="form-group has-feedback">
-                <label>Mot de passe : </label>
-                <input type="password" class="form-control" placeholder="Mot de passe">
+                <label><%= polyglot.t('password') %> : </label>
+                <input type="password" class="form-control" placeholder="<%= polyglot.t('password') %>">
                 <i class="icon-lock form-control-feedback"></i>
             </div>
             
             <div class="form-group has-feedback">
               
                 <button type="submit" class="btn btn-info">
-                    Connexion
+                    Ok
                 </button>
               
             </div>
@@ -33,7 +38,7 @@
             <div class="col-xs-12">
                 <a href="/auth/linkedin">
                     <button type="submit" class="btn btn-info">
-                        <i class="icon-linkedin"></i>Se connecter avec Linkedin
+                        <i class="icon-linkedin"></i><%= polyglot.t('connectWith') %> Linkedin
                     </button>
                 </a>
             </div>

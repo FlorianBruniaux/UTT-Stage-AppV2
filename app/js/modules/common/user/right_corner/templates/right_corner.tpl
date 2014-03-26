@@ -8,9 +8,9 @@
             <i class="caret"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-right icons-right">
-            <li><a href="#users/profile/<%= _id %>"><i class="icon-profile"></i> Profile</a></li>
-            <li><a href="#users/parameters/<%= _id %>"><i class="icon-cog"></i> Paramètres</a></li>
-            <li><a href="/auth/linkedin/logout"><i class="icon-exit"></i> Déconnexion</a></li>
+            <li><a href="#users/profile/<%= _id %>"><i class="icon-profile"></i> <%= polyglot.t('profile') %></a></li>
+            <li><a href="#users/parameters/<%= _id %>"><i class="icon-cog"></i> <%= polyglot.t('parameters') %></a></li>
+            <li><a href="/auth/linkedin/logout"><i class="icon-exit"></i> <%= polyglot.t('logout') %></a></li>
         </ul>
     </li>
     
