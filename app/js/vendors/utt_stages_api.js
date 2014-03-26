@@ -171,37 +171,47 @@ define([
     
     var AJAX = API.Application.prototype.ajax = {
         
-        isAuth: function(_from){
-    
+        auth: {
             
-            $.ajax({
-                url: "/isauth",
-                type: "GET",
-                success: function(_res) {
-                    if (_res) {
-                        require([
-                            'modules/common/main_page/view'
-                        ],function(mainPageView){
-                            APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+            linkedin: {
+                
+                isAuth: function(_event){
+    
+                    $.ajax({
+                        url: "/auth/linkedin/isauth",
+                        type: "GET",
+                        success: function(_res) {
                             
-                            setTimeout(function(){
-                                APPMANAGER.navigate(_from);
-                            },500)
-    
-                        })
-                       
-                    }else{
-                        require([
-                            'modules/common/login/view',
-                        ],function(loginView){
-                            APPMANAGER.mainlayoutRegion.show(new loginView.login());
-                        })
-                    }
+                            //  If _res == true, user is logged
+                            if (_res) {
+                                require([
+                                    'modules/common/main_page/view'
+                                ],function(mainPageView){
+                                    APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+                                    
+                                    setTimeout(function(){
+                                        var userCategory = "students";
+                                        APPMANAGER.trigger(userCategory+":"+_event);
+                                    },500)
+                                })
+                               
+                            }
+                            else{
+                                require([
+                                    'modules/common/login/view',
+                                ],function(loginView){
+                                    APPMANAGER.mainlayoutRegion.show(new loginView.login());
+                                })
+                            }
+                        }
+                    });
+                    
                 }
-            });
-
-            
+            }
         }
+        
+        
+        
         
     };
       
