@@ -1,0 +1,33 @@
+{
+    "navbar.toggle" :"Toggle navbar",
+    "navigation.toggle": "Toggle navigation",
+    
+    "fr": "French",
+    "en": "English",
+    "new-f": "new",
+    "new-m": "new",
+    
+    "profile": "My profile",
+    "parameters": "Parameters",
+    "logout": "Logout",
+    
+    "app.name" : "Internships application v2.0.1",
+    
+    "email": "Email adress",
+    "password": "Password",
+    "connectWith": "Connect with",
+    
+    "menu.home": "Home",
+    "menu.offers": "Offers",
+    "menu.research": "Research",
+    "menu.monitoring": "Monitoring",
+    "menu.messages": "Messages",
+    "menu.contacts": "Contacts",
+    
+    "home.panel.title": "Here are the available actions",
+    "home.panel.actions.offers" : "Check the offers",
+    "home.panel.actions.research" : "Make a research",
+    "home.panel.actions.monitoring" : "Monitor your internship",
+    "home.panel.actions.messages" : "Consult my exchanges",
+    "home.panel.actions.contacts" : "Check my contacts"
+}
