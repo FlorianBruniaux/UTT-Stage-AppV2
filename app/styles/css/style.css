@@ -863,12 +863,12 @@
 }
 .popup-header
 {
-    background:#32434D;
+    background:#00427C;
     text-align:center;
     color:#fff;
-    border-radius:2px 2px 0 0;
-    -webkit-border-radius:2px 2px 0 0;
-    -moz-border-radius:2px 2px 0 0
+    border-radius:5px 5px 0 0;
+    -webkit-border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
 }
 .popup .popup-header
 {
@@ -991,6 +991,14 @@
 {
     color:#237B91
 }
+.no-photo {
+    border: 1px solid white;
+    width: 80px;
+    height:80px;
+    float: left;
+    background-color: lightgrey;
+}
+
 .user-face
 {
     width:40px;
