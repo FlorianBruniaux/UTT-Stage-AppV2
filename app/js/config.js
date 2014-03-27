@@ -34,6 +34,8 @@ requirejs.config({
         
         "jquery-ui": ["jquery"],
         
+        "jquery.validate" : ["jquery"],
+        
         marionette: {
             deps: ["backbone"],
             exports: "Marionette"
@@ -83,6 +85,8 @@ requirejs.config({
         jquery: "vendors/bower/jquery/js/jquery",
         
         "jquery-ui": "vendors/bower/jquery-ui-bootstrap/js/jquery-ui-1.10.0.custom.min",
+        
+        "jquery.validate": "vendors/bower/jquery-validation/js/jquery.validate",
 
         marionette: "vendors/bower/marionette/js/backbone.marionette",
        
