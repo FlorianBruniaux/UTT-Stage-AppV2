@@ -74,7 +74,7 @@ define([
                 var API = new UttStages.Application(AppManager);
                 API.misc.initDropDown();//  To init dropdowns
 
-                API.ajax.auth.linkedin.isAuth("home:root");
+                API.ajax.auth.isAuth("home:root");
   
             });
         }

@@ -233,48 +233,43 @@ define([
         
         auth: {
             
-            linkedin: {
-                
-                isAuth: function(_event){
-    
-                    $.ajax({
-                        url: "/auth/linkedin/isauth",
-                        type: "GET",
-                        success: function(_res) {
-                            
-                            //  If _res == true, user is logged
-                            if (_res) {
+            isAuth: function(_event){
 
-                                require([
-                                    'modules/common/main_page/view',
-                                    'modules/common/user/right_corner/view',
-                                    'entities/common/users'
-                                ],function(mainPageView, rightCornerView){
-                                    
-                                    APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+                $.ajax({
+                    url: "/auth/isauth",
+                    type: "GET",
+                    success: function(_res) {
+                        
+                        //  If _res == true, user is logged
+                        if (_res) {
 
-                                    //setTimeout(function(){
-                                        var user = APPMANAGER.request("user:entity:new", _res);
-                                        APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
-                                        
-                                        APPMANAGER.trigger(_res.userCategory+":"+_event);
-                                    
-                                    //},500)
-                                })
-                               
-                            }
-                            else{
-                                require([
-                                    'modules/common/login/view',
-                                ],function(loginView){
-                                    APPMANAGER.mainlayoutRegion.show(new loginView.login());
-                                })
-                            }
+                            require([
+                                'modules/common/main_page/view',
+                                'modules/common/user/right_corner/view',
+                                'entities/common/users'
+                            ],function(mainPageView, rightCornerView){
+                                
+                                APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+
+                                var user = APPMANAGER.request("user:entity:new", _res);
+                                APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
+                                
+                                APPMANAGER.trigger(_res.userCategory+":"+_event);
+                            })
+                           
                         }
-                    });
-                    
-                }
+                        else{
+                            require([
+                                'modules/common/login/login_controller',
+                            ],function(loginController){
+                                loginController.showLogin();
+                            })
+                        }
+                    }
+                });
+                
             }
+            
         }
         
         

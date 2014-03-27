@@ -15,10 +15,17 @@ requirejs([
     'fs',
     'passport',
     'passport-linkedin',
+    'passport-local',
     'mongoose'
-], function (http, https, path, express, fs, passport, passportLinkedin, mongoose) {
+], function (http, https, path, express, fs, passport, passportLinkedin, passportLocal, mongoose) {
     
     'use strict';
+    
+    
+    
+    /****************************************/
+    /*  DB                                  */
+    /****************************************/
     
     //connect to the db server:
     mongoose.connect('mongodb://127.0.0.1/UttStagesApp');
@@ -26,7 +33,12 @@ requirejs([
         console.log("Connected to Mongoose...");
     });
 
-    var LinkedInStrategy = passportLinkedin.Strategy;
+    
+    
+    
+    /****************************************/
+    /*  EXPRESS CONFIG                      */
+    /****************************************/
 
     var app = express();
 
@@ -44,6 +56,8 @@ requirejs([
         app.use('/node_modules', express.static((path.join(__dirname,'node_modules'))));
         //  To be able to work with json data
         app.use(express.json({limit: '50mb'}));
+        //  To support URL-encoded bodies
+        app.use(express.urlencoded());
         //  To be able to override methods
         app.use(express.methodOverride());
         //  To be able to parse cookies
@@ -58,12 +72,31 @@ requirejs([
     });
     
     
+    /****************************************/
+    /*  GLOBAL AUTH                         */
+    /****************************************/
+    
+    // To logout
+    app.get('/auth/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
+    });
+    
+    // To check if user is auth
+    app.get('/auth/isauth', function(req, res){
+        if (req.isAuthenticated()) {
+            res.send(req.user);
+        }
+        else{
+            res.send(null);
+        }
+    });
     
     /****************************************/
-    /*  API LINKEDIN                        */
+    /*  AUTH LINKEDIN                       */
     /****************************************/
-    
-    var LINKEDIN_API_KEY = "77timj8axy1cou",
+    var LinkedInStrategy = passportLinkedin.Strategy,
+        LINKEDIN_API_KEY = "77timj8axy1cou",
         LINKEDIN_SECRET_KEY = "GJAJJVPz6gDFpp3f";
         
     var SERVER_URL = "http://127.0.0.1:"+app.get('port');
@@ -102,7 +135,7 @@ requirejs([
             ]
         },
         function(token, tokenSecret, profile, done) {
-            process.nextTick(function () {
+            process.nextTick(function() {
                 models['user'].findOne({'linkedinId' : profile.id}, function(err, user) {
 
                     if ( !user ) {
@@ -113,14 +146,12 @@ requirejs([
                             linkedinId: profile.id,
                             firstName : profile._json.firstName,
                             lastName : profile._json.lastName,
-                            mobile: '',
                             email:  profile._json.emailAddress,
                             headline: profile._json.headline,
                             photoUrl:  profile._json.pictureUrl
                         }
                         var newUser = new models['user'](obj);
-                        
-                        
+
                         newUser.save(function(err, user) {
                             if (err) {
                                 console.log('err');
@@ -158,29 +189,100 @@ requirejs([
     //  login page.  Otherwise, the primary route function function will be called,
     //  which, in this example, will redirect the user to the home page.
     app.get('/auth/linkedin/callback',
-        passport.authenticate('linkedin', { failureRedirect: '/auth/linkedin/logout' }),
+        passport.authenticate('linkedin', { failureRedirect: '/auth/logout' }),
         function(req, res) {
             res.redirect('/#home');
         }
     );
     
-    // To logout
-    app.get('/auth/linkedin/logout', function(req, res){
-        req.logout();
-        res.redirect('/');
+
+    
+    /****************************************/
+    /*  AUTH LOCAL                          */
+    /****************************************/
+    
+    var LocalStrategy = passportLocal.Strategy;
+    
+    passport.use(new LocalStrategy({
+            usernameField: 'email'
+        },
+        function(username, password, done) {
+            models['user'].findOne({ email: username }, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                
+                if (!user) {
+                    return done(null, false, { message: 'Incorrect username.' });
+                }
+                
+                if (!(user.pwd == password)) {
+                    return done(null, false, { message: 'Incorrect password.' });
+                }
+                
+                return done(null, user);
+            });
+        }
+    ));
+    
+    app.post('/auth/local',
+        passport.authenticate('local', {
+                successRedirect: '/#home',
+                failureRedirect: '/auth/logout',
+                failureFlash: false
+            }
+        )
+    );
+    
+    app.post('/auth/local/signon', function(_req, _res){
+        
+        var firstName = _req.body.firstName,
+            lastName = _req.body.lastName,
+            email = _req.body.email,
+            password = _req.body.password;
+        
+        models['user'].findOne({'email' : email}, function(err, user) {
+
+            if ( !user ) {
+                
+                var obj = {
+                    _objectType : 'user',
+                    userCategory: 'students',
+                    firstName : firstName,
+                    lastName : lastName,
+                    email: email,
+                    pwd: password
+                }
+                var newUser = new models['user'](obj);
+    
+                newUser.save(function(err, user) {
+                    if (err) {
+                        _res.send("Error, please try again");
+                    }
+                    else {
+                        _res.status(200).send('ok');
+                    }
+                });
+                
+            }
+            else {
+                _res.send("User already exists");
+            }
+            
+        });
+        
     });
     
-    // To check if user is auth
-    app.get('/auth/linkedin/isauth', function(req, res){
-        if (req.isAuthenticated()) {
-            res.send(req.user);
-        }
-        else{
-            res.send(null);
-        }
+    app.post('/auth/local/forgotpassword', function(_req, _res){
+        
+        var email = _req.body.email;
+        
+        console.log("Forgot Password");
+        console.log(email);
+        
+        _res.send("ok");
+        
     });
-    
-    
     
     /****************************************/
     /*  APP                                 */
