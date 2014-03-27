@@ -19,6 +19,7 @@
     "backbone.picky": "~0.2.0",
     "backbone.syphon": "~0.4.1",
     "bootbox.js": "makeusabrew/bootbox#~4.2.0",
+    "geocomplete": "ubilabs/geocomplete#~1.5.1",
     "html5shiv": "~3.7.0",
     "jasny-bootstrap": "jasny/bootstrap#~3.1.0",
     "jquery": "~1.10.2",
@@ -30,7 +31,6 @@
     "requirejs-tpl": "*",
     "respond": "~1.4.2",
     "underscore": ">=1.5.2"
-    
   },
   "devDependencies": {},
   "exportsOverride": {
@@ -54,6 +54,9 @@
     },
     "bootstrap": {
       "js": "dist/js/bootstrap.js"
+    },
+    "geocomplete": {
+      "js": "jquery.geocomplete.js"
     },
     "html5shiv": {
       "js": "dist/html5shiv.js"
