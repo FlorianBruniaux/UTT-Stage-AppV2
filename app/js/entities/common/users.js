@@ -22,7 +22,8 @@ define([
                 mobile: '',
                 email: '',
                 headline: '',
-                photoUrl: ''
+                photoUrl: '',
+                pwd: ''
             },
             
             // To validate form (new & edit)

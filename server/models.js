@@ -20,7 +20,8 @@ requirejs([
         mobile:         { type: String },
         email:          { type: String },
         headline:       { type: String },
-        photoUrl:       { type: String }
+        photoUrl:       { type: String },
+        pwd:            { type: String }
     });
 
     exports.user = mongoose.model('user', user);
