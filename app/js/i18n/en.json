@@ -7,6 +7,9 @@
     "new-f": "new",
     "new-m": "new",
     
+    "firstName": "First name",
+    "lastName": "Last name",
+    
     "profile": "My profile",
     "parameters": "Parameters",
     "logout": "Logout",
@@ -16,6 +19,20 @@
     "email": "Email adress",
     "password": "Password",
     "connectWith": "Connect with",
+    "notRegistered": "Not yet registered ?",
+    "signIn": "Sign In",
+    "signOn": "Sign On",
+    "forgotPassword": "Forgot your password",
+    "clickHere": "click here",
+    
+    "confirmPassword": "Please confirm password",
+    "newPassword": "Send me a new password",
+    
+    "login.title": "Identification form",
+    "login.goBack": "Return to login page",
+    "register.title": "Registration form",
+    "forgotPassword.title": "Password forgotten",
+
     
     "menu.home": "Home",
     "menu.offers": "Offers",

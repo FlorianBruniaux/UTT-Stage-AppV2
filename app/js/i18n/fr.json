@@ -7,6 +7,9 @@
     "new-f": "nouvelle(s)",
     "new-m": "nouveau(x)",
     
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    
     "profile": "Mon profil",
     "parameters": "Paramètres",
     "logout": "Se déconnecter",
@@ -17,6 +20,19 @@
     "email": "Adresse email",
     "password": "Mot de passe",
     "connectWith": "Se connecter avec",
+    "notRegistered": "Pas encore inscrit ?",
+    "signIn": "Se connecter",
+    "signOn": "S'inscrire",
+    "forgotPassword": "Mot de passe oublié",
+    "clickHere": "cliquer ici",
+    
+    "confirmPassword": "Confirmer le mot de passe",
+    "newPassword": "Envoyez moi un nouveau mot de passe",
+    
+    "login.title": "Formulaire d'identification",
+    "login.goBack": "Retourner à la page d'identification",
+    "register.title": "Formulaire d'inscription",
+    "forgotPassword.title": "Mot de passe oublié",
     
     "menu.home": "Accueil",
     "menu.offers": "Offres",
