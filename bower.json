@@ -24,6 +24,7 @@
     "jasny-bootstrap": "jasny/bootstrap#~3.1.0",
     "jquery": "~1.10.2",
     "jquery-ui-bootstrap": "jquery-ui-bootstrap/jquery-ui-bootstrap",
+    "jquery-validation": "jzaefferer/jquery-validation#~1.11.1",
     "marionette": "~1.5.1",
     "polyglot": "~0.3.0",
     "requirejs": "~2.1.5",
@@ -70,6 +71,12 @@
     "jquery-ui-bootstrap": {
       "js": "assets/js/jquery-ui-1.10.0.custom.min.js",
       "css": "css/custom-theme/jquery-ui-1.10.0.custom.css"
+    },
+    "jquery-validation": {
+      "js": [
+        "jquery.validate.js",
+        "localization/messages_fr.js"
+      ]
     },
     "marionette": {
       "js": "lib/backbone.marionette.js"
