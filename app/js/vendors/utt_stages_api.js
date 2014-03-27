@@ -164,7 +164,7 @@ define([
                 'polyglot'
             ],function(Polyglot){
                 var userLang = I18N.getPreferedLanguage();
-                console.log(userLang);
+
                 $.getJSON('js/i18n/' + userLang + '.json', function(data) {
                     window.polyglot = new Polyglot({phrases: data});
                 }); 
@@ -268,6 +268,35 @@ define([
                     }
                 });
                 
+            },
+            
+            post: function(_form){
+                require([
+                    'backbone.syphon'
+                ],function(){
+                    
+                    var jsonData = Backbone.Syphon.serialize(_form);
+
+                    $.ajax({
+                        url: _form.action,
+                        type: "POST",
+                        data: jsonData,
+                        dataType: 'json',
+                        success: function(_res) {
+                            $(_form).prepend('<label class="error valid"><i class="icon-checkmark"></i> '+_res.message+'</label><br />');
+                            
+                            _form.reset();
+                            
+                            setTimeout(function(){
+                                window.location.reload();
+                            },3000);
+                            
+                        },
+                        error: function(_err){
+                            $(_form).prepend('<label class="error">'+_err.responseText+'</label><br />');
+                        }
+                    });
+                })
             }
             
         }
@@ -449,6 +478,79 @@ define([
     
         forms: {
         
+            checkBeforeSubmit: function(_target){
+                
+                require([
+                    "jquery.validate"
+                ],function(){
+                    
+                    var userLang = I18N.getPreferedLanguage();
+                    if (userLang != "en") {
+                        $('head').append('<script type="text/javascript" src="js/vendors/bower/jquery-validation/js/messages_'+userLang+'.js" />')
+                    }
+                    
+                    return function(){
+                        
+                        $(_target).validate({
+                            submitHandler: function(form) {
+                                switch (form.id) {
+                                    case "login-form":
+                                        form.submit();
+                                        break;
+                                    
+                                    default:
+                                        AJAX.auth.post(form);
+                                        break;
+                                }
+                                
+                            },
+                            errorPlacement: function(error, element) {
+                                if (element.parent().parent().attr("class") == "checker" || element.parent().parent().attr("class") == "choice" ) {
+                                    error.appendTo( element.parent().parent().parent().parent().parent() );
+                                } 
+                                else if (element.parent().parent().attr("class") == "checkbox" || element.parent().parent().attr("class") == "radio" ) {
+                                    error.appendTo( element.parent().parent().parent() );
+                                } 
+                                else {
+                                    error.insertAfter(	element);
+                                }
+                            },
+                            rules: {
+                                firstName:{
+                                    required:   true
+                                },
+                                lastName:{
+                                    required:   true
+                                },
+                                email: {
+                                    required: true,
+                                    email: true
+                                },
+                                
+                                password: {
+                                    required: true,
+                                    minlength: 8
+                                },
+                                
+                                confirmPassword: {
+                                    required: true,
+                                    minlength: 8,
+                                    equalTo: "#password"
+                                }
+                            
+                            },
+                            messages: {
+                            },
+                            success: function(label) {
+                                label.html('<i class="icon-checkmark"></i>').addClass('valid');
+                            }
+                        });
+                        
+                    }();
+                })
+                
+            },
+            
             onFormDataInvalid: function(_el, _objectType,_errors){
                 var $view = _el;
                 

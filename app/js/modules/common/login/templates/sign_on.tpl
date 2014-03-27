@@ -12,7 +12,7 @@
     
     <div class="well">
         
-        <form action="/auth/local/signon" method="post" role="form">
+        <form id="sign-on-form" action="/auth/local/signon" role="form">
             
             <div class="form-group has-feedback">
                 <label><%= polyglot.t('firstName') %> : </label>
@@ -34,7 +34,7 @@
             
             <div class="form-group has-feedback">
                 <label><%= polyglot.t('password') %> : </label>
-                <input type="password" class="form-control" name="password" placeholder="<%= polyglot.t('password') %>">
+                <input id="password" type="password" class="form-control" name="password" placeholder="<%= polyglot.t('password') %>">
                 <i class="icon-lock form-control-feedback"></i>
             </div>
 

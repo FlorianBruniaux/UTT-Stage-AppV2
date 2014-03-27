@@ -16,8 +16,11 @@ requirejs([
     'passport',
     'passport-linkedin',
     'passport-local',
-    'mongoose'
-], function (http, https, path, express, fs, passport, passportLinkedin, passportLocal, mongoose) {
+    'mongoose',
+    'validator',
+    'nodemailer',
+    'password-generator'
+], function (http, https, path, express, fs, passport, passportLinkedin, passportLocal, mongoose, validator, nodemailer, pwdGenerator) {
     
     'use strict';
     
@@ -136,30 +139,41 @@ requirejs([
         },
         function(token, tokenSecret, profile, done) {
             process.nextTick(function() {
+                
                 models['user'].findOne({'linkedinId' : profile.id}, function(err, user) {
 
                     if ( !user ) {
                         
-                        var obj = {
-                            _objectType : 'user',
-                            userCategory: 'students',
-                            linkedinId: profile.id,
-                            firstName : profile._json.firstName,
-                            lastName : profile._json.lastName,
-                            email:  profile._json.emailAddress,
-                            headline: profile._json.headline,
-                            photoUrl:  profile._json.pictureUrl
-                        }
-                        var newUser = new models['user'](obj);
-
-                        newUser.save(function(err, user) {
-                            if (err) {
-                                console.log('err');
-                                return done(null, null);
-                            } else {
-                                console.log('ok');
-                                return done(null, user);
+                        models['user'].findOne({'email' : profile._json.emailAddress}, function(err, user) {
+                            
+                            if ( !user ) {
+                                
+                                var obj = {
+                                    _objectType : 'user',
+                                    userCategory: 'students',
+                                    linkedinId: profile.id,
+                                    firstName : profile._json.firstName,
+                                    lastName : profile._json.lastName,
+                                    email:  profile._json.emailAddress,
+                                    headline: profile._json.headline,
+                                    photoUrl:  profile._json.pictureUrl
+                                }
+                                var newUser = new models['user'](obj);
+        
+                                newUser.save(function(err, user) {
+                                    if (err) {
+                                        console.log('err');
+                                        return done(null, null);
+                                    } else {
+                                        console.log('ok');
+                                        return done(null, user);
+                                    }
+                                });
                             }
+                            else {
+                                return done(null, null);
+                            }
+                            
                         });
                         
                     }
@@ -236,14 +250,17 @@ requirejs([
     
     app.post('/auth/local/signon', function(_req, _res){
         
-        var firstName = _req.body.firstName,
-            lastName = _req.body.lastName,
-            email = _req.body.email,
+        var firstName = validator.escape(_req.body.firstName),
+            lastName = validator.escape(_req.body.lastName),
+            email = validator.escape(_req.body.email),
             password = _req.body.password;
         
         models['user'].findOne({'email' : email}, function(err, user) {
 
-            if ( !user ) {
+            if (password.length < 8) {
+                _res.send("Password is too short (8 characters min) ");
+            }
+            else if ( !user ) {
                 
                 var obj = {
                     _objectType : 'user',
@@ -260,13 +277,12 @@ requirejs([
                         _res.send("Error, please try again");
                     }
                     else {
-                        _res.status(200).send('ok');
+                        _res.json(200, {message : "You've been registered! Please log in with your email/password in the login page."});
                     }
                 });
                 
-            }
-            else {
-                _res.send("User already exists");
+            }else {
+                _res.send("Email already registered !");
             }
             
         });
@@ -275,13 +291,69 @@ requirejs([
     
     app.post('/auth/local/forgotpassword', function(_req, _res){
         
-        var email = _req.body.email;
+        var email = validator.escape(_req.body.email);
         
-        console.log("Forgot Password");
-        console.log(email);
+        models['user'].findOne({ 'email': email }, function(err, user) {
+            
+            if (!user) {
+                _res.send('Email not found in the users database!');
+            }
+            else {
+
+                var newPassword = pwdGenerator(10, false);
+                
+                user.pwd = newPassword ;
+                user.save();
+                
+                /****************************************/
+                /********* Need to be configured ********/
+                /****************************************/
+                var SENDER_EMAIL = '',
+                    SENDER_PWD = '';
+                /****************************************/
+                
+                // create reusable transport method (opens pool of SMTP connections)
+                var smtpTransport = nodemailer.createTransport("SMTP",{
+                    host: "smtp.gmail.com", // hostname
+                    secureConnection: true, // use SSL
+                    port: 465, // port for secure SMTP
+                    service: "Gmail",
+                    auth: {
+                        user: SENDER_EMAIL,
+                        pass: SENDER_PWD
+                    }
+                });
+                
+                
+                var txtMessage = "Here is your new password : "+newPassword,
+                    htmlMessage = "Here is your new password : <b>"+newPassword+"</b>";
+                
+                var mailOptions = {
+                    from: "UTT Internships Administration  <utt.internships@utt.fr>",
+                    to: email,
+                    subject: "UTT Internships application  : New password", 
+                    text: txtMessage,
+                    html: htmlMessage
+                };
+                
+                // send mail with defined transport object
+                smtpTransport.sendMail(mailOptions, function(error, response){
+                    if(error){
+                        console.log(error);
+                    }else{
+                        console.log("Message sent: " + response.message);
+                    }
+                    
+                    smtpTransport.close();
+                });
         
-        _res.send("ok");
-        
+                _res.json({message : "An email have been sent to "+email+" with a new password !"});
+                    
+                
+
+            }
+        })
+
     });
     
     /****************************************/

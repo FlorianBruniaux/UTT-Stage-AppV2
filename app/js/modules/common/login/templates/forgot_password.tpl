@@ -13,7 +13,7 @@
     
     <div class="well">
         
-        <form action="/auth/local/forgotpassword" method="post" role="form">
+        <form id="forgot-password-form" action="/auth/local/forgotpassword" role="form">
             
             <div class="form-group has-feedback">
                 <label><%= polyglot.t('email') %> : </label>
