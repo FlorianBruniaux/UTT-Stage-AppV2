@@ -27,7 +27,7 @@ define([
             if (Entities.menuItems === undefined) {
                 Entities.menuItems = new Entities.MenuCollection([
                     { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "internship_managers:home:root" },
-                    { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "internship_managers:offers:list" },
+                    { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "internship_managers:offers:root" },
                     { name: "menu.research", url: "research", icon: "icon-search3", navigationTrigger: "internship_managers:search:root" },
                     { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "internship_managers:monitoring:root" },
                     { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "internship_managers:messages:list" },
