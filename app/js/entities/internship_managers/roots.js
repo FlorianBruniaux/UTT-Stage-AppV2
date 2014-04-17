@@ -2,19 +2,19 @@ define([
     'app'
 ], function(AppManager){
     
-    // "ROOTS" ENTITIES
+    //  "ROOTS" ENTITIES
     AppManager.module('Entities', function(Entities, AppManager, Backbone, Marionette, $, _){
         
-        // Model
+        //  Model
         Entities.Roots = Backbone.Model.extend({
         });
         
-        // Collection
+        //  Collection
         Entities.RootsCollection = Backbone.Collection.extend({
             model : Entities.Roots,
         });
         
-        //Home
+        //  Home
         AppManager.reqres.setHandler('internship_managers:homeRoot:entities', function(){
             if (Entities.homeRootListItems === undefined) {
                 Entities.homeRootListItems = new Entities.RootsCollection([
@@ -26,6 +26,17 @@ define([
                 ]);
             }
             return Entities.homeRootListItems;
+        });
+        
+        //  Offers
+        AppManager.reqres.setHandler('internship_managers:offersRoot:entities', function(){
+            if (Entities.offersRootListItems === undefined) {
+                Entities.offersRootListItems = new Entities.RootsCollection([
+                    { name: "offers.panel.actions.new", url: "offers/new", icon: "icon-plus-circle", navigationTrigger: "internship_managers:offers:new", bg_class:"bg-info", msg: "<br />" },
+                    { name: "offers.panel.actions.list", url: "offers/list", icon: "icon-newspaper", navigationTrigger: "internship_managers:offers:list", bg_class:"bg-info", msg: "<br />" }
+                ]);
+            }
+            return Entities.offersRootListItems;
         });
         
         
