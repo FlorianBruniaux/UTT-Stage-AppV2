@@ -26,12 +26,12 @@ define([
         AppManager.reqres.setHandler('students:menu:entities', function(){
             if (Entities.menuItems === undefined) {
                 Entities.menuItems = new Entities.MenuCollection([
-                    { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "home:root" },
-                    { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "offers:list" },
-                    { name: "menu.research", url: "research", icon: "icon-search3", navigationTrigger: "search:root" },
-                    { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "monitoring:root" },
-                    { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "messages:list" },
-                    { name: "menu.contacts", url: "users", icon: "icon-users", navigationTrigger: "users:list" }
+                    { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "students:home:root" },
+                    { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "students:offers:list" },
+                    { name: "menu.research", url: "research", icon: "icon-search3", navigationTrigger: "students:search:root" },
+                    { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "students:monitoring:root" },
+                    { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "students:messages:list" },
+                    { name: "menu.contacts", url: "contacts", icon: "icon-users", navigationTrigger: "contacts:list" }
                 ]);
             }
             return Entities.menuItems;

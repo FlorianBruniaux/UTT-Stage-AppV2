@@ -23,15 +23,15 @@ define([
             }
         });
         
-        AppManager.reqres.setHandler('students:menu:entities', function(){
+        AppManager.reqres.setHandler('internship_managers:menu:entities', function(){
             if (Entities.menuItems === undefined) {
                 Entities.menuItems = new Entities.MenuCollection([
-                    { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "home:root" },
-                    { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "offers:list" },
-                    { name: "menu.research", url: "research", icon: "icon-search3", navigationTrigger: "search:root" },
-                    { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "monitoring:root" },
-                    { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "messages:list" },
-                    { name: "menu.contacts", url: "users", icon: "icon-users", navigationTrigger: "users:list" }
+                    { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "internship_managers:home:root" },
+                    { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "internship_managers:offers:list" },
+                    { name: "menu.research", url: "research", icon: "icon-search3", navigationTrigger: "internship_managers:search:root" },
+                    { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "internship_managers:monitoring:root" },
+                    { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "internship_managers:messages:list" },
+                    { name: "menu.contacts", url: "contacts", icon: "icon-users", navigationTrigger: "contacts:list" }
                 ]);
             }
             return Entities.menuItems;

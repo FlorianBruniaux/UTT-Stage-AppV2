@@ -42,10 +42,12 @@
     "menu.contacts": "Contacts",
     
     "home.panel.title": "Voici les actions disponibles",
-    "home.panel.actions.offers" : "Consulter les offres",
+    "home.panel.actions.offers.list" : "Consulter les offres",
+    "home.panel.actions.offers.internship_managers" : "Gérer les offres",
     "home.panel.actions.validation" : "Offres à analyser",
     "home.panel.actions.research" : "Faire une recherche",
-    "home.panel.actions.monitoring" : "Gérer mon suivi",
+    "home.panel.actions.monitoring.students" : "Gérer mon suivi",
+    "home.panel.actions.monitoring.internship_managers" : "Gérer le suivi des étudiants",
     "home.panel.actions.messages" : "Consulter mes échanges",
     "home.panel.actions.contacts" : "Voir mes contacts" 
 }
