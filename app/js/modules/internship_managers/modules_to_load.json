@@ -1,0 +1,7 @@
+{
+    "modules": [
+        "modules/internship_managers/home/home_module",
+        "modules/internship_managers/offers/offers_module"
+    ]
+}
+

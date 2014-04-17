@@ -151,9 +151,7 @@ define([
                 }();
             });
             
-        },
-        
-        
+        }
     };
     
     var I18N = API.Application.prototype.i18n = {
@@ -224,6 +222,17 @@ define([
                     ERRORS.e404();
                 }, 40)
             }   
+        },
+        
+        e500: function(){
+            if (ERROR.view) {
+                APPMANAGER.mainlayoutRegion.show(new ERROR.view.e500());
+            }else{
+                ERROR.init();
+                setTimeout(function(){
+                    ERRORS.e500();
+                }, 40)
+            }   
         }
         
     };
@@ -243,23 +252,37 @@ define([
                         //  => User is logged
                         if (_res && _.isObject(_res) ) {
 
-                            require([
+                            //  Modules to load for each category of user
+                            var common = [
                                 'common/main_page/view',
                                 'common/user/right_corner/view',
-                                'entities/common/users',
-                                'modules/'+_res.userCategory+'/home/home_module'
-                            ],function(mainPageView, rightCornerView){
-                                
-                                APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
-
-                                //  Create and Get Backbone user model (from the object sent by server)
-                                var user = APPMANAGER.request('user:entity:new', _res);
-                                //  Show user infos in top right corner
-                                APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
-                                
-                                //  Trigger the event passed for the user category.
-                                APPMANAGER.trigger(_res.userCategory+':'+_event);
+                                'entities/common/users'
+                            ];
+                            
+                            //  User category specific modules 
+                            $.getJSON('js/modules/'+_res.userCategory+'/modules_to_load.json', function(_data) {
+                            
+                                require(_.union(common, _data.modules), function(mainPageView, rightCornerView){
+                                    
+                                    APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+    
+                                    //  Create and Get Backbone user model (from the object sent by server)
+                                    var user = APPMANAGER.request('user:entity:new', _res);
+                                    //  Show user infos in top right corner
+                                    APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
+                                    
+                                    //  Trigger the event passed for the user category.
+                                    APPMANAGER.trigger(_res.userCategory+':'+_event);
+                                });
+                            
+                            }).fail(function(){
+                                ERRORS.e500();
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
                             });
+
+                            
                            
                         }
                         else{
