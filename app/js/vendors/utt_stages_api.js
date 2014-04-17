@@ -246,7 +246,8 @@ define([
                             require([
                                 'common/main_page/view',
                                 'common/user/right_corner/view',
-                                'entities/common/users'
+                                'entities/common/users',
+                                'modules/'+_res.userCategory+'/home/home_module'
                             ],function(mainPageView, rightCornerView){
                                 
                                 APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());

@@ -64,20 +64,9 @@ define([
         
         if (Backbone.history) {
             require([
-        
                 //Common
                 'common/menu/menu_module',
                 'common/breadcrumb/breadcrumb_module',
-                
-                //  Students
-                'modules/students/home/home_module',
-                
-                //  Internship_managers
-                'modules/internship_managers/home/home_module',
-                
-                //  Teachers
-                'modules/teachers/home/home_module'
-                
             ], function(){
 
                 Backbone.history.start();
@@ -86,7 +75,6 @@ define([
                 API.misc.initDropDown();//  To init dropdowns
 
                 API.ajax.auth.isAuth('home:root');
-  
             });
         }
     });
