@@ -8,5 +8,4 @@ requirejs([
     
     // Start the application manager
     AppManager.start()
-
 });
