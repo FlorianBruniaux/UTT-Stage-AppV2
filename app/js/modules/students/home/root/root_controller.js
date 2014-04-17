@@ -1,41 +1,42 @@
 define([
-    "app",
-    "modules/students/home/root/root_view"
+    'app',
+    'common/roots/root_view'
 ], function(AppManager, View){
 
-    // HomeModule Root OptionsList Controller
-    AppManager.module("HomeModule.Root.OptionsList", function(OptionsList, AppManager, Backbone, Marionette, $, _){
+    // HomeModule Root Controller
+    AppManager.module('HomeModule.Root', function(Root, AppManager, Backbone, Marionette, $, _){
         
-        OptionsList.Controller = {
+        Root.Controller = {
             
             // To list all the options of root.
             listRootOptions: function(){
                 
-                if(DEBUG) console.info("home.root.list_controller.listRootOptions()");
+                if(DEBUG) console.info('home.root.list_controller.listRootOptions()');
                 
                 // Updates breadcrumb
                 AppManager.trigger('breadcrumb:update', null);
                     
                 require([
-                    "entities/students/roots"
+                    'entities/students/roots'
                 ], function(){
-
                     // Gets all the options items (objects with differents information - CF entities folder)
-                    var items = AppManager.request("students:homeRoot:entities");
-                    var optionsList = new View.optionsList({collection: items});
+                    var items = AppManager.request('students:homeRoot:entities');
+                    var view = new View.optionsList({
+                        collection: items
+                    });
                     
                     // When one of the options is chosen, it triggers the event defined in the item object
-                    optionsList.on("itemview:navigate", function(childView, model){
-                        var trigger = model.get("navigationTrigger");
+                    view.on('itemview:navigate', function(childView, model){
+                        var trigger = model.get('navigationTrigger');
                         AppManager.trigger(trigger);
                     });
                     
                     // Displays the view
-                    AppManager.contentRegion.show(optionsList);
+                    AppManager.contentRegion.show(view);
                 });
             }  
         }
     });
 
-    return AppManager.HomeModule.Root.OptionsList.Controller;
+    return AppManager.HomeModule.Root.Controller;
 });

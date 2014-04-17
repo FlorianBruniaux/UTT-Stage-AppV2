@@ -34,13 +34,13 @@ define([
         // Executes the actions given by API functions (when they are triggered)
         var executeAction = function(action, arg){
             
-            if(DEBUG) console.info("students.home.home_module.executeAction()");
+            if(DEBUG) console.info('students.home.home_module.executeAction()');
             
             AppManager.startModule('HomeModule');
             action(arg);
             
             // Sets the active menu item
-            AppManager.execute("set:active:menu", 'home');
+            AppManager.execute('set:active:menu', 'home');
         };
        
        
@@ -53,7 +53,7 @@ define([
             // To list all the options of root.
             listRootOptions: function(){
                 
-                if(DEBUG) console.info("students.home.home_module.API.showRoot()");
+                if(DEBUG) console.info('students.home.home_module.API.showRoot()');
                 
                 require([
                     'modules/students/home/root/root_controller'    

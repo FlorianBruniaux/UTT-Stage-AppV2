@@ -2,7 +2,9 @@
 <div class="panel panel-default">
     
     <div class="panel-heading">
-        <h6 class="panel-title"><%= polyglot.t('home.panel.title') %> : </h6>
+        <h6 class="panel-title">
+            
+        </h6>
     </div>
     
     <div class="panel-body">
