@@ -596,27 +596,19 @@ define([
                 
             },
             
-            onFormDataInvalid: function(_el, _objectType,_errors){
-                var $view = _el;
+            markError : function(_key, _error){
                 
-                var clearFormErrors = function(){
-                    var $form = $view.find('form');
-                    $form.find('.help-inline.error').each(function(){
-                        $(this).remove(); 
-                    });
-                    $form.find('.control-group.error').each(function(){
-                        $(this).removeClass('error');
-                    })
+                var label = "";
+                
+                if ( ! _.isEmpty(_error) ) {
+                    label = '<label class="error">'+_error.message+'</label>'
+                }
+                else{
+                    label = '<label class="error valid"><i class="icon-checkmark"></i></label>'
                 }
                 
-                var markErrors = function(_value, _key){
-                    var $controlGroup = $view.find('#'+_objectType+'-'+_key).parent().parent();
-                    var $errorEl = $('<span>', {class:'help-inline error', text: _value});
-                    $controlGroup.append($errorEl).addClass('error');
-                }
+                $('#form-'+_key).parent().find('span.msg').html(label);
                 
-                clearFormErrors();
-                _.each(_errors, markErrors);
             }
             
         },
