@@ -30,9 +30,6 @@ define([
                 // Gets a new user model (CF entities folder)
                 var newOffer = AppManager.request('offer:entity:new');
                 
-                
-
-                
                 var view = new View.Form({
                     model: newOffer,
                     title: polyglot.t('offer.new')

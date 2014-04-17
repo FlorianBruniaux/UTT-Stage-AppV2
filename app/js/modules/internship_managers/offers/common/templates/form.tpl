@@ -17,32 +17,80 @@
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Title:</label>
-                        <div class="col-sm-6" id="form-title" data-editors="title" >
+                        <label class="col-sm-2 control-label">Type:</label>
+                        <div class="col-sm-6" id="form-type" data-editors="type" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Name:</label>
-                        <div class="col-sm-6" id="form-name" data-editors="name" >
+                        <label class="col-sm-2 control-label">Department:</label>
+                        <div class="col-sm-6" id="form-department" data-editors="department" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Email:</label>
-                        <div class="col-sm-6" id="form-email" data-editors="email" >
+                        <label class="col-sm-2 control-label">Department spec:</label>
+                        <div class="col-sm-6" id="form-departmentSpec" data-editors="departmentSpec" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Password:</label>
-                        <div class="col-sm-6" id="form-password" data-editors="password" >
+                        <label class="col-sm-2 control-label">Company :</label>
+                        <div class="col-sm-6" id="form-company" data-editors="company" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description mission:</label>
+                        <div class="col-sm-6" id="form-descriptionMission" data-editors="descriptionMission" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                     
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description profile:</label>
+                        <div class="col-sm-6" id="form-descriptionProfile" data-editors="descriptionProfile" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description rem:</label>
+                        <div class="col-sm-6" id="form-descriptionRem" data-editors="descriptionRem" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ref:</label>
+                        <div class="col-sm-6" id="form-ref" data-editors="ref" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Adress:</label>
+                        <div class="col-sm-6" id="form-address" data-editors="address" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Tags:</label>
+                        <div class="col-sm-6" id="form-tags" data-editors="tags" >
                           
                         </div>
                         <span class="msg"></span>

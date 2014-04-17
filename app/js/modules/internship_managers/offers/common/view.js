@@ -20,54 +20,64 @@ define([
 
                 var title = this.options.title;
                 
-                var User = Backbone.Model.extend({
+                var companies = [];//Get companies
+                
+                var Offer = Backbone.Model.extend({
                     schema: {
-                        title:      { type: 'Select', validators: ['required'], options: ['Mr', 'Mrs', 'Ms'] },
-                        name:       { type:'Text', validators: ['required'] },
-                        email:      { validators: ['required', 'email'] },
-                        password:   { type:'Password', validators: ['required'] }
+                        type:   { type: 'Select', validators: ['required'], options: ['TN07','TN09','TN10','Alternance'] },
+                        department: { type: 'Select', validators: ['required'], options: ['ISI', 'SRT', 'SM', 'MTE', 'SI', 'Master'] },
+                        departmentSpec: { type: 'Select', validators: ['required'], options: this.getDepartmentSpec('ISI') },
+                        ref:    { type:'Text', validators: ['required'] },
+                        address:    { type:'Text', validators: ['required'] },
+                        company:    { type: 'Select', validators: ['required'], options: ['test'] },
+                        descriptionMission:   { type:'Text', validators: ['required'] },
+                        descriptionProfile:   { type:'Text', validators: ['required'] },
+                        descriptionRem:   { type:'Number', validators: ['required'] },
+                        tags: { type:'Text', validators: ['required'] }
                     }
                 });
-                
-                var newUser = new User();
 
-                
+                var offer = new Offer();
                 var self = this;
-                
                 setTimeout(function(){
 
                     form = new Backbone.Form({
                         template: _.template($('#formTemplate').html()),
-                        model: newUser
+                        model: offer
                     }).render();
 
                     $('button.js-submit').before(form.el);
                     
                     $('h6.panel-title').append(title);
                     
-                    form.on('title:blur name:blur email:blur password:blur', function(form, editor) {
-                        var error = form.fields[editor.key].validate();
-                        self.markError(editor.key, error);
+                    var blured = '';
+                    _.each(offer.schema, function(value, key){
+                        blured += key+":blur ";
                     });
-                },200)
-               
-               
-                
+                    
+                    form.on(blured, function(form, editor) {
+                        var error = form.fields[editor.key].validate();
+                        API.views.forms.markError(editor.key, error);
+                    });
+                },300);
             },
             
-            markError : function(_key, _error){
+            getDepartmentSpec: function(_department){
                 
-                var label = "";
-                
-                if ( ! _.isEmpty(_error) ) {
-                    label = '<label class="error">'+_error.message+'</label>'
+                switch(_department){
+                    case 'ISI':
+                        return ['MPL', 'MSI', 'MRI'];
+                        break;
+                    
+                    case 'SRT':
+                        return [];
+                        break;
+                    
+                    default :
+                        break;
                 }
-                else{
-                    label = '<label class="error valid"><i class="icon-checkmark"></i></label>'
-                }
                 
-                $('#form-'+_key).parent().find('span.msg').html(label);
-                
+                return [];
             },
             
             events: {
@@ -79,10 +89,10 @@ define([
 
                 var errors = form.commit();
                 
-                if ( ! _.isEmpty(errors)) {
+                if ( !_.isEmpty(errors)) {
                     var self = this;
                     _.each(errors, function(_value, _key){
-                        self.markError(_key, _value);
+                        API.views.forms.markError(_key, _value);
                     });
                 }
                 else{
