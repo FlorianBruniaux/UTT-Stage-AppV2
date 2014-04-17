@@ -9,22 +9,22 @@ define([
     // Create new Marionnette App
     var AppManager = new Marionette.Application();
     
-    if(DEBUG) console.info("AppManager started");
+    if(DEBUG) console.info('AppManager started');
     
     // Creates regions
     AppManager.addRegions({
-        mainlayoutRegion:"#main-layout-region",
-        breadcrumbRegion: "#breadcrumb-region",
-        menuRegion:"#menu-region",
-        profileRegion: "#profile-region",
-        contentRegion: "#content-region"
+        mainlayoutRegion:'#main-layout-region',
+        breadcrumbRegion: '#breadcrumb-region',
+        menuRegion:'#menu-region',
+        profileRegion: '#profile-region',
+        contentRegion: '#content-region'
     })
     
     // All navigation that is relative should be passed through the navigate
     // method, to be processed by the router.
     AppManager.navigate = function(route, options){
         
-        if(DEBUG) console.info("AppManager.navigate("+route+")");
+        if(DEBUG) console.info('AppManager.navigate('+route+')');
         
         options || (options = {});
         Backbone.history.navigate(route, options);
@@ -33,7 +33,7 @@ define([
     // To get the current route (backbone url)
     AppManager.getCurrentRoute = function(){
         
-        if(DEBUG) console.info("AppManager.getCurrentRoute()");
+        if(DEBUG) console.info('AppManager.getCurrentRoute()');
         
         return Backbone.history.fragment;
     };
@@ -41,7 +41,7 @@ define([
     // Starts the chosen module
     AppManager.startModule = function(module, args){
         
-        if(DEBUG) console.info("AppManager.startModule("+module+")");
+        if(DEBUG) console.info('AppManager.startModule('+module+')');
         
         var currentModule = module ? AppManager.module(module) : null;
         
@@ -64,17 +64,28 @@ define([
         
         if (Backbone.history) {
             require([
+        
+                //Common
+                'common/menu/menu_module',
+                'common/breadcrumb/breadcrumb_module',
+                
                 //  Students
                 'modules/students/home/home_module',
-                'common/menu/menu_module',
-                'common/breadcrumb/breadcrumb_module'
+                
+                //  Internship_managers
+                'modules/internship_managers/home/home_module',
+                
+                //  Teachers
+                'modules/teachers/home/home_module'
+                
             ], function(){
 
                 Backbone.history.start();
+                
                 var API = new UttStages.Application(AppManager);
                 API.misc.initDropDown();//  To init dropdowns
 
-                API.ajax.auth.isAuth("home:root");
+                API.ajax.auth.isAuth('home:root');
   
             });
         }
