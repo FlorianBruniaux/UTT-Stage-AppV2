@@ -22,10 +22,7 @@ define([
                 
                 var data = Backbone.Syphon.serialize(this);
 
-                
             }
-            
-
         });
     });
     

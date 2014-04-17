@@ -1,7 +1,7 @@
 define([
     'app',
     'utt.stages',
-    'modules/internship_managers/offers/new/new_view'
+    'modules/internship_managers/offers/common/view'
 ], function(AppManager, UttStages, View){
     
     // OffersModule new Controller
@@ -21,8 +21,8 @@ define([
                 
                 // Updates breadcrumb
                 var path = [
-                    { name: 'Offres', url: 'offers', navigationTrigger: 'offers:root' },
-                    { name: 'Nouvelle offre', url: 'offers/new', navigationTrigger: 'offers:new' }
+                    { name: polyglot.t('offers'), url: 'offers', navigationTrigger: 'offers:root' },
+                    { name: polyglot.t('offer.new'), url: 'offers/new', navigationTrigger: 'offers:new' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
 
@@ -30,7 +30,8 @@ define([
                 var newOffer = AppManager.request('offer:entity:new');
                 
                 var view = new View.Offer({
-                    model: newOffer
+                    model: newOffer,
+                    title: polyglot.t('offer.new')
                 });
                 
                 view.on('form:submit', function(data){
