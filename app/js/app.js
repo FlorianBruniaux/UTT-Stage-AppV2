@@ -65,7 +65,6 @@ define([
         if (Backbone.history) {
             require([
                 //Common
-                'common/menu/menu_module',
                 'common/breadcrumb/breadcrumb_module',
             ], function(){
 
