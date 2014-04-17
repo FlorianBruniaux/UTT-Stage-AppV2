@@ -14,6 +14,8 @@ requirejs.config({
             exports: 'Backbone'
         },
         
+        'backbone.forms' : ['backbone'],
+        
         'backbone.picky' : ['backbone'],
         
         'backbone.syphon': ['backbone'],
@@ -60,6 +62,8 @@ requirejs.config({
     paths: {
         
         backbone: 'vendors/bower/backbone/js/backbone',
+        
+        'backbone.forms': 'vendors/bower/backbone-forms/js/backbone-forms',
         
         //Selectable entities as mixins for Backbone.Model and Backbone.Collection!
         'backbone.picky': 'vendors/bower/backbone.picky/js/backbone.picky',
