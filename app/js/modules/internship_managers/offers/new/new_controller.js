@@ -1,7 +1,8 @@
 define([
     'app',
     'utt.stages',
-    'modules/internship_managers/offers/common/view'
+    'modules/internship_managers/offers/common/view',
+    'backbone.forms'
 ], function(AppManager, UttStages, View){
     
     // OffersModule new Controller
@@ -21,15 +22,18 @@ define([
                 
                 // Updates breadcrumb
                 var path = [
-                    { name: polyglot.t('offers'), url: 'offers', navigationTrigger: 'offers:root' },
-                    { name: polyglot.t('offer.new'), url: 'offers/new', navigationTrigger: 'offers:new' }
+                    { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
+                    { name: 'offer.new', url: 'offers/new', navigationTrigger: 'offers:new' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
 
                 // Gets a new user model (CF entities folder)
                 var newOffer = AppManager.request('offer:entity:new');
                 
-                var view = new View.Offer({
+                
+
+                
+                var view = new View.Form({
                     model: newOffer,
                     title: polyglot.t('offer.new')
                 });
