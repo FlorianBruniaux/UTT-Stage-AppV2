@@ -79,20 +79,20 @@ define([
                         bSortable: false,
                         aTargets: [_nbColumns-1]
                     }],
-                    "bDestroy": true
+                    'bDestroy': true
                 });
                 
                 //DataTable css modifications
                 return  $('#'+_id).each(function() {
                     var datatable, length_sel, search_input;
                     datatable = $(this);
-                    search_input = datatable.closest(".dataTables_wrapper").find("div[id$=_filter] input");
-                    search_input.attr("placeholder", "Recherche");
-                    search_input.addClass("form-control input-sm");
-                    length_sel = datatable.closest(".dataTables_wrapper").find("div[id$=_length] select");
-                    length_sel.addClass("form-control input-sm");
-                    length_sel = datatable.closest(".dataTables_wrapper").find("div[id$=_info]");
-                    return length_sel.css("margin-top", "18px");
+                    search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+                    search_input.attr('placeholder', 'Recherche');
+                    search_input.addClass('form-control input-sm');
+                    length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+                    length_sel.addClass('form-control input-sm');
+                    length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_info]');
+                    return length_sel.css('margin-top', '18px');
                 });
                 
             });
@@ -159,7 +159,6 @@ define([
     var I18N = API.Application.prototype.i18n = {
         
         init : function(){
-
             require([
                 'polyglot'
             ],function(Polyglot){
@@ -172,10 +171,10 @@ define([
         },
         
         getPreferedLanguage: function(){
-            var languagePrefCookie = COOKIES.read("UttStagesLanguagePref");
+            var languagePrefCookie = COOKIES.read('UttStagesLanguagePref');
             
             if (languagePrefCookie) {
-                console.log("Cookie exists !");
+                console.log('Cookie exists !');
                 return languagePrefCookie;
             }
             else{
@@ -191,14 +190,14 @@ define([
             if (days) {
                     var date = new Date();
                     date.setTime(date.getTime()+(days*24*60*60*1000));
-                    var expires = "; expires="+date.toGMTString();
+                    var expires = '; expires='+date.toGMTString();
             }
-            else var expires = "";
-            document.cookie = name+"="+value+expires+"; path=/";
+            else var expires = '';
+            document.cookie = name+'='+value+expires+'; path=/';
         },
         
         read: function (name) {
-            var nameEQ = name + "=";
+            var nameEQ = name + '=';
             var ca = document.cookie.split(';');
             for(var i=0;i < ca.length;i++) {
                 var c = ca[i];
@@ -209,7 +208,7 @@ define([
         },
         
         delete: function (name) {
-            COOKIES.create(name,"",-1);
+            COOKIES.create(name,'',-1);
         }
 
     }
@@ -236,34 +235,40 @@ define([
             isAuth: function(_event){
 
                 $.ajax({
-                    url: "/auth/isauth",
-                    type: "GET",
+                    url: '/auth/isauth',
+                    type: 'GET',
                     success: function(_res) {
                         
-                        //  If _res == true, user is logged
-                        if (_res) {
+                        //  If _res exists and is an object
+                        //  => User is logged
+                        if (_res && _.isObject(_res) ) {
 
                             require([
-                                'modules/common/main_page/view',
-                                'modules/common/user/right_corner/view',
+                                'common/main_page/view',
+                                'common/user/right_corner/view',
                                 'entities/common/users'
                             ],function(mainPageView, rightCornerView){
                                 
                                 APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
 
-                                var user = APPMANAGER.request("user:entity:new", _res);
+                                //  Create and Get Backbone user model (from the object sent by server)
+                                var user = APPMANAGER.request('user:entity:new', _res);
+                                //  Show user infos in top right corner
                                 APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
                                 
-                                APPMANAGER.trigger(_res.userCategory+":"+_event);
-                            })
+                                //  Trigger the event passed for the user category.
+                                APPMANAGER.trigger(_res.userCategory+':'+_event);
+                            });
                            
                         }
                         else{
+                            
                             require([
-                                'modules/common/login/login_controller',
+                                'common/login/login_controller',
                             ],function(loginController){
                                 loginController.showLogin();
-                            })
+                            });
+                            
                         }
                     }
                 });
@@ -271,6 +276,7 @@ define([
             },
             
             post: function(_form){
+                
                 require([
                     'backbone.syphon'
                 ],function(){
@@ -279,11 +285,13 @@ define([
 
                     $.ajax({
                         url: _form.action,
-                        type: "POST",
+                        type: 'POST',
                         data: jsonData,
                         dataType: 'json',
                         success: function(_res) {
-                            $(_form).prepend('<label class="error valid"><i class="icon-checkmark"></i> '+_res.message+'</label><br />');
+                            $(_form).prepend(
+                                '<label class="error valid"><i class="icon-checkmark"></i> '+_res.message+'</label><br />'
+                            );
                             
                             _form.reset();
                             
@@ -293,17 +301,16 @@ define([
                             
                         },
                         error: function(_err){
-                            $(_form).prepend('<label class="error">'+_err.responseText+'</label><br />');
+                            $(_form).prepend(
+                                '<label class="error">'+_err.responseText+'</label><br />'
+                            );
                         }
                     });
                 })
             }
             
         }
-        
-        
-        
-        
+ 
     };
       
     var ENTITIES = API.Application.prototype.entities = {
@@ -411,7 +418,7 @@ define([
                 if (criterion && value) {
                     if (_filterStrategy === 'filter') {
                         if (!filtered.filterFunction) {
-                            throw("You're trying to use a filter function but none is defined...")
+                            throw('You\'re trying to use a filter function but none is defined...')
                         }
                     
                         var filterFunction = filtered.filterFunction(criterion, value);
@@ -481,12 +488,14 @@ define([
             checkBeforeSubmit: function(_target){
                 
                 require([
-                    "jquery.validate"
+                    'jquery.validate'
                 ],function(){
                     
                     var userLang = I18N.getPreferedLanguage();
-                    if (userLang != "en") {
-                        $('head').append('<script type="text/javascript" src="js/vendors/bower/jquery-validation/js/messages_'+userLang+'.js" />')
+                    if (userLang != 'en') {
+                        $('head').append(
+                            '<script type="text/javascript" src="js/vendors/bower/jquery-validation/js/messages_'+userLang+'.js" />'
+                        );
                     }
                     
                     return function(){
@@ -494,7 +503,7 @@ define([
                         $(_target).validate({
                             submitHandler: function(form) {
                                 switch (form.id) {
-                                    case "login-form":
+                                    case 'login-form':
                                         form.submit();
                                         break;
                                     
@@ -505,10 +514,10 @@ define([
                                 
                             },
                             errorPlacement: function(error, element) {
-                                if (element.parent().parent().attr("class") == "checker" || element.parent().parent().attr("class") == "choice" ) {
+                                if (element.parent().parent().attr('class') == 'checker' || element.parent().parent().attr('class') == 'choice' ) {
                                     error.appendTo( element.parent().parent().parent().parent().parent() );
                                 } 
-                                else if (element.parent().parent().attr("class") == "checkbox" || element.parent().parent().attr("class") == "radio" ) {
+                                else if (element.parent().parent().attr('class') == 'checkbox' || element.parent().parent().attr('class') == 'radio' ) {
                                     error.appendTo( element.parent().parent().parent() );
                                 } 
                                 else {
@@ -535,14 +544,16 @@ define([
                                 confirmPassword: {
                                     required: true,
                                     minlength: 8,
-                                    equalTo: "#password"
+                                    equalTo: '#password'
                                 }
                             
                             },
                             messages: {
                             },
                             success: function(label) {
-                                label.html('<i class="icon-checkmark"></i>').addClass('valid');
+                                label.html(
+                                    '<i class="icon-checkmark"></i>'
+                                ).addClass('valid');
                             }
                         });
                         
@@ -607,18 +618,18 @@ define([
                 var self = this;
                 
                 Bootbox.dialog({
-                    message: "Confirmation de la suppression ?",
+                    message: 'Confirmation de la suppression ?',
                     buttons: {
                         default: {
-                            label: "Annuler",
-                            className: "btn-default",
+                            label: 'Annuler',
+                            className: 'btn-default',
                             callback: function() {
                                 this.close();
                             }
                         },
                         danger: {
-                            label: "Supprimer",
-                            className: "btn-danger",
+                            label: 'Supprimer',
+                            className: 'btn-danger',
                             callback: function() {
                                 
                                 switch ( self.model.get('_objectType') ) {
@@ -627,7 +638,7 @@ define([
                                         self.model.destroy();
                                 
                                         setTimeout(function(){
-                                             location.reload();
+                                            //location.reload();
                                         },50);
                                         break;
                                 } 
@@ -638,17 +649,6 @@ define([
                 });
                 
             }
-        },
-        
-        collection: {
-            
-            onCompositeCollectionRendered: function(){
-                
-                this.appendHtml = function(collectionView, itemView, index){
-                    collectionView.$el.prepend(itemView.el);
-                }
-            }
-            
         }
     
         
