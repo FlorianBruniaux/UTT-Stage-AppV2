@@ -23,22 +23,16 @@ define([
                 email: '',
                 headline: '',
                 photoUrl: '',
-                pwd: ''
-            },
-            
-            // To validate form (new & edit)
-            validate: function(_attrs, _options){
-                var errors = {};
-                
-                if (!_.isEmpty(errors)) return errors;
+                pwd: '',
+                favorites:[],
+                tags:[]
             }
         });
         
         // Collection
         Entities.UserCollection = Backbone.Collection.extend({
            url: '/db/user',
-           model: Entities.User,
-           comparator: 'nom'
+           model: Entities.User
         });
         
         /****************************************/
