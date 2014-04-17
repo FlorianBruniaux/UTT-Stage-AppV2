@@ -1,7 +1,7 @@
 define([
     'app',
     'utt.stages',
-    'tpl!modules/common/main_page/templates/main_page.tpl',
+    'tpl!common/main_page/templates/main_page.tpl',
 ], function(AppManager, UttStages, mainPageTpl){
     
     // MainPage

@@ -1,9 +1,9 @@
 define([
     'app',
     'utt.stages',
-    'tpl!modules/common/login/templates/login.tpl',
-    'tpl!modules/common/login/templates/sign_on.tpl',
-    'tpl!modules/common/login/templates/forgot_password.tpl'
+    'tpl!common/login/templates/login.tpl',
+    'tpl!common/login/templates/sign_on.tpl',
+    'tpl!common/login/templates/forgot_password.tpl'
 ], function(AppManager, UttStages, loginTpl, signOnTpl, forgotPasswordTpl){
     
     // Login 

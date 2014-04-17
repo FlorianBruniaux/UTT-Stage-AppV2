@@ -1,6 +1,6 @@
 define([
     'app',
-    'tpl!modules/common/user/right_corner/templates/right_corner.tpl'
+    'tpl!common/user/right_corner/templates/right_corner.tpl'
 ], function(AppManager, rightCornerTpl){
     
     // Login 
