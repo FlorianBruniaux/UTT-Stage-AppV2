@@ -49,5 +49,8 @@
     "home.panel.actions.monitoring.students" : "Gérer mon suivi",
     "home.panel.actions.monitoring.internship_managers" : "Gérer le suivi des étudiants",
     "home.panel.actions.messages" : "Consulter mes échanges",
-    "home.panel.actions.contacts" : "Voir mes contacts" 
+    "home.panel.actions.contacts" : "Voir mes contacts",
+    
+    "error.redirection" : "Vous allez être redirigé dans quelques instants",
+    "error.500" : " - Oups, une erreur est survenue. Erreur de serveur interne ! - "
 }

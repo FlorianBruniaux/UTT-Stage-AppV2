@@ -33,7 +33,6 @@
     "register.title": "Registration form",
     "forgotPassword.title": "Password forgotten",
 
-    
     "menu.home": "Home",
     "menu.offers": "Offers",
     "menu.validation": "Validation",
@@ -48,5 +47,8 @@
     "home.panel.actions.research" : "Make a research",
     "home.panel.actions.monitoring" : "Monitor your internship",
     "home.panel.actions.messages" : "Consult my exchanges",
-    "home.panel.actions.contacts" : "Check my contacts"
+    "home.panel.actions.contacts" : "Check my contacts",
+    
+    "error.redirection" : "You'll be redirected on the home page.",
+    "error.500" : " - Oops, an error has occurred. Internal server error ! - "
 }
