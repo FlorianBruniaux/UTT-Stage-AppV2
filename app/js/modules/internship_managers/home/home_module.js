@@ -56,7 +56,7 @@ define([
                 if(DEBUG) console.info('internship_managers.home.home_module.API.showRoot()');
                 
                 require([
-                    'modules/students/home/root/root_controller'    
+                    'modules/internship_managers/home/root/root_controller'    
                 ], function(RootController){
                     executeAction(RootController.listRootOptions, {});
                 });
