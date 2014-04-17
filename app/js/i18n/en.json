@@ -36,6 +36,7 @@
     
     "menu.home": "Home",
     "menu.offers": "Offers",
+    "menu.validation": "Validation",
     "menu.research": "Research",
     "menu.monitoring": "Monitoring",
     "menu.messages": "Messages",
@@ -43,6 +44,7 @@
     
     "home.panel.title": "Here are the available actions",
     "home.panel.actions.offers" : "Check the offers",
+    "home.panel.actions.validation" : "Offers to analyze",
     "home.panel.actions.research" : "Make a research",
     "home.panel.actions.monitoring" : "Monitor your internship",
     "home.panel.actions.messages" : "Consult my exchanges",
