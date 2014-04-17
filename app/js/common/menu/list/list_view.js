@@ -23,7 +23,7 @@ define([
             onRender: function(){
                 if (this.model.selected) {
                     //To add class to highlight the active entry in the menu
-                    this.$el.addClass("active");
+                    this.$el.addClass('active');
                 };
             }
             

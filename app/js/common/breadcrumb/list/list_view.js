@@ -29,14 +29,15 @@ define([
                 var languageSelected = API.i18n.getPreferedLanguage();
                 
                 setTimeout(function(){
-                    console.log(languageSelected);
-                
                     languageNotSelected = (languageSelected == 'fr') ? 'en' : 'fr';
+
+                    $('li.language a span#selected-language').html(
+                        '<img src="images/flags/'+languageSelected+'.png" height="18" alt="'+ polyglot.t(languageSelected)+'"> : '+ polyglot.t(languageSelected)
+                    );
                     
-                    console.log(languageNotSelected);
-                    
-                    $("li.language a span#selected-language").html('<img src="images/flags/'+languageSelected+'.png" height="18" alt="'+ polyglot.t(languageSelected)+'"> : '+ polyglot.t(languageSelected));
-                    $("li.language ul li").html('<a href="" class="'+languageNotSelected+'"><img src="images/flags/'+languageNotSelected+'.png" height="18" alt="'+ polyglot.t(languageNotSelected)+'"> : '+ polyglot.t(languageNotSelected)+'</a>')
+                    $('li.language ul li').html(
+                        '<a href="" class="'+languageNotSelected+'"><img src="images/flags/'+languageNotSelected+'.png" height="18" alt="'+ polyglot.t(languageNotSelected)+'"> : '+ polyglot.t(languageNotSelected)+'</a>'
+                    );
                     
                 },500)
                 
