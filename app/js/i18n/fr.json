@@ -1,47 +1,20 @@
-{
-    "navbar.toggle" :"Changer la navbar",
-    "navigation.toggle": "Changer la navigation",
-    
-    "fr": "Français",
-    "en": "Anglais",
-    "new-f": "nouvelle(s)",
-    "new-m": "nouveau(x)",
-    
-    "firstName": "Prénom",
-    "lastName": "Nom",
-    
-    "profile": "Mon profil",
-    "parameters": "Paramètres",
-    "logout": "Se déconnecter",
-    
+{ 
     "app.name" : "Application des stages v2.0.1",
     
-    "email": "Adresse email",
-    "password": "Mot de passe",
-    "connectWith": "Se connecter avec",
-    "notRegistered": "Pas encore inscrit ?",
-    "signIn": "Se connecter",
-    "signOn": "S'inscrire",
-    "forgotPassword": "Mot de passe oublié",
     "clickHere": "cliquer ici",
-    
     "confirmPassword": "Confirmer le mot de passe",
-    "newPassword": "Envoyez moi un nouveau mot de passe",
+    "connectWith": "Se connecter avec",
     
-    "login.title": "Formulaire d'identification",
-    "login.goBack": "Retourner à la page d'identification",
-    "register.title": "Formulaire d'inscription",
+    "email": "Adresse email",
+    "en": "Anglais",
+    "error.redirection" : "Vous allez être redirigé dans quelques instants",
+    "error.500" : " - Oups, une erreur est survenue. Erreur de serveur interne ! - ",
+    
+    "firstName": "Prénom",
+    "forgotPassword": "Mot de passe oublié",
     "forgotPassword.title": "Mot de passe oublié",
-    
-    "menu.home": "Accueil",
-    "menu.offers": "Offres",
-    "menu.validation": "Validation",
-    "menu.research": "Recherche",
-    "menu.monitoring": "Suivi",
-    "menu.messages": "Messages",
-    "menu.contacts": "Contacts",
-    
-    "home.panel.title": "Voici les actions disponibles",
+    "fr": "Français",
+
     "home.panel.actions.offers.list" : "Consulter les offres",
     "home.panel.actions.offers.internship_managers" : "Gérer les offres",
     "home.panel.actions.validation" : "Offres à analyser",
@@ -51,6 +24,38 @@
     "home.panel.actions.messages" : "Consulter mes échanges",
     "home.panel.actions.contacts" : "Voir mes contacts",
     
-    "error.redirection" : "Vous allez être redirigé dans quelques instants",
-    "error.500" : " - Oups, une erreur est survenue. Erreur de serveur interne ! - "
+    "lastName": "Nom",
+    "login.title": "Formulaire d'identification",
+    "login.goBack": "Retourner à la page d'identification",
+    "logout": "Se déconnecter",
+    
+    "menu.home": "Accueil",
+    "menu.offers": "Offres",
+    "menu.validation": "Validation",
+    "menu.research": "Recherche",
+    "menu.monitoring": "Suivi",
+    "menu.messages": "Messages",
+    "menu.contacts": "Contacts",
+    
+    "navbar.toggle" :"Changer la navbar",
+    "navigation.toggle": "Changer la navigation",
+    "new-f": "nouvelle(s)",
+    "new-m": "nouveau(x)",
+    "newPassword": "Envoyez moi un nouveau mot de passe",
+    "notRegistered": "Pas encore inscrit ?",
+    
+    "offre": "Offre",
+    "offre.new": "Nouvelle offre",
+    "offers": "Offres",
+    "offers.panel.actions.new": "Ajouter une offre",
+    "offers.panel.actions.list": "Voir les offres",
+    
+    "password": "Mot de passe",
+    "parameters": "Paramètres",
+    "profile": "Mon profil",
+    
+    "register.title": "Formulaire d'inscription",
+    
+    "signIn": "Se connecter",
+    "signOn": "S'inscrire"
 }

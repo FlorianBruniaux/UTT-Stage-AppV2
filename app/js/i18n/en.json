@@ -1,38 +1,34 @@
 {
-    "navbar.toggle" :"Toggle navbar",
-    "navigation.toggle": "Toggle navigation",
-    
-    "fr": "French",
-    "en": "English",
-    "new-f": "new",
-    "new-m": "new",
-    
-    "firstName": "First name",
-    "lastName": "Last name",
-    
-    "profile": "My profile",
-    "parameters": "Parameters",
-    "logout": "Logout",
-    
     "app.name" : "Internships application v2.0.1",
     
-    "email": "Email adress",
-    "password": "Password",
-    "connectWith": "Connect with",
-    "notRegistered": "Not yet registered ?",
-    "signIn": "Sign In",
-    "signOn": "Sign On",
-    "forgotPassword": "Forgot your password",
     "clickHere": "click here",
-    
     "confirmPassword": "Please confirm password",
-    "newPassword": "Send me a new password",
+    "connectWith": "Connect with",
     
+    "email": "Email adress",
+    "en": "English",
+    "error.redirection" : "You'll be redirected on the home page.",
+    "error.500" : " - Oops, an error has occurred. Internal server error ! - ",
+    
+    "firstName": "First name",
+    "forgotPassword": "Forgot your password",
+    "forgotPassword.title": "Password forgotten",
+    "fr": "French",
+
+    "home.panel.actions.offers.list" : "Check the offers",
+    "home.panel.actions.offers.internship_managers" : "Monitor the offers",
+    "home.panel.actions.validation" : "Offers to analyze",
+    "home.panel.actions.research" : "Make a research",
+    "home.panel.actions.monitoring.students" : "Monitor your internship",
+    "home.panel.actions.monitoring.internship_managers" : "Monitor students internship",
+    "home.panel.actions.messages" : "Consult my exchanges",
+    "home.panel.actions.contacts" : "Check my contacts",
+    
+    "lastName": "Last name",
     "login.title": "Identification form",
     "login.goBack": "Return to login page",
-    "register.title": "Registration form",
-    "forgotPassword.title": "Password forgotten",
-
+    "logout": "Logout",
+    
     "menu.home": "Home",
     "menu.offers": "Offers",
     "menu.validation": "Validation",
@@ -40,15 +36,26 @@
     "menu.monitoring": "Monitoring",
     "menu.messages": "Messages",
     "menu.contacts": "Contacts",
+
+    "navbar.toggle" :"Toggle navbar",
+    "navigation.toggle": "Toggle navigation",
+    "new-f": "new",
+    "new-m": "new",
+    "newPassword": "Send me a new password",
+    "notRegistered": "Not yet registered ?",
     
-    "home.panel.title": "Here are the available actions",
-    "home.panel.actions.offers" : "Check the offers",
-    "home.panel.actions.validation" : "Offers to analyze",
-    "home.panel.actions.research" : "Make a research",
-    "home.panel.actions.monitoring" : "Monitor your internship",
-    "home.panel.actions.messages" : "Consult my exchanges",
-    "home.panel.actions.contacts" : "Check my contacts",
+    "offer": "Offer",
+    "offre.new": "New offer",
+    "offers": "Offers",
+    "offers.panel.actions.new": "Add an offer",
+    "offers.panel.actions.list": "Check the offers",
     
-    "error.redirection" : "You'll be redirected on the home page.",
-    "error.500" : " - Oops, an error has occurred. Internal server error ! - "
+    "parameters": "Parameters",
+    "password": "Password",
+    "profile": "My profile",
+    
+    "register.title": "Registration form",
+    
+    "signIn": "Sign In",
+    "signOn": "Sign On"
 }
