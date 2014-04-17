@@ -7,7 +7,19 @@ define([
         
         List.Controller = {
             
-            userCategory : 'students',
+            userCategory: '',
+            
+            init: function(_userCategory){
+                
+                this.userCategory = _userCategory;
+                var self = this;
+                
+                AppManager.commands.setHandler("set:active:menu", function(_name){
+                    self.setActiveMenuItem(_name);
+                });
+                
+                this.listMenu();
+            },
             
             listMenu: function(){
                 
@@ -23,7 +35,9 @@ define([
                     menu = new View.Menu({collection: links});
                 
                     menu.on('itemview:navigate', function(childView, model){
+
                         var trigger = model.get('navigationTrigger');
+
                         AppManager.trigger(trigger);
                     });
 

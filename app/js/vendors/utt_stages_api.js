@@ -254,15 +254,25 @@ define([
 
                             //  Modules to load for each category of user
                             var common = [
+                                
                                 'common/main_page/view',
                                 'common/user/right_corner/view',
-                                'entities/common/users'
+                                
+                                //Entities
+                                'entities/common/users',
+                                'entities/common/offers'
                             ];
                             
                             //  User category specific modules 
                             $.getJSON('js/modules/'+_res.userCategory+'/modules_to_load.json', function(_data) {
                             
                                 require(_.union(common, _data.modules), function(mainPageView, rightCornerView){
+                                    
+                                    require([
+                                        'common/menu/list/list_controller'
+                                    ],function(MenuController){
+                                        MenuController.init(_res.userCategory);
+                                    })
                                     
                                     APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
     
