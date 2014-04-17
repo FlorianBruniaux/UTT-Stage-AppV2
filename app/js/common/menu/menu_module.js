@@ -15,7 +15,7 @@ define([
         };
         
         // Sets the active menu item
-        AppManager.commands.setHandler("set:active:menu", function(_name){
+        AppManager.commands.setHandler('set:active:menu', function(_name){
             ListController.setActiveMenuItem(_name);
         });
         
@@ -23,7 +23,6 @@ define([
          *  Event = 'start'
          */
         AppManager.on('menu:start', function(){
-            console.log('menu starts!');
             API.listMenu(); 
         });
         
