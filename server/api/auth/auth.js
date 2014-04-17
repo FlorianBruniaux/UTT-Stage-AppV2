@@ -30,8 +30,8 @@ exports.isAuth = function(req, res){
 /*  AUTH LINKEDIN                       */
 /****************************************/
 var LinkedInStrategy = passportLinkedin.Strategy,
-    LINKEDIN_API_KEY = "77timj8axy1cou",
-    LINKEDIN_SECRET_KEY = "GJAJJVPz6gDFpp3f";
+    LINKEDIN_API_KEY = '77timj8axy1cou',
+    LINKEDIN_SECRET_KEY = 'GJAJJVPz6gDFpp3f';
     
 
 //  Passport session setup.
@@ -57,7 +57,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new LinkedInStrategy({
         consumerKey: LINKEDIN_API_KEY,
         consumerSecret: LINKEDIN_SECRET_KEY,
-        callbackURL: "http://127.0.0.1:8080/auth/linkedin/callback",
+        callbackURL: 'http://127.0.0.1:8080/auth/linkedin/callback',
         profileFields: [
             'id',
             'first-name',
@@ -183,7 +183,7 @@ exports.local = {
         dbModels['user'].findOne({'email' : email}, function(err, user) {
     
             if (password.length < 8) {
-                _res.send("Password is too short (8 characters min) ");
+                _res.send('Password is too short (8 characters min) ');
             }
             else if ( !user ) {
                 
@@ -199,15 +199,15 @@ exports.local = {
     
                 newUser.save(function(err, user) {
                     if (err) {
-                        _res.send("Error, please try again");
+                        _res.send('Error, please try again');
                     }
                     else {
-                        _res.json(200, {message : "You've been registered! Please log in with your email/password in the login page."});
+                        _res.json(200, {message : 'You\'ve been registered! Please log in with your email/password in the login page.'});
                     }
                 });
                 
             }else {
-                _res.send("Email already registered !");
+                _res.send('Email already registered !');
             }
             
         });
@@ -238,11 +238,11 @@ exports.local = {
                 /****************************************/
                 
                 // create reusable transport method (opens pool of SMTP connections)
-                var smtpTransport = nodemailer.createTransport("SMTP",{
-                    host: "smtp.gmail.com", // hostname
+                var smtpTransport = nodemailer.createTransport('SMTP',{
+                    host: 'smtp.gmail.com', // hostname
                     secureConnection: true, // use SSL
                     port: 465, // port for secure SMTP
-                    service: "Gmail",
+                    service: 'Gmail',
                     auth: {
                         user: SENDER_EMAIL,
                         pass: SENDER_PWD
@@ -250,13 +250,13 @@ exports.local = {
                 });
                 
                 
-                var txtMessage = "Here is your new password : "+newPassword,
-                    htmlMessage = "Here is your new password : <b>"+newPassword+"</b>";
+                var txtMessage = 'Here is your new password : '+newPassword,
+                    htmlMessage = 'Here is your new password : <b>'+newPassword+'</b>';
                 
                 var mailOptions = {
-                    from: "UTT Internships Administration  <utt.internships@utt.fr>",
+                    from: 'UTT Internships Administration  <utt.internships@utt.fr>',
                     to: email,
-                    subject: "UTT Internships application  : New password", 
+                    subject: 'UTT Internships application  : New password', 
                     text: txtMessage,
                     html: htmlMessage
                 };
@@ -266,13 +266,13 @@ exports.local = {
                     if(error){
                         console.log(error);
                     }else{
-                        console.log("Message sent: " + response.message);
+                        console.log('Message sent: ' + response.message);
                     }
                     
                     smtpTransport.close();
                 });
         
-                _res.json({message : "An email have been sent to "+email+" with a new password !"});
+                _res.json({message : 'An email have been sent to '+email+' with a new password !'});
             }
         })
     }

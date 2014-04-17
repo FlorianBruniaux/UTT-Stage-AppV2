@@ -46,7 +46,7 @@ app.configure(function(){
     app.use(app.router);
 });
 
-var serverUrl = "http://127.0.0.1:"+app.get('port');
+var serverUrl = 'http://127.0.0.1:'+app.get('port');
 
 exports.getUrl = function(){
     return serverUrl;

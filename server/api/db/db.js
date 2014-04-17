@@ -24,14 +24,13 @@ var models = {
 };
 
 exports.getModels = function(){
-    //console.log(models);
     return models;
 };
 
 exports.connect = function(){
     mongoose.connect('mongodb://127.0.0.1/UttStagesApp');
     mongoose.connection.on('open', function() {
-        console.log("Connected to Mongoose...");
+        console.log('Connected to Mongoose...');
     });
 };
 
