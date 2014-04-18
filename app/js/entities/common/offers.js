@@ -19,16 +19,14 @@ define([
                 ref:'',
                 department:'',//ISI/SRT/SM/SI/MTE/Master
                 departmentSpec:'',// empty/MPL/MSI/MRI etc.
-                address:{
-                    country:'',
-                    city:'',
-                    details:''
-                },
+                country:'',
+                city:'',
+                address:'',
                 company: {},
                 mission:'',
                 profile:'',
                 rem:'',
-                tags:[]
+                tags:''
             }
         });
         
