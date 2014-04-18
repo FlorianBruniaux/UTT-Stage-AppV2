@@ -1060,7 +1060,7 @@
 }
 .search-line .form-control
 {
-    background:#fff url(../images/interface/filter.png) no-repeat 12px;
+    background:#fff url(../../images/interface/filter.png) no-repeat 12px;
     padding:9px 10px 10px 32px;
     height:auto;
     border-color:#c7dae3
@@ -1390,7 +1390,7 @@
 .navigation>li ul>li>a.expand:after
 {
     content:"";
-    background:url(../images/interface/plus.png) no-repeat;
+    background:url(../../images/interface/plus.png) no-repeat;
     opacity:.4;
     filter:alpha(Opacity=40);
     margin-top:4px;
@@ -1402,7 +1402,7 @@
 .navigation>li ul>li>a.level-opened:after
 {
     content:"";
-    background:url(../images/interface/minus.png) no-repeat;
+    background:url(../../images/interface/minus.png) no-repeat;
     opacity:1;
     filter:alpha(Opacity=100);
     margin:4px 2px 0 10px;
@@ -1419,7 +1419,7 @@
     filter:alpha(Opacity=90);
     margin:4px 2px 6px 0;
     float:right;
-    background:url(../images/interface/nav_arrow_right.png) no-repeat
+    background:url(../../images/interface/nav_arrow_right.png) no-repeat
 }
 .navigation>li ul>li>a
 {
@@ -1487,7 +1487,7 @@
 .navigation-icons-left>li a.expand:after
 {
     content:"";
-    background:url(../images/interface/plus.png) no-repeat;
+    background:url(../../images/interface/plus.png) no-repeat;
     opacity:.4;
     filter:alpha(Opacity=40);
     margin:6px 0 0 10px;
@@ -1503,7 +1503,7 @@
 .navigation-icons-left>li a.level-opened:after
 {
     content:"";
-    background:url(../images/interface/minus.png) no-repeat;
+    background:url(../../images/interface/minus.png) no-repeat;
     opacity:1;
     filter:alpha(Opacity=100);
     margin:6px 0 0 10px;
@@ -1654,7 +1654,7 @@
 {
     padding:18px 16px;
     display:block;
-    background:#2D3A42 url(../images/interface/nav_arrow_right.png) no-repeat 240px
+    background:#2D3A42 url(../../images/interface/nav_arrow_right.png) no-repeat 240px
 }
 .user-menu.open>a,.user-menu>a:hover
 {
@@ -1862,7 +1862,7 @@
 }
 .breadcrumb-search input[type=text]
 {
-    background:#fff url(../images/interface/filter.png) no-repeat 10px;
+    background:#fff url(../../images/interface/filter.png) no-repeat 10px;
     padding-left:30px;
     margin-bottom:2px
 }
@@ -2517,7 +2517,7 @@
     content:"";
     display:block;
     float:left;
-    background:url(../images/interface/vertical_arrows.png) no-repeat 0 0;
+    background:url(../../images/interface/vertical_arrows.png) no-repeat 0 0;
     width:11px;
     height:6px;
     margin:13px 8px 0 0
@@ -2808,7 +2808,7 @@
 .checker span:after
 {
     content:"";
-    background:url(../images/forms/check.png) no-repeat 50%;
+    background:url(../../images/forms/check.png) no-repeat 50%;
     opacity:0;
     filter:alpha(Opacity=0);
     display:block;
@@ -2832,7 +2832,7 @@
 .checkbox-danger .checker span:after
 {
     content:"";
-    background-image:url(../images/forms/check_white.png)
+    background-image:url(../../images/forms/check_white.png)
 }
 .checkbox-danger .checker span:hover
 {
@@ -2846,7 +2846,7 @@
 .checkbox-success .checker span:after
 {
     content:"";
-    background-image:url(../images/forms/check_white.png)
+    background-image:url(../../images/forms/check_white.png)
 }
 .checkbox-success .checker span:hover
 {
@@ -2860,7 +2860,7 @@
 .checkbox-primary .checker span:after
 {
     content:"";
-    background-image:url(../images/forms/check_white.png)
+    background-image:url(../../images/forms/check_white.png)
 }
 .checkbox-primary .checker span:hover
 {
@@ -2874,7 +2874,7 @@
 .checkbox-info .checker span:after
 {
     content:"";
-    background-image:url(../images/forms/check_white.png)
+    background-image:url(../../images/forms/check_white.png)
 }
 .checkbox-info .checker span:hover
 {
@@ -2957,7 +2957,7 @@
 .choice span:after
 {
     content:"";
-    background:url(../images/forms/choice.png) no-repeat 50%;
+    background:url(../../images/forms/choice.png) no-repeat 50%;
     opacity:0;
     filter:alpha(Opacity=0);
     display:block;
@@ -2990,7 +2990,7 @@
 .radio-danger .choice span:after
 {
     content:"";
-    background-image:url(../images/forms/choice_white.png)
+    background-image:url(../../images/forms/choice_white.png)
 }
 .radio-danger .choice span:hover
 {
@@ -3004,7 +3004,7 @@
 .radio-success .choice span:after
 {
     content:"";
-    background-image:url(../images/forms/choice_white.png)
+    background-image:url(../../images/forms/choice_white.png)
 }
 .radio-success .choice span:hover
 {
@@ -3018,7 +3018,7 @@
 .radio-primary .choice span:after
 {
     content:"";
-    background-image:url(../images/forms/choice_white.png)
+    background-image:url(../../images/forms/choice_white.png)
 }
 .radio-primary .choice span:hover
 {
@@ -3032,7 +3032,7 @@
 .radio-info .choice span:after
 {
     content:"";
-    background-image:url(../images/forms/choice_white.png)
+    background-image:url(../../images/forms/choice_white.png)
 }
 .radio-info .choice span:hover
 {
@@ -3090,7 +3090,7 @@
 .uploader span.action
 {
     width:28px;
-    background:url(../images/forms/add_files.png) no-repeat 0 0;
+    background:url(../../images/forms/add_files.png) no-repeat 0 0;
     height:28px;
     cursor:pointer;
     float:right;
@@ -3228,7 +3228,7 @@
     top:9px;
     z-index:100;
     background-color:#3CA2BB;
-    background-image:url(../images/forms/clear_results.png);
+    background-image:url(../../images/forms/clear_results.png);
     background-position:4px 4px;
     cursor:pointer;
     outline:0
@@ -3305,7 +3305,7 @@
     display:block;
     width:11px;
     height:6px;
-    background:url(../images/interface/vertical_arrows.png) no-repeat 0 0
+    background:url(../../images/interface/vertical_arrows.png) no-repeat 0 0
 }
 .select2-search
 {
@@ -3328,7 +3328,7 @@
     margin:0;
     outline:0;
     border:1px solid #DDD;
-    background:#FFF url(../images/interface/filter.png) no-repeat 10px
+    background:#FFF url(../../images/interface/filter.png) no-repeat 10px
 }
 .select2-container-active .select2-choice,.select2-container-active .select2-choices
 {
@@ -3464,7 +3464,7 @@
 }
 .select2-more-results.select2-active
 {
-    background:#f4f4f4 url(../images/interface/loader.gif) no-repeat 100%
+    background:#f4f4f4 url(../../images/interface/loader.gif) no-repeat 100%
 }
 .select2-more-results
 {
@@ -3537,7 +3537,7 @@
 }
 .select2-container-multi .select2-choices .select2-search-field input.select2-active
 {
-    background:#fff url(../images/interface/loader.gif) no-repeat 100%!important
+    background:#fff url(../../images/interface/loader.gif) no-repeat 100%!important
 }
 .select2-default
 {
@@ -3578,7 +3578,7 @@
     right:3px;
     top:10px;
     outline:0;
-    background:url(../images/forms/clear_results.png) no-repeat 50%
+    background:url(../../images/forms/clear_results.png) no-repeat 50%
 }
 .select2-container-multi .select2-search-choice-close
 {
@@ -3667,7 +3667,7 @@
     left:8px;
     top:10px;
     outline:0;
-    background:url(../images/forms/clear_results.png) no-repeat 50%
+    background:url(../../images/forms/clear_results.png) no-repeat 50%
 }
 .tagsinput span.tag a:hover
 {
@@ -3744,13 +3744,13 @@
 .ui-spinner-up
 {
     top:0;
-    background:url(../images/forms/spinner_top.png) no-repeat;
+    background:url(../../images/forms/spinner_top.png) no-repeat;
     border-top:1px solid #ddd
 }
 .ui-spinner-down
 {
     bottom:0;
-    background:url(../images/forms/spinner_bottom.png) no-repeat;
+    background:url(../../images/forms/spinner_bottom.png) no-repeat;
     border-bottom:1px solid #ddd
 }
 .panel-body .dataTable
@@ -3778,7 +3778,7 @@
 }
 .dataTable tfoot th input[type=text]
 {
-    background:url(../images/interface/filter.png) no-repeat 12px;
+    background:url(../../images/interface/filter.png) no-repeat 12px;
     padding-left:32px;
     font-weight:400
 }
@@ -3862,7 +3862,7 @@
 }
 .dataTables_filter label>input[type=text]
 {
-    background:url(../images/interface/filter.png) no-repeat 95%;
+    background:url(../../images/interface/filter.png) no-repeat 95%;
     line-height:1.42857143;
     height:34px;
     padding:7px 30px 8px 9px;
@@ -3988,27 +3988,27 @@
 }
 .sorting
 {
-    background:url(../images/interface/tables/sort_both.png) no-repeat 100%;
+    background:url(../../images/interface/tables/sort_both.png) no-repeat 100%;
     padding-right:24px!important
 }
 .sorting_asc
 {
-    background:url(../images/interface/tables/sort_asc.png) no-repeat 100%;
+    background:url(../../images/interface/tables/sort_asc.png) no-repeat 100%;
     padding-right:24px!important
 }
 .sorting_desc
 {
-    background:url(../images/interface/tables/sort_desc.png) no-repeat 100%;
+    background:url(../../images/interface/tables/sort_desc.png) no-repeat 100%;
     padding-right:24px!important
 }
 .sorting_asc_disabled
 {
-    background:url(../images/interface/tables/sort_asc_disabled.png) no-repeat 100%;
+    background:url(../../images/interface/tables/sort_asc_disabled.png) no-repeat 100%;
     padding-right:24px!important
 }
 .sorting_desc_disabled
 {
-    background:url(../images/interface/tables/sort_desc_disabled.png) no-repeat 100%;
+    background:url(../../images/interface/tables/sort_desc_disabled.png) no-repeat 100%;
     padding-right:24px!important
 }
 .table-condensed .sorting,.table-condensed .sorting_asc,.table-condensed .sorting_asc_disabled,.table-condensed .sorting_desc,.table-condensed .sorting_desc_disabled
@@ -4128,12 +4128,12 @@
 .DTTT_button_collection span
 {
     padding-right:17px;
-    background:url(../images/collection.html) no-repeat center right
+    background:url(../../images/collection.html) no-repeat center right
 }
 .DTTT_button_collection:hover span
 {
     padding-right:17px;
-    background:#f0f0f0 url(../images/collection_hover.html) no-repeat center right
+    background:#f0f0f0 url(../../images/collection_hover.html) no-repeat center right
 }
 .DTTT_selectable tbody tr
 {
@@ -4160,7 +4160,7 @@
 }
 .DTTT_collection_background
 {
-    background:transparent url(../images/background.html) repeat top left;
+    background:transparent url(../../images/background.html) repeat top left;
     z-index:2001
 }
 .DTTT_collection .DTTT_button
@@ -4309,13 +4309,13 @@
 }
 .ui-datepicker .ui-datepicker-prev
 {
-    background-image:url(../images/interface/arrow_left.png);
+    background-image:url(../../images/interface/arrow_left.png);
     background-position:14px 14px;
     left:0
 }
 .ui-datepicker .ui-datepicker-next
 {
-    background-image:url(../images/interface/arrow_right.png);
+    background-image:url(../../images/interface/arrow_right.png);
     right:0;
     background-position:14px 14px
 }
@@ -4440,7 +4440,7 @@
     z-index:2;
     width:21px;
     height:14px;
-    background:url(../images/interface/slider_handle.png) no-repeat;
+    background:url(../../images/interface/slider_handle.png) no-repeat;
     border:none;
     cursor:pointer
 }
@@ -4523,7 +4523,7 @@
 {
     width:100px;
     height:100px;
-    background-image:url(../images/colorpicker/saturation.png);
+    background-image:url(../../images/colorpicker/saturation.png);
     cursor:crosshair;
     float:left
 }
@@ -4574,11 +4574,11 @@
 }
 .colorpicker-hue
 {
-    background-image:url(../images/colorpicker/hue.png)
+    background-image:url(../../images/colorpicker/hue.png)
 }
 .colorpicker-alpha
 {
-    background-image:url(../images/colorpicker/alpha.png);
+    background-image:url(../../images/colorpicker/alpha.png);
     display:none
 }
 .colorpicker
@@ -4632,7 +4632,7 @@
     height:10px;
     margin-top:5px;
     clear:both;
-    background-image:url(../images/colorpicker/alpha.png);
+    background-image:url(../../images/colorpicker/alpha.png);
     background-position:0 100%
 }
 .colorpicker-color div
@@ -5479,7 +5479,7 @@
     text-align:center;
     z-index:100;
     width:34%;
-    background:#fafafa url(../images/forms/switch_handler.png) no-repeat 50%;
+    background:#fafafa url(../../images/forms/switch_handler.png) no-repeat 50%;
     border:1px solid #ccc
 }
 .has-switch label:hover
@@ -5626,7 +5626,7 @@
 }
 .plupload_header
 {
-    background:#4C5D68 url(../images/interface/plupload_title.png) no-repeat 18px;
+    background:#4C5D68 url(../../images/interface/plupload_title.png) no-repeat 18px;
     display:none;
     border-radius:2px 2px 0 0;
     -webkit-border-radius:2px 2px 0 0;
@@ -5778,16 +5778,16 @@
 }
     li.plupload_delete a
 {
-    background:url(../images/interface/plupload_remove.png) no-repeat
+    background:url(../../images/interface/plupload_remove.png) no-repeat
 }
     li.plupload_failed a
 {
-    background:url(../images/interface/plupload_error.png) no-repeat;
+    background:url(../../images/interface/plupload_error.png) no-repeat;
     cursor:default
 }
     li.plupload_done a
 {
-    background:url(../images/interface/plupload_done.png) no-repeat;
+    background:url(../../images/interface/plupload_done.png) no-repeat;
     cursor:default
 }
     li.plupload_droptext
@@ -5918,7 +5918,7 @@
 {
     width:26px;
     height:26px;
-    background:url(../images/interface/loader.gif) center center no-repeat
+    background:url(../../images/interface/loader.gif) center center no-repeat
 }
 .fancybox-close
 {
@@ -5928,7 +5928,7 @@
     right:-22px;
     top:-22px;
     z-index:8061;
-    background:#548491 url(../images/forms/clear_results.png) no-repeat 8px 8px;
+    background:#548491 url(../../images/forms/clear_results.png) no-repeat 8px 8px;
     cursor:pointer
 }
 .fancybox-close:focus,.fancybox-close:hover
@@ -5971,12 +5971,12 @@
 .fancybox-prev span
 {
     left:10px;
-    background:rgba(0,0,0,.5)url(../images/interface/nav_arrow_left.png) no-repeat 15px
+    background:rgba(0,0,0,.5)url(../../images/interface/nav_arrow_left.png) no-repeat 15px
 }
 .fancybox-next span
 {
     right:10px;
-    background:rgba(0,0,0,.5)url(../images/interface/nav_arrow_right.png) no-repeat 15px
+    background:rgba(0,0,0,.5)url(../../images/interface/nav_arrow_right.png) no-repeat 15px
 }
 .fancybox-nav:hover span
 {
@@ -6020,7 +6020,7 @@
     overflow:hidden;
     display:none;
     z-index:8010;
-    background:url(../images/interface/lightbox_overlay.png)
+    background:url(../../images/interface/lightbox_overlay.png)
 }
 .fancybox-overlay-fixed
 {
@@ -6293,7 +6293,7 @@
 }
 .typing
 {
-    background:url(../images/interface/typing.gif) no-repeat 0 0;
+    background:url(../../images/interface/typing.gif) no-repeat 0 0;
     display:block;
     width:15px;
     height:15px
@@ -6479,7 +6479,7 @@
 }
 .error-content input[type=text]
 {
-    background:#fff url(../images/interface/filter.png) no-repeat 12px;
+    background:#fff url(../../images/interface/filter.png) no-repeat 12px;
     padding-left:32px
 }
 .login-wrapper
