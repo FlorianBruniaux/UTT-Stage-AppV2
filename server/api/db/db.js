@@ -15,12 +15,28 @@ var Schema = mongoose.Schema,
             headline:       { type: String },
             photoUrl:       { type: String },
             pwd:            { type: String }
+        }),
+        
+        offer : new Schema({
+            _objectType :   { type: String },
+            ref:            { type: String },
+            department:     { type: String },
+            departmentSpec: { type: String },
+            country :       { type: String },
+            city:           { type: String },
+            address:        { type: String },
+            company:        { type: String },
+            mission:        { type: String },
+            profile:        { type: String },
+            rem:            { type: String },
+            tags:           { type: String }
         })
         
     };
     
 var models = {
-    user : mongoose.model('user', schemas.user)
+    user : mongoose.model('user', schemas.user),
+    offer : mongoose.model('offer', schemas.offer)
 };
 
 exports.getModels = function(){
@@ -39,9 +55,9 @@ exports.controller = {
     get: {
         
         byObjectType:  function(_req, _res){
-            
+
             var objectType = _req.params.objectType;
-            
+
             models[objectType].find({}, function(err, objects) {
                 _res.json(objects);
             });
