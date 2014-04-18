@@ -22,7 +22,7 @@ define([
                 // Updates breadcrumb
                 var path = [
                     { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
-                    { name: 'offer.new', url: 'offers/new', navigationTrigger: 'offers:new' }
+                    { name: 'offer.new', url: 'offers/new', navigationTrigger: 'offer:new' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
 
