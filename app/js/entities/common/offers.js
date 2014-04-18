@@ -25,11 +25,9 @@ define([
                     details:''
                 },
                 company: {},
-                description: {
-                    mission:'',
-                    profile:'',
-                    rem:''
-                },
+                mission:'',
+                profile:'',
+                rem:'',
                 tags:[]
             }
         });
