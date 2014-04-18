@@ -3,8 +3,10 @@ define([
     'utt.stages',
     'tpl!modules/internship_managers/offers/common/templates/form.tpl',
     'backbone.forms',
+    'backbone.forms.bootstrap',
     'css!vendors/bower/backbone-forms/css/bootstrap3.css',
-    'vendors/bower/backbone-forms/js/bootstrap3'
+    
+    'vendors/tags.min'
 ], function(AppManager, UttStages, formTpl){
     
     // OffersModule Common Views (Use by 'edit' & 'new' because same logic and template)
@@ -15,69 +17,84 @@ define([
         Views.Form = Marionette.ItemView.extend({
             template: formTpl,
             form: '',
-            
             onRender: function(){
 
                 var title = this.options.title;
                 
-                var companies = [];//Get companies
-                
-                var Offer = Backbone.Model.extend({
+                //  New model with just a schema
+                var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        type:   { type: 'Select', validators: ['required'], options: ['TN07','TN09','TN10','Alternance'] },
-                        department: { type: 'Select', validators: ['required'], options: ['ISI', 'SRT', 'SM', 'MTE', 'SI', 'Master'] },
-                        departmentSpec: { type: 'Select', validators: ['required'], options: this.getDepartmentSpec('ISI') },
+                        type:   { type: 'Select', validators: ['required'], options: API.utt.getInternshipTypes() },
+                        department: { type: 'Select', validators: ['required'], options: API.utt.getDepartments() },
+                        departmentSpec: { type: 'Select', validators: ['required'], options: [] },
                         ref:    { type:'Text', validators: ['required'] },
+                        country:    { type:'Text', validators: ['required'] },
+                        city:    { type:'Text', validators: ['required'] },
                         address:    { type:'Text', validators: ['required'] },
-                        company:    { type: 'Select', validators: ['required'], options: ['test'] },
-                        descriptionMission:   { type:'Text', validators: ['required'] },
-                        descriptionProfile:   { type:'Text', validators: ['required'] },
-                        descriptionRem:   { type:'Number', validators: ['required'] },
+                        company:    { type: 'Select', validators: ['required'], options: []},
+                        mission:   { type:'TextArea', validators: ['required'] },
+                        profile:   { type:'TextArea', validators: ['required'] },
+                        rem:   { type:'Number', validators: ['required'] },
                         tags: { type:'Text', validators: ['required'] }
                     }
                 });
-
-                var offer = new Offer();
+                
+                
+                data = this.options.model.attributes;
+                
+                //  The schema of the future bbform
+                var bbformModel = new bbformSchema(this.formatSpecificData(data));
+                
                 var self = this;
                 setTimeout(function(){
 
+                    //  New bbform with a template
                     form = new Backbone.Form({
                         template: _.template($('#formTemplate').html()),
-                        model: offer
+                        model: bbformModel
                     }).render();
 
+                    //  Put the form before submit btn
                     $('button.js-submit').before(form.el);
                     
+                    //  Add title
                     $('h6.panel-title').append(title);
                     
-                    var blured = '';
-                    _.each(offer.schema, function(value, key){
-                        blured += key+":blur ";
+                    //  Tags
+                    $('#form-tags input').tagsInput({width:'100%'});
+
+                    //  To set blur event listener
+                    API.views.forms.setBlurListener(form, bbformModel);
+                    
+                    //  If department value change -> change department spec options
+                    form.on('department:change', function(form, editor) {
+                        var dpt = editor.getValue(),
+                            newOptions = API.utt.getDepartmentSpec(dpt);
+                        
+                        form.fields.departmentSpec.editor.setOptions(newOptions);
                     });
                     
-                    form.on(blured, function(form, editor) {
-                        var error = form.fields[editor.key].validate();
-                        API.views.forms.markError(editor.key, error);
-                    });
                 },300);
             },
             
-            getDepartmentSpec: function(_department){
+            formatSpecificData : function(_data){
                 
-                switch(_department){
-                    case 'ISI':
-                        return ['MPL', 'MSI', 'MRI'];
-                        break;
-                    
-                    case 'SRT':
-                        return [];
-                        break;
-                    
-                    default :
-                        break;
-                }
+                //  Address
+                _data.country = _data.address.country;
+                _data.city = _data.address.city;
+                _data.address = _data.address.details;
                 
-                return [];
+                //  Company
+                _data.company = ((data.company.name) ? data.company.name : '');
+                
+                //  Tags
+                str = "";
+                _.each(_data.tags, function(tag){
+                    str += tag+',';
+                });
+                _data.tags = str;
+                
+                return _data
             },
             
             events: {
@@ -85,20 +102,14 @@ define([
             },
             
             eSubmitClicked: function(_e){
+                
                 _e.preventDefault();
 
-                var errors = form.commit();
-                
-                if ( !_.isEmpty(errors)) {
-                    var self = this;
-                    _.each(errors, function(_value, _key){
-                        API.views.forms.markError(_key, _value);
-                    });
-                }
-                else{
+                if( API.views.forms.isFormValid(form) ){
                     var data = form.getValue();
                     console.log(data);
                 }
+
             }
         });
     });

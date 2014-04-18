@@ -49,24 +49,24 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Description mission:</label>
-                        <div class="col-sm-6" id="form-descriptionMission" data-editors="descriptionMission" >
+                        <label class="col-sm-2 control-label">Mission:</label>
+                        <div class="col-sm-6" id="form-mission" data-editors="mission" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                      
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Description profile:</label>
-                        <div class="col-sm-6" id="form-descriptionProfile" data-editors="descriptionProfile" >
+                        <label class="col-sm-2 control-label">Profile:</label>
+                        <div class="col-sm-6" id="form-profile" data-editors="profile" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Description rem:</label>
-                        <div class="col-sm-6" id="form-descriptionRem" data-editors="descriptionRem" >
+                        <label class="col-sm-2 control-label">Remunération:</label>
+                        <div class="col-sm-6" id="form-rem" data-editors="rem" >
                           
                         </div>
                         <span class="msg"></span>
@@ -75,6 +75,22 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ref:</label>
                         <div class="col-sm-6" id="form-ref" data-editors="ref" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Country:</label>
+                        <div class="col-sm-6" id="form-country" data-editors="country" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">City:</label>
+                        <div class="col-sm-6" id="form-city" data-editors="city" >
                           
                         </div>
                         <span class="msg"></span>
@@ -90,7 +106,7 @@
                     
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Tags:</label>
-                        <div class="col-sm-6" id="form-tags" data-editors="tags" >
+                        <div class="col-sm-6" id="form-tags" data-editors="tags">
                           
                         </div>
                         <span class="msg"></span>

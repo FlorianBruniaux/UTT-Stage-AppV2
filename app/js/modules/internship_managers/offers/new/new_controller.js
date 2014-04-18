@@ -1,8 +1,7 @@
 define([
     'app',
     'utt.stages',
-    'modules/internship_managers/offers/common/view',
-    'backbone.forms'
+    'modules/internship_managers/offers/common/view'
 ], function(AppManager, UttStages, View){
     
     // OffersModule new Controller
