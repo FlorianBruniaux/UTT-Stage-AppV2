@@ -20,6 +20,9 @@ define([
             onRender: function(){
 
                 var title = this.options.title;
+
+                //  TO DO : LOAD Companies model                
+                var companies = ['EDF'];
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
@@ -31,7 +34,7 @@ define([
                         country:    { type:'Text', validators: ['required'] },
                         city:    { type:'Text', validators: ['required'] },
                         address:    { type:'Text', validators: ['required'] },
-                        company:    { type: 'Select', validators: ['required'], options: []},
+                        company:    { type: 'Select', validators: ['required'], options: companies},
                         mission:   { type:'TextArea', validators: ['required'] },
                         profile:   { type:'TextArea', validators: ['required'] },
                         rem:   { type:'Number', validators: ['required'] },
@@ -79,20 +82,8 @@ define([
             
             formatSpecificData : function(_data){
                 
-                //  Address
-                _data.country = _data.address.country;
-                _data.city = _data.address.city;
-                _data.address = _data.address.details;
-                
                 //  Company
                 _data.company = ((data.company.name) ? data.company.name : '');
-                
-                //  Tags
-                str = "";
-                _.each(_data.tags, function(tag){
-                    str += tag+',';
-                });
-                _data.tags = str;
                 
                 return _data
             },
@@ -107,9 +98,9 @@ define([
 
                 if( API.views.forms.isFormValid(form) ){
                     var data = form.getValue();
-                    console.log(data);
+                    this.trigger('form:submit',data)
                 }
-
+                
             }
         });
     });
