@@ -592,7 +592,7 @@ define([
                         });
                         
                     }();
-                })
+                });
                 
             },
             
@@ -609,8 +609,38 @@ define([
                 
                 $('#form-'+_key).parent().find('span.msg').html(label);
                 
-            }
+            },
             
+            setBlurListener : function(_form, _model){
+                
+                var blured = "";
+                
+                _.each(_model.schema, function(value, key){
+                    blured += key+":blur ";
+                });
+                
+                _form.on(blured, function(form, editor) {
+                    var error = form.fields[editor.key].validate();
+                    VIEWS.forms.markError(editor.key, error);
+                });
+                
+            },
+            
+            isFormValid : function(_form){
+                
+                var errors = _form.commit();
+                
+                if ( !_.isEmpty(errors)) {
+                    var self = this;
+                    _.each(errors, function(_value, _key){
+                        VIEWS.forms.markError(_key, _value);
+                    });
+                    
+                    return false;
+                }
+                
+                return true;
+            }
         },
         
         events: {
@@ -677,6 +707,51 @@ define([
             }
         }
     
+        
+    };
+    
+    var UTT = API.Application.prototype.utt = {
+        
+        getInternshipTypes : function(){
+            return ['TN07','TN09','TN10','Alternance'];
+        },
+        
+        getDepartments : function(){
+            return ['ISI', 'MTE', 'SI', 'SM', 'SRT'];
+        },
+        
+        getDepartmentSpec: function(_department){
+                
+                switch(_department){
+                    
+                    case 'ISI':
+                        return ['MPL', 'MSI', 'MRI'];
+                        break;
+                    
+                    case 'MTE':
+                        return [];
+                        break;
+                    
+                    case 'SI':
+                        return [];
+                        break;
+                    
+                    case 'SM':
+                        return [];
+                        break;
+                    
+                    case 'SRT':
+                        return [];
+                        break;
+                    
+                    default :
+                        return [];
+                        break;
+                    
+                }
+                
+                return [];
+            },
         
     }
     
