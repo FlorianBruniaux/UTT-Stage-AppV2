@@ -15,6 +15,7 @@ requirejs.config({
         },
         
         'backbone.forms' : ['backbone'],
+        'backbone.forms.bootstrap' : ['backbone.forms'],
         
         'backbone.picky' : ['backbone'],
         
@@ -64,6 +65,7 @@ requirejs.config({
         backbone: 'vendors/bower/backbone/js/backbone',
         
         'backbone.forms': 'vendors/bower/backbone-forms/js/backbone-forms',
+        'backbone.forms.bootstrap': 'vendors/bower/backbone-forms/js/bootstrap3',
         
         //Selectable entities as mixins for Backbone.Model and Backbone.Collection!
         'backbone.picky': 'vendors/bower/backbone.picky/js/backbone.picky',
