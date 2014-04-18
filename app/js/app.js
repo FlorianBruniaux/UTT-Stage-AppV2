@@ -63,18 +63,24 @@ define([
     AppManager.on('initialize:after', function(){
         
         if (Backbone.history) {
+            
             require([
                 //Common
                 'common/breadcrumb/breadcrumb_module',
             ], function(){
-
-                Backbone.history.start();
                 
                 var API = new UttStages.Application(AppManager);
-                API.misc.initDropDown();//  To init dropdowns
+                
+                //  To init dropdowns
+                API.misc.initDropDown();
 
-                API.ajax.auth.isAuth('home:root');
+                //  To check if user is auth
+                //  If yes -> load the modules that correspond to his user category
+                //  If no -> login page
+                API.ajax.auth.isAuth();
+                
             });
+            
         }
     });
     

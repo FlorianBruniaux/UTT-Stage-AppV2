@@ -241,7 +241,7 @@ define([
         
         auth: {
             
-            isAuth: function(_event){
+            isAuth: function(){
 
                 $.ajax({
                     url: '/auth/isauth',
@@ -280,9 +280,13 @@ define([
                                     var user = APPMANAGER.request('user:entity:new', _res);
                                     //  Show user infos in top right corner
                                     APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
+
+                                    Backbone.history.start();
+
+                                    if (APPMANAGER.getCurrentRoute() === "") {
+                                        APPMANAGER.trigger(_res.userCategory+':home:root');
+                                    }
                                     
-                                    //  Trigger the event passed for the user category.
-                                    APPMANAGER.trigger(_res.userCategory+':'+_event);
                                 });
                             
                             }).fail(function(){
