@@ -22,14 +22,16 @@ var Schema = mongoose.Schema,
             ref:            { type: String },
             department:     { type: String },
             departmentSpec: { type: String },
-            country :       { type: String },
-            city:           { type: String },
-            address:        { type: String },
+            lat:            { type: Number },
+            lng:            { type: Number },
+            fullAddress:    { type: String },
             company:        { type: String },
             mission:        { type: String },
             profile:        { type: String },
-            rem:            { type: String },
-            tags:           { type: String }
+            rem:            { type: Number },
+            tags:           { type: String },
+            title:          { type: String },
+            type:           { type: String }
         })
         
     };
@@ -67,9 +69,9 @@ exports.controller = {
         byId:  function(_req, _res){
             var objectType = _req.params.objectType;
             
-            models[objectType].find({ _id: _req.params.id }, function(err, objects) {
+            models[objectType].findOne({ _id: _req.params.id }, function(err, objects) {
                 if (err) {
-                    _res.json({error: 'Contact not found.'});
+                    _res.json({error: 'Not found.'});
                 } else {
                     _res.json(objects);
                 }
