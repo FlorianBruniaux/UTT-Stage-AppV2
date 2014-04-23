@@ -171,8 +171,8 @@ define([
         AppManager.on('offers:filter', function(_params){
             console.log(_params);
             if(_params){
-                AppManager.navigate('offers/filter?'+_params);
-                API.listOffers(_params);
+                AppManager.navigate('offers/list/filter?'+_params);
+                API.listOffers();
             }else{
                 AppManager.navigate('offers');
             }

@@ -144,6 +144,54 @@ define([
                 }();
             });
             
+        },
+        
+        //  To get url parameters (get)
+        getParmsFromURL: function(_url) {
+            var parms = {},
+                pieces,
+                parts,
+                i;
+                
+            var hash = _url.lastIndexOf("#");
+            
+            if (hash !== -1) {
+                // isolate just the hash value
+                _url = _url.slice(hash + 1);
+            }
+            
+            var question = _url.indexOf("?");
+            
+            if (question !== -1) {
+                _url = _url.slice(question + 1);
+                pieces = _url.split("&");
+                for (i = 0; i < pieces.length; i++) {
+                    parts = pieces[i].split("=");
+                    if (parts.length < 2) {
+                        parts.push("");
+                    }
+                    parms[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+                }
+            }
+            
+            return parms;
+        },
+        
+        getDistanceFromLatLonInKm: function (lat1,lon1,lat2,lon2) {
+            var R = 6371; // Radius of the earth in km
+            var dLat = MISC.deg2rad(lat2-lat1);  // MISC.deg2rad below
+            var dLon = MISC.deg2rad(lon2-lon1); 
+            var a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(MISC.deg2rad(lat1)) * Math.cos(MISC.deg2rad(lat2)) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2); 
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var d = R * c; // Distance in km
+            return d;
+        },
+          
+        deg2rad: function (deg) {
+            return deg * (Math.PI/180)
         }
     };
     
@@ -165,7 +213,7 @@ define([
             var languagePrefCookie = COOKIES.read('UttStagesLanguagePref');
             
             if (languagePrefCookie) {
-                console.log('Cookie exists !');
+                //console.log('Cookie exists !');
                 return languagePrefCookie;
             }
             else{
@@ -384,39 +432,96 @@ define([
                 filterFunction: function(_filterCriterion, _searchedValue){
                     
                     var criterion = _filterCriterion,
-                        value = _searchedValue;
-    
+                        value = _searchedValue,
+                        valueArr = value.split(',');
+                    
                     return function(_model){
+  
+                        function getModel(_arr, _obj) {
                         
-                        // Split criterio to have each arg of the path in an array
-                        var arr = criterion.split('.'),
-                            // Get the attribute
-                            obj = _model.get(arr[0]);
-                        
-                        function getModel(_arr, _obj) {;
+                            //console.log(_arr);
+                            var crit = _arr[0];
                             
                             // Delete first item of the array
                             // (already used with _model.get(arr[0]))
-                            _arr.splice(0, 1);
+                            _arr.splice(0, 1)
+                            
                             
                             var obj = _obj;
-    
+
                             if(_arr.length > 0){
+                                alert('>0');
                                 if (obj[_arr[0]]) {
                                     obj = obj[_arr[0]];
                                     // Recursive call
-                                    getModel(_arr, obj)
+                                    getModel(_arr, obj);
                                 }
                             }
-    
-                            // If the values are equals
-                            if (obj.indexOf(value) !== -1) {
-                                return _model;
+
+                            if (crit == "loc") {
+                                
+                                var lat = valueArr[0],
+                                    lng = valueArr[1],
+                                    perimeter = valueArr[2];
+                                
+                                //console.log(perimeter);
+                                
+                                if(perimeter.match('^>')){
+                                    //console.log('>200');
+                                    return _model;
+                                }
+                                else{
+                                    var dist = MISC.getDistanceFromLatLonInKm(valueArr[0], valueArr[1], _model.get('lat'), _model.get('lng'));
+                                    console.log(dist);
+                                    console.log(parseInt(dist) < parseInt(perimeter));
+                                    
+                                    if (parseInt(dist) < parseInt(perimeter)) {
+                                        return _model;
+                                    }
+                                    
+                                }   
                             }
-    
-                            return null;
+                            else{
+                                for(var i in valueArr){
+                                
+                                    if (valueArr[i].trim()) {
+                                        //console.log(valueArr[i]);
+                                        
+                                        if (crit == "tags") {
+                                            if (_model.get('_objectType') == 'offer') {
+                                                var fieldsWhereToSearchForTags = ['company', 'title', 'mission', 'profile', 'tags'];
+                                                for(var j in fieldsWhereToSearchForTags){
+                                                    if (_model.get(fieldsWhereToSearchForTags[j]).toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
+                                                        return _model;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else if (crit == "department") {
+                                            if (obj.toLowerCase() == valueArr[i].trim().toLowerCase()) {
+                                                return _model;
+                                            }
+                                        }
+                                        else {
+                                            if (obj.toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
+                                                return _model;
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            
+                            
+                            return null;  
+                            
                         }
                         
+                        // Split criterion to have each arg of the path in an array
+                        var arr = criterion.split('.'),
+                            // Get the attribute
+                            obj = _model.get(arr[0]);
+                            
                         return getModel(arr, obj);
     
                     }
@@ -447,17 +552,20 @@ define([
                 
                 var items = [];
                 if (criterion && value) {
+                    
                     if (_filterStrategy === 'filter') {
                         if (!filtered.filterFunction) {
-                            throw('You\'re trying to use a filter function but none is defined...')
+                            throw("You're trying to use a filter function but none is defined...")
                         }
                     
                         var filterFunction = filtered.filterFunction(criterion, value);
                         items = collection.filter(filterFunction);
-                    }else{
+                    }
+                    else{
                         items = collection.where(criterion, value);
                     }
-                }else{
+                }
+                else{
                     items = collection.models;
                 }
                 
@@ -470,7 +578,51 @@ define([
             
             filtered.filter = function(_filterCriterion, _searchedValue){
                 filtered.currentFilter = 'filter';
-                var items = applyFilter(_filterCriterion, _searchedValue, 'filter');
+                
+                var items = [];
+
+                //  If there are several criterions (research page)
+                if ($.isArray(_filterCriterion) && $.isArray(_searchedValue)) {
+                    if (_filterCriterion.length == _searchedValue.length) {
+                        var temp = [];
+                        
+                        //  We put the models returned for each criterion
+                        for (var i in _filterCriterion) {
+                            
+                            console.log(_filterCriterion[i]+":"+_searchedValue[i]);
+                            var models = applyFilter(_filterCriterion[i], _searchedValue[i], 'filter');
+                            //  As the result sended by applyFilter is an array, we need to merge the arrays
+                            temp = $.merge(temp, models);
+                            
+                            //console.log(temp);
+                        }
+                        
+                        var obj = {};
+                        //  To count the nb of occurences of the items in the array
+                        for (var i = 0, j = temp.length; i < j; i++) {
+                            
+                            if (obj[temp[i].cid]) {
+                                obj[temp[i].cid]++;
+                            }
+                            else {
+                                obj[temp[i].cid] = 1;
+                            }
+                            
+                            //console.log(obj);
+                            
+                            //  If the number of occurences is equal to the number of criterions,
+                            //  it means that the model has been matched for each criterion
+                            //  so we'll return it !
+                            if (obj[temp[i].cid] == _filterCriterion.length) {
+                                items.push(temp[i]);
+                            }
+                        }
+                    }
+                }
+                //  If there is just one criterion
+                else if(!$.isArray(_filterCriterion) && !$.isArray(_searchedValue)){
+                    items = applyFilter(_filterCriterion, _searchedValue, 'filter');
+                }
                 
                 //To reset the filtered collection with the new items
                 filtered.reset(items);
@@ -520,7 +672,7 @@ define([
                 require([
                     'vendors/uniform.min'
                 ],function(){
-                    $(".styled, .multiselect-container input").uniform({ radioClass: 'choice', selectAutoWidth: false });
+                    $(".checkbox-inline li input").uniform({ radioClass: 'choice', selectAutoWidth: false });
                 });
             },
             

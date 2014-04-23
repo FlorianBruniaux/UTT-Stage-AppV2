@@ -8,93 +8,50 @@
     </div>
     
     <div class="panel-body">
-        <form action="#" role="form">
-            
-            <div class="form-group">
+        
+        
+        <!-- script tag needed for backbone template -->
+        <script id="formTemplate" type="text/html">
+        
+            <form role="form" action="#" class="form-horizontal form-bordered">
+                
                 <div class="row">
                     
-                    <div class="col-sm-6">
-                        <input id="keywords" type="text" class="form-control">
+                    <div class="col-sm-6" id="form-tags" data-editors="tags">
+                       
                     </div>
                     
-                    <div class="col-sm-5 has-feedback has-feedback-left">
-                        <input style="height: 40px;" id="geocomplete" type="text" placeholder="Localization" class="form-control">
+                    <div class="col-sm-5 has-feedback has-feedback-left"  id="form-fullAddress" data-editors="fullAddress">
                         <i style="top:0px;" class="icon-location form-control-feedback"></i>
-                        
                     </div>
-                    <div class="col-sm-2 col-md-1">
-                        <select id="perimeter" class="form-control">
-                            <option>2 km</option>
-                            <option>5 km</option>
-                            <option>10 km</option>
-                            <option>20 km</option>
-                            <option>50 km</option>
-                            <option>100 km</option>
-                            <option>200 km</option>
-                            <option selected>200+</option>
-                        </select>
+                    
+                    <div class="col-sm-2 col-md-1" id="form-perimeter" data-editors="perimeter">
+
                     </div>
 
-                    
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="col-sm-2 col-md-1 control-label">Departments :</label>
-                <div class="col-sm-10">
-                  <div class="block-inner">
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="department" type="checkbox" class="styled" checked="checked" value="ISI">
-                        ISI
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="department" type="checkbox" class="styled" checked="checked" value="SRT">
-                        SRT
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="department" type="checkbox" class="styled" checked="checked" value="SI">
-                        SI
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="department" type="checkbox" class="styled" checked="checked" value="SM">
-                        SM
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="department" type="checkbox" class="styled" checked="checked" value="MTE">
-                        MTE
-                    </label>
-                  </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <label class="col-sm-2 col-md-1 control-label">Departments :</label>
+                    <div class="col-sm-10">
+                        <div class="block-inner" id="form-department" data-editors="department">
+                        </div>
+                    </div>
                 </div>
                 
-            </div>
-            
-            <div class="clearfix"></div>
-            
-            <div class="form-group">
-                <label class="col-sm-2 col-md-1  control-label">Types : </label>
-                <div class="col-sm-10">
-                  <div class="block-inner">
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="type" type="checkbox" class="styled" checked="checked" value="TN07">
-                        TN07
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="type" type="checkbox" class="styled" checked="checked" value="TN09">
-                        TN09
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="type" type="checkbox" class="styled" checked="checked" value="TN10">
-                        TN10
-                    </label>
-                    <label class="checkbox-inline checkbox-info">
-                        <input name="type" type="checkbox" class="styled" checked="checked" value="Alternance">
-                        Alternance
-                    </label>
-                  </div>
+                <div class="row">
+                    <label class="col-sm-2 col-md-1  control-label">Types : </label>
+                    <div class="col-sm-10">
+                        <div class="block-inner" id="form-type" data-editors="type">
+        
+                        </div>
+                    </div>
                 </div>
                 
-            </div>
-        </form>
+            </form>
+            
+        </script>
+        
     </div>
     
     <hr >

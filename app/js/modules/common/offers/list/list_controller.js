@@ -12,14 +12,14 @@ define([
         List.Controller = {
             
             // To list all the offers
-            listOffers: function(_params){
+            listOffers: function(){
                 
                 if(DEBUG) console.info('offers.list.list_controller.listOffers()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 
-                console.log(_params);
+               
                 
                 // Updates breadcrumb
                 var path = [
@@ -31,13 +31,28 @@ define([
                 // Gets all the offers (CF entities folder)
                 // When all the offers are fetched (CF use of defer.promise() )
                 var fetchingOffers = AppManager.request('offers:entities');
-                $.when(fetchingOffers).done(function(offers){
+                $.when(fetchingOffers).done(function(_offers){
                     
-                    var filteredOffers = API.entities.filterCollection(offers);
+                    var filteredOffers = API.entities.filterCollection(_offers);
+                    
+                    var prms = API.misc.getParmsFromURL(window.location.href),
+                        criterions = [],
+                        values = [];
 
-                      
+                    _.each(prms, function(_value, _key){
+                        if (_value != 'all' && _value != '') {
+                            criterions.push(_key);
+                            values.push(_value);
+                        }
+                    });
+                    
+                    if (criterions.length > 0 && values.length > 0) {
+                        filteredOffers.filter(criterions, values);
+                    }
+
                     var offersListView = new View.Offers({
-                        collection: offers
+                        collection: filteredOffers,
+                        params: prms
                     });
                     
                     offersListView.on('itemview:offer:show', function(childView, model){
@@ -50,8 +65,7 @@ define([
  
                     AppManager.contentRegion.show(offersListView);
                 });   
-
-                
+ 
             }
         }
     });
