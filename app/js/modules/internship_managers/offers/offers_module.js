@@ -29,7 +29,7 @@ define([
                 'offers': 'listRootOptions',
                 'offers/research': 'showResearchForm',
                 'offers/list(/filter)': 'listOffers',
-                'offers/list(/filter/:criterion::value)': 'listOffers',
+                'offers/list(/filter?:parameters)': 'listOffers',
                 'offers/new': 'addNewOffer',
                 'offers/:id': 'showOffer',
                 'offers/:id/edit': 'editOffer'
@@ -80,14 +80,14 @@ define([
             },
             
             // To list all the offers
-            listOffers: function(criterion, value){
+            listOffers: function(_params){
                 
                 if(DEBUG) console.info('internship_managers.offers.offers_module.listOffers()');
                 
                 require([
                     'modules/common/offers/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listOffers, [criterion, value]);
+                    executeAction(ListController.listOffers, _params);
                 });
             },
             
@@ -144,7 +144,7 @@ define([
         /**
          *  Event = 'offers:research'
          */
-        AppManager.on('internship_managers:offers:research', function(){
+        AppManager.on('offers:research', function(){
             AppManager.navigate('offers/research');
             API.showResearchForm();
         });
@@ -152,7 +152,7 @@ define([
         /**
          *  Event = 'offers:list'
          */
-        AppManager.on('internship_managers:offers:list', function(){
+        AppManager.on('offers:list', function(){
             AppManager.navigate('offers/list');
             API.listOffers();
         });
@@ -168,9 +168,11 @@ define([
         /**
          *  Event = 'offers:filter'
          */
-        AppManager.on('internship_managers:offers:filter', function(criterion, value){
-            if(criterion && value){
-                AppManager.navigate('offers/filter/'+criterion+':' + value);
+        AppManager.on('offers:filter', function(_params){
+            console.log(_params);
+            if(_params){
+                AppManager.navigate('offers/filter?'+_params);
+                API.listOffers(_params);
             }else{
                 AppManager.navigate('offers');
             }
