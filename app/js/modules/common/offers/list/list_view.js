@@ -28,7 +28,7 @@ define([
             template: listTpl,
             itemView: View.Offer,
             itemViewContainer: 'tbody',
-            form: '',
+            searchForm: '',
             data: {},
             defaultFilters : {
                 tags: '',
@@ -83,12 +83,12 @@ define([
                 setTimeout(function(){
 
                     //  New bbform with a template
-                    form = new Backbone.Form({
-                        template: _.template($('#formTemplate').html()),
+                    searchForm = new Backbone.Form({
+                        template: _.template($('#searchFormTemplate').html()),
                         model: bbformModel
                     }).render();
                     
-                    $('.panel-body').html(form.el);
+                    $('.panel-body').html(searchForm.el);
                     
                     API.views.forms.initUniformPlugin();
                     
@@ -132,19 +132,19 @@ define([
                     
 
                     //  If department value change -> change department spec options
-                    form.on('perimeter:change', function(form, editor) {
+                    searchForm.on('perimeter:change', function(form, editor) {
                         self.data.perimeter = editor.getValue() ;
                         $("#form-fullAddress input").geocomplete("find",  $("#form-fullAddress input").val());
                     });
                     
                     //  If department value change -> change department spec options
-                    form.on('department:change', function(form, editor) {
+                    searchForm.on('department:change', function(form, editor) {
                         self.data.department = editor.getValue();
                         self.filterOffers()
                     });
                     
                     //  If department value change -> change department spec options
-                    form.on('type:change', function(form, editor) {
+                    searchForm.on('type:change', function(form, editor) {
                         self.data.type = editor.getValue();
                         self.filterOffers();
                     });

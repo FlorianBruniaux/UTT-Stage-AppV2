@@ -1,7 +1,7 @@
 <div id="offers-form">
     
     <!-- script tag needed for backbone template -->
-    <script id="formTemplate" type="text/html">
+    <script id="newOfferFormTemplate" type="text/html">
         
         <form role="form" action="#" class="form-horizontal form-bordered">
             

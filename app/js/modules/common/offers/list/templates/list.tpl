@@ -11,7 +11,7 @@
         
         
         <!-- script tag needed for backbone template -->
-        <script id="formTemplate" type="text/html">
+        <script id="searchFormTemplate" type="text/html">
         
             <form role="form" action="#" class="form-horizontal form-bordered">
                 
