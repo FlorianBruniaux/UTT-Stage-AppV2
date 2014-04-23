@@ -17,15 +17,15 @@
                 
                 <div class="row">
                     
-                    <div class="col-sm-6" id="form-tags" data-editors="tags">
+                    <div class="col-sm-4" id="form-tags" data-editors="tags">
                        
                     </div>
                     
-                    <div class="col-sm-5 has-feedback has-feedback-left"  id="form-fullAddress" data-editors="fullAddress">
+                    <div class="col-sm-4 has-feedback has-feedback-left"  id="form-fullAddress" data-editors="fullAddress">
                         <i style="top:0px;" class="icon-location form-control-feedback"></i>
                     </div>
                     
-                    <div class="col-sm-2 col-md-1" id="form-perimeter" data-editors="perimeter">
+                    <div class="col-sm-2" id="form-perimeter" data-editors="perimeter">
 
                     </div>
 

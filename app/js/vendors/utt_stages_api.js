@@ -73,7 +73,7 @@ define([
                 'datatables'
             ],function() {
                 
-                //$('.datatable table tr:last').remove();
+                $('.datatable table').dataTable().fnDestroy();
 
                 oTable = $('.datatable table').dataTable({
                     "bJQueryUI": false,
@@ -84,7 +84,8 @@ define([
                         "sSearch": "<span>Filtre rapide:</span> _INPUT_",
                         "sLengthMenu": "_MENU_",
                         "oPaginate": { "sFirst": "<<", "sLast": ">>", "sNext": ">", "sPrevious": "<" }
-                    }
+                    },
+                    "bDestroy": true
                 });
                 
             });
@@ -450,7 +451,6 @@ define([
                             var obj = _obj;
 
                             if(_arr.length > 0){
-                                alert('>0');
                                 if (obj[_arr[0]]) {
                                     obj = obj[_arr[0]];
                                     // Recursive call
@@ -467,15 +467,15 @@ define([
                                 //console.log(perimeter);
                                 
                                 if(perimeter.match('^>')){
-                                    //console.log('>200');
+                                    console.log('>200');
                                     return _model;
                                 }
                                 else{
                                     var dist = MISC.getDistanceFromLatLonInKm(valueArr[0], valueArr[1], _model.get('lat'), _model.get('lng'));
-                                    console.log(dist);
-                                    console.log(parseInt(dist) < parseInt(perimeter));
+                                    
                                     
                                     if (parseInt(dist) < parseInt(perimeter)) {
+                                        //console.log('test')
                                         return _model;
                                     }
                                     
@@ -589,7 +589,7 @@ define([
                         //  We put the models returned for each criterion
                         for (var i in _filterCriterion) {
                             
-                            console.log(_filterCriterion[i]+":"+_searchedValue[i]);
+                            //console.log(_filterCriterion[i]+":"+_searchedValue[i]);
                             var models = applyFilter(_filterCriterion[i], _searchedValue[i], 'filter');
                             //  As the result sended by applyFilter is an array, we need to merge the arrays
                             temp = $.merge(temp, models);

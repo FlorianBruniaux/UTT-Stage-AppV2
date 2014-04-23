@@ -38,9 +38,9 @@ define([
                     var prms = API.misc.getParmsFromURL(window.location.href),
                         criterions = [],
                         values = [];
-
+                    
                     _.each(prms, function(_value, _key){
-                        if (_value != 'all' && _value != '') {
+                        if (_value != 'all' && _value != '' && _key != 'fullAddress') {
                             criterions.push(_key);
                             values.push(_value);
                         }
