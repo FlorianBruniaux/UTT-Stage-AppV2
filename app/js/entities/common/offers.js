@@ -15,14 +15,15 @@ define([
             defaults: {
                 _id: null,
                 _objectType : 'offer',
-                type: '',//TN05/TN09/TN10/TN07/Alternance
+                type:'',//TN05/TN09/TN10/TN07/Alternance
                 ref:'',
                 department:'',//ISI/SRT/SM/SI/MTE/Master
                 departmentSpec:'',// empty/MPL/MSI/MRI etc.
-                country:'',
-                city:'',
-                address:'',
+                lat: '',
+                lng: '',
+                fullAdress: '',
                 company: {},
+                title:'',
                 mission:'',
                 profile:'',
                 rem:'',

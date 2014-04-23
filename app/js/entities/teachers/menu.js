@@ -28,7 +28,6 @@ define([
                 Entities.menuItems = new Entities.MenuCollection([
                     { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "teachers:home:root" },
                     { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "teachers:offers:list" },
-                    { name: "menu.research", url: "research", icon: "icon-search3", navigationTrigger: "teachers:search:root" },
                     { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "teachers:monitoring:root" },
                     { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "teachers:messages:list" },
                     { name: "menu.contacts", url: "contacts", icon: "icon-users", navigationTrigger: "contacts:list" }
