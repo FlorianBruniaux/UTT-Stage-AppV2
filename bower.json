@@ -30,6 +30,7 @@
     "polyglot": "~0.3.0",
     "requirejs": "~2.1.5",
     "require-css": "~0.1.0",
+    "requirejs-plugins": "~1.0.2",
     "requirejs-tpl": "*",
     "respond": "~1.4.2",
     "underscore": ">=1.5.2"
@@ -97,6 +98,9 @@
     },
     "require-css": {
       "js": "css.js"
+    },
+    "requirejs-plugins": {
+      "js": "src/async.js"
     },
     "requirejs-tpl": {
       "js": "tpl.js"
