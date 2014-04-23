@@ -1,40 +1,154 @@
 define([
     'app',
-    'meeitb',
-    'tpl!modules/users/list/templates/list.tpl',
-    'tpl!modules/users/list/templates/list_item.tpl'
-], function(AppManager, MeeiTb, listTpl, listItemTpl){
+    'utt.stages',
+    'tpl!modules/common/offers/list/templates/list.tpl',
+    'tpl!modules/common/offers/list/templates/list_item.tpl',
+    'vendors/tags.min'
+], function(AppManager, UttStages, listTpl, listItemTpl){
     
-    // UsersModule List View
-    AppManager.module('UsersModule.List.View', function(View, AppManager, Backbone, Marionette, $, _){
+    // OffersModule List View
+    AppManager.module('OffersModule.List.View', function(View, AppManager, Backbone, Marionette, $, _){
     
-        var MeeiTbApp = new MeeiTb.Application(AppManager);
+        var API = new UttStages.Application(AppManager);
         
-        View.User = Marionette.ItemView.extend({
+        View.Offer = Marionette.ItemView.extend({
             tagName: 'tr',
             template: listItemTpl,
             events: {
-                'click td a.js-show': MeeiTbApp.views.events.showClicked,
-                'click td a.js-edit': MeeiTbApp.views.events.editClicked,
-                'click td .js-delete': MeeiTbApp.views.events.deleteClicked
+                'click td a.js-show': API.views.events.showClicked
             }
         })
         
-        View.Users = Marionette.CompositeView.extend({
+        View.Offers = Marionette.CompositeView.extend({
             template: listTpl,
-            itemView: View.User,
+            itemView: View.Offer,
             itemViewContainer: 'tbody',
+            
+            filters : {
+                tags: '',
+                types : ['TN07','TN09','TN10','Alternance'],
+                departments : ['ISI','SRT','SI','SM','MTE'],
+                localization: {
+                    lat: '',
+                    lng: ''
+                },
+                perimeter : '200+',
+            },
+            
             
             initialize: function(){
                 
                 setTimeout(function(){
-                    MeeiTbApp.misc.initDataTable('user-array',4);
-                }, 200);
+                    API.misc.initDataTable();
+                    API.views.forms.initUniformPlugin();
+                }, 100);
                 
             },
+            
+            onRender: function(){
+                
+                var self = this;
+                setTimeout(function(){
+                    $('#keywords').tagsInput({
+                        'width'     :'100%',
+                        'onChange'  : function(){
+                            self.filters.tags = $('#keywords').val();
+                            self.filterOffers();
+                        }
+                    });
+                    
+                    require(['async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false', 'jquery', 'geocomplete'], function () {
+                        $("#geocomplete").geocomplete({
+                        }).bind("geocode:result", function(event, result){
+                            self.filters.localization.lat = result.geometry.location.k;
+                            self.filters.localization.lng = result.geometry.location.A;
+                            self.filterOffers();
+                        });;
+                    });
+                    
+                },200);
+                
+            },
+            
+            events: {
+                'change input[name="type"]': 'eTypeChanged',
+                'change input[name="department"]': 'eDepartmentChanged',
+                'change select#perimeter': 'ePerimeterChanged'
+            },
+            
+            eTypeChanged: function(_e){
+                _e.preventDefault();
+                this.filters.types = [];
+                var self = this;
+                $('input[name="type"]:checked').each(function() {
+                    self.filters.types.push(this.value);
+                });
+                this.filterOffers()
+            },
+            
+            eDepartmentChanged: function(_e){
+                _e.preventDefault();
+                this.filters.departments = [];
+                var self = this;
+                $('input[name="department"]:checked').each(function() {
+                    self.filters.departments.push(this.value);
+                });
+                this.filterOffers()
+            },
+            
+            ePerimeterChanged: function(_e){
+                _e.preventDefault();
+                this.filters.perimeter = $(_e.currentTarget).val() ;
+                var self = this;
+                setTimeout(function(){
+                    self.filterOffers();
+                }, 50);
+                
+            },
+            
+            filterOffers: function(){
+                var params = "";
+                
+                if (this.filters.tags.length > 0) {
+                    params += 'tags='+this.filters.tags+'&';
+                }
+                
+                if (this.filters.departments.length == 5) {
+                    params += 'dept=all&';
+                }else {
+                    params += 'dept=';
+                    for(i in this.filters.departments){
+                       params += this.filters.departments[i]+',';
+                    }
+                    params += '&';
+                }
+                
+                if (this.filters.types.length == 4) {
+                    params += 'types=all&';
+                }else {
+                    params += 'types=';
+                    for(i in this.filters.types){
+                       params += this.filters.types[i]+',';
+                    }
+                    params += '&';
+                }
+                
+                if (this.filters.localization.lat.length > 0 && this.filters.localization.lng.length > 0) {
+                    params += 'lat='+this.filters.localization.lat+'&'+'lng='+this.filters.localization.lng+'&perimeter='+this.filters.perimeter;
+                }
+                
+                if (params.match("&$")) {
+                    params = params.slice(0, -1);
+                }
+                if (params.match(",$")) {
+                    params = params.slice(0, -1);
+                }
+                
+                AppManager.trigger('offers:filter', params);
+            }
 
         });
     });
     
-    return AppManager.UsersModule.List.View;
+    return AppManager.OffersModule.List.View;
 })
