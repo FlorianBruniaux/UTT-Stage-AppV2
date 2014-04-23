@@ -3647,15 +3647,28 @@
     width:100%;
     overflow-y:auto
 }
+.tags {
+    width:100%;
+}
 .tagsinput span.tag
 {
     display:block;
     float:left;
     position:relative;
     padding:7px 12px 8px 26px;
-    background:#239169;
+    background:#3CA2BB;
     color:#fff;
     margin:3px 0 0 3px
+}
+.tags span.tag
+{
+    display:block;
+    float:left;
+    position:relative;
+    padding:7px 12px 8px 12px;
+    background:#3CA2BB;
+    color:#fff;
+    margin:0 0 0 3px
 }
 .tagsinput span.tag a
 {
@@ -3696,7 +3709,8 @@
 .tags_clear
 {
     clear:both;
-    height:0
+    height:0;
+    margin-bottom: 20px;
 }
 .not_valid
 {
@@ -3991,14 +4005,18 @@
     background:url(../../images/interface/tables/sort_both.png) no-repeat 100%;
     padding-right:24px!important
 }
-.sorting_asc
+.dataTable thead th.sorting_asc
 {
     background:url(../../images/interface/tables/sort_asc.png) no-repeat 100%;
+    background-color: #3CA2BB;
+    color: white;
     padding-right:24px!important
 }
-.sorting_desc
+.dataTable thead th.sorting_desc
 {
     background:url(../../images/interface/tables/sort_desc.png) no-repeat 100%;
+    background-color: #3CA2BB;
+    color: white;
     padding-right:24px!important
 }
 .sorting_asc_disabled
@@ -4027,7 +4045,7 @@
 {
     border-top:0
 }
-.datatable-media tbody td:first-child
+.datatable-media tbody td:first-childfsor
 {
     width:auto
 }
@@ -6565,3 +6583,19 @@
 
 }
 
+.js-edit:hover {
+    color:#3792A8;
+    cursor: pointer;
+}
+
+.offer-desc {
+    font-size: 14px;
+}
+
+.offer-desc p{
+    padding: 10px 50px 0 5px;
+}
+
+.justified {
+    text-align: justify;
+}

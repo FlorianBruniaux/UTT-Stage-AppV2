@@ -2019,7 +2019,7 @@
 {
     float:left;
     display:block;
-    font-size:12px;
+    font-size:14px;
     padding:11px 12px 12px
 }
 .panel-title>i
@@ -2294,7 +2294,7 @@
 .has-feedback-left .form-control-feedback
 {
     right:auto;
-    left:0
+    left:auto
 }
 .form-horizontal .has-feedback-left .form-control-feedback
 {
@@ -3101,8 +3101,8 @@
 }
 .btn-success
 {
-    background-color:#00427C;
-    border-color:#00427C
+    background-color:#65B688;
+    border-color:#65B688
 }
 .btn-success:focus,.btn-success:hover
 {
