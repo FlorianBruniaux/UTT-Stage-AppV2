@@ -66,7 +66,7 @@ define([
             
             require([
                 //Common
-                'common/breadcrumb/breadcrumb_module',
+                'common/breadcrumb/breadcrumb_module'
             ], function(){
                 
                 var API = new UttStages.Application(AppManager);
