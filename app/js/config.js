@@ -29,6 +29,8 @@ requirejs.config({
         
         collapsibleMenu : ['collapsible'],
         
+        geocomplete: ['jquery'],
+        
         jasnybootstrap : ['jquery'],
 
         jquery: {
@@ -62,6 +64,8 @@ requirejs.config({
     
     paths: {
         
+        async: 'vendors/bower/requirejs-plugins/js/async',
+        
         backbone: 'vendors/bower/backbone/js/backbone',
         
         'backbone.forms': 'vendors/bower/backbone-forms/js/backbone-forms',
@@ -84,6 +88,10 @@ requirejs.config({
         
         //To deak with .css files
         css: 'vendors/bower/require-css/js/css',
+        
+        datatables: 'vendors/datatables.fr',
+        
+        geocomplete: 'vendors/bower/geocomplete/js/jquery.geocomplete',
         
         //To deal with bootstrap dropdow menu
         jasnybootstrap: 'vendors/bower/jasny-bootstrap/js/jasny-bootstrap.min',
