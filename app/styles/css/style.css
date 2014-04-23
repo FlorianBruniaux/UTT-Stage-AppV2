@@ -6599,3 +6599,9 @@
 .justified {
     text-align: justify;
 }
+
+ul.checkbox-inline li {
+    list-style: none;
+    float: left;
+    margin-right: 20px;
+}
