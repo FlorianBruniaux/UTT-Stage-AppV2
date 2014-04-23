@@ -18,7 +18,7 @@
     "home.panel.actions.offers.list" : "Check the offers",
     "home.panel.actions.offers.internship_managers" : "Monitor the offers",
     "home.panel.actions.validation" : "Offers to analyze",
-    "home.panel.actions.research" : "Make a research",
+    
     "home.panel.actions.monitoring.students" : "Monitor your internship",
     "home.panel.actions.monitoring.internship_managers" : "Monitor students internship",
     "home.panel.actions.messages" : "Consult my exchanges",
@@ -32,7 +32,6 @@
     "menu.home": "Home",
     "menu.offers": "Offers",
     "menu.validation": "Validation",
-    "menu.research": "Research",
     "menu.monitoring": "Monitoring",
     "menu.messages": "Messages",
     "menu.contacts": "Contacts",
@@ -45,10 +44,12 @@
     "notRegistered": "Not yet registered ?",
     
     "offer": "Offer",
+    "offers.list": "Offers list",
     "offer.new": "New offer",
     "offers": "Offers",
     "offers.panel.actions.new": "Add an offer",
     "offers.panel.actions.list": "Check the offers",
+    "home.panel.actions.research" : "Research",
     
     "parameters": "Parameters",
     "password": "Password",
