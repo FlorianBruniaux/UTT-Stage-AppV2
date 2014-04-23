@@ -65,38 +65,31 @@ define([
     
     var MISC = API.Application.prototype.misc = {
         
-        initDataTable: function (_id, _nbColumns){
+        
+        
+        initDataTable: function (){
         
             require([
-                'bootstrapDataTables',
-                'css!/styles/datatables/datatables.css',
-                'css!/styles/datatables/bootstrap.datatables.css'
-            ],function(DataTable, BootstrapDataTable) {
+                'datatables'
+            ],function() {
                 
-                //Inits the dataTable
-                $('#'+_id).dataTable({
-                    aoColumnDefs: [{
-                        bSortable: false,
-                        aTargets: [_nbColumns-1]
-                    }],
-                    'bDestroy': true
-                });
-                
-                //DataTable css modifications
-                return  $('#'+_id).each(function() {
-                    var datatable, length_sel, search_input;
-                    datatable = $(this);
-                    search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
-                    search_input.attr('placeholder', 'Recherche');
-                    search_input.addClass('form-control input-sm');
-                    length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
-                    length_sel.addClass('form-control input-sm');
-                    length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_info]');
-                    return length_sel.css('margin-top', '18px');
+                //$('.datatable table tr:last').remove();
+
+                oTable = $('.datatable table').dataTable({
+                    "bJQueryUI": false,
+                    "bAutoWidth": false,
+                    "sPaginationType": "full_numbers",
+                    "sDom": '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                    "oLanguage": {
+                        "sSearch": "<span>Filtre rapide:</span> _INPUT_",
+                        "sLengthMenu": "_MENU_",
+                        "oPaginate": { "sFirst": "<<", "sLast": ">>", "sNext": ">", "sPrevious": "<" }
+                    }
                 });
                 
             });
         },
+        
           
         showLoader : function(){
             if (LOADER.view) {
@@ -523,6 +516,14 @@ define([
     
         forms: {
         
+            initUniformPlugin : function(){
+                require([
+                    'vendors/uniform.min'
+                ],function(){
+                    $(".styled, .multiselect-container input").uniform({ radioClass: 'choice', selectAutoWidth: false });
+                });
+            },
+            
             checkBeforeSubmit: function(_target){
                 
                 require([
