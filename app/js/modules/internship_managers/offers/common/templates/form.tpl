@@ -49,6 +49,14 @@
                     </div>
                     
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">Title:</label>
+                        <div class="col-sm-6" id="form-title" data-editors="title" >
+                          
+                        </div>
+                        <span class="msg"></span>
+                    </div>
+                    
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Mission:</label>
                         <div class="col-sm-6" id="form-mission" data-editors="mission" >
                           
@@ -81,29 +89,32 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Country:</label>
-                        <div class="col-sm-6" id="form-country" data-editors="country" >
+                        <label class="col-sm-2 control-label">Localization:</label>
+                        <div class="col-sm-6" id="form-fullAddress" data-editors="fullAddress" >
                           
+                            
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">City:</label>
-                        <div class="col-sm-6" id="form-city" data-editors="city" >
+                        <label class="col-sm-2 control-label">Latitude:</label>
+                        <div class="col-sm-6" id="form-lat" data-editors="lat" >
                           
+                            
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Adress:</label>
-                        <div class="col-sm-6" id="form-address" data-editors="address" >
+                        <label class="col-sm-2 control-label">Longitude:</label>
+                        <div class="col-sm-6" id="form-lng" data-editors="lng" >
                           
+                            
                         </div>
                         <span class="msg"></span>
                     </div>
-                    
+                                       
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Tags:</label>
                         <div class="col-sm-6" id="form-tags" data-editors="tags">
@@ -117,8 +128,12 @@
             </div>
           
         </form>
+        
+        
 
     </script>
+    
+    
     
     <div class="form-actions text-right">
         <button class="btn btn-primary js-submit" >Submit</button>

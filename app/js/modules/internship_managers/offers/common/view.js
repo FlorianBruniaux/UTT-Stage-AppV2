@@ -31,10 +31,11 @@ define([
                         department: { type: 'Select', validators: ['required'], options: API.utt.getDepartments() },
                         departmentSpec: { type: 'Select', validators: ['required'], options: [] },
                         ref:    { type:'Text', validators: ['required'] },
-                        country:    { type:'Text', validators: ['required'] },
-                        city:    { type:'Text', validators: ['required'] },
-                        address:    { type:'Text', validators: ['required'] },
+                        fullAddress:    { type:'Text', validators: ['required'] },
+                        lat:    { type:'Number', validators: ['required'], editorAttrs: { disabled: true }  },
+                        lng:    { type:'Number', validators: ['required'], editorAttrs: { disabled: true }  },
                         company:    { type: 'Select', validators: ['required'], options: companies},
+                        title:   { type:'Text', validators: ['required'] },
                         mission:   { type:'TextArea', validators: ['required'] },
                         profile:   { type:'TextArea', validators: ['required'] },
                         rem:   { type:'Number', validators: ['required'] },
@@ -65,6 +66,13 @@ define([
                     
                     //  Tags
                     $('#form-tags input').tagsInput({width:'100%'});
+                    
+                    //  Geocomplete
+                    require(['async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false', 'jquery', 'geocomplete'], function () {
+                        $("#form-fullAddress input").geocomplete({
+                            details: "form"
+                        });
+                    });
 
                     //  To set blur event listener
                     API.views.forms.setBlurListener(form, bbformModel);
@@ -84,7 +92,7 @@ define([
                 
                 //  Company
                 _data.company = ((data.company.name) ? data.company.name : '');
-                
+
                 return _data
             },
             
@@ -98,6 +106,7 @@ define([
 
                 if( API.views.forms.isFormValid(form) ){
                     var data = form.getValue();
+
                     this.trigger('form:submit',data)
                 }
                 

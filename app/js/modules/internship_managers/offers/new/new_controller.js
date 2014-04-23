@@ -34,11 +34,11 @@ define([
                     title: polyglot.t('offer.new')
                 });
                 
-                view.on('form:submit', function(data){
+                view.on('form:submit', function(_data){
                     
                     API.misc.showLoader();
                     
-                    if (newOffer.save(data)) {
+                    if (newOffer.save(_data)) {
                         AppManager.trigger("offers:list");
                     }
                     
