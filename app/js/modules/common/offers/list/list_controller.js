@@ -18,9 +18,7 @@ define([
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
-                
-               
-                
+                 
                 // Updates breadcrumb
                 var path = [
                     { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
@@ -36,8 +34,9 @@ define([
                     var filteredOffers = API.entities.filterCollection(_offers);
                     
                     var prms = API.misc.getParmsFromURL(window.location.href),
-                        criterions = [],
-                        values = [];
+                        //  We only display offers that have already been validated
+                        criterions = ['validation.isValidated'],
+                        values = ['true'];
                     
                     _.each(prms, function(_value, _key){
                         if (_value != 'all' && _value != '' && _key != 'fullAddress') {
