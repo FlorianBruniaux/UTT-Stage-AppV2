@@ -12,18 +12,20 @@ define([
         Show.Controller = {
             
             // To show a specific offer
-            showOffer: function(_id){
+            showOffer: function(_options){
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 
                 // Gets the offer
                 // When the offer is fetched (CF use of defer.promise() )
-                var fetchingOffer = AppManager.request('offer:entity', _id);
+                var fetchingOffer = AppManager.request('offer:entity', _options.id);
                 $.when(fetchingOffer).done(function(_offer){
 
                     
                     if (_offer !== undefined) {
+                        
+                        _offer.set('userCategory', _options.userCategory);
                         
                         // Updates breadcrumb
                         var path = [
