@@ -18,10 +18,11 @@ define([
         AppManager.reqres.setHandler('students:homeRoot:entities', function(){
             if (Entities.homeRootListItems === undefined) {
                 Entities.homeRootListItems = new Entities.RootsCollection([
-                    { name: "home.panel.actions.offers.list", url: "offers/list", icon: "icon-newspaper", navigationTrigger: "offers:list", bg_class:"bg-success", msg: "<br />" },
+                    { name: "home.panel.actions.offers.list", url: "offers/list", icon: "icon-newspaper", navigationTrigger: "offers:list", bg_class:"bg-success", msg: "3 nouvelles offres" },
                     { name: "home.panel.actions.monitoring.students", url: "monitoring", icon: "icon-list", navigationTrigger: "students:monitoring:root", bg_class:"bg-danger", msg: "1 tâche à effectuer" },
-                    { name: "home.panel.actions.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "students:messages:list", bg_class:"bg-success", msg: "2 nouveaux messages" },
-                    { name: "home.panel.actions.contacts", url: "contacts", icon: "icon-users", navigationTrigger: "contacts:root", bg_class:" bg-info", msg: "<br />" }
+                    { name: "home.panel.actions.messages", url: "messages/list", icon: "icon-bubble4", navigationTrigger: "messages:list", bg_class:"bg-success", msg: "2 nouveaux messages" },
+                    { name: "home.panel.actions.contacts", url: "contacts/list", icon: "icon-address-book", navigationTrigger: "contacts:list", bg_class:"bg-info", msg: "<br />" },
+                    { name: "home.panel.actions.companies.list", url: "companies/list", icon: "icon-office", navigationTrigger: "companies:list", bg_class:" bg-info", msg: "<br />" }
                 ]);
             }
             return Entities.homeRootListItems;

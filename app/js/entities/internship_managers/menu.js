@@ -29,8 +29,10 @@ define([
                     { name: "menu.home", url: "home", icon: "icon-home", navigationTrigger: "internship_managers:home:root" },
                     { name: "menu.offers", url: "offers", icon: "icon-newspaper", navigationTrigger: "internship_managers:offers:root" },
                     { name: "menu.monitoring", url: "monitoring", icon: "icon-list", navigationTrigger: "internship_managers:monitoring:root" },
-                    { name: "menu.messages", url: "messages", icon: "icon-bubble4", navigationTrigger: "internship_managers:messages:list" },
-                    { name: "menu.contacts", url: "contacts", icon: "icon-users", navigationTrigger: "contacts:list" }
+                    { name: "menu.messages", url: "messages/list", icon: "icon-bubble4", navigationTrigger: "messages:list" },
+                    { name: "menu.contacts", url: "contacts/list", icon: "icon-address-book", navigationTrigger: "contacts:list" },
+                    { name: "menu.users", url: "users", icon: "icon-users", navigationTrigger: "internship_managers:users:list" },
+                    { name: "menu.companies", url: "companies", icon: "icon-office", navigationTrigger: "internship_managers:companies:root" }
                 ]);
             }
             return Entities.menuItems;
