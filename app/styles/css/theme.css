@@ -358,7 +358,7 @@
 }
 .navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:focus,.navbar-inverse .navbar-nav>.active>a:hover
 {
-    background-color:rgba(0,0,0,.06)
+    /*background-color:rgba(0,0,0,.00)*/
 }
 .navbar-inverse .navbar-nav>.disabled>a,.navbar-inverse .navbar-nav>.disabled>a:focus,.navbar-inverse .navbar-nav>.disabled>a:hover
 {
