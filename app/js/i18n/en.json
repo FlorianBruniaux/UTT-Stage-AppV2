@@ -9,6 +9,7 @@
     "en": "English",
     "error.redirection" : "You'll be redirected on the home page.",
     "error.500" : " - Oops, an error has occurred. Internal server error ! - ",
+    "error.404" : " - Oops, page not found ! - ",
     
     "firstName": "First name",
     "forgotPassword": "Forgot your password",
@@ -51,13 +52,14 @@
     "notRegistered": "Not yet registered ?",
     
     "offer": "Offer",
+    "offer.edit": "Edit the offer",
     "offers.list": "Offers list",
     "offer.new": "New offer",
     "offers": "Offers",
     "offers.validation": "Offers to validate",
     "offers.panel.actions.new": "Add an offer",
     "offers.panel.actions.list": "Check the offers",
-    "offers.panel.actions.validation" : "Validate new offers",
+    "offers.panel.actions.validation" : "Control the offers",
     
     "parameters": "Parameters",
     "password": "Password",

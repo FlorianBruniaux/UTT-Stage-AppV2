@@ -9,6 +9,7 @@
     "en": "Anglais",
     "error.redirection" : "Vous allez être redirigé dans quelques instants",
     "error.500" : " - Oups, une erreur est survenue. Erreur de serveur interne ! - ",
+    "error.404" : " - Oups, la page demandée n'existe pas ! - ",
     
     "firstName": "Prénom",
     "forgotPassword": "Mot de passe oublié",
@@ -50,8 +51,8 @@
     "newPassword": "Envoyez moi un nouveau mot de passe",
     "notRegistered": "Pas encore inscrit ?",
     
-    "offre": "Offre",
-   
+    "offer": "Offre",
+    "offer.edit": "Modification de l'offre",
     "offers.list": "Liste des offres",
     "offer.new": "Nouvelle offre",
     "offers": "Offres",
@@ -59,7 +60,7 @@
     "offers.panel.actions.new": "Ajouter une offre",
     "offers.panel.actions.list": "Voir les offres",
     "offers.panel.actions.research" : "Faire une recherche",
-    "offers.panel.actions.validation" : "Valider les nouvelles offres",
+    "offers.panel.actions.validation" : "Conrôler les offres",
     
     "password": "Mot de passe",
     "parameters": "Paramètres",
