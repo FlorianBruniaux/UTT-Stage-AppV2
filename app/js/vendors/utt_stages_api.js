@@ -891,23 +891,23 @@ define([
                         break;
                     
                     case 'MTE':
-                        return [];
+                        return ['EME','TCMC', 'TQM'];
                         break;
                     
                     case 'SI':
-                        return [];
+                        return ['LIP','SFeRE','LET'];
                         break;
                     
                     case 'SM':
-                        return [];
+                        return ['CMI','CSP','TIM','SNM'];
                         break;
                     
                     case 'SRT':
-                        return [];
+                        return ['IR','TMSE','SSC'];
                         break;
                     
                     default :
-                        return [];
+                        return ['Aucune'];
                         break;
                     
                 }
