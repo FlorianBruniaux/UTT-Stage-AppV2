@@ -1,6 +1,7 @@
 define([
-    'app'
-], function(AppManager){
+    'app',
+    'utt.stages'
+], function(AppManager, UttStages){
     
     // OffersModule
     AppManager.module('OffersModule', function(OffersModule, AppManager, Backbone, Marionette, $, _){
@@ -21,6 +22,8 @@ define([
     // OffersModule routes
     AppManager.module('Routers.OffersModule', function(OffersModuleRouter, AppManager, Backbone, Marionette, $, _){
         
+        var API = new UttStages.Application(AppManager);
+        
         /****************************************/
         /*  Routes                              */
         /****************************************/
@@ -32,10 +35,12 @@ define([
                 'offers/list(/filter)': 'listOffers',
                 'offers/list(/filter?:parameters)': 'listOffers',
                 'offers/:id': 'showOffer',
+                
+                //"*notFound": "notFound"
             }
         });
         
-        // Execute the actions given by API functions (when they are triggered)
+        // Execute the actions given by RouterAPI functions (when they are triggered)
         var executeAction = function(_action, _options){
             
             if(DEBUG) console.info('teachers.offers.offers_module.executeAction()');
@@ -51,10 +56,15 @@ define([
         
         
         /****************************************/
-        /*  API                                 */
+        /*  RouterAPI                                 */
         /****************************************/
         
-        var API = {
+        var RouterAPI = {
+            
+            //  If the route does not exist
+            notFound : function(){
+                API.errors.e404();
+            },
             
             // To list all the options of root.
             listRootOptions: function(){
@@ -74,7 +84,7 @@ define([
                 if(DEBUG) console.info('teachers.offers.offers_module.listNotValidatedOffers()');
                 
                 require([
-                    'modules/teachers/offers/validation/validation_controller'    
+                    'modules/common/offers/validation/validation_controller'    
                 ], function(ValidationController){
                     executeAction(ValidationController.listNotValidatedOffers, {});
                 });
@@ -127,15 +137,15 @@ define([
          */
         AppManager.on('teachers:offers:root', function(){
             AppManager.navigate('offers');
-            API.listRootOptions();
+            RouterAPI.listRootOptions();
         });
         
         /**
          *  Event = 'offers:validation'
          */
-        AppManager.on('teachers:offers:validation', function(){
+        AppManager.on('offers:validation', function(){
             AppManager.navigate('offers/validation');
-            API.listNotValidatedOffers();
+            RouterAPI.listNotValidatedOffers();
         });
         
         /**
@@ -143,7 +153,7 @@ define([
          */
         AppManager.on('offers:research', function(){
             AppManager.navigate('offers/research');
-            API.showResearchForm();
+            RouterAPI.showResearchForm();
         });
         
         /**
@@ -151,7 +161,7 @@ define([
          */
         AppManager.on('offers:list', function(){
             AppManager.navigate('offers/list');
-            API.listOffers();
+            RouterAPI.listOffers();
         });
         
         /**
@@ -160,7 +170,7 @@ define([
         AppManager.on('offers:filter', function(_params){
             if(_params){
                 AppManager.navigate('offers/list/filter?'+_params);
-                API.listOffers();
+                RouterAPI.listOffers();
             }
             else{
                 AppManager.navigate('offers/list');
@@ -170,9 +180,9 @@ define([
         /**
          *  Event = 'offer:show'
          */
-        AppManager.on('teachers:offer:show', function(_id){
+        AppManager.on('offer:show', function(_id){
             AppManager.navigate('offers/' + _id);
-            API.showOffer(_id);
+            RouterAPI.showOffer(_id);
         });
         
         
@@ -185,7 +195,7 @@ define([
          */
         AppManager.addInitializer(function(){
             new OffersModuleRouter.Router({
-                controller: API
+                controller: RouterAPI
             })
         });
     });

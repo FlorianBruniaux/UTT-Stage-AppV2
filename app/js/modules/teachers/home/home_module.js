@@ -1,6 +1,7 @@
 define([
-    'app'
-], function(AppManager){
+    'app',
+    'utt.stages'
+], function(AppManager, UttStages){
 
     // Students HomeModule
     AppManager.module('HomeModule', function(HomeModule, AppManager, Backbone, Marionette, $, _){
@@ -21,17 +22,20 @@ define([
     // Routers module > Home
     AppManager.module('Routers.HomeModule', function(HomeModuleRouter, AppManager, Backbone, Marionette, $, _){
         
+        var API = new UttStages.Application(AppManager);
         
         /****************************************/
         /*  Routes                              */
         /****************************************/
         HomeModuleRouter.Router = Marionette.AppRouter.extend({
             appRoutes: {
-                'home' : 'listRootOptions'
+                'home' : 'listRootOptions',
+                
+                //"*notFound": "notFound"
             }
         });
         
-        // Executes the actions given by API functions (when they are triggered)
+        // Executes the actions given by RouterAPI functions (when they are triggered)
         var executeAction = function(_action, _options){
             
             if(DEBUG) console.info('teachers.home.home_module.executeAction()');
@@ -47,15 +51,20 @@ define([
        
        
         /****************************************/
-        /*  API                                 */
+        /*  RouterAPI                                 */
         /****************************************/
         
-        var API = {
+        var RouterAPI = {
+            
+            //  If the route does not exist
+            notFound : function(){
+                API.errors.e404();
+            },
             
             // To list all the options of root.
             listRootOptions: function(){
                 
-                if(DEBUG) console.info('teachers.home.home_module.API.showRoot()');
+                if(DEBUG) console.info('teachers.home.home_module.RouterAPI.showRoot()');
                 
                 require([
                     'modules/teachers/home/root/root_controller'    
@@ -76,7 +85,7 @@ define([
          */
         AppManager.on('teachers:home:root', function(){
             AppManager.navigate('home');
-            API.listRootOptions();
+            RouterAPI.listRootOptions();
         });
         
         
@@ -89,7 +98,7 @@ define([
          */
         AppManager.addInitializer(function(){
             new HomeModuleRouter.Router({
-                controller: API
+                controller: RouterAPI
             });  
         });
     });

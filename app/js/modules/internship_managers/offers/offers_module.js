@@ -1,6 +1,7 @@
 define([
-    'app'
-], function(AppManager){
+    'app',
+    'utt.stages'
+], function(AppManager, UttStages){
     
     // OffersModule
     AppManager.module('OffersModule', function(OffersModule, AppManager, Backbone, Marionette, $, _){
@@ -21,22 +22,27 @@ define([
     // OffersModule routes
     AppManager.module('Routers.OffersModule', function(OffersModuleRouter, AppManager, Backbone, Marionette, $, _){
         
+        var API = new UttStages.Application(AppManager);
+        
         /****************************************/
         /*  Routes                              */
         /****************************************/
         OffersModuleRouter.Router = Marionette.AppRouter.extend({
             appRoutes: {
                 'offers': 'listRootOptions',
+                'offers/validation': 'listNotValidatedOffers',
                 'offers/research': 'showResearchForm',
                 'offers/list(/filter)': 'listOffers',
                 'offers/list(/filter?:parameters)': 'listOffers',
                 'offers/new': 'addNewOffer',
                 'offers/:id': 'showOffer',
-                'offers/:id/edit': 'editOffer'
+                'offers/:id/edit': 'editOffer',
+                
+                //"*notFound": "notFound"
             }
         });
         
-        // Execute the actions given by API functions (when they are triggered)
+        // Execute the actions given by RouterAPI functions (when they are triggered)
         var executeAction = function(_action, _options){
             
             if(DEBUG) console.info('internship_managers.offers.offers_module.executeAction()');
@@ -52,10 +58,15 @@ define([
         
         
         /****************************************/
-        /*  API                                 */
+        /*  RouterAPI                                 */
         /****************************************/
         
-        var API = {
+        var RouterAPI = {
+            
+            //  If the route does not exist
+            notFound : function(){
+                API.errors.e404();
+            },
             
             // To list all the options of root.
             listRootOptions: function(){
@@ -66,6 +77,18 @@ define([
                     'modules/internship_managers/offers/root/root_controller'    
                 ], function(RootController){
                     executeAction(RootController.listRootOptions, {});
+                });
+            },
+            
+            // To list the offers that need to be validated
+            listNotValidatedOffers: function(){
+                
+                if(DEBUG) console.info('internship_managers.offers.offers_module.listNotValidatedOffers()');
+                
+                require([
+                    'modules/common/offers/validation/validation_controller'    
+                ], function(ValidationController){
+                    executeAction(ValidationController.listNotValidatedOffers, {});
                 });
             },
             
@@ -125,7 +148,7 @@ define([
                 require([
                     'modules/internship_managers/offers/edit/edit_controller'    
                 ], function(EditController){
-                    executeAction(EditController.editOffer, _id);
+                    executeAction(EditController.editOffer, {'offerId':_id});
                 });
             }
         };
@@ -140,7 +163,15 @@ define([
          */
         AppManager.on('internship_managers:offers:root', function(){
             AppManager.navigate('offers');
-            API.listRootOptions();
+            RouterAPI.listRootOptions();
+        });
+        
+        /**
+         *  Event = 'offers:validation'
+         */
+        AppManager.on('offers:validation', function(){
+            AppManager.navigate('offers/validation');
+            RouterAPI.listNotValidatedOffers();
         });
         
         /**
@@ -148,7 +179,7 @@ define([
          */
         AppManager.on('offers:research', function(){
             AppManager.navigate('offers/research');
-            API.showResearchForm();
+            RouterAPI.showResearchForm();
         });
         
         /**
@@ -156,7 +187,7 @@ define([
          */
         AppManager.on('offers:list', function(){
             AppManager.navigate('offers/list');
-            API.listOffers();
+            RouterAPI.listOffers();
         });
         
         /**
@@ -164,7 +195,7 @@ define([
          */
         AppManager.on('internship_managers:offer:new', function(){
             AppManager.navigate('offers/new');
-            API.addNewOffer();
+            RouterAPI.addNewOffer();
         });
         
         /**
@@ -173,7 +204,7 @@ define([
         AppManager.on('offers:filter', function(_params){
             if(_params){
                 AppManager.navigate('offers/list/filter?'+_params);
-                API.listOffers();
+                RouterAPI.listOffers();
             }else{
                 AppManager.navigate('offers');
             }
@@ -184,15 +215,15 @@ define([
          */
         AppManager.on('internship_managers:offer:edit',function(_id){
             AppManager.navigate('offers/'+_id+'/edit');
-            API.editOffer(_id);
+            RouterAPI.editOffer(_id);
         });
         
         /**
          *  Event = 'offer:show'
          */
-        AppManager.on('internship_managers:offer:show', function(_id){
+        AppManager.on('offer:show', function(_id){
             AppManager.navigate('offers/' + _id);
-            API.showOffer(_id);
+            RouterAPI.showOffer(_id);
         });
         
         
@@ -205,7 +236,7 @@ define([
          */
         AppManager.addInitializer(function(){
             new OffersModuleRouter.Router({
-                controller: API
+                controller: RouterAPI
             })
         });
     });

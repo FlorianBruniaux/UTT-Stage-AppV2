@@ -13,19 +13,21 @@ define([
             
             // To show a specific offer
             showOffer: function(_options){
-                
+
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 
                 // Gets the offer
                 // When the offer is fetched (CF use of defer.promise() )
-                var fetchingOffer = AppManager.request('offer:entity', _options.id);
+                var fetchingOffer = AppManager.request('offer:entity', _options.offerId);
                 $.when(fetchingOffer).done(function(_offer){
 
-                    
                     if (_offer !== undefined) {
                         
                         _offer.set('userCategory', _options.userCategory);
+                        
+                        //  To set date format into dd/mm/yyyy
+                        _offer.get('validation').date = API.dates.convertToDDMMYYYY(_offer.get('validation').date);
                         
                         // Updates breadcrumb
                         var path = [
@@ -39,9 +41,66 @@ define([
                             model: _offer
                         });
                         
+                        
+                        //  Students events
+                        view.on('students:offer:postulate', function(){
+                            console.log('POSTULATE');
+                        });
+                        
+                        view.on('students:offer:favorites', function(){
+                            console.log('ADD TO FAVORITES');
+                        });
+                        
+                        
+                        //  Internship_managers events
+                        view.on('internship_managers:offer:edit', function(){
+                            console.log('edit offer');
+                            AppManager.trigger('internship_managers:offer:edit', _offer.get('_id'))
+                        });
+                        
+                        
+                        //  Teachers
+                        view.on('teachers:offer:deny', function(_msg){
+                            $.ajax({
+                                url: '/auth/isauth',
+                                type: 'GET',
+                                success: function(_userLogged) {
+                                    
+                                    _offer.get('validation').state = 'denied';
+                                    _offer.get('validation').by = _userLogged;
+                                    _offer.get('validation').msg = _msg;
+                                    _offer.get('validation').date = new Date();
+                                    
+                                    _offer.save();
+                                    
+                                    AppManager.trigger('offers:validation');
+                                    
+                                }
+                            });
+                        });
+                        
+                        view.on('teachers:offer:validate', function(_msg){
+                            $.ajax({
+                                url: '/auth/isauth',
+                                type: 'GET',
+                                success: function(_userLogged) {
+                                    
+                                    _offer.get('validation').state = 'validated';
+                                    _offer.get('validation').by = _userLogged;
+                                    _offer.get('validation').msg = _msg;
+                                    _offer.get('validation').date = new Date();
+                                    
+                                    _offer.save();
+                                    
+                                    AppManager.trigger('offers:validation');
+                                }
+                            });
+                        });
+                        
                         AppManager.contentRegion.show(view);
                         
-                    }else{
+                    }
+                    else{
                         API.errors.e404();
                     }
                 }); 

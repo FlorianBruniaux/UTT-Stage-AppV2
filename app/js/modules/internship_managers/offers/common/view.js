@@ -17,19 +17,22 @@ define([
         Views.Form = Marionette.ItemView.extend({
             template: formTpl,
             newOfferForm: '',
+            data : '',
             onRender: function(){
 
                 var title = this.options.title;
 
+                data = this.options.model.attributes;
+                
                 //  TO DO : LOAD Companies model                
-                var companies = ['EDF'];
+                var companies = ['EDF'];   
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
                         type:   { type: 'Select', validators: ['required'], options: API.utt.getInternshipTypes() },
                         department: { type: 'Select', validators: ['required'], options: API.utt.getDepartments() },
-                        departmentSpec: { type: 'Select', validators: ['required'], options: [] },
+                        departmentSpec: { type: 'Select', validators: ['required'], options: API.utt.getDepartmentSpec(data.department)},
                         ref:    { type:'Text', validators: ['required'] },
                         fullAddress:    { type:'Text', validators: ['required'] },
                         lat:    { type:'Number', validators: ['required'], editorAttrs: { disabled: true }  },
@@ -43,11 +46,10 @@ define([
                     }
                 });
                 
-                
-                data = this.options.model.attributes;
-                
+               
                 //  The schema of the future bbform
                 var bbformModel = new bbformSchema(this.formatSpecificData(data));
+                
                 
                 var self = this;
                 setTimeout(function(){
@@ -86,12 +88,13 @@ define([
                     });
                     
                 },300);
+                
             },
             
             formatSpecificData : function(_data){
                 
                 //  Company
-                _data.company = ((data.company.name) ? data.company.name : '');
+                _data.company = ((data.company.name) ? data.company.name : data.company);
 
                 return _data
             },
@@ -106,7 +109,7 @@ define([
 
                 if( API.views.forms.isFormValid(newOfferForm) ){
                     var data = newOfferForm.getValue();
-
+                    
                     this.trigger('form:submit',data)
                 }
                 

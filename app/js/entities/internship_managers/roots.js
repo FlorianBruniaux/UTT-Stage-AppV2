@@ -34,7 +34,8 @@ define([
             if (Entities.offersRootListItems === undefined) {
                 Entities.offersRootListItems = new Entities.RootsCollection([
                     { name: "offers.panel.actions.new", url: "offers/new", icon: "icon-plus-circle", navigationTrigger: "internship_managers:offer:new", bg_class:"bg-info", msg: "<br />" },
-                    { name: "offers.panel.actions.list", url: "offers/list", icon: "icon-newspaper", navigationTrigger: "offers:list", bg_class:"bg-info", msg: "<br />" }
+                    { name: "offers.panel.actions.list", url: "offers/list", icon: "icon-newspaper", navigationTrigger: "offers:list", bg_class:"bg-info", msg: "<br />" },
+                    { name: "offers.panel.actions.validation", url: "offers/validation", icon: "icon-checkmark3", navigationTrigger: "offers:validation", bg_class:"bg-danger", msg: "2 offres à valider" }
                 ]);
             }
             return Entities.offersRootListItems;

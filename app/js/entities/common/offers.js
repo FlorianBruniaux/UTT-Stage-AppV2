@@ -16,7 +16,8 @@ define([
                 _id: null,
                 _objectType : 'offer',
                 validation: {
-                    isValidated: false,
+                    state: 'not yet treated',
+                    msg: '',
                     by: '',
                     date: ''
                 },
@@ -27,7 +28,7 @@ define([
                 lat: '',
                 lng: '',
                 fullAdress: '',
-                company: {},
+                company: '',
                 title:'',
                 mission:'',
                 profile:'',

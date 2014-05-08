@@ -224,6 +224,21 @@ define([
         }
     };
     
+    var DATES = API.Application.prototype.dates = {
+        
+        convertToDDMMYYYY : function(_date) {
+            
+            var d = new Date(_date);
+            
+            function pad(s) {
+                return (s < 10) ? '0' + s : s;
+            }
+            
+            return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+        }
+        
+    };
+    
     var COOKIES = API.Application.prototype.cookies = {
         
         create: function (name,value,days) {
@@ -282,7 +297,7 @@ define([
     var AJAX = API.Application.prototype.ajax = {
         
         auth: {
-            
+
             isAuth: function(){
 
                 $.ajax({
@@ -328,7 +343,7 @@ define([
                                     //  Show user infos in top right corner
                                     APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
 
-                                    Backbone.history.start();
+                                    Backbone.history.start({pushState: false});
 
                                     if (APPMANAGER.getCurrentRoute() === "") {
                                         APPMANAGER.trigger(_res.userCategory+':home:root');

@@ -32,7 +32,7 @@ define([
         AppManager.reqres.setHandler('teachers:offersRoot:entities', function(){
             if (Entities.offersRootListItems === undefined) {
                 Entities.offersRootListItems = new Entities.RootsCollection([
-                    { name: "offers.panel.actions.validation", url: "offers/validation", icon: "icon-checkmark3", navigationTrigger: "teachers:offers:validation", bg_class:"bg-danger", msg: "2 offres à valider" },
+                    { name: "offers.panel.actions.validation", url: "offers/validation", icon: "icon-checkmark3", navigationTrigger: "offers:validation", bg_class:"bg-danger", msg: "2 offres à valider" },
                     { name: "offers.panel.actions.list", url: "offers/list", icon: "icon-newspaper", navigationTrigger: "offers:list", bg_class:"bg-info", msg: "<br />" }
                 ]);
             }

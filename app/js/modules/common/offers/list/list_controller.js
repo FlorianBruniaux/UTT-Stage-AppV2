@@ -39,8 +39,8 @@ define([
                     var prms = API.misc.getParmsFromURL(window.location.href),
                     
                         //  We only display offers that have already been validated
-                        criterions = ['validation.isValidated'],
-                        values = ['true'];
+                        criterions = ['validation.state'],
+                        values = ['validated'];
                     
                     _.each(prms, function(_value, _key){
                         if (_value != 'all' && _value != '' && _key != 'fullAddress') {
@@ -61,10 +61,6 @@ define([
                     offersListView.on('itemview:offer:show', function(childView, model){
                         AppManager.trigger('offer:show', model.get('_id'));
                     });
-                    
-                    offersListView.on('itemview:offer:edit', function(childView, model){
-                        AppManager.trigger('offer:edit', model.get('_id'));
-                    })
  
                     AppManager.contentRegion.show(offersListView);
                 });   

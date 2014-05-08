@@ -7,14 +7,14 @@ define([
     // OffersModule edit Controller
     AppManager.module('OffersModule.Edit', function(Edit, AppManager, Backbone, Marionette, $, _){
         
-       var API = new UttStages.Application(AppManager);
+        var API = new UttStages.Application(AppManager);
         
         Edit.Controller = {
             
             // To edit an offer
-            editOffer: function(_id){
+            editOffer: function(_options){
                 
-                if(DEBUG) console.info("internship_managers.offers.edit.edit_controller.addEditOffer()");
+                if(DEBUG) console.info("internship_managers.offers.edit.edit_controller.editOffer()");
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
@@ -26,25 +26,38 @@ define([
                 ];
                 AppManager.trigger('breadcrumb:update', path);
 
-                // Gets a edit user model (CF entities folder)
-                var offer = AppManager.request('offer:entity', _id);
-                
-                var view = new View.Form({
-                    model: offer,
-                    title: polyglot.t('offer.edit')
-                });
-                
-                view.on('form:submit', function(data){
+                // Gets the offer
+                // When the offer is fetched (CF use of defer.promise() )
+                var fetchingOffer = AppManager.request('offer:entity', _options.offerId);
+                $.when(fetchingOffer).done(function(_offer){
                     
-                    API.misc.showLoader();
-                    
-                    if (offer.save(data)) {
-                        AppManager.trigger("offer:show", _id);
+                    if (_offer !== undefined) {
+                        
+                        var view = new View.Form({
+                            model: _offer,
+                            title: polyglot.t('offer.edit')
+                        });
+                        
+                        view.on('form:submit', function(data){
+                            
+                            API.misc.showLoader();
+                            
+                            if (_offer.save(data)) {
+                                AppManager.trigger("offer:show", _options.offerId);
+                            }
+                            
+                        });
+                        
+                        AppManager.contentRegion.show(view);
+
+                    }
+                    else{
+                        API.errors.e404();
                     }
                     
                 });
                 
-                AppManager.contentRegion.show(view);
+                
             }
         }; 
     });

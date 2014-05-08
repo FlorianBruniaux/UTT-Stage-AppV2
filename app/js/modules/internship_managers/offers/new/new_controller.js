@@ -39,7 +39,8 @@ define([
                     API.misc.showLoader();
                     
                     if (newOffer.save(_data)) {
-                        AppManager.trigger("offers:list");
+                        
+                        AppManager.trigger("offers:validation");
                     }
                     
                 });
