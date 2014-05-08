@@ -33,7 +33,11 @@ define([
                     
                     var filteredOffers = API.entities.filterCollection(_offers);
                     
+                    //  Get the params in the URL
+                    //  RQ: They are not directly passed to the function but taken in the url
+                    //      because the app has to be restful! (If you send the url to a friend he should see the same thing)
                     var prms = API.misc.getParmsFromURL(window.location.href),
+                    
                         //  We only display offers that have already been validated
                         criterions = ['validation.isValidated'],
                         values = ['true'];
