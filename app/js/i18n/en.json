@@ -16,13 +16,16 @@
     "fr": "French",
 
     "home.panel.actions.offers.list" : "Check the offers",
-    "home.panel.actions.offers.internship_managers" : "Monitor the offers",
-    "home.panel.actions.validation" : "Offers to analyze",
+    "home.panel.actions.offers.monitoring" : "Monitor the offers",
     
     "home.panel.actions.monitoring.students" : "Monitor your internship",
     "home.panel.actions.monitoring.internship_managers" : "Monitor students internship",
+    "home.panel.actions.monitoring.teachers" : "Monitor students internship",
     "home.panel.actions.messages" : "Consult my exchanges",
     "home.panel.actions.contacts" : "Check my contacts",
+    "home.panel.actions.users" : "Manage users",
+    "home.panel.actions.companies.list" : "Check the companies",
+    "home.panel.actions.companies.root" : "Manage companies",
     
     "lastName": "Last name",
     "login.title": "Identification form",
@@ -35,6 +38,8 @@
     "menu.monitoring": "Monitoring",
     "menu.messages": "Messages",
     "menu.contacts": "Contacts",
+    "menu.users": "Users",
+    "menu.companies": "Companies",
 
     "navbar.toggle" :"Toggle navbar",
     "navigation.toggle": "Toggle navigation",
@@ -47,9 +52,10 @@
     "offers.list": "Offers list",
     "offer.new": "New offer",
     "offers": "Offers",
+    "offers.validation": "Offers to validate",
     "offers.panel.actions.new": "Add an offer",
     "offers.panel.actions.list": "Check the offers",
-    "home.panel.actions.research" : "Research",
+    "offers.panel.actions.validation" : "Validate new offers",
     
     "parameters": "Parameters",
     "password": "Password",

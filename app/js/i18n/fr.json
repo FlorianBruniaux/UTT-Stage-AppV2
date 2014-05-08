@@ -16,13 +16,16 @@
     "fr": "Français",
 
     "home.panel.actions.offers.list" : "Consulter les offres",
-    "home.panel.actions.offers.internship_managers" : "Gérer les offres",
-    "home.panel.actions.validation" : "Offres à analyser",
+    "home.panel.actions.offers.monitoring" : "Gérer les offres",
    
     "home.panel.actions.monitoring.students" : "Gérer mon suivi",
     "home.panel.actions.monitoring.internship_managers" : "Gérer le suivi des étudiants",
+    "home.panel.actions.monitoring.teachers" : "Gérer le suivi des étudiants",
     "home.panel.actions.messages" : "Consulter mes échanges",
     "home.panel.actions.contacts" : "Voir mes contacts",
+    "home.panel.actions.users" : "Gérer les utilisateurs",
+    "home.panel.actions.companies.list" : "Voir les entreprises",
+    "home.panel.actions.companies.root" : "Gérer les entreprises",
     
     "lastName": "Nom",
     "login.title": "Formulaire d'identification",
@@ -35,6 +38,8 @@
     "menu.monitoring": "Suivi",
     "menu.messages": "Messages",
     "menu.contacts": "Contacts",
+    "menu.users": "Utilisateurs",
+    "menu.companies": "Entreprises",
     
     "navbar.toggle" :"Changer la navbar",
     "navigation.toggle": "Changer la navigation",
@@ -48,9 +53,11 @@
     "offers.list": "Liste des offres",
     "offer.new": "Nouvelle offre",
     "offers": "Offres",
+    "offers.validation": "Offres à valider",
     "offers.panel.actions.new": "Ajouter une offre",
     "offers.panel.actions.list": "Voir les offres",
     "offers.panel.actions.research" : "Faire une recherche",
+    "offers.panel.actions.validation" : "Valider les nouvelles offres",
     
     "password": "Mot de passe",
     "parameters": "Paramètres",
