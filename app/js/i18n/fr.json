@@ -27,6 +27,8 @@
     "home.panel.actions.companies.list" : "Voir les entreprises",
     "home.panel.actions.companies.root" : "Gérer les entreprises",
     
+    "internship_managers": "Gestionnaires des stages",
+    
     "lastName": "Nom",
     "login.title": "Formulaire d'identification",
     "login.goBack": "Retourner à la page d'identification",
@@ -66,5 +68,8 @@
     "register.title": "Formulaire d'inscription",
     
     "signIn": "Se connecter",
-    "signOn": "S'inscrire"
+    "signOn": "S'inscrire",
+    "students": "Etudiants",
+    
+    "teachers": "Enseignants"
 }

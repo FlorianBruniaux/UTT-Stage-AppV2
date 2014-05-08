@@ -27,6 +27,8 @@
     "home.panel.actions.companies.list" : "Check the companies",
     "home.panel.actions.companies.root" : "Manage companies",
     
+    "internship_managers": "Internships managers",
+    
     "lastName": "Last name",
     "login.title": "Identification form",
     "login.goBack": "Return to login page",
@@ -64,5 +66,8 @@
     "register.title": "Registration form",
     
     "signIn": "Sign In",
-    "signOn": "Sign On"
+    "signOn": "Sign On",
+    "students": "Students",
+    
+    "teachers": "Teachers"
 }
