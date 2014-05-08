@@ -8,10 +8,15 @@
             
         </h6>
         
-        <h6 class="panel-title pull-right js-edit">
-            <i class="icon-pencil3"></i>
-        </h6>
-        
+        <% if(userCategory == 'internship_managers'){%>
+            <h6 class="panel-title pull-right js-edit">
+                <i class="icon-pencil3"></i> Edit
+            </h6>
+        <%}else if(userCategory == 'teachers'){%>
+            <h6 class="panel-title pull-right js-validate">
+                <i class="icon-checkmark3"></i> Validate
+            </h6>
+        <%}%>
     </div>
     
 
