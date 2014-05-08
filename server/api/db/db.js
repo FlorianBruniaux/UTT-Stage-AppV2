@@ -20,6 +20,12 @@ var Schema = mongoose.Schema,
         offer : new Schema({
             _objectType :   { type: String },
             ref:            { type: String },
+            validation: {
+                state:          { type: String },
+                msg:            { type: String },
+                by:             Schema.Types.Mixed,
+                date:           { type: Date, default: Date.now }
+            },
             department:     { type: String },
             departmentSpec: { type: String },
             lat:            { type: Number },
@@ -98,13 +104,21 @@ exports.controller = {
     
     update: function(_req, _res){
         
+        console.log('update');
+        console.log(_req.params);
+        console.log(_req.body);
+        
+        delete _req.body._id;
+        
+        //  We need to delete _id because of Mongo error 10148
         var objectType = _req.params.objectType;
         
-        models[objectType].update({ _id: _req.body.id }, _req.body, function(err, updated) {
+        models[objectType].update({ _id: _req.params.id }, _req.body, function(err, updated) {
             if (err) {
+                console.log(err);
                 _res.json({error: 'Object not found.'});
             } else {
-                _res.json(updated);
+                _res.json('Object updated ! ');
             }
         })
         
