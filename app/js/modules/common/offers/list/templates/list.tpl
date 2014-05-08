@@ -17,31 +17,31 @@
                 
                 <div class="row">
                     
-                    <div class="col-sm-4" id="form-tags" data-editors="tags">
+                    <div class="col-md-4" id="form-tags" data-editors="tags">
                        
                     </div>
                     
-                    <div class="col-sm-4 has-feedback has-feedback-left"  id="form-fullAddress" data-editors="fullAddress">
+                    <div class="col-md-4 has-feedback has-feedback-left"  id="form-fullAddress" data-editors="fullAddress">
                         <i style="top:0px;" class="icon-location form-control-feedback"></i>
                     </div>
                     
-                    <div class="col-sm-2" id="form-perimeter" data-editors="perimeter">
+                    <div class="col-md-3" id="form-perimeter" data-editors="perimeter">
 
                     </div>
 
                 </div>
 
                 <div class="row" style="margin-top: 20px;">
-                    <label class="col-sm-2 col-md-1 control-label">Departments :</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-1 col-md-2 col-sm-3 control-label">Departments :</label>
+                    <div class="col-md-9">
                         <div class="block-inner" id="form-department" data-editors="department">
                         </div>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <label class="col-sm-2 col-md-1  control-label">Types : </label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-1 col-md-2 col-sm-3 control-label">Types : </label>
+                    <div class="col-md-9">
                         <div class="block-inner" id="form-type" data-editors="type">
         
                         </div>
@@ -65,6 +65,7 @@
                     <th style="width:100px;">Department</th>
                     <th style="width:100px;">Specialization</th>
                     <th style="width:150px;">Company</th>
+                    <th style="width:200px;">Address</th>
                     <th>Title</th>
                 </tr>
             </thead>

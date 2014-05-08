@@ -6,6 +6,8 @@
 
 <td><%=company%></td>
 
+<td><%=fullAddress%></td>
+
 <td>
     <a href="#offers/<%=_id%>"><%=title%></a>
 </td>
