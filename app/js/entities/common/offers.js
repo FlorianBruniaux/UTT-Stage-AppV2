@@ -15,6 +15,11 @@ define([
             defaults: {
                 _id: null,
                 _objectType : 'offer',
+                validation: {
+                    isValidated: false,
+                    by: '',
+                    date: ''
+                },
                 type:'',//TN05/TN09/TN10/TN07/Alternance
                 ref:'',
                 department:'',//ISI/SRT/SM/SI/MTE/Master
