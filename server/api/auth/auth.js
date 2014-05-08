@@ -19,7 +19,12 @@ exports.logout =  function(req, res){
 // To check if user is auth
 exports.isAuth = function(req, res){
     if (req.isAuthenticated()) {
-        res.send(req.user);
+        var user = req.user;
+        
+        //  We do not want to send the password to client side
+        delete user.pwd;
+        
+        res.send(user);
     }
     else{
         res.send(null);
