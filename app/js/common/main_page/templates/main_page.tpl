@@ -43,6 +43,10 @@
             <div class="pull-left">
                 &copy; UTT2014
             </div>
+            
+            <div id="app-version" class="pull-right">
+                
+            </div>
         </div>
         <!-- /Footer -->
     

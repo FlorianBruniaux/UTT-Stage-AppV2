@@ -12,10 +12,15 @@ define([
         View.mainPage = Marionette.ItemView.extend({
             template: mainPageTpl,
             onRender: function(){
+                
+                var self = this;
+                
                 setTimeout(function(){
                     AppManager.trigger('menu:start');
 
                     API.misc.initCollapsibleMenu();
+                    
+                    $('#app-version').html("<b>Version</b> : "+polyglot.t(self.options.userCategory))
                 },50)
             }
         });

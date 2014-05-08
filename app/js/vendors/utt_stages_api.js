@@ -316,7 +316,12 @@ define([
                                         MenuController.init(_res.userCategory);
                                     })
                                     
-                                    APPMANAGER.mainlayoutRegion.show(new mainPageView.mainPage());
+                                    APPMANAGER.mainlayoutRegion.show(
+                                        new mainPageView.mainPage({
+                                            userCategory : _res.userCategory
+                                        })
+                                    );
+                                        
     
                                     //  Create and Get Backbone user model (from the object sent by server)
                                     var user = APPMANAGER.request('user:entity:new', _res);
