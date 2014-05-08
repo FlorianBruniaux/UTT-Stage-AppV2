@@ -12,6 +12,7 @@
             
             <thead>
                 <tr>
+                    <th style="width:100px;">State</th>
                     <th style="width:100px;">Type</th>
                     <th style="width:100px;">Department</th>
                     <th style="width:100px;">Specialization</th>

@@ -1,8 +1,8 @@
 define([
     'app',
     'utt.stages',
-    'tpl!modules/teachers/offers/validation/templates/list.tpl',
-    'tpl!modules/teachers/offers/validation/templates/list_item.tpl'
+    'tpl!modules/common/offers/validation/templates/list.tpl',
+    'tpl!modules/common/offers/validation/templates/list_item.tpl'
 ], function(AppManager, UttStages, listTpl, listItemTpl){
     
     // OffersModule Validation View
@@ -27,11 +27,6 @@ define([
                 setTimeout(function(){
                     API.misc.initDataTable();
                 }, 100);
-                
-            },
-            
-            onRender: function(){
-
                 
             }
         });

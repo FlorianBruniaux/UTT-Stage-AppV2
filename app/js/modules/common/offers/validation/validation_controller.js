@@ -1,7 +1,7 @@
 define([
     'app',
     'utt.stages',
-    'modules/teachers/offers/validation/validation_view'
+    'modules/common/offers/validation/validation_view'
 ], function(AppManager, UttStages, View){
     
     // OffersModule Validation Controller
@@ -35,8 +35,8 @@ define([
                     
                     var prms = API.misc.getParmsFromURL(window.location.href),
                         //  We only display offers that are not yet validated
-                        criterions = ['validation.isValidated'],
-                        values = ['false'];
+                        criterions = ['validation.state'],
+                        values = ['not yet treated,denied'];
                     
                     _.each(prms, function(_value, _key){
                         if (_value != 'all' && _value != '' && _key != 'fullAddress') {
@@ -57,10 +57,6 @@ define([
                     notValidatedOffersListView.on('itemview:offer:show', function(childView, model){
                         AppManager.trigger('offer:show', model.get('_id'));
                     });
-                    
-                    notValidatedOffersListView.on('itemview:offer:edit', function(childView, model){
-                        AppManager.trigger('offer:edit', model.get('_id'));
-                    })
  
                     AppManager.contentRegion.show(notValidatedOffersListView);
                 });   
