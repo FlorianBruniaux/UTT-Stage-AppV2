@@ -15,7 +15,7 @@ define([
             defaults: {
                 _id: null,
                 _objectType : 'user',
-                userCategory: '',
+                userCategory: 'students',
                 linkedinId: '',
                 firstName : '',
                 lastName : '',
