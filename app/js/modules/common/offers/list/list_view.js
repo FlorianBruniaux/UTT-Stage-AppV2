@@ -204,6 +204,7 @@ define([
                 
                 params = this.cleanParams(params, ['&',',']);
 
+                //  To filter the offers with new params
                 AppManager.trigger('offers:filter', params);
                 
             },
