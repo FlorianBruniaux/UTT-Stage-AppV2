@@ -15,7 +15,7 @@ define([
                 
                 // Updates breadcrumb
                 var path = [
-                    { name: polyglot.t('offers'), url: 'offers', navigationTrigger: 'offers:root' }
+                    { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
                     
