@@ -32,12 +32,14 @@ define([
         });
         
         // Executes the actions given by API functions (when they are triggered)
-        var executeAction = function(action, arg){
+        var executeAction = function(_action, _options){
             
             if(DEBUG) console.info('teachers.home.home_module.executeAction()');
             
             AppManager.startModule('HomeModule');
-            action(arg);
+            
+            //  Execute the actions with the options given
+            _action(_options);
             
             // Sets the active menu item
             AppManager.execute('set:active:menu', 'home');

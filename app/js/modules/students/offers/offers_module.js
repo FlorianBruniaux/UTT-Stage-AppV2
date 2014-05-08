@@ -34,12 +34,14 @@ define([
         });
         
         // Execute the actions given by API functions (when they are triggered)
-        var executeAction = function(action, arg){
+        var executeAction = function(_action, _options){
             
             if(DEBUG) console.info('students.offers.offers_module.executeAction()');
             
             AppManager.startModule('OffersModule');
-            action(arg);
+            
+            //  Execute the actions with the options given
+            _action(_options);
             
             // Sets the active menu item
             AppManager.execute('set:active:menu', 'offers/list');
@@ -65,14 +67,14 @@ define([
             },
             
             // To list all the offers
-            listOffers: function(_params){
+            listOffers: function(){
                 
                 if(DEBUG) console.info('students.offers.offers_module.listOffers()');
                 
                 require([
                     'modules/common/offers/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listOffers, _params);
+                    executeAction(ListController.listOffers, {});
                 });
             },
         
@@ -84,7 +86,7 @@ define([
                 require([
                     'modules/common/offers/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showOffer, _id);
+                    executeAction(ShowController.showOffer, {'offerId':_id, 'userCategory':'students'} );
                 });
             }
         };
