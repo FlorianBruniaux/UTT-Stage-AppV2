@@ -40,7 +40,7 @@ define([
                     
                     if (newOffer.save(_data)) {
                         
-                        AppManager.trigger("offers:validation");
+                        AppManager.trigger("offers:list");
                     }
                     
                 });

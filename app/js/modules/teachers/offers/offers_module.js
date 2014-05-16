@@ -31,7 +31,7 @@ define([
             appRoutes: {
                 'offers': 'listRootOptions',
                 'offers/validation': 'listNotValidatedOffers',
-                'offers/research': 'showResearchForm',
+                //'offers/research': 'showResearchForm',
                 'offers/list(/filter)': 'listOffers',
                 'offers/list(/filter?:parameters)': 'listOffers',
                 'offers/:id': 'showOffer',
@@ -90,6 +90,7 @@ define([
                 });
             },
             
+            /*
             // To list all the offers
             showResearchForm: function(){
                 
@@ -101,6 +102,7 @@ define([
                     executeAction(ResearchController.showResearchForm, {});
                 });
             },
+            */
             
             // To list all the offers
             listOffers: function(){
@@ -151,10 +153,12 @@ define([
         /**
          *  Event = 'offers:research'
          */
+        /*
         AppManager.on('offers:research', function(){
             AppManager.navigate('offers/research');
             RouterAPI.showResearchForm();
         });
+        */
         
         /**
          *  Event = 'offers:list'
