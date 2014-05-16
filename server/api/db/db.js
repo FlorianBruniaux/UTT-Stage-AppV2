@@ -4,17 +4,14 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     schemas = {
     
-        user : new Schema({
+        company : new Schema({
             _objectType :   { type: String },
-            userCategory:   { type: String },
-            linkedinId:     { type: String },
-            firstName :     { type: String },
-            lastName :      { type: String },
-            mobile:         { type: String },
-            email:          { type: String },
-            headline:       { type: String },
-            photoUrl:       { type: String },
-            pwd:            { type: String }
+            cname:          { type: String },
+            description:    { type: String },
+            lat:            { type: Number },
+            lng:            { type: Number },
+            fullAddress:    { type: String },
+            website:        { type: String }
         }),
         
         offer : new Schema({
@@ -38,13 +35,27 @@ var Schema = mongoose.Schema,
             tags:           { type: String },
             title:          { type: String },
             type:           { type: String }
+        }),
+        
+        user : new Schema({
+            _objectType :   { type: String },
+            userCategory:   { type: String },
+            linkedinId:     { type: String },
+            firstName:      { type: String },
+            lastName:       { type: String },
+            mobile:         { type: String },
+            email:          { type: String },
+            headline:       { type: String },
+            photoUrl:       { type: String },
+            pwd:            { type: String }
         })
         
     };
     
 var models = {
-    user : mongoose.model('user', schemas.user),
-    offer : mongoose.model('offer', schemas.offer)
+    company : mongoose.model('company', schemas.company),
+    offer : mongoose.model('offer', schemas.offer),
+    user : mongoose.model('user', schemas.user)
 };
 
 exports.getModels = function(){
