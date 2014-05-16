@@ -88,6 +88,11 @@
                 <label>Remuneration :</label>
                 <%=rem%> €
             </p>
+            
+            <p>
+                <label>Localization :</label>
+                
+            </p>
         </div>
         
         <%
