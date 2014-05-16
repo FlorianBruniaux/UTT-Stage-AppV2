@@ -29,6 +29,7 @@ define([
             return Entities.homeRootListItems;
         });
         
+        
         //  Offers
         AppManager.reqres.setHandler('internship_managers:offersRoot:entities', function(){
             if (Entities.offersRootListItems === undefined) {
@@ -41,6 +42,16 @@ define([
             return Entities.offersRootListItems;
         });
         
+        //  Companies
+        AppManager.reqres.setHandler('internship_managers:companiesRoot:entities', function(){
+            if (Entities.companiesRootListItems === undefined) {
+                Entities.companiesRootListItems = new Entities.RootsCollection([
+                    { name: "companies.panel.actions.new", url: "companies/new", icon: "icon-plus-circle", navigationTrigger: "internship_managers:company:new", bg_class:"bg-info", msg: "<br />" },
+                    { name: "companies.panel.actions.list", url: "companies/list", icon: "icon-office", navigationTrigger: "companies:list", bg_class:"bg-info", msg: "<br />" }
+                ]);
+            }
+            return Entities.companiesRootListItems;
+        });
         
     });
 
