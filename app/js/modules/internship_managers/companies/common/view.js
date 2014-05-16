@@ -62,7 +62,9 @@ define([
                     //  Geocomplete
                     require(['async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false', 'jquery', 'geocomplete'], function () {
                         $("#form-fullAddress input").geocomplete({
-                            details: "form"
+                            details: "form",
+                            map: '#map',
+                            location: self.options.model.get('fullAddress')
                         });
                     });
 

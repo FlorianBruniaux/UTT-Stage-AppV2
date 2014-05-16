@@ -30,7 +30,11 @@
             
             <p>
                 <label>Localization :</label>
+                <form>
+                    <input id="geocomplete" type="text" class="form-control" disabled>
+                </form>
                 
+                <div id="map"></div>
             </p>
 
         </div>

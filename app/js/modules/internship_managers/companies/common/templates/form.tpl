@@ -60,6 +60,12 @@
                     </div>
                     
                     <div class="form-group">
+                        
+                        <div id="map"></div>
+                        
+                    </div>
+                     
+                    <div class="form-group">
                         <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Website:</label>
                         <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-website" data-editors="website" >
                           
