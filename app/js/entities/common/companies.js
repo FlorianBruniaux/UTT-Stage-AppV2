@@ -10,25 +10,25 @@ define([
         
         // Model
         Entities.Company = Backbone.Model.extend({
-            urlRoot: '/db/offer',
+            urlRoot: '/db/company',
             idAttribute: "_id", 
             defaults: {
                 _id: null,
                 _objectType : 'company',
-                name:'',
-                address:{
-                    country:'',
-                    city:'',
-                    details:''
-                },
-                website:'',
-                contacts:[]
+                //  'c_' to solve a problem with new/edit form and geocomplete
+                //  Geocomplete fill 'name' with the name of the address...
+                cname:'',
+                description:'',
+                lat: '',
+                lng: '',
+                fullAdress: '',
+                website:''
             }
         });
         
         // Collection
         Entities.CompanyCollection = Backbone.Collection.extend({
-           url: '/db/offer',
+           url: '/db/company',
            model: Entities.Company
         });
         
