@@ -28,19 +28,30 @@ define([
 
                 // Gets the offer
                 // When the offer is fetched (CF use of defer.promise() )
-                var fetchingOffer = AppManager.request('offer:entity', _options.offerId);
-                $.when(fetchingOffer).done(function(_offer){
+                var fetchingOffer = AppManager.request('offer:entity', _options.offerId),
+                    fetchingCompanies = AppManager.request('companies:entities');
+                $.when(fetchingOffer,fetchingCompanies).done(function(_offer, _companies){
                     
                     if (_offer !== undefined) {
                         
+                        var comp= {};
+                        _companies.each(function(_company){
+                            comp[_company.get('cname')] = _company;
+                        });
+                        
                         var view = new View.Form({
                             model: _offer,
-                            title: polyglot.t('offer.edit')
+                            title: polyglot.t('offer.edit'),
+                            companies: comp
                         });
                         
                         view.on('form:submit', function(data){
                             
                             API.misc.showLoader();
+                            
+                            if (_data.company && _data.company != '') {
+                                _data.company = comp[_data.company];
+                            }
                             
                             if (_offer.save(data)) {
                                 AppManager.trigger("offer:show", _options.offerId);

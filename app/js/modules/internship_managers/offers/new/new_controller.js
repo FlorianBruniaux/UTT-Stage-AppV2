@@ -29,23 +29,41 @@ define([
                 // Gets a new user model (CF entities folder)
                 var newOffer = AppManager.request('offer:entity:new');
                 
-                var view = new View.Form({
-                    model: newOffer,
-                    title: polyglot.t('offer.new')
-                });
+                // Gets all the companies (CF entities folder)
+                // When all the offers are fetched (CF use of defer.promise() )
+                var fetchingCompanies = AppManager.request('companies:entities');
+                $.when(fetchingCompanies).done(function(_companies){
                 
-                view.on('form:submit', function(_data){
+                    var comp= {};
+                    _companies.each(function(_company){
+                        comp[_company.get('cname')] = _company;
+                    });
                     
-                    API.misc.showLoader();
+                    var view = new View.Form({
+                        model: newOffer,
+                        title: polyglot.t('offer.new'),
+                        companies: comp
+                    });
                     
-                    if (newOffer.save(_data)) {
+                    view.on('form:submit', function(_data){
                         
-                        AppManager.trigger("offers:list");
-                    }
+                        API.misc.showLoader();
+                        
+                        if (_data.company && _data.company != '') {
+                            _data.company = comp[_data.company];
+                        }
+
+                        if (newOffer.save(_data)) {
+                            AppManager.trigger("offers:validation");
+                        }
+                        
+                    });
                     
-                });
+                    AppManager.contentRegion.show(view);
                 
-                AppManager.contentRegion.show(view);
+                });
+                    
+                
             }
         }; 
     });
