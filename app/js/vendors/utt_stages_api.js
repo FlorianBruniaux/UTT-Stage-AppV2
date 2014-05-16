@@ -316,8 +316,9 @@ define([
                                 'common/user/right_corner/view',
                                 
                                 //Entities
-                                'entities/common/users',
-                                'entities/common/offers'
+                                'entities/common/companies',
+                                'entities/common/offers',
+                                'entities/common/users'
                             ];
                             
                             //  User category specific modules 
