@@ -4,7 +4,9 @@
 
 <td><%=departmentSpec%></td>
 
-<td><%=company%></td>
+<td>
+    <a href="#companies/<%=company._id%>"><%=company.cname%></a>
+</td>
 
 <td><%=fullAddress%></td>
 
