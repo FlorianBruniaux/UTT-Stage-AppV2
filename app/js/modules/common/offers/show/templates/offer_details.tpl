@@ -71,7 +71,7 @@
             
             <p>
                 <label>Company :</label>
-                <a href="#company/<%=company%>"+><%=company%></a>
+                <a href="#companies/<%=company._id%>"><%=company.cname%></a>
             </p>
             
             <p class="justified">
@@ -91,7 +91,11 @@
             
             <p>
                 <label>Localization :</label>
+                <form>
+                    <input id="geocomplete" type="text" disabled>
+                </form>
                 
+                <div id="map"></div>
             </p>
         </div>
         

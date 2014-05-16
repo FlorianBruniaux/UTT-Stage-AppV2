@@ -10,7 +10,18 @@ define([
         View.Offer = Marionette.ItemView.extend({
             template: offerDetailsTpl,
             onRender: function(){
+                var self = this;
+                //  Geocomplete
 
+                require(['async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false', 'jquery', 'geocomplete'], function () {
+                    
+                    $('#geocomplete').geocomplete({
+                        map: '#map',
+                        location: self.options.model.get('fullAddress')
+                    });
+
+                });
+                
             },
             events: {
                 //  Students

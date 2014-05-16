@@ -24,8 +24,13 @@ define([
 
                 data = this.options.model.attributes;
                 
-                //  TO DO : LOAD Companies model                
-                var companies = ['EDF'];   
+                //  Needed because company is an object...
+                data.company = (data.company.cname) ? data.company.cname : '';
+             
+                var companies = [];
+                _.each(this.options.companies, function(_value, _key){
+                    companies.push(_key); 
+                });
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
@@ -71,8 +76,10 @@ define([
                     
                     //  Geocomplete
                     require(['async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false', 'jquery', 'geocomplete'], function () {
-                        $("#form-fullAddress input").geocomplete({
-                            details: "form"
+                        $('#form-fullAddress input').geocomplete({
+                            details: 'form',
+                            map: '#map',
+                            location: self.options.model.get('fullAddress')
                         });
                     });
 
