@@ -2,8 +2,16 @@
     "app.name" : "Internships application v2.0.1",
     
     "clickHere": "click here",
+    "company": "Company",
+    "company.edit": "Edit the company",
+    "companies.list": "Companies list",
+    "company.new": "New company",
+    "companies": "Companies",
+    "companies.panel.actions.new": "Add a company",
+    "companies.panel.actions.list": "Check the companies",
     "confirmPassword": "Please confirm password",
     "connectWith": "Connect with",
+    
     
     "email": "Email adress",
     "en": "English",

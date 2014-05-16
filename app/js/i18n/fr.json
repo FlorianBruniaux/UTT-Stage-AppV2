@@ -2,6 +2,13 @@
     "app.name" : "Application des stages v2.0.1",
     
     "clickHere": "cliquer ici",
+    "company": "Entreprise",
+    "company.edit": "Modification de la fiche entreprise",
+    "companies.list": "Liste des entreprises",
+    "company.new": "Nouvelle entreprise",
+    "companies": "Entreprises",
+    "companies.panel.actions.new": "Ajouter une nouvelle entreprise",
+    "companies.panel.actions.list": "Voir les entreprises",
     "confirmPassword": "Confirmer le mot de passe",
     "connectWith": "Se connecter avec",
     
