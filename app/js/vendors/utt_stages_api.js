@@ -485,8 +485,6 @@ define([
                                     lng = valueArr[1],
                                     perimeter = valueArr[2];
                                 
-                                //console.log(perimeter);
-                                
                                 if(perimeter.match('^>')){
                                     console.log('>200');
                                     return _model;
@@ -512,9 +510,20 @@ define([
                                             if (_model.get('_objectType') == 'offer') {
                                                 var fieldsWhereToSearchForTags = ['company', 'title', 'mission', 'profile', 'tags'];
                                                 for(var j in fieldsWhereToSearchForTags){
-                                                    if (_model.get(fieldsWhereToSearchForTags[j]).toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
-                                                        return _model;
+                                                    
+                                                    var field = fieldsWhereToSearchForTags[j];
+                                                    
+                                                    if (field == 'company') {
+                                                        if (_model.get(field).cname.toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
+                                                            return _model;
+                                                        }
                                                     }
+                                                    else{
+                                                        if (_model.get(field).toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
+                                                            return _model;
+                                                        }
+                                                    }
+                                                    
                                                 }
                                             }
                                         }

@@ -27,7 +27,7 @@ define([
                 departmentSpec:'',// empty/MPL/MSI/MRI etc.
                 lat: '',
                 lng: '',
-                fullAdress: '',
+                fullAddress: '',
                 company: '',
                 title:'',
                 mission:'',
