@@ -313,7 +313,8 @@ define([
                             var common = [
                                 
                                 'common/main_page/view',
-                                'common/user/right_corner/view',
+                                'modules/common/user/right_corner/view',
+                                'modules/common/user/user_module',
                                 
                                 //Entities
                                 'entities/common/companies',
