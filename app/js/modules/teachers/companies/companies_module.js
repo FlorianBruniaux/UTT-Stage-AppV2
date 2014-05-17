@@ -40,7 +40,7 @@ define([
         // Execute the actions given by RouterAPI functions (when they are triggered)
         var executeAction = function(_action, _options){
             
-            if(DEBUG) console.info('students.companies.companies_module.executeAction()');
+            if(DEBUG) console.info('teachers.companies.companies_module.executeAction()');
             
             AppManager.startModule('CompaniesModule');
             
@@ -67,7 +67,7 @@ define([
             // To list all the companies
             listCompanies: function(){
                 
-                if(DEBUG) console.info('students.companies.companies_module.listCompanies()');
+                if(DEBUG) console.info('teachers.companies.companies_module.listCompanies()');
                 
                 require([
                     'modules/common/companies/list/list_controller'    
@@ -79,12 +79,12 @@ define([
             // To show a specific company
             showCompany: function(_id){
                 
-                if(DEBUG) console.info('students.companies.companies_module.showCompany()');
+                if(DEBUG) console.info('teachers.companies.companies_module.showCompany()');
                 
                 require([
                     'modules/common/companies/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showCompany, {'companyId':_id, 'userCategory':'students'});
+                    executeAction(ShowController.showCompany, {'companyId':_id, 'userCategory':'teachers'});
                 });
             }
             
