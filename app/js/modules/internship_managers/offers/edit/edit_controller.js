@@ -45,7 +45,7 @@ define([
                             companies: comp
                         });
                         
-                        view.on('form:submit', function(data){
+                        view.on('form:submit', function(_data){
                             
                             API.misc.showLoader();
                             
@@ -53,7 +53,7 @@ define([
                                 _data.company = comp[_data.company];
                             }
                             
-                            if (_offer.save(data)) {
+                            if (_offer.save(_data)) {
                                 AppManager.trigger("offer:show", _options.offerId);
                             }
                             

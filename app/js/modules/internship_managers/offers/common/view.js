@@ -16,7 +16,7 @@ define([
         
         Views.Form = Marionette.ItemView.extend({
             template: formTpl,
-            newOfferForm: '',
+            offerForm: '',
             data : '',
             onRender: function(){
 
@@ -60,13 +60,13 @@ define([
                 setTimeout(function(){
 
                     //  New bbform with a template
-                    newOfferForm = new Backbone.Form({
-                        template: _.template($('#newOfferFormTemplate').html()),
+                    offerForm = new Backbone.Form({
+                        template: _.template($('#offerFormTemplate').html()),
                         model: bbformModel
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(newOfferForm.el);
+                    $('button.js-submit').before(offerForm.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -84,14 +84,14 @@ define([
                     });
 
                     //  To set blur event listener
-                    API.views.forms.setBlurListener(newOfferForm, bbformModel);
+                    API.views.forms.setBlurListener(offerForm, bbformModel);
                     
                     //  If department value change -> change department spec options
-                    newOfferForm.on('department:change', function(form, editor) {
+                    offerForm.on('department:change', function(form, editor) {
                         var dpt = editor.getValue(),
                             newOptions = API.utt.getDepartmentSpec(dpt);
                         
-                        newOfferForm.fields.departmentSpec.editor.setOptions(newOptions);
+                        offerForm.fields.departmentSpec.editor.setOptions(newOptions);
                     });
                     
                 },300);
@@ -114,8 +114,8 @@ define([
                 
                 _e.preventDefault();
 
-                if( API.views.forms.isFormValid(newOfferForm) ){
-                    var data = newOfferForm.getValue();
+                if( API.views.forms.isFormValid(offerForm) ){
+                    var data = offerForm.getValue();
                     
                     this.trigger('form:submit',data)
                 }
