@@ -318,6 +318,7 @@ define([
                                 
                                 //Entities
                                 'entities/common/companies',
+                                'entities/common/monitoring',
                                 'entities/common/offers',
                                 'entities/common/users'
                             ];
@@ -534,9 +535,11 @@ define([
                                             }
                                         }
                                         else {
+                                            
                                             if (obj.toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
                                                 return _model;
                                             }
+                                            
                                         }
                                     }
                                     
