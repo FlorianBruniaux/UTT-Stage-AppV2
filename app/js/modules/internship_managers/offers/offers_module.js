@@ -37,6 +37,7 @@ define([
                 'offers/new': 'addNewOffer',
                 'offers/:id': 'showOffer',
                 'offers/:id/edit': 'editOffer',
+                'offers/:id/provide': 'provideOffer',
                 
                 //"*notFound": "notFound"
             }
@@ -92,20 +93,6 @@ define([
                 });
             },
             
-            /*
-            // To list all the offers
-            showResearchForm: function(){
-                
-                if(DEBUG) console.info('internship_managers.offers.offers_module.showResearchForm()');
-                
-                require([
-                    'modules/common/offers/research/research_controller'    
-                ], function(ResearchController){
-                    executeAction(ResearchController.showResearchForm, {});
-                });
-            },
-            */
-            
             // To list all the offers
             listOffers: function(){
                 
@@ -152,6 +139,18 @@ define([
                 ], function(EditController){
                     executeAction(EditController.editOffer, {'offerId':_id});
                 });
+            },
+            
+            // To edit a specific offer
+            provideOffer: function(_id){
+                
+                if(DEBUG) console.info('internship_managers.offers.offers_module.provideOffer()');
+                
+                require([
+                    'modules/internship_managers/offers/provide/provide_controller'    
+                ], function(ProvideController){
+                    executeAction(ProvideController.provideOffer, {'offerId':_id});
+                });
             }
         };
         
@@ -175,17 +174,6 @@ define([
             AppManager.navigate('offers/validation');
             RouterAPI.listNotValidatedOffers();
         });
-        
-        
-        /**
-         *  Event = 'offers:research'
-         */
-        /*
-        AppManager.on('offers:research', function(){
-            AppManager.navigate('offers/research');
-            RouterAPI.showResearchForm();
-        });
-        */
         
         /*
         /**
@@ -222,6 +210,14 @@ define([
         AppManager.on('internship_managers:offer:edit',function(_id){
             AppManager.navigate('offers/'+_id+'/edit');
             RouterAPI.editOffer(_id);
+        });
+        
+        /**
+        *  Event = 'offer:provided'
+        */
+        AppManager.on('internship_managers:offer:provide',function(_id){
+            AppManager.navigate('offers/'+_id+'/provide');
+            RouterAPI.provideOffer(_id);
         });
         
         /**

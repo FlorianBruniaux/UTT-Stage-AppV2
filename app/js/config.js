@@ -31,7 +31,7 @@ requirejs.config({
         
         geocomplete: ['jquery'],
         
-        jasnybootstrap : ['jquery'],
+        jasnybootstrap : ['jquery','jquery-ui'],
 
         jquery: {
             exports: '$'
@@ -94,7 +94,7 @@ requirejs.config({
         geocomplete: 'vendors/bower/geocomplete/js/jquery.geocomplete',
         
         //To deal with bootstrap dropdow menu
-        jasnybootstrap: 'vendors/bower/jasny-bootstrap/js/jasny-bootstrap.min',
+        jasnybootstrap: 'vendors/bower/jasny-bootstrap/js/jasny-bootstrap',
         
         jquery: 'vendors/bower/jquery/js/jquery',
         

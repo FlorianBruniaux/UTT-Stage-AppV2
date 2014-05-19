@@ -21,8 +21,8 @@ define([
                 
                 // Updates breadcrumb
                 var path = [
-                    { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
-                    { name: 'offer.edit', url: 'offers/edit', navigationTrigger: 'offer:edit' }
+                    { name: 'offers', url: 'offers', navigationTrigger: 'internship_managers:offers:root' },
+                    { name: 'offer.edit', url: 'offers/edit', navigationTrigger: 'internship_managers:offer:edit' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
 
