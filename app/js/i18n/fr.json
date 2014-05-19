@@ -50,6 +50,8 @@
     "menu.contacts": "Contacts",
     "menu.users": "Utilisateurs",
     "menu.companies": "Entreprises",
+    "monitoring.panel.actions.new": "Nouveau suivi",
+    "monitoring.panel.actions.list": "Voir les suivis en cours",
     
     "navbar.toggle" :"Changer la navbar",
     "navigation.toggle": "Changer la navigation",

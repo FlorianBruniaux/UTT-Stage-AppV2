@@ -51,6 +51,8 @@
     "menu.contacts": "Contacts",
     "menu.users": "Users",
     "menu.companies": "Companies",
+    "monitoring.panel.actions.new": "New monitoring",
+    "monitoring.panel.actions.list": "Check current monitorings",
 
     "navbar.toggle" :"Toggle navbar",
     "navigation.toggle": "Toggle navigation",
