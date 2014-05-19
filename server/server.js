@@ -3,7 +3,8 @@ var requirejs = require('requirejs');
 var API = {
     db : require('./api/db/db'),
     auth : require('./api/auth/auth'),
-    express : require('./api/express/express.conf')
+    express : require('./api/express/express.conf'),
+    upload : require('./api/upload/upload')
 };
     
 requirejs.config({
@@ -75,7 +76,13 @@ requirejs([
         }
     );
     
+    //  Image upload
     
+    app.post(
+        '/upload/image/base64',
+        API.upload.uploadBase64Image
+    );
+     
     //  CRUD
     
     app.get(
