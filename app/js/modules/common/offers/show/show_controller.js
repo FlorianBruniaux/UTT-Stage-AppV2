@@ -28,6 +28,7 @@ define([
                         
                         //  To set date format into dd/mm/yyyy
                         _offer.get('validation').date = API.dates.convertToDDMMYYYY(_offer.get('validation').date);
+                        _offer.get('provided').date = API.dates.convertToDDMMYYYY(_offer.get('provided').date);
                         
                         // Updates breadcrumb
                         var path = [
@@ -54,8 +55,11 @@ define([
                         
                         //  Internship_managers events
                         view.on('internship_managers:offer:edit', function(){
-                            console.log('edit offer');
                             AppManager.trigger('internship_managers:offer:edit', _offer.get('_id'))
+                        });
+                        
+                        view.on('internship_managers:offer:provide', function(){
+                            AppManager.trigger('internship_managers:offer:provide', _offer.get('_id'))
                         });
                         
                         

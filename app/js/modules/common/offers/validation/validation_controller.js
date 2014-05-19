@@ -49,6 +49,8 @@ define([
                         filteredOffers.filter(criterions, values);
                     }
 
+                    console.log(filteredOffers);
+                    
                     var notValidatedOffersListView = new View.Offers({
                         collection: filteredOffers,
                         params: prms

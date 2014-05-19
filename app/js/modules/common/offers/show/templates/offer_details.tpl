@@ -11,7 +11,15 @@
     </div>
     
     <%
-        if(userCategory != 'students'){
+    
+        if(provided.by != ''){
+    %>
+            <div class="bg-info with-padding block-inner">
+                <p>Offre pourvue le <%=provided.date%></p>
+            </div>
+    <%
+        }
+        else if(userCategory != 'students'){
           
             if(validation.state == 'not yet treated'){
     %>
@@ -102,8 +110,21 @@
         <%
             if(userCategory == 'internship_managers'){
         %>
-        
+
                 <div class="pull-right">
+                
+            <%
+                if(provided.by == ''){
+            %>
+                    <button class="btn btn-success js-provide"><i class="icon-checkbox-checked"></i> Définir comme pourvue</button>
+            <%
+                }
+                else{
+            %>
+                    <button class="btn btn-success js-provide"><i class="icon-checkbox-checked"></i> Mofifier attribution</button>
+            <%
+                }
+            %>
                     <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> Modifier</button>
                 </div>
             

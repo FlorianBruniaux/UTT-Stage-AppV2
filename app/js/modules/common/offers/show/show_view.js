@@ -24,19 +24,20 @@ define([
             },
             events: {
                 //  Students
-                'click .js-postulate': 'postulateClicked',
-                'click .js-favorites': 'favoritesClicked',
+                'click .js-postulate': 'ePostulateClicked',
+                'click .js-favorites': 'eFavoritesClicked',
                 
                 //  Internship managers
-                'click .js-modify': 'modifyClicked',
+                'click .js-modify': 'eModifyClicked',
+                'click .js-provide': 'eProvideClicked',
                 
                 //  Teachers
-                'click .js-validate': 'validateClicked',
-                'click .js-refuse': 'denyClicked'
+                'click .js-validate': 'eValidateClicked',
+                'click .js-refuse': 'eDenyClicked'
             },
             
             //  Students -> to postulate
-            postulateClicked: function(_e){
+            ePostulateClicked: function(_e){
                 
                 _e.preventDefault();
                 this.trigger('students:offer:postulate');
@@ -44,7 +45,7 @@ define([
             },
             
             //  Students -> to add the offer to the favorites
-            favoritesClicked: function(_e){
+            eFavoritesClicked: function(_e){
                 
                 _e.preventDefault();
                 this.trigger('students:offer:favorites');
@@ -52,15 +53,23 @@ define([
             },
             
             //  Internship_managers -> to modify the offer
-            modifyClicked: function(_e){
+            eModifyClicked: function(_e){
                 
                 _e.preventDefault();
                 this.trigger('internship_managers:offer:edit');
                 
             },
             
+            //  Internship_managers -> to link the offer to the student who has been selected
+            eProvideClicked: function(_e){
+                
+                _e.preventDefault();
+                this.trigger('internship_managers:offer:provide');
+                
+            },
+            
             //  Teachers -> to validate the offer
-            validateClicked : function(_e){
+            eValidateClicked : function(_e){
                 
                 _e.preventDefault();
                 
@@ -86,7 +95,7 @@ define([
             },
             
             //  Teachers -> to deny the offer
-            denyClicked : function(_e){
+            eDenyClicked : function(_e){
                 
                 _e.preventDefault();
                 
