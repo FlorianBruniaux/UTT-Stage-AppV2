@@ -3668,7 +3668,7 @@
     padding:7px 12px 8px 12px;
     background:#3CA2BB;
     color:#fff;
-    margin:0 0 0 3px
+    margin:0 0 3px 3px
 }
 .tagsinput span.tag a
 {
@@ -6611,4 +6611,32 @@ ul.checkbox-inline li {
     height: 300px;
     border: 1px solid #00427C;
     margin: 10px 20px 10px 0;
+}
+
+.desc {
+    margin-top: 20px;    
+}
+
+.desc label {
+    font-size: 14px;
+}
+
+.position {
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: justify;
+}
+
+.position-title {
+    color: #3CA2BB;
+}
+
+.education {
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: justify;
+}
+
+.education-title {
+    color: #3CA2BB;
 }
