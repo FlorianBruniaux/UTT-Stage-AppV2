@@ -72,7 +72,8 @@
       "js": "dist/html5shiv.js"
     },
     "jasny-bootstrap": {
-      "js": "dist/js/jasny-bootstrap.js"
+      "js": "dist/js/jasny-bootstrap.js",
+      "css": "dist/css/jasny-bootstrap.css"
     },
     "jquery": {
       "js": "jquery.js"
