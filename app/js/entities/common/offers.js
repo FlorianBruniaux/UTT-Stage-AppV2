@@ -16,11 +16,16 @@ define([
                 _id: null,
                 _objectType : 'offer',
                 validation: {
-                    state: 'not yet treated',
+                    state: 'not yet treated', // not yet treated, validated, denied, provided
                     msg: '',
                     by: '',
                     date: ''
                 },
+                provided: {
+                    by: '',
+                    date: ''
+                },
+                alreadyMonitored: 'no',
                 type:'',//TN05/TN09/TN10/TN07/Alternance
                 ref:'',
                 department:'',//ISI/SRT/SM/SI/MTE/Master
@@ -32,7 +37,7 @@ define([
                 title:'',
                 mission:'',
                 profile:'',
-                rem:'',
+                rem: '',
                 tags:''
             }
         });

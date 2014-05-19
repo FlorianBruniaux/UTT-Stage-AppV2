@@ -22,10 +22,13 @@ define([
                 mobile: '',
                 email: '',
                 headline: '',
+                summary: '',
                 photoUrl: '',
                 pwd: '',
                 favorites:[],
-                tags:[]
+                positions: {},
+                educations: {},
+                skills: {}
             }
         });
         
