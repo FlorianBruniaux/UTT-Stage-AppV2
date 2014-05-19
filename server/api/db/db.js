@@ -14,6 +14,16 @@ var Schema = mongoose.Schema,
             website:        { type: String }
         }),
         
+        monitoring : new Schema({
+            _objectType :   { type: String },
+            offer:          Schema.Types.Mixed,
+            dates:          Schema.Types.Mixed,
+            semester:       { type: String },
+            uttResp:        Schema.Types.Mixed,
+            visits:         [Schema.Types.Mixed],
+            sheets:         Schema.Types.Mixed
+        }),
+        
         offer : new Schema({
             _objectType :   { type: String },
             ref:            { type: String },
@@ -23,6 +33,8 @@ var Schema = mongoose.Schema,
                 by:             Schema.Types.Mixed,
                 date:           { type: Date, default: Date.now }
             },
+            provided:       Schema.Types.Mixed,
+            alreadyMonitored: { type: String },
             department:     { type: String },
             departmentSpec: { type: String },
             lat:            { type: Number },
@@ -46,14 +58,20 @@ var Schema = mongoose.Schema,
             mobile:         { type: String },
             email:          { type: String },
             headline:       { type: String },
+            summary :       { type: String },
             photoUrl:       { type: String },
-            pwd:            { type: String }
+            pwd:            { type: String },
+            tags:           { type: String },
+            educations:     Schema.Types.Mixed,
+            positions:      Schema.Types.Mixed,
+            skills:         Schema.Types.Mixed
         })
         
     };
     
 var models = {
     company : mongoose.model('company', schemas.company),
+    monitoring : mongoose.model('monitoring', schemas.monitoring),
     offer : mongoose.model('offer', schemas.offer),
     user : mongoose.model('user', schemas.user)
 };
