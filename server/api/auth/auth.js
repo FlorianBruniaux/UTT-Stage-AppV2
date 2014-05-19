@@ -69,7 +69,11 @@ passport.use(new LinkedInStrategy({
             'last-name',
             'email-address',
             'headline',
-            'picture-url'
+            'picture-url',
+            'educations',
+            'positions',
+            'skills',
+            'summary'
         ]
     },
     function(token, tokenSecret, profile, done) {
@@ -81,32 +85,50 @@ passport.use(new LinkedInStrategy({
                     
                     dbModels['user'].findOne({'email' : profile._json.emailAddress}, function(err, user) {
                         
+                        var obj = {
+                            _objectType : 'user',
+                            userCategory: 'students',
+                            linkedinId: profile.id,
+                            firstName : profile._json.firstName,
+                            lastName : profile._json.lastName,
+                            email:  profile._json.emailAddress,
+                            headline: profile._json.headline,
+                            photoUrl:  profile._json.pictureUrl,
+                            educations: profile._json.educations,
+                            positions: profile._json.positions,
+                            skills: profile._json.skills,
+                            summary: profile._json.summary,
+                        }
+                        
                         if ( !user ) {
-                            
-                            var obj = {
-                                _objectType : 'user',
-                                userCategory: 'students',
-                                linkedinId: profile.id,
-                                firstName : profile._json.firstName,
-                                lastName : profile._json.lastName,
-                                email:  profile._json.emailAddress,
-                                headline: profile._json.headline,
-                                photoUrl:  profile._json.pictureUrl
-                            }
+
                             var newUser = new dbModels['user'](obj);
     
                             newUser.save(function(err, user) {
                                 if (err) {
                                     console.log('err');
                                     return done(null, null);
-                                } else {
+                                }
+                                else {
                                     console.log('ok');
                                     return done(null, user);
                                 }
                             });
                         }
                         else {
-                            return done(null, null);
+                            
+                            dbModels['user'].update({ _id: user.get('_id') }, obj, function(err, updated) {
+                                
+                                if (err) {
+                                    console.log('User not found.');
+                                    return done(null, null);
+                                }
+                                else {
+                                    console.log('User updated ! ');
+                                    return done(null, user);
+                                }
+                            });
+                            
                         }
                         
                     });
@@ -175,7 +197,7 @@ exports.local = {
     login : passport.authenticate('local', {
         successRedirect: '/#home',
         failureRedirect: '/auth/logout',
-        failureFlash: true
+        failureFlash: false
     }),
 
     signOn : function(_req, _res){
@@ -211,8 +233,19 @@ exports.local = {
                     }
                 });
                 
-            }else {
-                _res.send('Email already registered !');
+            }
+            else {
+                
+                dbModels['user'].update({ _id: user.get('_id') }, obj, function(err, updated) {
+                    
+                    if (err) {
+                        _res.send('Error, please try again');
+                    }
+                    else {
+                        _res.json(200, {message : 'You were already registered with Linkedin auth. Now you can logged with both solution (login/pwd or Linkedin)'});
+                    }
+                    
+                });
             }
             
         });
