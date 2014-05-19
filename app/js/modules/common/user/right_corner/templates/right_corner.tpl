@@ -2,13 +2,20 @@
         
     <li class="user dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">
-            <% if(photoUrl != "") {%>
-                <img src="<%= photoUrl %>" alt="">
-            <%}else{%>
+            <%
+                if(photoUrl != "") {
+            %>
+                    <img src="<%= photoUrl %>">
+            <%
+                }
+                else{
+            %>
                 <span class="no-photo">
                     
                 </span>
-            <%}%>
+            <%
+                }
+            %>
             <span><%= firstName %> <%= lastName %></span>
             <br /><span>Options</span>
             <i class="caret"></i>

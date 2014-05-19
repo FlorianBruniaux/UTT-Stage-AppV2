@@ -28,7 +28,7 @@ define([
   
                         // Updates breadcrumb
                         var path = [
-                            { name: 'profile', url: 'user/profile', navigationTrigger: 'user:profile' },
+                            { name: 'profile', url: 'user/profile', navigationTrigger: 'user:profile:show' },
                             { name: 'edit', url: 'user/profile/edit', navigationTrigger: 'user:profile:edit' }
                         ];
                         AppManager.trigger('breadcrumb:update', path);
@@ -38,12 +38,29 @@ define([
                             title: _user.get('firstName')+' '+_user.get('lastName')+' : '+polyglot.t('edit'),
                         });
 
+                        view.on('image:upload', function(_title, _base64Data){
+                            $.ajax({
+                                url: "/upload/image/base64",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    folder: 'photos/users',
+                                    title: _title,
+                                    base64Data : _base64Data
+                                }),
+                                dataType: "json",
+                                contentType: "application/json",
+                                complete: function(res) {
+                                    console.log(res.responseText);
+                                }
+                            });
+                        });
+                        
                         view.on('form:submit', function(_data){
                             
                             API.misc.showLoader();
                             
                             if (_user.save(_data)) {
-                                AppManager.trigger("offer:show", _options.offerId);
+                                AppManager.trigger("user:profile:show");
                             }
                             
                         });
