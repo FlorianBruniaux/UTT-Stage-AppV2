@@ -84,7 +84,7 @@ define([
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.listMonitoring()');
                 
                 require([
-                    'modules/common/monitoring/list/list_controller'    
+                    'modules/internship_managers/monitoring/list/list_controller'    
                 ], function(ListController){
                     executeAction(ListController.listMonitoring, {});
                 });
@@ -108,7 +108,7 @@ define([
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.showMonitoring()');
                 
                 require([
-                    'modules/common/monitoring/show/show_controller'    
+                    'modules/internship_managers/monitoring/show/show_controller'    
                 ], function(ShowController){
                     executeAction(ShowController.showMonitoring, {'monitoringId':_id});
                 });
