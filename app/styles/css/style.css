@@ -3796,7 +3796,7 @@
     padding-left:32px;
     font-weight:400
 }
-.dataTable td.center,.dataTable td.dataTables_empty
+.dataTable td.center, .dataTable th.center,.dataTable td.dataTables_empty
 {
     text-align:center
 }
