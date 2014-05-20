@@ -68,8 +68,9 @@
     "offers": "Offers",
     "offers.validation": "Offers to validate",
     "offers.panel.actions.new": "Add an offer",
-    "offers.panel.actions.list": "Check the offers",
-    "offers.panel.actions.validation" : "Control the offers",
+    "offers.panel.actions.list": "Check current offers",
+    "offers.panel.actions.validation" : "Check uncontroled offers",
+    "offers.panel.actions.provided" : "Check provided offers",
     
     "parameters": "Parameters",
     "password": "Password",

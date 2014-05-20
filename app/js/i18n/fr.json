@@ -67,9 +67,10 @@
     "offers": "Offres",
     "offers.validation": "Offres à valider",
     "offers.panel.actions.new": "Ajouter une offre",
-    "offers.panel.actions.list": "Voir les offres",
+    "offers.panel.actions.list": "Voir les offres en cours",
     "offers.panel.actions.research" : "Faire une recherche",
-    "offers.panel.actions.validation" : "Contrôler les offres",
+    "offers.panel.actions.validation" : "Voir les offres à contrôler",
+    "offers.panel.actions.provided" : "Voir les offres pourvues",
     
     "password": "Mot de passe",
     "parameters": "Paramètres",
