@@ -30,11 +30,17 @@ define([
         OffersModuleRouter.Router = Marionette.AppRouter.extend({
             appRoutes: {
                 'offers': 'listRootOptions',
+                
                 'offers/validation': 'listNotValidatedOffers',
-                //'offers/research': 'showResearchForm',
+
                 'offers/list(/filter)': 'listOffers',
                 'offers/list(/filter?:parameters)': 'listOffers',
+                
+                'offers/list/provided(/filter)': 'listProvidedOffers',
+                'offers/list/provided(/filter?:parameters)': 'listProvidedOffers',
+                
                 'offers/new': 'addNewOffer',
+                
                 'offers/:id': 'showOffer',
                 'offers/:id/edit': 'editOffer',
                 'offers/:id/provide': 'provideOffer',
@@ -89,7 +95,7 @@ define([
                 require([
                     'modules/common/offers/validation/validation_controller'    
                 ], function(ValidationController){
-                    executeAction(ValidationController.listNotValidatedOffers, {});
+                    executeAction(ValidationController.listNotValidatedOffers, {'userCategory':'internship_managers'});
                 });
             },
             
@@ -101,7 +107,25 @@ define([
                 require([
                     'modules/common/offers/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listOffers, {});
+                    executeAction(ListController.listOffers, {'userCategory':'internship_managers'});
+                });
+            },
+            
+            // To list provided offers
+            listProvidedOffers: function(){
+                
+                if(DEBUG) console.info('internship_managers.offers.offers_module.listProvidedOffers()');
+                
+                require([
+                    'modules/common/offers/list/list_controller'    
+                ], function(ListController){
+                    
+                    var options = {
+                        'isProvidedMode': true,
+                        'userCategory':'internship_managers'
+                    }
+                    
+                    executeAction(ListController.listOffers, options);
                 });
             },
             
@@ -118,38 +142,63 @@ define([
             },
             
             // To show a specific offer
-            showOffer: function(_id){
+            showOffer: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.offers.offers_module.showOffer()');
                 
                 require([
                     'modules/common/offers/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showOffer, {'offerId':_id, 'userCategory':'internship_managers'});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.offerId = temp;
+                    }
+                    
+                    _options.userCategory = 'internship_managers';
+                    
+                    executeAction(ShowController.showOffer, _options);
                 });
             },
             
             // To edit a specific offer
-            editOffer: function(_id){
+            editOffer: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.offers.offers_module.editOffer()');
                 
                 require([
                     'modules/internship_managers/offers/edit/edit_controller'    
                 ], function(EditController){
-                    executeAction(EditController.editOffer, {'offerId':_id});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.offerId = temp;
+                    }
+
+                    executeAction(EditController.editOffer, _options);
                 });
             },
             
             // To edit a specific offer
-            provideOffer: function(_id){
+            provideOffer: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.offers.offers_module.provideOffer()');
                 
                 require([
                     'modules/internship_managers/offers/provide/provide_controller'    
                 ], function(ProvideController){
-                    executeAction(ProvideController.provideOffer, {'offerId':_id});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.offerId = temp;
+                    }
+                    
+                    console.log(_options);
+                    
+                    executeAction(ProvideController.provideOffer, _options);
                 });
             }
         };
@@ -175,7 +224,16 @@ define([
             RouterAPI.listNotValidatedOffers();
         });
         
-        /*
+
+        /**
+         *  Event = 'offer:new'
+         */
+        AppManager.on('internship_managers:offer:new', function(){
+            AppManager.navigate('offers/new');
+            RouterAPI.addNewOffer();
+        });
+        
+
         /**
          *  Event = 'offers:list'
          */
@@ -185,47 +243,61 @@ define([
         });
         
         /**
-         *  Event = 'offer:new'
-         */
-        AppManager.on('internship_managers:offer:new', function(){
-            AppManager.navigate('offers/new');
-            RouterAPI.addNewOffer();
-        });
-        
-        /**
          *  Event = 'offers:filter'
          */
         AppManager.on('offers:filter', function(_params){
             if(_params){
                 AppManager.navigate('offers/list/filter?'+_params);
                 RouterAPI.listOffers();
-            }else{
-                AppManager.navigate('offers');
+            }
+            else{
+                AppManager.navigate('offers/list');
+            }
+        });
+        
+        /**
+         *  Event = 'internship_managers:offers:list:provided'
+         */
+        AppManager.on('internship_managers:offers:list:provided', function(){
+            AppManager.navigate('offers/list/provided');
+            RouterAPI.listProvidedOffers();
+        });
+        
+        /**
+         *  Event = 'internship_managers:offers:filter:provided'
+         */
+        AppManager.on('internship_managers:offers:provided:filter', function(_params){
+            if(_params){
+                AppManager.navigate('offers/list/provided/filter?'+_params);
+                RouterAPI.listProvidedOffers();
+            }
+            else{
+                AppManager.navigate('offers/list/provided');
             }
         });
         
         /**
          *  Event = 'offer:edit'
          */
-        AppManager.on('internship_managers:offer:edit',function(_id){
-            AppManager.navigate('offers/'+_id+'/edit');
-            RouterAPI.editOffer(_id);
+        AppManager.on('internship_managers:offer:edit',function(_options){
+            AppManager.navigate('offers/'+_options.offerId+'/edit');
+            RouterAPI.editOffer(_options);
         });
         
         /**
-        *  Event = 'offer:provided'
+        *  Event = 'offer:provide'
         */
-        AppManager.on('internship_managers:offer:provide',function(_id){
-            AppManager.navigate('offers/'+_id+'/provide');
-            RouterAPI.provideOffer(_id);
+        AppManager.on('internship_managers:offer:provide',function(_options){
+            AppManager.navigate('offers/'+_options.offerId+'/provide');
+            RouterAPI.provideOffer(_options);
         });
         
         /**
          *  Event = 'offer:show'
          */
-        AppManager.on('offer:show', function(_id){
-            AppManager.navigate('offers/' + _id);
-            RouterAPI.showOffer(_id);
+        AppManager.on('offer:show', function(_options){
+            AppManager.navigate('offers/' + _options.offerId);
+            RouterAPI.showOffer(_options);
         });
         
         

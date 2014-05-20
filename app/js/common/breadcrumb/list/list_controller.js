@@ -20,8 +20,9 @@ define([
 
                     breadcrumb.on('itemview:navigate', function(_childView, _model){
                         var trigger = _model.get('navigationTrigger');
-                        if(_model.get('id')){
-                            AppManager.trigger(trigger, _model.get('id'));
+                        
+                        if(_model.get('options')){
+                            AppManager.trigger(trigger, _model.get('options'));
                         }else{
                             AppManager.trigger(trigger);
                         }

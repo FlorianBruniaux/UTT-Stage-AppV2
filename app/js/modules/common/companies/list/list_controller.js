@@ -12,7 +12,7 @@ define([
         List.Controller = {
             
             // To list all the companies
-            listCompanies: function(){
+            listCompanies: function(_options){
                 
                 if(DEBUG) console.info('companies.list.list_controller.listCompanies()');
                 
@@ -21,9 +21,15 @@ define([
                  
                 // Updates breadcrumb
                 var path = [
-                    { name: 'companies', url: 'companies', navigationTrigger: 'companies:root' },
-                    { name: 'companies.list', url: 'companies/list', navigationTrigger: 'company:list' }
+                    { name: 'companies.list', url: 'companies/list', navigationTrigger: 'companies:list' }
                 ];
+                
+                if (_options.userCategory == 'internship_managers') {
+                    path.unshift(
+                        { name: 'companies', url: 'companies', navigationTrigger: 'internship_managers:companies:root' }
+                    )
+                }
+                
                 AppManager.trigger('breadcrumb:update', path);
  
                 // Gets all the companies (CF entities folder)

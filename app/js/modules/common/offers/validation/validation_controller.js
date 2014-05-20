@@ -12,7 +12,7 @@ define([
         Validation.Controller = {
             
             // To list all the offers
-            listNotValidatedOffers: function(){
+            listNotValidatedOffers: function(_options){
                 
                 if(DEBUG) console.info('offers.validation.validation_controller.listOffers()');
                 
@@ -21,7 +21,7 @@ define([
                 
                 // Updates breadcrumb
                 var path = [
-                    { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
+                    { name: 'offers', url: 'offers', navigationTrigger: _options.userCategory+':offers:root' },
                     { name: 'offers.validation', url: 'offers/validation', navigationTrigger: 'offer:validation' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);

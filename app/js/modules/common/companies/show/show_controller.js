@@ -28,10 +28,16 @@ define([
                         
                         // Updates breadcrumb
                         var path = [
-                            { name: 'companies', url: 'companies', navigationTrigger: 'companies:root' },
                             { name: 'companies.list', url: 'companies/list', navigationTrigger: 'companies:list' },
-                            { name: _company.get('ref'), url: 'companies/'+_company.get('_id'), navigationTrigger: 'company:show', id:_company.get('_id') }
+                            { name: _company.get('cname'), url: 'companies/'+_company.get('_id'), navigationTrigger: 'company:show', options: {companyId: _company.get('_id')} }
                         ];
+                        
+                        if (_options.userCategory == 'internship_managers') {
+                            path.unshift(
+                                { name: 'companies', url: 'companies', navigationTrigger: 'internship_managers:companies:root' }
+                            )
+                        }
+                        
                         AppManager.trigger('breadcrumb:update', path);
 
                         var view = new View.Company({

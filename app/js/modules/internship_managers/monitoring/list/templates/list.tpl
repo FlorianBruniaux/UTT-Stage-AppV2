@@ -46,7 +46,7 @@
             <thead>
                 <tr>
                     <th class="center">Student</th>
-                    <th class="center">Company</th>
+                    <th class="center">Offer</th>
                     <th class="center">Type</th>
                     <th class="center">0</th>
                     <th class="center">1</th>

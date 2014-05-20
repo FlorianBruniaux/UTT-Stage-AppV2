@@ -86,7 +86,7 @@ define([
                 require([
                     'modules/common/companies/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listCompanies, {});
+                    executeAction(ListController.listCompanies, {'userCategory':'internship_managers'});
                 });
             },
             
@@ -103,26 +103,42 @@ define([
             },
             
             // To show a specific company
-            showCompany: function(_id){
+            showCompany: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.companies.companies_module.showCompany()');
                 
                 require([
                     'modules/common/companies/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showCompany, {'companyId':_id, 'userCategory':'internship_managers'});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.companyId = temp;
+                    }
+                    
+                    _options.userCategory = 'internship_managers';
+                    
+                    executeAction(ShowController.showCompany, _options);
                 });
             },
             
             // To edit a specific company
-            editCompany: function(_id){
+            editCompany: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.companies.companies_module.editCompany()');
                 
                 require([
                     'modules/internship_managers/companies/edit/edit_controller'    
                 ], function(EditController){
-                    executeAction(EditController.editCompany, {'companyId':_id});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.companyId = temp;
+                    }
+                    
+                    executeAction(EditController.editCompany, _options);
                 });
             }
         };
@@ -171,17 +187,17 @@ define([
         /**
          *  Event = 'company:edit'
          */
-        AppManager.on('internship_managers:company:edit',function(_id){
-            AppManager.navigate('companies/'+_id+'/edit');
-            RouterAPI.editCompany(_id);
+        AppManager.on('internship_managers:company:edit',function(_options){
+            AppManager.navigate('companies/'+_options.companyId+'/edit');
+            RouterAPI.editCompany(_options);
         });
         
         /**
          *  Event = 'company:show'
          */
-        AppManager.on('company:show', function(_id){
-            AppManager.navigate('companies/' + _id);
-            RouterAPI.showCompany(_id);
+        AppManager.on('company:show', function(_options){
+            AppManager.navigate('companies/' + _options.companyId);
+            RouterAPI.showCompany(_options);
         });
         
         

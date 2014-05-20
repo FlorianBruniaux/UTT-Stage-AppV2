@@ -15,7 +15,7 @@
         if(provided.by != ''){
     %>
             <div class="bg-info with-padding block-inner">
-                <p>Offre pourvue le <%=provided.date%></p>
+                <p>Offre pourvue le <%=provided.date%> par <%=provided.by.firstName%> <%=provided.by.lastName%></p>
             </div>
     <%
         }

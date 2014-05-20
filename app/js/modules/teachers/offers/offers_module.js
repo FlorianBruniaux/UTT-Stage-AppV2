@@ -86,23 +86,9 @@ define([
                 require([
                     'modules/common/offers/validation/validation_controller'    
                 ], function(ValidationController){
-                    executeAction(ValidationController.listNotValidatedOffers, {});
+                    executeAction(ValidationController.listNotValidatedOffers, {'userCategory':'teachers'});
                 });
             },
-            
-            /*
-            // To list all the offers
-            showResearchForm: function(){
-                
-                if(DEBUG) console.info('teachers.offers.offers_module.showResearchForm()');
-                
-                require([
-                    'modules/common/offers/research/research_controller'    
-                ], function(ResearchController){
-                    executeAction(ResearchController.showResearchForm, {});
-                });
-            },
-            */
             
             // To list all the offers
             listOffers: function(){
@@ -112,19 +98,28 @@ define([
                 require([
                     'modules/common/offers/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listOffers, {});
+                    executeAction(ListController.listOffers, {'userCategory':'teachers'});
                 });
             },
 
             // To show a specific offer
-            showOffer: function(_id){
+            showOffer: function(_options){
                 
                 if(DEBUG) console.info('teachers.offers.offers_module.showOffer()');
                 
                 require([
                     'modules/common/offers/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showOffer, {'offerId':_id, 'userCategory':'teachers'});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.offerId = temp;
+                    }
+                    
+                    _options.userCategory = 'teachers';
+                    
+                    executeAction(ShowController.showOffer, _options);
                 });
             }
         };
@@ -151,16 +146,6 @@ define([
         });
         
         /**
-         *  Event = 'offers:research'
-         */
-        /*
-        AppManager.on('offers:research', function(){
-            AppManager.navigate('offers/research');
-            RouterAPI.showResearchForm();
-        });
-        */
-        
-        /**
          *  Event = 'offers:list'
          */
         AppManager.on('offers:list', function(){
@@ -184,9 +169,9 @@ define([
         /**
          *  Event = 'offer:show'
          */
-        AppManager.on('offer:show', function(_id){
-            AppManager.navigate('offers/' + _id);
-            RouterAPI.showOffer(_id);
+        AppManager.on('offer:show', function(_options){
+            AppManager.navigate('offers/' + _options.offerId);
+            RouterAPI.showOffer(_options);
         });
         
         

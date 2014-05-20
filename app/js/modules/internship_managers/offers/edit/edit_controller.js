@@ -18,13 +18,6 @@ define([
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
-                
-                // Updates breadcrumb
-                var path = [
-                    { name: 'offers', url: 'offers', navigationTrigger: 'internship_managers:offers:root' },
-                    { name: 'offer.edit', url: 'offers/edit', navigationTrigger: 'internship_managers:offer:edit' }
-                ];
-                AppManager.trigger('breadcrumb:update', path);
 
                 // Gets the offer
                 // When the offer is fetched (CF use of defer.promise() )
@@ -33,6 +26,13 @@ define([
                 $.when(fetchingOffer,fetchingCompanies).done(function(_offer, _companies){
                     
                     if (_offer !== undefined) {
+                        
+                        var path = [
+                            { name: 'offers', url: 'offers', navigationTrigger: 'internship_managers:offers:root' },
+                            { name: 'offers.list', url: 'offers/list', navigationTrigger: 'offers:list' },
+                            { name: 'Edit n° '+_offer.get('ref'), url: 'offers/'+_offer.get('_id'), navigationTrigger: 'offer:show', options: {offerId: _offer.get('_id')} }
+                        ];
+                        AppManager.trigger('breadcrumb:update', path);
                         
                         var comp= {};
                         _companies.each(function(_company){
@@ -54,7 +54,7 @@ define([
                             }
                             
                             if (_offer.save(_data)) {
-                                AppManager.trigger("offer:show", _options.offerId);
+                                AppManager.trigger("offer:show", _options);
                             }
                             
                         });

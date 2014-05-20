@@ -1,9 +1,9 @@
 <td class="center">
-    <%=offer.provided.by.firstName%> <%=offer.provided.by.lastName%>
+    <%=offer.provided.by.firstName%> <%=offer.provided.by.lastName%> (<%=offer.provided.by.specificToCategory.department%> - <%=offer.provided.by.specificToCategory.departmentSpec%>)
 </td>
 
 <td class="center">
-    <a href="#companies/<%=offer.company._id%>"><%=offer.company.cname%></a>
+    <a href="#offers/<%=offer._id%>"><i class="icon-search"></i></a>
 </td>
 
 <td class="center">

@@ -19,13 +19,6 @@ define([
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 
-                // Updates breadcrumb
-                var path = [
-                    { name: 'monitoring', url: 'monitoring', navigationTrigger: 'internship_managers:monitoring:root' },
-                    { name: 'monitoring.edit', url: 'monitoring/edit', navigationTrigger: 'internship_managers:monitoring:edit' }
-                ];
-                AppManager.trigger('breadcrumb:update', path);
-
                 // Gets the monitoring
                 // When the monitoring is fetched (CF use of defer.promise() )
                 var fetchingMonitoring = AppManager.request('monitoring:entity', _options.monitoringId);
@@ -33,7 +26,13 @@ define([
                     
                     if (_monitoring !== undefined) {
                         
-                        
+                        // Updates breadcrumb
+                        var path = [
+                            { name: 'monitoring', url: 'monitoring', navigationTrigger: 'internship_managers:monitoring:root' },
+                            { name: 'monitoring.edit', url: 'monitoring/'+_monitoring.get('_id')+'/edit', navigationTrigger: 'internship_managers:monitoring:edit', options: {monitoringId: _monitoring.get('_id')} }
+                        ];
+                        AppManager.trigger('breadcrumb:update', path);
+                
                         var view = new View.Form({
                             model: _monitoring,
                             title: polyglot.t('monitoring.edit')
@@ -44,7 +43,7 @@ define([
                             API.misc.showLoader();
 
                             if (_monitoring.save(_data)) {
-                                AppManager.trigger("monitoring:show", _options.monitoringId);
+                                AppManager.trigger("monitoring:show", _options);
                             }
                             
                         });

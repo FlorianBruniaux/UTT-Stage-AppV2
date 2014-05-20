@@ -19,12 +19,6 @@ define([
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 
-                // Updates breadcrumb
-                var path = [
-                    { name: 'companies', url: 'companies', navigationTrigger: 'internship_managers:companies:root' },
-                    { name: 'company.edit', url: 'companies/edit', navigationTrigger: 'internship_managers:company:edit' }
-                ];
-                AppManager.trigger('breadcrumb:update', path);
 
                 // Gets the company
                 // When the company is fetched (CF use of defer.promise() )
@@ -32,6 +26,14 @@ define([
                 $.when(fetchingCompany).done(function(_company){
                     
                     if (_company !== undefined) {
+                        
+                         // Updates breadcrumb
+                        var path = [
+                            { name: 'companies', url: 'companies', navigationTrigger: 'internship_managers:companies:root' },
+                            { name: 'companies.list', url: 'companies/list', navigationTrigger: 'companies:list' },
+                            { name: 'Edit '+_company.get('ref'), url: 'companies/'+_company.get('_id'), navigationTrigger: 'company:show', options: {companyId: _company.get('_id')} }
+                        ];
+                        AppManager.trigger('breadcrumb:update', path);
                         
                         var view = new View.Form({
                             model: _company,
@@ -43,7 +45,7 @@ define([
                             API.misc.showLoader();
                             
                             if (_company.save(data)) {
-                                AppManager.trigger("company:show", _options.companyId);
+                                AppManager.trigger("company:show", _options);
                             }
                             
                         });

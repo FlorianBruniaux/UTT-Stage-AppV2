@@ -36,6 +36,9 @@ define([
                 'monitoring/:id': 'showMonitoring',
                 'monitoring/:id/edit': 'editMonitoring',
                 
+                //  Sheets
+                'monitoring/:id/edit/:sheet': 'editSheet',
+                
                 //"*notFound": "notFound"
             }
         });
@@ -103,27 +106,67 @@ define([
             },
             
             // To show a specific monitoring
-            showMonitoring: function(_id){
+            showMonitoring: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.showMonitoring()');
                 
                 require([
                     'modules/internship_managers/monitoring/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showMonitoring, {'monitoringId':_id});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.monitoringId = temp;
+                    }
+                    
+                    executeAction(ShowController.showMonitoring, _options);
                 });
             },
             
             // To edit a specific monitoring
-            editMonitoring: function(_id){
+            editMonitoring: function(_options){
                 
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.editMonitoring()');
                 
                 require([
                     'modules/internship_managers/monitoring/edit/edit_controller'    
                 ], function(EditController){
-                    executeAction(EditController.editMonitoring, {'monitoringId':_id});
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.monitoringId = temp;
+                    }
+                    
+                    executeAction(EditController.editMonitoring, _options);
                 });
+            },
+            
+            // To edit a specific monitoring
+            editSheet: function(_options, _sheet){
+
+                if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.editSheet()');
+                
+                require([
+                    'modules/common/monitoring/sheets/edit/edit_controller'    
+                ], function(EditController){
+                    
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.monitoringId = temp;
+                        
+                        if (_sheet) {
+                            _options.sheet = _sheet;
+                        }
+                    }
+                    
+                    console.log(_options);
+                    
+                    executeAction(EditController.editSheet, _options);
+                });
+                
             }
         };
         
@@ -171,17 +214,25 @@ define([
         /**
          *  Event = 'monitoring:edit'
          */
-        AppManager.on('internship_managers:monitoring:edit',function(_id){
-            AppManager.navigate('monitoring/'+_id+'/edit');
-            RouterAPI.editMonitoring(_id);
+        AppManager.on('internship_managers:monitoring:edit',function(_options){
+            AppManager.navigate('monitoring/'+_options.monitoringId+'/edit');
+            RouterAPI.editMonitoring(_options);
+        });
+        
+        /**
+         *  Event = 'monitoring:edit:sheet'
+         */
+        AppManager.on('internship_managers:monitoring:edit:sheet',function(_options){
+            AppManager.navigate('monitoring/'+_options.monitoringId+'/edit/'+_options.sheet);
+            RouterAPI.editSheet(_options);
         });
         
         /**
          *  Event = 'monitoring:show'
          */
-        AppManager.on('internship_managers:monitoring:show', function(_id){
-            AppManager.navigate('monitoring/' + _id);
-            RouterAPI.showMonitoring(_id);
+        AppManager.on('internship_managers:monitoring:show', function(_options){
+            AppManager.navigate('monitoring/' + _options.monitoringId);
+            RouterAPI.showMonitoring(_options);
         });
         
         

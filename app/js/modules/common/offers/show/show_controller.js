@@ -32,10 +32,16 @@ define([
                         
                         // Updates breadcrumb
                         var path = [
-                            { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
                             { name: 'offers.list', url: 'offers/list', navigationTrigger: 'offers:list' },
-                            { name: 'n° '+_offer.get('ref'), url: 'offers/'+_offer.get('_id'), navigationTrigger: 'offer:show', id:_offer.get('_id') }
+                            { name: 'n° '+_offer.get('ref'), url: 'offers/'+_offer.get('_id'), navigationTrigger: 'offer:show', options: {offerId: _offer.get('_id')} }
                         ];
+                        
+                        if (_options.userCategory != 'students') {
+                            path.unshift(
+                                { name: 'offers', url: 'offers', navigationTrigger: _options.userCategory+':offers:root' }
+                            )
+                        }
+                        
                         AppManager.trigger('breadcrumb:update', path);
 
                         var view = new View.Offer({
@@ -55,11 +61,11 @@ define([
                         
                         //  Internship_managers events
                         view.on('internship_managers:offer:edit', function(){
-                            AppManager.trigger('internship_managers:offer:edit', _offer.get('_id'))
+                            AppManager.trigger('internship_managers:offer:edit',{offerId: _offer.get('_id')})
                         });
                         
                         view.on('internship_managers:offer:provide', function(){
-                            AppManager.trigger('internship_managers:offer:provide', _offer.get('_id'))
+                            AppManager.trigger('internship_managers:offer:provide', {offerId: _offer.get('_id')})
                         });
                         
                         

@@ -27,6 +27,18 @@
                 <%=lastName%>
             </p>
             
+            <%
+                if(userCategory == 'students'){
+            %>
+                <p class="desc">
+                    <label>Department - Department specialization :</label>
+                    <%=specificToCategory.department%> - <%=specificToCategory.departmentSpec%>
+                </p>
+            <%
+                }
+            %>
+            
+            
             <p class="desc">
                 <label>Email :</label>
                 <%=email%>

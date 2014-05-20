@@ -72,19 +72,28 @@ define([
                 require([
                     'modules/common/companies/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listCompanies, {});
+                    executeAction(ListController.listCompanies, {'userCategory':'students'});
                 });
             },
             
             // To show a specific company
-            showCompany: function(_id){
+            showCompany: function(_options){
                 
                 if(DEBUG) console.info('students.companies.companies_module.showCompany()');
                 
                 require([
                     'modules/common/companies/show/show_controller'    
                 ], function(ShowController){
-                    executeAction(ShowController.showCompany, {'companyId':_id, 'userCategory':'students'});
+
+                    if (!_.isObject(_options)) {
+                        var temp = _options;
+                        _options = {};
+                        _options.companyId = temp;
+                    }
+                    
+                    _options.userCategory = 'students';
+                    
+                    executeAction(ShowController.showCompany, _options);
                 });
             }
             
@@ -119,9 +128,9 @@ define([
         /**
          *  Event = 'company:show'
          */
-        AppManager.on('company:show', function(_id){
-            AppManager.navigate('companies/' + _id);
-            RouterAPI.showCompany(_id);
+        AppManager.on('company:show', function(_options){
+            AppManager.navigate('companies/' + _options.companyId);
+            RouterAPI.showCompany(_options);
         });
         
         
