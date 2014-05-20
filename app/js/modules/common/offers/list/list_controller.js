@@ -12,7 +12,7 @@ define([
         List.Controller = {
             
             // To list all the offers
-            listOffers: function(){
+            listOffers: function(_options){
                 
                 if(DEBUG) console.info('offers.list.list_controller.listOffers()');
                 
@@ -20,10 +20,25 @@ define([
                 API.misc.showLoader();
                  
                 // Updates breadcrumb
-                var path = [
-                    { name: 'offers', url: 'offers', navigationTrigger: 'offers:root' },
-                    { name: 'offers.list', url: 'offers/list', navigationTrigger: 'offer:list' }
-                ];
+                var path = [];
+                
+                if (_options.isProvidedMode) {
+                    path.push(
+                        { name: 'offers.list.provided', url: 'offers/list/provided', navigationTrigger: 'offers:list:provided' }
+                    )
+                }
+                else{
+                    path.push(
+                        { name: 'offers.list', url: 'offers/list', navigationTrigger: 'offers:list' }
+                    )
+                }
+                
+                if (_options.userCategory != 'students') {
+                    path.unshift(
+                        { name: 'offers', url: 'offers', navigationTrigger: _options.userCategory+':offers:root' }
+                    )
+                }
+                        
                 AppManager.trigger('breadcrumb:update', path);
  
                 // Gets all the offers (CF entities folder)
@@ -41,6 +56,15 @@ define([
                         //  We only display offers that have already been validated
                         criterions = ['validation.state'],
                         values = ['validated'];
+                        
+                    if (_options.isProvidedMode) {
+                        criterions.push('provided.by.firstName'),
+                        values.push('[NOTempty]');
+                    }
+                    else{
+                        criterions.push('provided.by.firstName'),
+                        values.push('[isEmpty]');
+                    }
                     
                     _.each(prms, function(_value, _key){
                         if (_value != 'all' && _value != '' && _key != 'fullAddress') {
@@ -55,7 +79,8 @@ define([
 
                     var offersListView = new View.Offers({
                         collection: filteredOffers,
-                        params: prms
+                        params: prms,
+                        isProvidedMode: ((_options.isProvidedMode) ? true:false)
                     });
                     
                     offersListView.on('itemview:offer:show', function(childView, model){

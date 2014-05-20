@@ -3,29 +3,36 @@ define([
     'utt.stages',
     'tpl!modules/common/offers/list/templates/list.tpl',
     'tpl!modules/common/offers/list/templates/list_item.tpl',
+    'tpl!modules/common/offers/list/templates/provided_list.tpl',
+    'tpl!modules/common/offers/list/templates/provided_list_item.tpl',
     'vendors/tags.min',
     'backbone.forms',
     'backbone.forms.bootstrap',
     'css!vendors/bower/backbone-forms/css/bootstrap3.css',
     'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false',
     'geocomplete'
-], function(AppManager, UttStages, listTpl, listItemTpl){
+], function(AppManager, UttStages, listTpl, listItemTpl, providedListTpl, providedListItemTpl){
     
     // OffersModule List View
     AppManager.module('OffersModule.List.View', function(View, AppManager, Backbone, Marionette, $, _){
     
         var API = new UttStages.Application(AppManager);
         
+        var isProvidedMode;
+        
         View.Offer = Marionette.ItemView.extend({
             tagName: 'tr',
-            template: listItemTpl,
+            
+            initialize: function(){
+                this.template = ((isProvidedMode == true) ? providedListItemTpl: listItemTpl);
+            },
             events: {
                 'click td a.js-show': API.views.events.showClicked
             }
         })
         
         View.Offers = Marionette.CompositeView.extend({
-            template: listTpl,
+            
             itemView: View.Offer,
             itemViewContainer: 'tbody',
             searchForm: '',
@@ -41,6 +48,9 @@ define([
             },
             
             initialize: function(){
+
+                isProvidedMode = this.options.isProvidedMode;
+                this.template = ((isProvidedMode == true) ? providedListTpl: listTpl),
                 
                 setTimeout(function(){
                     API.misc.initDataTable();
