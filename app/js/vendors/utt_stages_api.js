@@ -308,7 +308,7 @@ define([
                         //  If _res exists and is an object
                         //  => User is logged
                         if (_res && _.isObject(_res) ) {
-
+                            
                             //  Modules to load for each category of user
                             var common = [
                                 
@@ -343,6 +343,9 @@ define([
     
                                     //  Create and Get Backbone user model (from the object sent by server)
                                     var user = APPMANAGER.request('user:entity:new', _res);
+                                    user.set('lastConnexion', new Date());
+                                    user.save();
+                                    
                                     //  Show user infos in top right corner
                                     APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
 
@@ -462,33 +465,33 @@ define([
                     return function(_model){
   
                         function getModel(_arr, _obj) {
-                        
-                            //console.log(_arr);
+
                             var crit = _arr[0];
                             
                             // Delete first item of the array
                             // (already used with _model.get(arr[0]))
                             _arr.splice(0, 1)
-                            
-                            
+
                             var obj = _obj;
 
+                             
                             if(_arr.length > 0){
-                                if (obj[_arr[0]]) {
+
+                                if (obj[_arr[0]] != undefined) {
                                     obj = obj[_arr[0]];
+
                                     // Recursive call
                                     getModel(_arr, obj);
                                 }
                             }
 
                             if (crit == "loc") {
-                                
+                            
                                 var lat = valueArr[0],
                                     lng = valueArr[1],
                                     perimeter = valueArr[2];
                                 
                                 if(perimeter.match('^>')){
-                                    console.log('>200');
                                     return _model;
                                 }
                                 else{
@@ -496,7 +499,6 @@ define([
                                     
                                     
                                     if (parseInt(dist) < parseInt(perimeter)) {
-                                        //console.log('test')
                                         return _model;
                                     }
                                     
@@ -506,7 +508,6 @@ define([
                                 for(var i in valueArr){
                                 
                                     if (valueArr[i].trim()) {
-                                        //console.log(valueArr[i]);
                                         
                                         if (crit == "tags") {
                                             if (_model.get('_objectType') == 'offer') {
@@ -535,11 +536,25 @@ define([
                                             }
                                         }
                                         else {
-                                            
-                                            if (obj.toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
-                                                return _model;
+
+                                            //  Returns everything but NOT if obj == value
+                                            if (value.indexOf('[NOT]') > -1 ) {
+                                                if (obj.toLowerCase().indexOf(valueArr[i].replace('[NOT]','').trim().toLowerCase()) <= -1) {
+                                                    return _model;
+                                                }
                                             }
-                                            
+                                            //  Returns everything but NOT if obj == empty
+                                            else if (value.indexOf('[NOTempty]') > -1 ) {
+                                                if ( !_.isEmpty(obj)) {
+                                                    return _model;
+                                                }
+                                            }
+                                            //  Returns _model if obj == value
+                                            else{
+                                                if (obj.toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
+                                                    return _model;
+                                                }
+                                            }
                                         }
                                     }
                                     
@@ -548,7 +563,6 @@ define([
                             
                             
                             return null;  
-                            
                         }
                         
                         // Split criterion to have each arg of the path in an array
@@ -863,9 +877,10 @@ define([
                 _e.stopPropagation();
                 
                 var self = this;
-                
+ 
                 Bootbox.dialog({
-                    message: 'Confirmation de la suppression ?',
+                    message: 'Supprimer cette annonce supprimera également le suivi qui lui est lié (dans le cas où il y en a un)',
+                    title: 'Justification de la suppression',
                     buttons: {
                         default: {
                             label: 'Annuler',
@@ -881,11 +896,31 @@ define([
                                 
                                 switch ( self.model.get('_objectType') ) {
                                     
-                                    default:
+                                    case 'offer':
+                                        
+                                        var fetchingMonitoring = APPMANAGER.request('monitoring:entities');
+                                        $.when(fetchingMonitoring).done(function(_monitoring){
+                    
+                                            var filteredMonitoring = ENTITIES.filterCollection(_monitoring);
+                                            filteredMonitoring.filter('offer._id', self.model.get('_id'));
+                                            
+                                            filteredMonitoring.each(function(_monitoring){
+                                                _monitoring.destroy();
+                                            });
+                                        });
+                                        
                                         self.model.destroy();
                                 
                                         setTimeout(function(){
-                                            //location.reload();
+                                            APPMANAGER.trigger('offers:list')
+                                        },50);
+                                        break;
+                                    
+                                    default:
+                                        //self.model.destroy();
+                                
+                                        setTimeout(function(){
+                                            
                                         },50);
                                         break;
                                 } 
