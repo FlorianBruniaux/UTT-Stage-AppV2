@@ -16,20 +16,32 @@ define([
                 _id: null,
                 _objectType : 'monitoring',
                 offer: {},
-                dates: {
-                    from: '',
-                    to: ''
-                },
-                semester: '',//A12,P13 ..
-                uttResp: {},//object
-                visits: [
-                    {
-                        date: '',
-                        description: ''
-                    }
-                ],
                 sheets : {
-                    1 : {
+                    sh0: {
+                        name: 'Global information',
+                        openingDate: '',
+                        deadline: '',
+                        validation: {
+                            validated: false,
+                            msg: '',
+                            by: '',
+                            date: ''
+                        },
+                        
+                        dates: {
+                            from: '',
+                            to: ''
+                        },
+                        semester: '',//A12,P13 ..
+                        uttResp: {},//object
+                        visits: [
+                            {
+                                date: '',
+                                description: ''
+                            }
+                        ]
+                    },
+                    sh1 : {
                         name : 'Installation',
                         openingDate: '',
                         deadline: '',
@@ -59,7 +71,7 @@ define([
                             tel: ''
                         }
                     },
-                    2 : {
+                    sh2 : {
                         name : 'Definition',
                         openingDate: '',
                         deadline: '',
@@ -80,7 +92,7 @@ define([
                         contactWithRespUtt : '',//None, Mail, Tel, Mail+Tel
                         whoseInitiative: ''//student/resp
                     },
-                    3 : {
+                    sh3 : {
                         name : 'Progress',
                         openingDate: '',
                         deadline: '',
@@ -97,7 +109,7 @@ define([
                         difficulties: '',
                         observations: ''
                     },
-                    4 : {
+                    sh4 : {
                         name : 'Company Opinion',
                         openingDate: '',
                         deadline: '',
@@ -114,7 +126,7 @@ define([
                         remark: '',
                         author:''                                            
                     },
-                    5 : {
+                    sh5 : {
                         name : 'Student Opinion',
                         openingDate: '',
                         deadline: '',
@@ -137,7 +149,7 @@ define([
                         enoughHelpFromUttResp : true
                         
                     },
-                    6 : {
+                    sh6 : {
                         name : 'Auto evaluation',
                         openingDate: '',
                         deadline: '',
@@ -155,8 +167,8 @@ define([
                             }
                         ]
                     },
-                    7 : {
-                        name : 'Evaluation',
+                    sh7 : {
+                        name : 'Company evaluation',
                         openingDate: '',
                         deadline: '',
                         validation: {
@@ -173,7 +185,7 @@ define([
                             }
                         ]
                     },
-                    8 : {
+                    sh8 : {
                         name : 'Record privacy',
                         openingDate: '',
                         deadline: '',
@@ -188,7 +200,7 @@ define([
                         reportIsConfidential: false,
                         presentationIsConfidential: false,
                     },
-                    9 : {
+                    sh9 : {
                         name : 'Report',
                         openingDate: '',
                         deadline: '',
@@ -202,7 +214,7 @@ define([
                         receptionDate: '',
                         remark: ''
                     },
-                    10 : {
+                    sh10 : {
                         name : 'Presentation',
                         validation: {
                             validated: false,
