@@ -64,9 +64,7 @@ define([
     };
     
     var MISC = API.Application.prototype.misc = {
-        
-        
-        
+
         initDataTable: function (){
         
             require([
@@ -91,7 +89,34 @@ define([
             });
         },
         
+        initDatepicker: function(){
+            
+            require([
+                'bootstrapDatePicker',
+                'bootstrapDatePicker.locales.fr',
+                'css!vendors/bower/bootstrap-datepicker/css/datepicker3.css'
+            ], function(){
+                
+                var dp_now = new Date();
+                var five_year_ago = new Date(dp_now.getFullYear()-5, dp_now.getMonth(), dp_now.getDate());
+
+                setTimeout(function(){
+                    return $('.datepicker input').datepicker({
+                        startDate: five_year_ago,
+                        format: "dd/mm/yyyy",
+                        weekStart: 1,
+                        //language: "fr",
+                        autoclose: true,
+                        todayHighlight: true,
+                        todayBtn: true,
+                        calendarWeeks: true
+                    })
+                }, 500);
+                
+            })
           
+        },
+        
         showLoader : function(){
             if (LOADER.view) {
                 APPMANAGER.contentRegion.show(new LOADER.view.Loading());
@@ -546,6 +571,12 @@ define([
                                             //  Returns everything but NOT if obj == empty
                                             else if (value.indexOf('[NOTempty]') > -1 ) {
                                                 if ( !_.isEmpty(obj)) {
+                                                    return _model;
+                                                }
+                                            }
+                                            //  Returns only if obj == empty
+                                            else if (value.indexOf('[isEmpty]') > -1 ) {
+                                                if ( _.isEmpty(obj)) {
                                                     return _model;
                                                 }
                                             }
