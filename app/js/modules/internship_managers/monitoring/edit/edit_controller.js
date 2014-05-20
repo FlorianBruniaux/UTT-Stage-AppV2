@@ -29,7 +29,6 @@ define([
                 // Gets the monitoring
                 // When the monitoring is fetched (CF use of defer.promise() )
                 var fetchingMonitoring = AppManager.request('monitoring:entity', _options.monitoringId);
-                
                 $.when(fetchingMonitoring).done(function(_monitoring){
                     
                     if (_monitoring !== undefined) {
