@@ -7,7 +7,7 @@ define([
     // OffersModule new Controller
     AppManager.module('OffersModule.New', function(New, AppManager, Backbone, Marionette, $, _){
         
-       var API = new UttStages.Application(AppManager);
+        var API = new UttStages.Application(AppManager);
         
         New.Controller = {
             
