@@ -35,7 +35,7 @@ define([
                 $.when(fetchingOffers).done(function(_offers){
                     
                     var filteredOffers = API.entities.filterCollection(_offers);
-                        filteredOffers.filter(['provided.by','alreadyMonitored'], ['','no']);
+                        filteredOffers.filter(['provided.by.firstName','alreadyMonitored'], ['[NOTempty]','no']);
                         
                     var off = {};
                     filteredOffers.each(function(_offer){
@@ -60,7 +60,7 @@ define([
                             _offer.set('alreadyMonitored','yes');
                             
                             if (_offer.save() && newMonitoring.save(_data)) {
-                                AppManager.trigger("monitoring:list");
+                                AppManager.trigger("internship_managers:monitoring:list");
                             }
                             
                         });
