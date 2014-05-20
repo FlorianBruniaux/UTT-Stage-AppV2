@@ -31,7 +31,7 @@ var Schema = mongoose.Schema,
                 state:          { type: String },
                 msg:            { type: String },
                 by:             Schema.Types.Mixed,
-                date:           { type: Date, default: Date.now }
+                date:           { type: String }
             },
             provided:       Schema.Types.Mixed,
             alreadyMonitored: { type: String },
@@ -52,6 +52,7 @@ var Schema = mongoose.Schema,
         user : new Schema({
             _objectType :   { type: String },
             userCategory:   { type: String },
+            lastConnexion:  { type: String },
             linkedinId:     { type: String },
             firstName:      { type: String },
             lastName:       { type: String },
