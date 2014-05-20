@@ -25,6 +25,10 @@ requirejs.config({
         
         bootstrap: ['jquery'],
         
+        bootstrapDatePicker: ['jquery'],
+        
+        'bootstrapDatePicker.locales.fr' : ['bootstrapDatePicker'],
+        
         collapsible: ['jquery'],
         
         collapsibleMenu : ['collapsible'],
@@ -81,6 +85,9 @@ requirejs.config({
         bootbox: 'vendors/bower/bootbox.js/js/bootbox',
         
         bootstrap: 'vendors/bower/bootstrap/js/bootstrap',
+        
+        bootstrapDatePicker: 'vendors/bower/bootstrap-datepicker/js/bootstrap-datepicker',
+        'bootstrapDatePicker.locales.fr': 'vendors/bower/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr',
         
         collapsible: 'vendors/collapsible.min',
         

@@ -20,6 +20,7 @@
     "backbone.picky": "~0.2.0",
     "backbone.syphon": "~0.4.1",
     "bootbox.js": "makeusabrew/bootbox#~4.2.0",
+    "bootstrap-datepicker": "~1.3.0",
     "geocomplete": "ubilabs/geocomplete#~1.5.1",
     "html5shiv": "~3.7.0",
     "jasny-bootstrap": "jasny/bootstrap#~3.1.0",
@@ -64,6 +65,13 @@
     },
     "bootstrap": {
       "js": "dist/js/bootstrap.js"
+    },
+    "bootstrap-datepicker": {
+      "js": "js/bootstrap-datepicker.js",
+      "js/locales": [
+        "js/locales/bootstrap-datepicker.fr.js"
+      ],
+      "css": "css/datepicker3.css"
     },
     "geocomplete": {
       "js": "jquery.geocomplete.js"
