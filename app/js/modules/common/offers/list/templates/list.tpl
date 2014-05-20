@@ -61,12 +61,12 @@
             
             <thead>
                 <tr>
-                    <th style="width:100px;">Type</th>
-                    <th style="width:100px;">Department</th>
-                    <th style="width:100px;">Specialization</th>
-                    <th style="width:150px;">Company</th>
-                    <th style="width:200px;">Address</th>
-                    <th>Title</th>
+                    <th class="center" style="width:100px;">Type</th>
+                    <th class="center" style="width:100px;">Department</th>
+                    <th class="center" style="width:100px;">Specialization</th>
+                    <th class="center" style="width:150px;">Company</th>
+                    <th class="center" style="width:200px;">Address</th>
+                    <th class="center" >Title</th>
                 </tr>
             </thead>
             

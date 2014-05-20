@@ -1,15 +1,15 @@
-<td><%=type%></td>
+<td class="center"><%=type%></td>
 
-<td><%=department%></td>
+<td class="center"><%=department%></td>
 
-<td><%=departmentSpec%></td>
+<td class="center"><%=departmentSpec%></td>
 
-<td>
+<td class="center">
     <a href="#companies/<%=company._id%>"><%=company.cname%></a>
 </td>
 
-<td><%=fullAddress%></td>
+<td class="center"><%=fullAddress%></td>
 
-<td>
+<td class="center">
     <a href="#offers/<%=_id%>"><%=title%></a>
 </td>
