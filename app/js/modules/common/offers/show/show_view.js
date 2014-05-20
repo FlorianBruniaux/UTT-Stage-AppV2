@@ -1,11 +1,14 @@
 define([
     'app',
+    'utt.stages',
     'tpl!modules/common/offers/show/templates/offer_details.tpl',
     'bootbox'
-], function(AppManager, offerDetailsTpl, Bootbox){
+], function(AppManager, UttStages, offerDetailsTpl, Bootbox){
     
     // OffersModule Show View
     AppManager.module('OffersModule.Show.View', function(View, AppManager, Backbone, Marionette, $, _){
+        
+        var API = new UttStages.Application(AppManager);
         
         View.Offer = Marionette.ItemView.extend({
             template: offerDetailsTpl,
@@ -30,6 +33,7 @@ define([
                 //  Internship managers
                 'click .js-modify': 'eModifyClicked',
                 'click .js-provide': 'eProvideClicked',
+                'click .js-delete': API.views.events.deleteClicked,
                 
                 //  Teachers
                 'click .js-validate': 'eValidateClicked',
