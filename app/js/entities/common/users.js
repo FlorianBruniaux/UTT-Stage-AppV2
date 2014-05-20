@@ -16,6 +16,10 @@ define([
                 _id: null,
                 _objectType : 'user',
                 userCategory: 'students',
+                specificToCategory : { //if student
+                    department: '',
+                    departmentSpec: ''
+                },
                 lastConnexion: '',
                 linkedinId: '',
                 firstName : '',
