@@ -116,7 +116,7 @@
             <%
                 if(provided.by == ''){
             %>
-                    <button class="btn btn-success js-provide"><i class="icon-checkbox-checked"></i> Définir comme pourvue</button>
+                    <button class="btn btn-success js-provide"><i class="icon-checkbox-unchecked"></i> Définir comme pourvue</button>
             <%
                 }
                 else{
@@ -126,6 +126,7 @@
                 }
             %>
                     <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> Modifier</button>
+                    <button class="btn btn-danger js-delete"><i class="icon-remove3"></i> Supprimer</button>
                 </div>
             
         <%
