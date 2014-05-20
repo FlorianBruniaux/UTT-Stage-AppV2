@@ -5,67 +5,68 @@ var Schema = mongoose.Schema,
     schemas = {
     
         company : new Schema({
-            _objectType :   { type: String },
-            cname:          { type: String },
-            description:    { type: String },
-            lat:            { type: Number },
-            lng:            { type: Number },
-            fullAddress:    { type: String },
-            website:        { type: String }
+            _objectType :           { type: String },
+            cname:                  { type: String },
+            description:            { type: String },
+            lat:                    { type: Number },
+            lng:                    { type: Number },
+            fullAddress:            { type: String },
+            website:                { type: String }
         }),
         
         monitoring : new Schema({
-            _objectType :   { type: String },
-            offer:          Schema.Types.Mixed,
-            dates:          Schema.Types.Mixed,
-            semester:       { type: String },
-            uttResp:        Schema.Types.Mixed,
-            visits:         [Schema.Types.Mixed],
-            sheets:         Schema.Types.Mixed
+            _objectType :           { type: String },
+            offer:                  Schema.Types.Mixed,
+            dates:                  Schema.Types.Mixed,
+            semester:               { type: String },
+            uttResp:                Schema.Types.Mixed,
+            visits:                 [Schema.Types.Mixed],
+            sheets:                 Schema.Types.Mixed
         }),
         
         offer : new Schema({
-            _objectType :   { type: String },
-            ref:            { type: String },
+            _objectType :           { type: String },
+            ref:                    { type: String },
             validation: {
-                state:          { type: String },
-                msg:            { type: String },
-                by:             Schema.Types.Mixed,
-                date:           { type: String }
+                state:              { type: String },
+                msg:                { type: String },
+                by:                 Schema.Types.Mixed,
+                date:               { type: String }
             },
-            provided:       Schema.Types.Mixed,
-            alreadyMonitored: { type: String },
-            department:     { type: String },
-            departmentSpec: { type: String },
-            lat:            { type: Number },
-            lng:            { type: Number },
-            fullAddress:    { type: String },
-            company:        Schema.Types.Mixed,
-            mission:        { type: String },
-            profile:        { type: String },
-            rem:            { type: Number },
-            tags:           { type: String },
-            title:          { type: String },
-            type:           { type: String }
+            provided:               Schema.Types.Mixed,
+            alreadyMonitored:       { type: String },
+            department:             { type: String },
+            departmentSpec:         { type: String },
+            lat:                    { type: Number },
+            lng:                    { type: Number },
+            fullAddress:            { type: String },
+            company:                Schema.Types.Mixed,
+            mission:                { type: String },
+            profile:                { type: String },
+            rem:                    { type: Number },
+            tags:                   { type: String },
+            title:                  { type: String },
+            type:                   { type: String }
         }),
         
         user : new Schema({
-            _objectType :   { type: String },
-            userCategory:   { type: String },
-            lastConnexion:  { type: String },
-            linkedinId:     { type: String },
-            firstName:      { type: String },
-            lastName:       { type: String },
-            mobile:         { type: String },
-            email:          { type: String },
-            headline:       { type: String },
-            summary :       { type: String },
-            photoUrl:       { type: String },
-            pwd:            { type: String },
-            tags:           { type: String },
-            educations:     Schema.Types.Mixed,
-            positions:      Schema.Types.Mixed,
-            skills:         Schema.Types.Mixed
+            _objectType :           { type: String },
+            userCategory:           { type: String },
+            specificToCategory:     Schema.Types.Mixed,
+            lastConnexion:          { type: String },
+            linkedinId:             { type: String },
+            firstName:              { type: String },
+            lastName:               { type: String },
+            mobile:                 { type: String },
+            email:                  { type: String },
+            headline:               { type: String },
+            summary :               { type: String },
+            photoUrl:               { type: String },
+            pwd:                    { type: String },
+            tags:                   { type: String },
+            educations:             Schema.Types.Mixed,
+            positions:              Schema.Types.Mixed,
+            skills:                 Schema.Types.Mixed
         })
         
     };
