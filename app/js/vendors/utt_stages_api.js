@@ -75,7 +75,7 @@ define([
 
                 oTable = $('.datatable table').dataTable({
                     "bJQueryUI": false,
-                    "bAutoWidth": false,
+                    "bAutoWidth": true,
                     "sPaginationType": "full_numbers",
                     "sDom": '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                     "oLanguage": {
@@ -116,7 +116,30 @@ define([
             })
           
         },
-        
+        /*
+        initTimePicker: function(){
+            
+            require([
+                'bootstrap',
+                'bootstrapTimePicker',
+                'css!vendors/bower/bootstrap-timepicker/css/bootstrap-timepicker.css'
+            ], function(){
+                
+                setTimeout(function(){
+                    return  $('#timepicker').timepicker({
+                        minuteStep: 1,
+                        template: 'modal',
+                        appendWidgetTo: 'body',
+                        showSeconds: true,
+                        showMeridian: false,
+                        defaultTime: false
+                    })
+                }, 500);
+                
+            });
+          
+        },
+        */
         showLoader : function(){
             if (LOADER.view) {
                 APPMANAGER.contentRegion.show(new LOADER.view.Loading());
@@ -843,7 +866,7 @@ define([
                     label = '<label class="error valid"><i class="icon-checkmark"></i></label>'
                 }
                 
-                $('#form-'+_key).parent().find('span.msg').html(label);
+                $('#form-'+_key.replace('.', '-')).parent().find('span.msg').html(label);
                 
             },
             
