@@ -54,6 +54,8 @@ define([
                             _data.company = comp[_data.company];
                         }
 
+                        _data.creationDate = new Date();
+                        
                         if (newOffer.save(_data)) {
                             
                             //  To inform listeners

@@ -2,7 +2,8 @@
     "modules": [
         "modules/teachers/companies/companies_module",
         "modules/teachers/home/home_module",
-        "modules/teachers/offers/offers_module"
+        "modules/teachers/offers/offers_module",
+        "modules/teachers/monitoring/monitoring_module"
     ]
 }
 

@@ -53,6 +53,8 @@ define([
                                 _data.company = comp[_data.company];
                             }
                             
+                            _offer.lastModifDate = new Date();
+                            
                             if (_offer.save(_data)) {
                                 AppManager.trigger("offer:show", _options);
                             }

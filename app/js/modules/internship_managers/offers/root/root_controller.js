@@ -1,10 +1,13 @@
 define([
     'app',
+    'utt.stages',
     'common/roots/root_view'
-], function(AppManager, View){
+], function(AppManager, UttStages, View){
 
     // OffersModule Root Controller
     AppManager.module('OffersModule.Root', function(Root, AppManager, Backbone, Marionette, $, _){
+        
+        var API = new UttStages.Application(AppManager);
         
         Root.Controller = {
             
@@ -34,6 +37,32 @@ define([
                         var trigger = model.get('navigationTrigger');
                         AppManager.trigger(trigger);
                     });
+                    
+                    view.on('rendered', function(){
+
+                        // When all the offers are fetched (CF use of defer.promise() )
+                        var fetchingOffers = AppManager.request('offers:entities'),
+                            fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                        $.when(fetchingOffers, fetchingUser).done(function(_offers, _user){
+                            
+                            var filteredOffers = API.entities.filterCollection(_offers);
+                            filteredOffers.filter('validation.state', '[NOT]validated');
+                            if (filteredOffers.length > 0) {
+                                $('.info-blocks a[href="#offers/validation"]').parent().find('span').html(filteredOffers.length+" offres à contrôler.").removeClass('bg-info').addClass('bg-danger');
+                            }
+                            
+                            filteredOffers = API.entities.filterCollection(_offers);
+                            filteredOffers.filter(['creationDate', 'validation.state'], ['[Created:after]'+_user.get('penultimateConnexion'), 'validated']);
+                            if (filteredOffers.length > 0) {
+                                $('.info-blocks a[href="#offers/list"]').parent().find('span').html(filteredOffers.length+" nouvelle(s) offre(s)").removeClass('bg-info').addClass('bg-success');
+                            }
+
+                            
+                        });
+                        
+                    })
+                    
+                    
                     
                     // Displays the view
                     AppManager.contentRegion.show(view);

@@ -15,6 +15,8 @@ define([
             defaults: {
                 _id: null,
                 _objectType : 'offer',
+                creationDate: '',
+                lastModifDate: '',
                 validation: {
                     state: 'not yet treated', // not yet treated, validated, denied, provided
                     msg: '',

@@ -391,6 +391,7 @@ define([
     
                                     //  Create and Get Backbone user model (from the object sent by server)
                                     var user = APPMANAGER.request('user:entity:new', _res);
+                                    user.set('penultimateConnexion', user.get('lastConnexion'));
                                     user.set('lastConnexion', new Date());
                                     user.save();
                                     
@@ -602,6 +603,17 @@ define([
                                                 if ( _.isEmpty(obj)) {
                                                     return _model;
                                                 }
+                                            }
+                                            //  Returns only if date after 
+                                            else if (valueArr[i].indexOf('[Created:after]') > -1 ) {
+                                                
+                                                console.log(valueArr[i]);
+                                                console.log(obj);
+                                                
+                                                if (new Date(obj) > new Date(valueArr[i].replace('[Created:after]',''))) {
+                                                    return _model;
+                                                }
+
                                             }
                                             //  Returns _model if obj == value
                                             else{

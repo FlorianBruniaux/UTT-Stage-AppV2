@@ -53,7 +53,7 @@ define([
             _action(_options);
             
             // Sets the active menu item
-            AppManager.execute('set:active:menu', 'monitoring');
+            AppManager.execute('set:active:menu', 'monitoring/list');
         };
         
         

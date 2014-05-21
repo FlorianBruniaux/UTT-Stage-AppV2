@@ -24,6 +24,7 @@ define([
             itemViewContainer: '.info-blocks',
             onRender: function(){
                 this.$('h6.panel-title').append('Voici les actions disponibles :');
+                this.trigger('rendered');
             }
         });
         

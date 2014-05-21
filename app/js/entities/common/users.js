@@ -20,6 +20,7 @@ define([
                     department: '',
                     departmentSpec: ''
                 },
+                penultimateConnexion: '',
                 lastConnexion: '',
                 linkedinId: '',
                 firstName : '',

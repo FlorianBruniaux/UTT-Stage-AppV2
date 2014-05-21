@@ -1,10 +1,13 @@
 define([
-    "app",
-    "common/roots/root_view"
-], function(AppManager, View){
+    'app',
+    'utt.stages',
+    'common/roots/root_view'
+], function(AppManager, UttStages, View){
 
     // HomeModule Root Controller
     AppManager.module("HomeModule.Root", function(Root, AppManager, Backbone, Marionette, $, _){
+        
+        var API = new UttStages.Application(AppManager);
         
         Root.Controller = {
             
@@ -30,6 +33,8 @@ define([
                         var trigger = model.get("navigationTrigger");
                         AppManager.trigger(trigger);
                     });
+                    
+                    
                     
                     // Displays the view
                     AppManager.contentRegion.show(view);
