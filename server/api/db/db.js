@@ -136,8 +136,6 @@ exports.controller = {
     update: function(_req, _res){
         
         console.log('update');
-        console.log(_req.params);
-        console.log(_req.body);
         
         delete _req.body._id;
         

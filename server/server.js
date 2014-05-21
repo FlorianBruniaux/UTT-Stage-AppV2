@@ -112,8 +112,23 @@ requirejs([
     
     
     //  Create HTTP server
-    http.createServer(app).listen(app.get('port'), function(){
+    var server = http.createServer(app).listen(app.get('port'), function(){
         console.log('You can run the application on ' + API.express.getUrl() );
     });
+    
+    var io = require('socket.io').listen(server);
+    io.sockets.on('connection', function (socket) {
+        
+        socket.on('offer:new', function (socket) {
+            io.sockets.emit('update:offers:validation:view');
+        });
+        
+        socket.on('offer:validated', function (socket) {
+            io.sockets.emit('update:offers:list:view');
+        });
+        
+    });
+    
+    
     
 });
