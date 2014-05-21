@@ -1,8 +1,8 @@
 define([
     'app',
     'utt.stages',
-    'tpl!modules/internship_managers/monitoring/list/templates/list.tpl',
-    'tpl!modules/internship_managers/monitoring/list/templates/list_item.tpl',
+    'tpl!modules/common/monitoring/list/templates/list.tpl',
+    'tpl!modules/common/monitoring/list/templates/list_item.tpl',
     'backbone.forms',
     'backbone.forms.bootstrap',
     'css!vendors/bower/backbone-forms/css/bootstrap3.css'
@@ -128,7 +128,7 @@ define([
                 params = this.cleanParams(params, ['&',',']);
 
                 //  To filter the monitoring with new params
-                AppManager.trigger('internship_managers:monitoring:filter', params);
+                AppManager.trigger(this.options.userCategory+':monitoring:filter', params);
                 
             },
             

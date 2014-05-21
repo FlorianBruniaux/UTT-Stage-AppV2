@@ -1,7 +1,7 @@
 define([
     'app',
     'utt.stages',
-    'modules/internship_managers/monitoring/list/list_view'
+    'modules/common/monitoring/list/list_view'
 ], function(AppManager, UttStages, View){
     
     // MonitoringModule List Controller
@@ -12,18 +12,28 @@ define([
         List.Controller = {
             
             // To list all the monitoring
-            listMonitoring: function(){
+            listMonitoring: function(_options){
                 
                 if(DEBUG) console.info('monitoring.list.list_controller.listMonitoring()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
                  
-                // Updates breadcrumb
-                var path = [
-                    { name: 'monitoring', url: 'monitoring', navigationTrigger: 'internship_managers:monitoring:root' },
-                    { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'internship_managers:monitoring:list' }
-                ];
+                var path = [];
+                switch (_options.userCategory) {
+                    case 'teachers':
+                        path.push(
+                            { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'teachers:monitoring:list'}
+                        )
+                        break;
+                    
+                    case 'internship_managers':
+                        path.push(
+                            { name: 'monitoring', url: 'monitoring', navigationTrigger: 'internship_managers:monitoring:root' },
+                            { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'internship_managers:monitoring:list'}
+                        )
+                        break;
+                }
                 AppManager.trigger('breadcrumb:update', path);
  
                 // Gets all the monitoring (CF entities folder)
@@ -63,7 +73,8 @@ define([
 
                     var monitoringListView = new View.Monitoring({
                         collection: filteredMonitoring,
-                        params: prms
+                        params: prms,
+                        userCategory : _options.userCategory
                     });
                     
                     monitoringListView.on('itemview:monitoring:show', function(childView, model){
