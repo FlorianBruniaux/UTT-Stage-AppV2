@@ -17,7 +17,7 @@ define([
                 _objectType : 'monitoring',
                 offer: {},
                 sheets : {
-                    sh0: {
+                    sheet0: {
                         name: 'Global information',
                         openingDate: '',
                         deadline: '',
@@ -33,15 +33,9 @@ define([
                             to: ''
                         },
                         semester: '',//A12,P13 ..
-                        uttResp: {},//object
-                        visits: [
-                            {
-                                date: '',
-                                description: ''
-                            }
-                        ]
+                        uttResp: {}//object
                     },
-                    sh1 : {
+                    sheet1 : {
                         name : 'Installation',
                         openingDate: '',
                         deadline: '',
@@ -53,25 +47,24 @@ define([
                         },
                         
                         
-                        activityField: '',//52 - Commerce de détail..
+                        naf: '',//52 - Commerce de détail..
                         workforce: '',// <5, 5-10, 10-20, 20-50, 50-100, 100-500, >500
-                        APE: '',
                         administrativeResp: {
                             firstName: '',
                             lastName: '',
                             position: '',
                             email: '',
-                            tel: ''
+                            phone: ''
                         },
                         technicalResp: {
                             firstName: '',
                             lastName: '',
                             position: '',
                             email: '',
-                            tel: ''
+                            phone: ''
                         }
                     },
-                    sh2 : {
+                    sheet2 : {
                         name : 'Definition',
                         openingDate: '',
                         deadline: '',
@@ -86,13 +79,13 @@ define([
                             description : '',
                             objectives : '',
                             conditions : '',
-                            isIntersting : '',
+                            isInteresting : '',
                             isConcordantWithProfessionalProject : '',
                         },
                         contactWithRespUtt : '',//None, Mail, Tel, Mail+Tel
                         whoseInitiative: ''//student/resp
                     },
-                    sh3 : {
+                    sheet3 : {
                         name : 'Progress',
                         openingDate: '',
                         deadline: '',
@@ -109,7 +102,7 @@ define([
                         difficulties: '',
                         observations: ''
                     },
-                    sh4 : {
+                    sheet4 : {
                         name : 'Company Opinion',
                         openingDate: '',
                         deadline: '',
@@ -119,14 +112,26 @@ define([
                             by: '',
                             date: ''
                         },
-                        
-                        taxResp: '',
+                         
                         isConcordantWithWork: '',
                         satisfaction: '',
-                        remark: '',
-                        author:''                                            
+                        globalOpinion: '',
+                        taxResp: {
+                            firstName: '',
+                            lastName: '',
+                            position: '',
+                            email: '',
+                            phone: ''
+                        },
+                        author:{
+                            firstName: '',
+                            lastName: '',
+                            position: '',
+                            email: '',
+                            phone: ''
+                        }                                     
                     },
-                    sh5 : {
+                    sheet5 : {
                         name : 'Student Opinion',
                         openingDate: '',
                         deadline: '',
@@ -145,11 +150,13 @@ define([
                         odds: '',
                         rem: 0,
                         bonus: 0,
-                        
-                        enoughHelpFromUttResp : true
+                        HelpFromUttResp : {
+                            enough: true,
+                            explanations: ''
+                        }
                         
                     },
-                    sh6 : {
+                    sheet6 : {
                         name : 'Auto evaluation',
                         openingDate: '',
                         deadline: '',
@@ -160,14 +167,23 @@ define([
                             date: ''
                         },
                         
-                        criterions : [
-                            {
-                                name: '',
-                                mark: 0
-                            }
-                        ]
+                        adaptability: '',
+                        initiative: '',
+                        abilityToInform: '',
+                        efficiency: '',
+                        abilityToWorkInTeam: '',
+                        humanRelations: '',
+                        attendance: '',
+                        skillset: '',
+                        innovation: '',
+                        organization: '',
+                        writtenReportsQuality: '',
+                        oralReportsQuality: '',
+                        achievementsQuality: '',
+                        evolution: ''                      
+
                     },
-                    sh7 : {
+                    sheet7 : {
                         name : 'Company evaluation',
                         openingDate: '',
                         deadline: '',
@@ -178,14 +194,22 @@ define([
                             date: ''
                         },
                         
-                        criterions : [
-                            {
-                                name: '',
-                                mark: 0
-                            }
-                        ]
+                        adaptability: '',
+                        initiative: '',
+                        abilityToInform: '',
+                        efficiency: '',
+                        abilityToWorkInTeam: '',
+                        humanRelations: '',
+                        attendance: '',
+                        skillset: '',
+                        innovation: '',
+                        organization: '',
+                        writtenReportsQuality: '',
+                        oralReportsQuality: '',
+                        achievementsQuality: '',
+                        evolution: ''
                     },
-                    sh8 : {
+                    sheet8 : {
                         name : 'Record privacy',
                         openingDate: '',
                         deadline: '',
@@ -197,10 +221,10 @@ define([
                         },
                         
                         receptionDate: '',
-                        reportIsConfidential: false,
-                        presentationIsConfidential: false,
+                        reportIsConfidential: 'no',
+                        presentationIsConfidential: 'no',
                     },
-                    sh9 : {
+                    sheet9 : {
                         name : 'Report',
                         openingDate: '',
                         deadline: '',
@@ -214,7 +238,7 @@ define([
                         receptionDate: '',
                         remark: ''
                     },
-                    sh10 : {
+                    sheet10 : {
                         name : 'Presentation',
                         validation: {
                             validated: false,
@@ -237,7 +261,7 @@ define([
                                 lastName: '',
                                 position: '',
                                 email: '',
-                                tel: '',
+                                phone: '',
                                 lunch: true
                             }
                         ]
