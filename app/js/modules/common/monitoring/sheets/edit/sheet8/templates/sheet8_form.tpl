@@ -1,7 +1,7 @@
 <div id="offers-form">
     
     <!-- script tag needed for backbone template -->
-    <script id="sheet0FormTemplate" type="text/html">
+    <script id="sheet8FormTemplate" type="text/html">
         
         <form role="form" action="#" class="form-horizontal form-bordered">
             
@@ -18,7 +18,7 @@
                     
                     <div class="form-group">
                         <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opening Date :</label>
-                        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 datepicker" id="form-openingDate" data-editors="openingDate" >
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-openingDate" data-editors="openingDate" >
                           
                         </div>
                         <span class="msg"></span>
@@ -26,43 +26,36 @@
                     
                     <div class="form-group">
                         <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Deadline :</label>
-                        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 datepicker" id="form-deadline" data-editors="deadline" >
-                          
-                        </div>
-                        <span class="msg"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">From :</label>
-                        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 datepicker" id="form-dates.from" data-editors="dates.from" >
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-deadline" data-editors="deadline" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">To :</label>
-                        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5 datepicker" id="form-dates.to" data-editors="dates.to" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Reception date :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-receptionDate" data-editors="receptionDate" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Semester :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-semester" data-editors="semester" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Report is confidential :</label>
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="form-reportIsConfidential" data-editors="reportIsConfidential" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">UTT tutor :</label>
-                        <div class="col-xs-6 col-sm-5 col-md-5 col-lg-5" id="form-uttResp" data-editors="uttResp" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Presentation is confidential :</label>
+                        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="form-presentationIsConfidential" data-editors="presentationIsConfidential" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
+                    
                     
                 </div>
                 

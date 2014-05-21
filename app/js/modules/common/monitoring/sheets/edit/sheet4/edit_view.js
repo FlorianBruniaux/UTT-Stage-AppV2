@@ -1,22 +1,20 @@
 define([
     'app',
     'utt.stages',
-    
-    'tpl!modules/common/monitoring/sheets/edit/templates/sheet0_form.tpl',
-    
-    
+    'tpl!modules/common/monitoring/sheets/edit/sheet4/templates/sheet4_form.tpl',
     'backbone.forms',
     'backbone.forms.bootstrap',
     'css!vendors/bower/backbone-forms/css/bootstrap3.css'
-], function(AppManager, UttStages, sheet0FormTpl){
+], function(AppManager, UttStages, sheet4FormTpl){
     
     AppManager.module('MonitoringModule.Sheets.Edit.View', function(View, AppManager, Backbone, Marionette, $, _){
         
         var API = new UttStages.Application(AppManager);
         
-        View.sheet0 = Marionette.ItemView.extend({
-            template: sheet0FormTpl,
-            sheet0Form: '',
+        var sheet4Form;
+
+        View.sheet4 = Marionette.ItemView.extend({
+            template: sheet4FormTpl,
             data : '',
             onRender: function(){
 
@@ -24,20 +22,24 @@ define([
 
                 data = this.options.model.attributes;
                 
-                var teachers = [];
-                _.each(this.options.teachers, function(_value, _key){
-                    teachers.push(_key); 
-                });
-                
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
                         openingDate:    { type: 'Text', validators: ['required']},
                         deadline:       { type: 'Text', validators: ['required']},
-                        'dates.from':   { type: 'Text', validators: ['required']},
-                        'dates.to':     { type: 'Text', validators: ['required']},
-                        semester:       { type: 'Text', validators: ['required']},
-                        uttResp:        { type: 'Select', validators: ['required'], options: teachers},
+                        isConcordantWithWork:       { type: 'TextArea', validators: ['required']},
+                        satisfaction:   { type: 'TextArea', validators: ['required']},
+                        globalOpinion:   { type: 'TextArea', validators: ['required']},
+                        'taxResp.firstName':     { type: 'Text', validators: ['required']},
+                        'taxResp.lastName':      { type: 'Text', validators: ['required']},
+                        'taxResp.position':      { type: 'Text', validators: ['required']},
+                        'taxResp.email':         { type: 'Text', validators: ['required', 'email']},
+                        'taxResp.phone':         { type: 'Text', validators: ['required', /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/]},
+                        'author.firstName':          { type: 'Text', validators: ['required']},
+                        'author.lastName':           { type: 'Text', validators: ['required']},
+                        'author.position':           { type: 'Text', validators: ['required']},
+                        'author.email':              { type: 'Text', validators: ['required', 'email']},
+                        'author.phone':              { type: 'Text', validators: ['required', /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/]},
                     }
                 });
 
@@ -49,19 +51,19 @@ define([
                 setTimeout(function(){
 
                     //  New bbform with a template
-                    sheet0Form = new Backbone.Form({
-                        template: _.template($('#sheet0FormTemplate').html()),
+                    sheet4Form = new Backbone.Form({
+                        template: _.template($('#sheet4FormTemplate').html()),
                         model: bbformModel
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet0Form.el);
+                    $('button.js-submit').before(sheet4Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
 
                     //  To set blur event listener
-                    API.views.forms.setBlurListener(sheet0Form, bbformModel);
+                    API.views.forms.setBlurListener(sheet4Form, bbformModel);
                     
                     //  To init datepicker
                     API.misc.initDatepicker();
@@ -83,8 +85,8 @@ define([
                 
                 _e.preventDefault();
 
-                if( API.views.forms.isFormValid(sheet0Form) ){
-                    var data = sheet0Form.getValue();
+                if( API.views.forms.isFormValid(sheet4Form) ){
+                    var data = sheet4Form.getValue();
 
                     this.trigger('form:submit',data)
                 }
