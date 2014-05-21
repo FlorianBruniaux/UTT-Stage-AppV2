@@ -57,7 +57,7 @@
     <hr >
     
     <div class="datatable">
-        <table class="table table-striped table-bordered">
+        <table width="100%" class="table table-striped table-bordered">
             
             <thead>
                 <tr>

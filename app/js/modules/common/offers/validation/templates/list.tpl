@@ -7,17 +7,21 @@
         </h6>
     </div>
     
+    <div style="display: none;" id="new-offer-msg" class="bg-success with-padding block-inner">
+        <h3>New offer available.</h3>
+    </div>
+    
     <div class="datatable">
-        <table class="table table-striped table-bordered">
+        <table width="100%" class="table table-striped table-bordered">
             
             <thead>
                 <tr>
-                    <th class="center" style="width:100px;">State</th>
-                    <th class="center" style="width:100px;">Type</th>
-                    <th class="center" style="width:100px;">Department</th>
-                    <th class="center" style="width:100px;">Specialization</th>
-                    <th class="center" style="width:150px;">Company</th>
-                    <th class="center" style="width:200px;">Address</th>
+                    <th class="center" >State</th>
+                    <th class="center" >Type</th>
+                    <th class="center" >Department</th>
+                    <th class="center" >Specialization</th>
+                    <th class="center" >Company</th>
+                    <th class="center" >Address</th>
                     <th class="center" >Title</th>
                 </tr>
             </thead>

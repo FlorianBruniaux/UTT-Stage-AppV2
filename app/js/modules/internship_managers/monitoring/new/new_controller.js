@@ -36,36 +36,44 @@ define([
                     
                     var filteredOffers = API.entities.filterCollection(_offers);
                         filteredOffers.filter(['provided.by.firstName','alreadyMonitored'], ['[NOTempty]','no']);
-                        
-                    var off = {};
-                    filteredOffers.each(function(_offer){
-                        off[_offer.get('title') +' - '+ _offer.get('provided').by.firstName+' '+_offer.get('provided').by.lastName] = _offer;
-                    });
-                        
-                    var view = new View.Form({
-                        model: newMonitoring,
-                        offers: off,
-                        title: polyglot.t('monitoring.new')
-                    });
                     
-                    view.on('form:submit', function(_data){
-                        
-                        API.misc.showLoader();
-                        
-                        _data.offer = off[_data.offer];
-                        
-                        var fetchingOffer = AppManager.request('offer:entity', _data.offer.get('_id'));
-                        $.when(fetchingOffer).done(function(_offer){
-
-                            _offer.set('alreadyMonitored','yes');
+                    var view;
+                    
+                    if (filteredOffers.length > 0) {
+                        var off = {};
+                        filteredOffers.each(function(_offer){
+                            off[_offer.get('title') +' - '+ _offer.get('provided').by.firstName+' '+_offer.get('provided').by.lastName] = _offer;
+                        });
                             
-                            if (_offer.save() && newMonitoring.save(_data)) {
-                                AppManager.trigger("internship_managers:monitoring:list");
-                            }
-                            
+                        view = new View.Form({
+                            model: newMonitoring,
+                            offers: off,
+                            title: polyglot.t('monitoring.new')
                         });
                         
-                    });
+                        view.on('form:submit', function(_data){
+                            
+                            API.misc.showLoader();
+                            
+                            _data.offer = off[_data.offer];
+                            
+                            var fetchingOffer = AppManager.request('offer:entity', _data.offer.get('_id'));
+                            $.when(fetchingOffer).done(function(_offer){
+    
+                                _offer.set('alreadyMonitored','yes');
+                                
+                                if (_offer.save() && newMonitoring.save(_data)) {
+                                    AppManager.trigger("internship_managers:monitoring:list");
+                                }
+                                
+                            });
+                            
+                        });
+                    }
+                    else{
+                        view = new View.Empty();
+                    }
+                    
                     
                     AppManager.contentRegion.show(view);
                     

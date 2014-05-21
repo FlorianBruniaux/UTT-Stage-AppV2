@@ -1,8 +1,9 @@
 define([
     'app',
     'utt.stages',
-    'modules/internship_managers/offers/common/view'
-], function(AppManager, UttStages, View){
+    'modules/internship_managers/offers/common/view',
+    'socket.io'
+], function(AppManager, UttStages, View, io){
     
     // OffersModule new Controller
     AppManager.module('OffersModule.New', function(New, AppManager, Backbone, Marionette, $, _){
@@ -54,6 +55,11 @@ define([
                         }
 
                         if (newOffer.save(_data)) {
+                            
+                            //  To inform listeners
+                            var socket = io.connect("http://127.0.0.1:8080");
+                            socket.emit('offer:new', {});
+                            
                             AppManager.trigger("offers:validation");
                         }
                         

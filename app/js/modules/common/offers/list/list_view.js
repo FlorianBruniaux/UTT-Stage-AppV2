@@ -5,13 +5,14 @@ define([
     'tpl!modules/common/offers/list/templates/list_item.tpl',
     'tpl!modules/common/offers/list/templates/provided_list.tpl',
     'tpl!modules/common/offers/list/templates/provided_list_item.tpl',
+    'socket.io',
     'vendors/tags.min',
     'backbone.forms',
     'backbone.forms.bootstrap',
     'css!vendors/bower/backbone-forms/css/bootstrap3.css',
     'async!http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false',
     'geocomplete'
-], function(AppManager, UttStages, listTpl, listItemTpl, providedListTpl, providedListItemTpl){
+], function(AppManager, UttStages, listTpl, listItemTpl, providedListTpl, providedListItemTpl, io){
     
     // OffersModule List View
     AppManager.module('OffersModule.List.View', function(View, AppManager, Backbone, Marionette, $, _){
@@ -49,6 +50,15 @@ define([
             
             initialize: function(){
 
+                //  To update view when a new offer is created
+                socket = io.connect("http://127.0.0.1:8080");
+                socket.on('update:offers:list:view', function () {
+                    $('#new-offer-msg').fadeIn(800).fadeOut(800);
+                    setTimeout(function(){
+                        AppManager.trigger('offers:list')
+                    }, 1600);
+                });
+                
                 isProvidedMode = this.options.isProvidedMode;
                 this.template = ((isProvidedMode == true) ? providedListTpl: listTpl),
                 

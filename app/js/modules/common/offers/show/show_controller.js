@@ -102,6 +102,10 @@ define([
                                     
                                     _offer.save();
                                     
+                                    //  To inform listeners
+                                    var socket = io.connect("http://127.0.0.1:8080");
+                                    socket.emit('offer:validated', {});
+                                    
                                     AppManager.trigger('offers:validation');
                                 }
                             });
