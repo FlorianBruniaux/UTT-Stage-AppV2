@@ -29,6 +29,8 @@ requirejs.config({
         
         'bootstrapDatePicker.locales.fr' : ['bootstrapDatePicker'],
         
+        //bootstrapTimePicker: ['bootstrap','jquery'],
+        
         collapsible: ['jquery'],
         
         collapsibleMenu : ['collapsible'],
@@ -89,6 +91,8 @@ requirejs.config({
         bootstrapDatePicker: 'vendors/bower/bootstrap-datepicker/js/bootstrap-datepicker',
         'bootstrapDatePicker.locales.fr': 'vendors/bower/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr',
         
+        //bootstrapTimePicker: 'vendors/bower/bootstrap-timepicker/js/bootstrap-timepicker',
+        
         collapsible: 'vendors/collapsible.min',
         
         collapsibleMenu: 'common/utilities/collapsible_menu.perso',
@@ -117,6 +121,8 @@ requirejs.config({
         spin: 'vendors/loader/spin',
         
         'spin.jquery': 'vendors/loader/spin.jquery',
+        
+        'socket.io': 'vendors/socket.io',
         
         //To deal with .tpl files with underscore
         tpl: 'vendors/bower/requirejs-tpl/js/tpl',
