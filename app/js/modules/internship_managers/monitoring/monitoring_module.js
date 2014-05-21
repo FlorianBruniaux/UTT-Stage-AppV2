@@ -87,9 +87,9 @@ define([
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.listMonitoring()');
                 
                 require([
-                    'modules/internship_managers/monitoring/list/list_controller'    
+                    'modules/common/monitoring/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listMonitoring, {});
+                    executeAction(ListController.listMonitoring, {'userCategory':'internship_managers'});
                 });
             },
             
@@ -111,7 +111,7 @@ define([
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.showMonitoring()');
                 
                 require([
-                    'modules/internship_managers/monitoring/show/show_controller'    
+                    'modules/common/monitoring/show/show_controller'    
                 ], function(ShowController){
                     
                     if (!_.isObject(_options)) {
@@ -119,6 +119,8 @@ define([
                         _options = {};
                         _options.monitoringId = temp;
                     }
+                    
+                    _options.userCategory = 'internship_managers';
                     
                     executeAction(ShowController.showMonitoring, _options);
                 });
@@ -149,7 +151,7 @@ define([
                 if(DEBUG) console.info('internship_managers.monitoring.monitoring_module.editSheet()');
                 
                 require([
-                    'modules/common/monitoring/sheets/edit/edit_controller'    
+                    'modules/common/monitoring/sheets/edit/'+((_sheet)? _sheet:_options.sheet)+'/edit_controller'    
                 ], function(EditController){
                     
                     if (!_.isObject(_options)) {
@@ -157,12 +159,10 @@ define([
                         _options = {};
                         _options.monitoringId = temp;
                         
-                        if (_sheet) {
-                            _options.sheet = _sheet;
-                        }
+                        
                     }
                     
-                    console.log(_options);
+                    _options.userCategory = 'internship_managers';
                     
                     executeAction(EditController.editSheet, _options);
                 });

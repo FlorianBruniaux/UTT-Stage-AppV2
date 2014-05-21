@@ -2,18 +2,28 @@ define([
     'app',
     'utt.stages',
     'tpl!modules/internship_managers/monitoring/common/templates/form.tpl',
+    'tpl!modules/internship_managers/monitoring/common/templates/empty.tpl',
     'backbone.forms',
     'backbone.forms.bootstrap',
     'css!vendors/bower/backbone-forms/css/bootstrap3.css'
-], function(AppManager, UttStages, formTpl){
+], function(AppManager, UttStages, formTpl, emptyTpl){
     
     // MonitoringModule Common Views (Use by 'edit' & 'new' because same logic and template)
     AppManager.module('MonitoringModule.Common.Views', function(Views, AppManager, Backbone, Marionette, $, _){
         
         var API = new UttStages.Application(AppManager);
         
+        Views.Empty = Marionette.ItemView.extend({
+            template : emptyTpl,
+            onRender: function(){
+                setTimeout(function(){
+                    AppManager.trigger('internship_managers:monitoring:list');
+                },2000);
+            }
+        });
+        
         Views.Form = Marionette.ItemView.extend({
-            template: formTpl,
+            template : formTpl,
             newMonitoringForm: '',
             data : '',
             onRender: function(){
@@ -21,7 +31,7 @@ define([
                 var title = this.options.title;
 
                 data = this.options.model.attributes;
-                
+
                 var offers = [];
                 _.each(this.options.offers, function(_value, _key){
                     offers.push(_key); 
@@ -57,7 +67,6 @@ define([
                     API.views.forms.setBlurListener(newMonitoringForm, bbformModel);
                     
                 },300);
-                
             },
             
             formatSpecificData : function(_data){
