@@ -40,7 +40,7 @@ define([
                     
                         //  We only display offers that have already been validated
                         criterions = ['validation.state', 'provided.by.firstName'],
-                        values = ['validated', '[notEmpty]'];
+                        values = ['validated', '[NOTempty]'];
                     
                     _.each(prms, function(_value, _key){
                         if (_value != 'all' && _value != '' && _key != 'fullAddress') {

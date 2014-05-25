@@ -158,8 +158,6 @@ define([
                         var temp = _options;
                         _options = {};
                         _options.monitoringId = temp;
-                        
-                        
                     }
                     
                     _options.userCategory = 'internship_managers';

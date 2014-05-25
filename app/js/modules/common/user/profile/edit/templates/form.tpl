@@ -30,55 +30,55 @@
                                 %>
                             </div>
                             <div>
-                                <span class="btn btn-default btn-file"><span class="fileinput-new">Browse...</span><span class="fileinput-exists">Change</span><input id="file-name" type="file"></span>
-                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Delete</a>
+                                <span class="btn btn-default btn-file"><span class="fileinput-new"><%=polyglot.t('browse')%>...</span><span class="fileinput-exists"><%=polyglot.t('modify')%></span><input id="file-name" type="file"></span>
+                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%=polyglot.t('delete')%></a>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">First Name:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-firstName" data-editors="firstName" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('firstName')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-firstName" data-editors="firstName" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Last Name:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-lastName" data-editors="lastName" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('lastName')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-lastName" data-editors="lastName" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Email:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-email" data-editors="email" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('email')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-email" data-editors="email" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Mobile:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-mobile" data-editors="mobile" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('phone')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-mobile" data-editors="mobile" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Password:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-pwd" data-editors="pwd" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('password')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-pwd" data-editors="pwd" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Password Confirm:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-pwdConfirm" data-editors="pwdConfirm" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('password.confirm')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-pwdConfirm" data-editors="pwdConfirm" >
                           
                         </div>
                         <span class="msg"></span>
@@ -93,7 +93,7 @@
     </script>
 
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit" >Submit</button>
+        <button class="btn btn-primary js-submit"><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

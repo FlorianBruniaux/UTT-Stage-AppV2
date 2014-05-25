@@ -14,22 +14,22 @@
         <div class="company-desc">
             
             <p>
-                <label>Name :</label>
+                <label><%=polyglot.t('name')%> :</label>
                 <%=cname%>
             </p>
             
             <p>
-                <label class="justified">Description :</label>
+                <label class="justified"><%=polyglot.t('description')%> :</label>
                 <%=description%>
             </p>
             
             <p>
-                <label class="justified">Website :</label>
+                <label class="justified"><%=polyglot.t('website')%> :</label>
                 <a href="<%=website%>" target="_blank"><%=website%></a>
             </p>
             
             <p>
-                <label>Localization :</label>
+                <label><%=polyglot.t('localization')%> :</label>
                 <form>
                     <input id="geocomplete" type="text" class="form-control" disabled>
                 </form>
@@ -43,7 +43,8 @@
             if(userCategory == 'internship_managers'){
         %>
                 <div class="pull-right">
-                    <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> Modifier</button>
+                    <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> <%=polyglot.t('modify')%></button>
+                    <button class="btn btn-danger js-delete"><i class="icon-remove3"></i> <%=polyglot.t('delete')%></button>
                 </div>
         <%
             }

@@ -20,18 +20,18 @@ define([
 
                 var title = this.options.title;
 
-                data = this.options.model.attributes;
+                data = this.options.model.get('sheets').sheet3;
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        openingDate:    { type: 'TextArea', validators: ['required']},
-                        deadline:       { type: 'TextArea', validators: ['required']},
-                        subjectHasBeenModified:     { type: 'TextArea', validators: ['required']},
-                        planningDesc:   { type: 'TextArea', validators: ['required']},
-                        progress:       { type: 'TextArea', validators: ['required']},
-                        difficulties:   { type: 'TextArea', validators: ['required']},
-                        observations:   { type: 'TextArea', validators: ['required']}
+                        openingDate:    { type: 'Text', validators: ['required'] },
+                        deadline:       { type: 'Text', validators: ['required'] },
+                        subjectHasBeenModified:     { type: 'TextArea', editorAttrs: {placeholder: polyglot.t('letEmptyIfNotModified') }},
+                        planningDesc:   { type: 'TextArea'},
+                        progress:       { type: 'TextArea'},
+                        difficulties:   { type: 'TextArea'},
+                        observations:   { type: 'TextArea'}
                     }
                 });
                 
@@ -51,7 +51,7 @@ define([
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet3Form.el);
+                    $('button.js-submit').parent().before(sheet3Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -62,16 +62,52 @@ define([
                     //  To init datepicker
                     API.misc.initDatepicker();
                     
+                    //  To set specifications (input disabled etc)
+                    self.setUserCategorySpec();
+                    
                 },300);
                 
             },
             
+            setUserCategorySpec : function(){
+                switch (this.options.userCategory) {
+                    case 'teachers':
+                        $('input, select, textarea').prop('disabled', true);
+                        break;
+                    
+                    case 'internship_managers':
+                        $('button.js-submit').before('<button class="btn btn-success js-validate"><i class="icon-checkmark3"></i>'+polyglot.t('validate')+'</button>');
+                        break;
+                    
+                    case 'students':
+                        $('input[name="openingDate"], input[name="deadline"]').prop('disabled', true);
+                        
+                        var openingDate = this.options.model.get('sheets').sheet3.openingDate;
+                        API.views.sheets.checkOpeningDate(openingDate);
+                        
+                        var deadline = this.options.model.get('sheets').sheet3.deadline;
+                        API.views.sheets.checkDeadline(deadline);
+                        
+                        var sheetValidation = this.options.model.get('sheets').sheet3.validation;
+                        API.views.sheets.checkValidation(sheetValidation);
+                        
+                        break;
+                }
+
+            },
+            
             formatSpecificData : function(_data){
-                //nothing to format
+                    
+                //  To set to format DD/MM/YYYY
+                _data.openingDate = _data.openingDate;
+                _data.deadline = _data.deadline;
+                
                 return _data
+            
             },
             
             events: {
+                'click button.js-validate': API.views.events.validateSheet,
                 'click button.js-submit': 'eSubmitClicked'
             },
             
@@ -81,7 +117,7 @@ define([
 
                 if( API.views.forms.isFormValid(sheet3Form) ){
                     var data = sheet3Form.getValue();
-
+                    
                     this.trigger('form:submit',data)
                 }
                 

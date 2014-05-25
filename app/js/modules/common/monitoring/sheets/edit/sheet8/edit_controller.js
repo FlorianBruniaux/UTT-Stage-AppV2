@@ -31,16 +31,16 @@ define([
                         switch (_options.userCategory) {
                             case 'students':
                                 path.push(
-                                    { name: 'monitoring.show', url: 'monitoring', navigationTrigger: 'students:monitoring:show'},
-                                    { name: 'monitoring.sheet.edit.sheet8', url: 'monitoring/sheet8/edit', navigationTrigger: 'students:monitoring:edit:sheet', options: {sheet:'sheet8'} }
+                                    { name: _monitoring.get('offer').provided.by.firstName +' '+ _monitoring.get('offer').provided.by.lastName, url: 'monitoring', navigationTrigger: 'students:monitoring:show'},
+                                    { name: 'monitoring.sheets.sheet8.name', url: 'monitoring/sheet8/edit', navigationTrigger: 'students:monitoring:edit:sheet', options: {sheet:'sheet8'} }
                                 )
                                 break;
                             
                             case 'teachers':
                                 path.push(
                                     { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'teachers:monitoring:list'},
-                                    { name: 'monitoring.show', url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'teachers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
-                                    { name: 'monitoring.sheet.edit.sheet8', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet8', navigationTrigger: 'teachers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet8'} }
+                                    { name: _monitoring.get('offer').provided.by.firstName +' '+ _monitoring.get('offer').provided.by.lastName, url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'teachers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
+                                    { name: 'monitoring.sheets.sheet8.name', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet8', navigationTrigger: 'teachers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet8'} }
                                 )
                                 break;
                             
@@ -48,8 +48,8 @@ define([
                                 path.push(
                                     { name: 'monitoring', url: 'monitoring', navigationTrigger: 'internship_managers:monitoring:root' },
                                     { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'internship_managers:monitoring:list'},
-                                    { name: 'monitoring.show', url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'internship_managers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
-                                    { name: 'monitoring.sheet.edit.sheet8', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet8', navigationTrigger: 'internship_managers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet8'} }
+                                    { name: _monitoring.get('offer').provided.by.firstName +' '+ _monitoring.get('offer').provided.by.lastName, url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'internship_managers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
+                                    { name: 'monitoring.sheets.sheet8.name', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet8', navigationTrigger: 'internship_managers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet8'} }
                                 )
                                 break;
                         }
@@ -57,15 +57,57 @@ define([
 
                         var view = new View.sheet8({
                             model: _monitoring,
-                            title: polyglot.t('monitoring.edit')+' - '+ _monitoring.get('sheets').sheet8.name
+                            title: polyglot.t('monitoring.edit.sheet')+' - '+ polyglot.t('monitoring.sheets.sheet8.name'),
+                            userCategory: _options.userCategory
+                        });
+                        
+                        view.on('internship_managers:sheet:validate', function(_msg){
+
+                            var fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                            $.when(fetchingUser).done(function(_user){
+                                
+                                API.misc.showLoader();
+
+                                var temp = _monitoring.get('sheets').sheet8;
+
+                                _monitoring.get('sheets').sheet8 = {
+                                    //  Old value
+                                    //  Fix because there is a bug when _monitoring.get('sheets').sheet0.validation = {}
+                                    //  --> Invalid JSON ?!
+                                    
+                                    openingDate: temp.openingDate,
+                                    deadline: temp.deadline,  
+                                    
+                                    receptionDate: temp.receptionDate,
+                                    reportIsConfidential: temp.reportIsConfidential,
+                                    presentationIsConfidential: temp.presentationIsConfidential,
+                        
+                                    //  Update
+                                    validation : {
+                                        state : 'validated',
+                                        by : _user.attributes,
+                                        msg : _msg,
+                                        date : API.dates.convertToDDMMYYYY(new Date())
+                                    }
+                                    
+                                }
+
+                                if(_monitoring.save()){
+                                    AppManager.trigger('internship_managers:monitoring:show', {monitoringId : _monitoring.get('_id')});
+                                }
+
+                            });
+
                         });
                         
                         view.on('form:submit', function(_data){
                             
                             API.misc.showLoader();
 
-                            if (_monitoring.save(_data)) {
-                                AppManager.trigger("monitoring:show", _options.monitoringId);
+                            _monitoring.get('sheets').sheet8 = _data;
+                            
+                            if(_monitoring.save()){
+                                AppManager.trigger(_options.userCategory+':monitoring:show', {monitoringId : _monitoring.get('_id')});
                             }
                             
                         });

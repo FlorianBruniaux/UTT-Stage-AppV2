@@ -1,7 +1,7 @@
 define([
     'app',
     'utt.stages',
-    'tpl!modules/students/monitoring/show/templates/monitoring_details.tpl'
+    'tpl!modules/common/monitoring/show/templates/monitoring_details.tpl'
 ], function(AppManager, UttStages, monitoringDetailsTpl){
     
     // MonitoringModule Show View

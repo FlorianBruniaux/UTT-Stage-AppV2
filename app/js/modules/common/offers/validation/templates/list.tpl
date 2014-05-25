@@ -8,7 +8,7 @@
     </div>
     
     <div style="display: none;" id="new-offer-msg" class="bg-success with-padding block-inner">
-        <h3>New offer available.</h3>
+        <h3><%=polyglot.t('oneOfferHasBeenValidated')%></h3>
     </div>
     
     <div class="datatable">
@@ -16,13 +16,13 @@
             
             <thead>
                 <tr>
-                    <th class="center" >State</th>
-                    <th class="center" >Type</th>
-                    <th class="center" >Department</th>
-                    <th class="center" >Specialization</th>
-                    <th class="center" >Company</th>
-                    <th class="center" >Address</th>
-                    <th class="center" >Title</th>
+                    <th class="center"><%=polyglot.t('state')%></th>
+                    <th class="center"><%=polyglot.t('internship.type')%></th>
+                    <th class="center"><%=polyglot.t('department')%></th>
+                    <th class="center"><%=polyglot.t('departmentSpec')%></th>
+                    <th class="center"><%=polyglot.t('company')%></th>
+                    <th class="center"><%=polyglot.t('localization')%></th>
+                    <th class="center"><%=polyglot.t('offer.title')%></th>
                 </tr>
             </thead>
             

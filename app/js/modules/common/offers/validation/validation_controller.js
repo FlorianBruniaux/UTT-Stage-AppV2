@@ -22,7 +22,7 @@ define([
                 // Updates breadcrumb
                 var path = [
                     { name: 'offers', url: 'offers', navigationTrigger: _options.userCategory+':offers:root' },
-                    { name: 'offers.validation', url: 'offers/validation', navigationTrigger: 'offer:validation' }
+                    { name: 'offers.validation', url: 'offers/validation', navigationTrigger: 'offers:validation' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
  
@@ -38,18 +38,18 @@ define([
                         criterions = ['validation.state'],
                         values = ['not yet treated,denied'];
                     
+                    /*
                     _.each(prms, function(_value, _key){
                         if (_value != 'all' && _value != '' && _key != 'fullAddress') {
                             criterions.push(_key);
                             values.push(_value);
                         }
                     });
+                    */
                     
                     if (criterions.length > 0 && values.length > 0) {
                         filteredOffers.filter(criterions, values);
                     }
-
-                    console.log(filteredOffers);
                     
                     var notValidatedOffersListView = new View.Offers({
                         collection: filteredOffers,

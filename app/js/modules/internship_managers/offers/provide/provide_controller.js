@@ -1,8 +1,9 @@
 define([
     'app',
     'utt.stages',
-    'modules/internship_managers/offers/provide/provide_view'
-], function(AppManager, UttStages, View){
+    'modules/internship_managers/offers/provide/provide_view',
+    'socket.io'
+], function(AppManager, UttStages, View, io){
     
     // OffersModule provide Controller
     AppManager.module('OffersModule.Provide', function(Provide, AppManager, Backbone, Marionette, $, _){
@@ -58,6 +59,11 @@ define([
                             _data.provided.date = new Date();
                             
                             if (_offer.save(_data)) {
+                                
+                                //  To inform listeners
+                                var socket = io.connect("http://127.0.0.1:8080");
+                                socket.emit('offer:provided');
+                                
                                 AppManager.trigger("offer:show", {offerId: _offer.get('_id')});
                             }
                             
@@ -67,6 +73,7 @@ define([
 
                     }
                     else{
+                        AppManager.trigger('breadcrumb:update', []);
                         API.errors.e404();
                     }
                     

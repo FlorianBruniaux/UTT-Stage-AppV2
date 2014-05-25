@@ -3,7 +3,7 @@ define([
     'utt.stages'
 ], function(AppManager, UttStages){
     
-    // "OFFERS" ENTITIES
+    // 'OFFERS' ENTITIES
     AppManager.module('Entities', function(Entities, AppManager, Backbone, Marionette, $, _){
 
         var API = new UttStages.Application(AppManager);
@@ -11,7 +11,7 @@ define([
         // Model
         Entities.Offer = Backbone.Model.extend({
             urlRoot: '/db/offer',
-            idAttribute: "_id", 
+            idAttribute: '_id', 
             defaults: {
                 _id: null,
                 _objectType : 'offer',

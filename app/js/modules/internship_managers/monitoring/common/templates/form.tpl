@@ -17,8 +17,8 @@
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Offer:</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-offer" data-editors="offer" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label">Offer:</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-offer" data-editors="offer" >
                           
                         </div>
                         <span class="msg"></span>
@@ -35,7 +35,7 @@
     </script>
     
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit" >Submit</button>
+        <button class="btn btn-primary js-submit" ><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

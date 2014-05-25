@@ -1,4 +1,4 @@
-<div id="offers-form">
+<div>
     
     <!-- script tag needed for backbone template -->
     <script id="sheet2FormTemplate" type="text/html">
@@ -14,19 +14,23 @@
                     </h6>
                 </div>
                 
+                <div id="info-div" class="bg-danger with-padding block-inner" style="display: none;">
+                    
+                </div>
+                
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opening Date :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-openingDate" data-editors="openingDate" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('opening.date')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-openingDate" data-editors="openingDate" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Deadline :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-deadline" data-editors="deadline" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('deadline')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-deadline" data-editors="deadline" >
                           
                         </div>
                         <span class="msg"></span>
@@ -34,43 +38,43 @@
                     
                     <div class="form-group">
 
-                        <label style="text-align: left; margin-bottom: 20px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Your subject : </label>
+                        <label style="text-align: left; margin-bottom: 20px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-22"><%=polyglot.t('your')%> <%=polyglot.t('subject')%> : </label>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Description :</label>
-                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-subject-description" data-editors="subject.description" >
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-22">
+                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label">Description :</label>
+                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-subject-description" data-editors="subject.description" >
                               
                             </div>
                             <span class="msg"></span>
                         </div>
                         
-                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Objectives :</label>
-                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-subject-objectives" data-editors="subject.objectives" >
+                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-22">
+                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('objectives')%> :</label>
+                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-subject-objectives" data-editors="subject.objectives" >
                               
                             </div>
                             <span class="msg"></span>
                         </div>
                         
-                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Conditions :</label>
-                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-subject-conditions" data-editors="subject.conditions" >
+                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-22">
+                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label">Conditions :</label>
+                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-subject-conditions" data-editors="subject.conditions" >
                               
                             </div>
                             <span class="msg"></span>
                         </div>
                         
-                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Do you like this subject ? </label>
-                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-subject-isIntersting" data-editors="subject.isIntersting" >
+                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-22">
+                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('subject.doYouLike')%> ? </label>
+                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-subject-isIntersting" data-editors="subject.isIntersting" >
                               
                             </div>
                             <span class="msg"></span>
                         </div>
                         
-                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Is it concordant with your professional project ? </label>
-                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-subject-isConcordantWithProfessionalProject" data-editors="subject.isConcordantWithProfessionalProject" >
+                        <div style="margin-top: 10px;"  class="col-xs-12 col-sm-12 col-md-12 col-lg-22">
+                            <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('subject.isConcordantWithProfessionalProject')%> ? </label>
+                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-subject-isConcordantWithProfessionalProject" data-editors="subject.isConcordantWithProfessionalProject" >
                               
                             </div>
                             <span class="msg"></span>
@@ -78,16 +82,16 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Contact with your UTT tutor :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-contactWithRespUtt" data-editors="contactWithRespUtt" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('contactsWithUttTutor')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-contactWithRespUtt" data-editors="contactWithRespUtt" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Whose initiative ? </label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-whoseInitiative" data-editors="whoseInitiative" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('whoseInitiative')%> ? </label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-whoseInitiative" data-editors="whoseInitiative" >
                           
                         </div>
                         <span class="msg"></span>
@@ -103,7 +107,7 @@
 
     
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit" >Submit</button>
+        <button class="btn btn-primary js-submit"><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

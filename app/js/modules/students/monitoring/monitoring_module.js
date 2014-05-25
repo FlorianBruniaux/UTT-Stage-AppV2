@@ -33,7 +33,7 @@ define([
                 'monitoring': 'showMonitoring',
                 
                 //  Sheets
-                'monitoring/:sheet/edit': 'editSheet',
+                'monitoring/:id/edit/:sheet': 'editSheet',
                 
                 //"*notFound": "notFound"
             }
@@ -82,18 +82,18 @@ define([
             },
             
             // To edit a specific monitoring
-            editSheet: function(_options){
+            editSheet: function(_options, _sheet){
 
                 if(DEBUG) console.info('students.monitoring.monitoring_module.editSheet()');
                 
                 require([
-                    'modules/common/monitoring/sheets/edit/'+((!_.isObject(_options))? _options:_options.sheet)+'/edit_controller'    
+                    'modules/common/monitoring/sheets/edit/'+((_sheet)? _sheet:_options.sheet)+'/edit_controller'    
                 ], function(EditController){
                     
                     if (!_.isObject(_options)) {
                         var temp = _options;
                         _options = {};
-                        _options.sheet = temp;
+                        _options.monitoringId = temp;
                     }
                     
                     _options.userCategory = 'students';
@@ -114,7 +114,7 @@ define([
          *  Event = 'monitoring:edit:sheet'
          */
         AppManager.on('students:monitoring:edit:sheet',function(_options){
-            AppManager.navigate('monitoring/'+_options.sheet+'/edit');
+            AppManager.navigate('monitoring/'+_options.monitoringId+'/edit/'+_options.sheet);
             RouterAPI.editSheet(_options);
         });
         
@@ -125,7 +125,7 @@ define([
             AppManager.navigate('monitoring');
             RouterAPI.showMonitoring();
         });
-        
+
         
         /****************************************/
         /*  INITIALIZER                         */

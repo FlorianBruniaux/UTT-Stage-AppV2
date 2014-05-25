@@ -23,7 +23,10 @@ define([
                     if (_monitorings.length != 0){
                         
                         var filteredMonitorings = API.entities.filterCollection(_monitorings);
-                        filteredMonitorings.filter('offer.provided.by._id', $('#user-id').val());
+                        filteredMonitorings.filter(['offer.provided.by._id'], [$('#user-id').html()]);
+                        
+                        console.log(filteredMonitorings.models);
+                        
                         
                         if (filteredMonitorings.length != 0) {
                             // Gets the monitoring
@@ -50,7 +53,13 @@ define([
                                 }
                             });
                         }
-            
+                        else{
+                            var view = new View.noMonitoring();
+               
+                            AppManager.contentRegion.show(view);
+                            
+                        }
+                        
                     }
                     else{
                         API.errors.e404();

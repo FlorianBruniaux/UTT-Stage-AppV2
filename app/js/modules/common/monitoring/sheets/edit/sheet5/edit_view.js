@@ -20,23 +20,23 @@ define([
 
                 var title = this.options.title;
 
-                data = this.options.model.attributes;
+                data = this.options.model.get('sheets').sheet5;
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        openingDate:    { type: 'Text', validators: ['required']},
-                        deadline:       { type: 'Text', validators: ['required']},
-                        project:        { type: 'TextArea', validators: ['required']},
-                        team:           { type: 'TextArea', validators: ['required']},
-                        company:        { type: 'TextArea', validators: ['required']},
-                        help:           { type: 'TextArea', validators: ['required']},
-                        internshipContribution:       { type: 'TextArea', validators: ['required']},
-                        rem:            { type: 'Number', validators: ['required']},
-                        bonus:          { type: 'Number', validators: ['required']},
-                        odds:           { type: 'TextArea', validators: ['required']},
-                        'HelpFromUttResp.enough':           { type: 'Select', validators: ['required'], options: ['yes','no'] },
-                        'HelpFromUttResp.explanations':     { type: 'TextArea', validators: ['required']}
+                        openingDate:    { type: 'Text', validators: ['required'] },
+                        deadline:       { type: 'Text', validators: ['required'] },
+                        project:        { type: 'TextArea'},
+                        team:           { type: 'TextArea'},
+                        company:        { type: 'TextArea'},
+                        help:           { type: 'TextArea'},
+                        internshipContribution:       { type: 'TextArea'},
+                        rem:            { type: 'Number'},
+                        bonus:          { type: 'Number'},
+                        odds:           { type: 'TextArea'},
+                        'helpFromUttResp.enough':           { type: 'Select', options: ['yes','no'] },
+                        'helpFromUttResp.explanations':     { type: 'TextArea'}
                     }
                 });
 
@@ -53,7 +53,7 @@ define([
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet5Form.el);
+                    $('button.js-submit').parent().before(sheet5Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -64,16 +64,55 @@ define([
                     //  To init datepicker
                     API.misc.initDatepicker();
                     
+                    //  To set specifications (input disabled etc)
+                    self.setUserCategorySpec();
+                    
                 },300);
                 
             },
             
+            setUserCategorySpec : function(){
+                switch (this.options.userCategory) {
+                    case 'teachers':
+                        $('input, select, textarea').prop('disabled', true);
+                        break;
+                    
+                    case 'internship_managers':
+                        $('button.js-submit').before('<button class="btn btn-success js-validate"><i class="icon-checkmark3"></i>'+polyglot.t('validate')+'</button>');
+                        break;
+                    
+                    case 'students':
+                        $('input[name="openingDate"], input[name="deadline"]').prop('disabled', true);
+                        
+                        var openingDate = this.options.model.get('sheets').sheet5.openingDate;
+                        API.views.sheets.checkOpeningDate(openingDate);
+                        
+                        var deadline = this.options.model.get('sheets').sheet5.deadline;
+                        API.views.sheets.checkDeadline(deadline);
+                        
+                        var sheetValidation = this.options.model.get('sheets').sheet5.validation;
+                        API.views.sheets.checkValidation(sheetValidation);
+                        
+                        break;
+                }
+
+            },
+            
             formatSpecificData : function(_data){
-                //nothing to format
+                    
+                //  To set to format DD/MM/YYYY
+                _data.openingDate = _data.openingDate;
+                _data.deadline = _data.deadline;
+            
+                _data['helpFromUttResp.enough'] = _data.enough;
+                _data['helpFromUttResp.explanations'] = _data.explanations;
+                
                 return _data
+            
             },
             
             events: {
+                'click button.js-validate': API.views.events.validateSheet,
                 'click button.js-submit': 'eSubmitClicked'
             },
             
@@ -84,6 +123,24 @@ define([
                 if( API.views.forms.isFormValid(sheet5Form) ){
                     var data = sheet5Form.getValue();
 
+                    data = {
+                        openingDate: data.openingDate,
+                        deadline: data.deadline,
+                        
+                        project: data.project,
+                        team: data.team,
+                        company: data.company,
+                        help: data.help,
+                        internshipContribution: data.internshipContribution,
+                        odds: data.odds,
+                        rem: data.rem,
+                        bonus: data.bonus,
+                        helpFromUttResp : {
+                            enough: data['helpFromUttResp.enough'],
+                            explanations: data['helpFromUttResp.explanations'],
+                        } 
+                    }
+                    
                     this.trigger('form:submit',data)
                 }
                 

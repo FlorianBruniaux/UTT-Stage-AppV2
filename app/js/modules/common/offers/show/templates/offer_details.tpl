@@ -5,7 +5,6 @@
         <h6 class="panel-title">
             <i class="icon-newspaper"></i>
             <%= title %>
-            
         </h6>
 
     </div>
@@ -15,7 +14,7 @@
         if(provided.by != ''){
     %>
             <div class="bg-info with-padding block-inner">
-                <p>Offre pourvue le <%=provided.date%> par <%=provided.by.firstName%> <%=provided.by.lastName%></p>
+                <p><%=polyglot.t('offer.provided.on')%> <%=provided.date%> <%=polyglot.t('by')%> <%=provided.by.firstName%> <%=provided.by.lastName%></p>
             </div>
     <%
         }
@@ -24,14 +23,14 @@
             if(validation.state == 'not yet treated'){
     %>
                 <div class="bg-warning with-padding block-inner">
-                    <p>Offre non validée pour l'instant.</p>
+                    <p><%=polyglot.t('offer.not.yet.validated')%>.</p>
                 </div>
     <%
             }
             else if(validation.state == 'validated'){
     %>
                 <div class="bg-success with-padding block-inner">
-                    <p>Offre validée par <b><%=validation.by.firstName%> <%=validation.by.lastName%></b> le <%=validation.date%>.</p>
+                    <p><%=polyglot.t('offer.validated.by')%> <b><%=validation.by.firstName%> <%=validation.by.lastName%></b> <%=polyglot.t('on')%> <%=validation.date%>.</p>
                     <p>Message : <%=validation.msg%></p>
                 </div>
     <%
@@ -39,7 +38,7 @@
             else{
     %>
                 <div class="bg-danger with-padding block-inner">
-                    <p>Offre refusée par <b><%=validation.by.firstName%> <%=validation.by.lastName%></b> le <%=validation.date%>.</p>
+                    <p><%=polyglot.t('offer.denied.by')%> <b><%=validation.by.firstName%> <%=validation.by.lastName%></b> <%=polyglot.t('on')%> <%=validation.date%>.</p>
                     <p>Message : <%=validation.msg%></p>
                 </div>
     <%
@@ -63,22 +62,22 @@
         <div class="offer-desc">
             
             <p>
-                <label>Type :</label>
+                <label><%=polyglot.t('internship.type')%> :</label>
                 <%=type%>
             </p>
             
             <p>
-                <label>Department :</label>
+                <label><%=polyglot.t('department')%> :</label>
                 <%=department%>
             </p>
             
             <p>
-                <label>Specialization :</label>
+                <label><%=polyglot.t('departmentSpec')%> :</label>
                 <%=departmentSpec%>
             </p>
             
             <p>
-                <label>Company :</label>
+                <label><%=polyglot.t('company')%> :</label>
                 <a href="#companies/<%=company._id%>"><%=company.cname%></a>
             </p>
             
@@ -88,17 +87,17 @@
             </p>
             
             <p class="justified">
-                <label>Profile :</label>
+                <label><%=polyglot.t('profile.searched')%> :</label>
                 <%=profile%>
             </p>
             
             <p>
-                <label>Remuneration :</label>
+                <label><%=polyglot.t('remuneration.monthly.gross')%> :</label>
                 <%=rem%> €
             </p>
             
             <p>
-                <label>Localization :</label>
+                <label><%=polyglot.t('localization')%> :</label>
                 <form>
                     <input id="geocomplete" type="text" class="form-control" disabled>
                 </form>
@@ -116,17 +115,17 @@
             <%
                 if(provided.by == ''){
             %>
-                    <button class="btn btn-success js-provide"><i class="icon-checkbox-unchecked"></i> Définir comme pourvue</button>
+                    <button class="btn btn-success js-provide"><i class="icon-checkbox-unchecked"></i> <%=polyglot.t('defineAsProvided')%></button>
             <%
                 }
                 else{
             %>
-                    <button class="btn btn-success js-provide"><i class="icon-checkbox-checked"></i> Mofifier attribution</button>
+                    <button class="btn btn-success js-provide"><i class="icon-checkbox-checked"></i> <%=polyglot.t('changeAttribution')%></button>
             <%
                 }
             %>
-                    <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> Modifier</button>
-                    <button class="btn btn-danger js-delete"><i class="icon-remove3"></i> Supprimer</button>
+                    <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> <%=polyglot.t('modify')%></button>
+                    <button class="btn btn-danger js-delete"><i class="icon-remove3"></i> <%=polyglot.t('delete')%></button>
                 </div>
             
         <%
@@ -135,8 +134,8 @@
         %>
         
                 <div class="pull-right">
-                    <button class="btn btn-success js-validate"><i class="icon-checkmark3"></i> Valider</button>
-                    <button class="btn btn-danger js-refuse"><i class="icon-checkmark3"></i> Refuser</button>
+                    <button class="btn btn-success js-validate"><i class="icon-checkmark3"></i> <%=polyglot.t('validate')%></button>
+                    <button class="btn btn-danger js-refuse"><i class="icon-checkmark3"></i> <%=polyglot.t('deny')%></button>
                 </div>
             
         <%
@@ -145,9 +144,27 @@
         %>
         
                 <div class="pull-right">
-                    <button class="btn btn-success js-favorites"><i class="icon-star4"></i> Ajouter aux favoris</button>
-                
-                    <button class="btn btn-success js-postulate">Postuler</button>
+                    <%
+                        if(provided.by == ''){
+                    %>
+                            <%
+                                if(isUserFavorite){
+                            %>
+                                    <button class="btn btn-success js-delete-from-favorites"><i class="icon-remove3"></i> <%=polyglot.t('favorites.remove')%></button>
+                            <%
+                                }
+                                else{
+                            %>
+                                    <button class="btn btn-success js-favorites"><i class="icon-star4"></i> <%=polyglot.t('favorites.add')%></button>
+                            <%
+                                }
+                            %>
+                            
+                            <button class="btn btn-success js-postulate"> <%=polyglot.t('postulate')%></button>
+                    <%
+                        }
+                    %>
+
                 </div>
             
         <%

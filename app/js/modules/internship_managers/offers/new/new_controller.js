@@ -60,9 +60,9 @@ define([
                             
                             //  To inform listeners
                             var socket = io.connect("http://127.0.0.1:8080");
-                            socket.emit('offer:new', {});
+                            socket.emit('offer:new');
                             
-                            AppManager.trigger("offers:validation");
+                            AppManager.trigger('offers:validation');
                         }
                         
                     });

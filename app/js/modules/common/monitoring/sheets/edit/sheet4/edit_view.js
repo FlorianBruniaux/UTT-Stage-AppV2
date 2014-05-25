@@ -20,26 +20,26 @@ define([
 
                 var title = this.options.title;
 
-                data = this.options.model.attributes;
+                data = this.options.model.get('sheets').sheet4
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        openingDate:    { type: 'Text', validators: ['required']},
-                        deadline:       { type: 'Text', validators: ['required']},
-                        isConcordantWithWork:       { type: 'TextArea', validators: ['required']},
-                        satisfaction:   { type: 'TextArea', validators: ['required']},
-                        globalOpinion:   { type: 'TextArea', validators: ['required']},
-                        'taxResp.firstName':     { type: 'Text', validators: ['required']},
-                        'taxResp.lastName':      { type: 'Text', validators: ['required']},
-                        'taxResp.position':      { type: 'Text', validators: ['required']},
-                        'taxResp.email':         { type: 'Text', validators: ['required', 'email']},
-                        'taxResp.phone':         { type: 'Text', validators: ['required', /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/]},
-                        'author.firstName':          { type: 'Text', validators: ['required']},
-                        'author.lastName':           { type: 'Text', validators: ['required']},
-                        'author.position':           { type: 'Text', validators: ['required']},
-                        'author.email':              { type: 'Text', validators: ['required', 'email']},
-                        'author.phone':              { type: 'Text', validators: ['required', /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/]},
+                        openingDate:    { type: 'Text', validators: ['required'] },
+                        deadline:       { type: 'Text', validators: ['required'] },
+                        isConcordantWithWork:       { type: 'TextArea'},
+                        satisfaction:   { type: 'TextArea'},
+                        globalOpinion:   { type: 'TextArea'},
+                        'taxResp.firstName':     { type: 'Text'},
+                        'taxResp.lastName':      { type: 'Text'},
+                        'taxResp.position':      { type: 'Text'},
+                        'taxResp.email':         { type: 'Text', validators: ['email']},
+                        'taxResp.phone':         { type: 'Text', validators: [/^(0[1-68])(?:[ _.-]?(\d{2})){4}$/]},
+                        'author.firstName':          { type: 'Text'},
+                        'author.lastName':           { type: 'Text'},
+                        'author.position':           { type: 'Text'},
+                        'author.email':              { type: 'Text', validators: ['email']},
+                        'author.phone':              { type: 'Text', validators: [/^(0[1-68])(?:[ _.-]?(\d{2})){4}$/]},
                     }
                 });
 
@@ -57,7 +57,7 @@ define([
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet4Form.el);
+                    $('button.js-submit').parent().before(sheet4Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -68,16 +68,50 @@ define([
                     //  To init datepicker
                     API.misc.initDatepicker();
                     
+                    //  To set specifications (input disabled etc)
+                    self.setUserCategorySpec();
+                    
                 },300);
                 
             },
             
+            setUserCategorySpec : function(){
+                switch (this.options.userCategory) {
+                    case 'teachers':
+                        $('input, select, textarea').prop('disabled', true);
+                        break;
+                    
+                    case 'internship_managers':
+                        $('button.js-submit').before('<button class="btn btn-success js-validate"><i class="icon-checkmark3"></i>'+polyglot.t('validate')+'</button>');
+                        break;
+                }
+
+            },
+            
             formatSpecificData : function(_data){
-                //nothing to format
+                    
+                //  To set to format DD/MM/YYYY
+                _data.openingDate = _data.openingDate;
+                _data.deadline = _data.deadline;
+
+                _data['taxResp.firstName'] = _data.taxResp.firstName;
+                _data['taxResp.lastName'] = _data.taxResp.lastName;
+                _data['taxResp.position'] = _data.taxResp.position;
+                _data['taxResp.email'] = _data.taxResp.email;
+                _data['taxResp.phone'] = _data.taxResp.phone;
+                
+                _data['author.firstName'] = _data.author.firstName;
+                _data['author.lastName'] = _data.author.lastName;
+                _data['author.position'] = _data.author.position;
+                _data['author.email'] = _data.author.email;
+                _data['author.phone'] = _data.author.phone;
+                
                 return _data
+            
             },
             
             events: {
+                'click button.js-validate': API.views.events.validateSheet,
                 'click button.js-submit': 'eSubmitClicked'
             },
             
@@ -88,6 +122,31 @@ define([
                 if( API.views.forms.isFormValid(sheet4Form) ){
                     var data = sheet4Form.getValue();
 
+                    
+                    data = {
+                        openingDate: data.openingDate,
+                        deadline: data.deadline,
+                        
+                        isConcordantWithWork: data.isConcordantWithWork,
+                        satisfaction: data.satisfaction,
+                        globalOpinion: data.globalOpinion,
+                        taxResp: {
+                            firstName: data['taxResp.firstName'],
+                            lastName: data['taxResp.lastName'],
+                            position: data['taxResp.position'],
+                            email: data['taxResp.email'],
+                            phone: data['taxResp.phone'],
+                        },
+                        author:{
+                            firstName: data['author.firstName'],
+                            lastName: data['author.lastName'],
+                            position: data['author.position'],
+                            email: data['author.email'],
+                            phone: data['author.phone'],
+                        }
+                           
+                    }
+                    
                     this.trigger('form:submit',data)
                 }
                 

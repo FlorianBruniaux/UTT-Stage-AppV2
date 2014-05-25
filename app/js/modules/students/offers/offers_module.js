@@ -30,6 +30,7 @@ define([
         OffersModuleRouter.Router = Marionette.AppRouter.extend({
             appRoutes: {
                 //'offers/research': 'showResearchForm',
+                'offers/favorites': 'listFavoritesOffers',
                 'offers/list(/filter)': 'listOffers',
                 'offers/list(/filter?:parameters)': 'listOffers',
                 'offers/:id': 'showOffer',
@@ -39,7 +40,7 @@ define([
         });
         
         // Execute the actions given by RouterAPI functions (when they are triggered)
-        var executeAction = function(_action, _options){
+        var executeAction = function(_action, _options, _menuToSetActive){
             
             if(DEBUG) console.info('students.offers.offers_module.executeAction()');
             
@@ -49,7 +50,7 @@ define([
             _action(_options);
             
             // Sets the active menu item
-            AppManager.execute('set:active:menu', 'offers/list');
+            AppManager.execute('set:active:menu', _menuToSetActive);
         };
         
         
@@ -72,7 +73,19 @@ define([
                 require([
                     'modules/common/offers/list/list_controller'    
                 ], function(ListController){
-                    executeAction(ListController.listOffers, {'userCategory':'students'});
+                    executeAction(ListController.listOffers, {'userCategory':'students'}, 'offers/list');
+                });
+            },
+            
+            // To list favorites offers
+            listFavoritesOffers: function(){
+                
+                if(DEBUG) console.info('students.offers.offers_module.listFavoritesOffers()');
+                
+                require([
+                    'modules/students/offers/favorites/favorites_controller'    
+                ], function(FavoritesController){
+                    executeAction(FavoritesController.listFavoritesOffers, {'userCategory':'students'}, 'offers/favorites');
                 });
             },
         
@@ -93,7 +106,7 @@ define([
                     
                     _options.userCategory = 'students';
                     
-                    executeAction(ShowController.showOffer, _options);
+                    executeAction(ShowController.showOffer, _options, 'offers/list');
                 });
             }
         };
@@ -124,6 +137,14 @@ define([
             }
         });
 
+        /**
+         *  Event = 'offers:favorites'
+         */
+        AppManager.on('students:offers:favorites', function(){
+            AppManager.navigate('offers/favorites');
+            RouterAPI.listFavoritesOffers();
+        });
+        
         /**
          *  Event = 'offer:show'
          */

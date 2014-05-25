@@ -3,7 +3,7 @@
     <div class="panel-heading">
         <h6 class="panel-title">
             <i class="icon-newspaper"></i>
-            <%= polyglot.t("offers.provided") %>
+            <%= polyglot.t("offers.list.provided") %>
         </h6>
     </div>
     
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="row" style="margin-top: 20px;">
-                    <label class="col-lg-1 col-md-2 col-sm-3 control-label">Departments :</label>
+                    <label class="col-lg-2 col-md-2 col-sm-3 control-label"><%=polyglot.t('department')%> :</label>
                     <div class="col-md-9">
                         <div class="block-inner" id="form-department" data-editors="department">
                         </div>
@@ -40,7 +40,7 @@
                 </div>
                 
                 <div class="row">
-                    <label class="col-lg-1 col-md-2 col-sm-3 control-label">Types : </label>
+                    <label class="col-lg-2 col-md-2 col-sm-3 control-label"><%=polyglot.t('internship.type')%> : </label>
                     <div class="col-md-9">
                         <div class="block-inner" id="form-type" data-editors="type">
         
@@ -61,13 +61,13 @@
             
             <thead>
                 <tr>
-                    <th class="center" style="width:100px;">Type</th>
-                    <th class="center" style="width:100px;">Department</th>
-                    <th class="center" style="width:100px;">Specialization</th>
-                    <th class="center" style="width:150px;">Company</th>
-                    <th class="center" style="width:200px;">Address</th>
-                    <th class="center" >Title</th>
-                    <th class="center" style="width:200px;">Provided by</th>
+                    <th class="center"><%=polyglot.t('internship.type')%></th>
+                    <th class="center"><%=polyglot.t('department')%></th>
+                    <th class="center"><%=polyglot.t('departmentSpec')%></th>
+                    <th class="center"><%=polyglot.t('company')%></th>
+                    <th class="center"><%=polyglot.t('localization')%></th>
+                    <th class="center"><%=polyglot.t('offer.title')%></th>
+                    <th class="center"><%=polyglot.t('provided.by')%></th>
                 </tr>
             </thead>
             

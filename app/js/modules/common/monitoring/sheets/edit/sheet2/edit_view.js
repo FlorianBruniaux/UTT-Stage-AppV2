@@ -20,20 +20,20 @@ define([
 
                 var title = this.options.title;
 
-                data = this.options.model.attributes;
+                data = this.options.model.get('sheets').sheet2;
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        openingDate:    { type: 'Text', validators: ['required']},
-                        deadline:       { type: 'Text', validators: ['required']},
-                        'subject.description':          { type: 'TextArea', validators: ['required']},
-                        'subject.objectives':           { type: 'TextArea', validators: ['required']},
-                        'subject.conditions':           { type: 'TextArea', validators: ['required']},
-                        'subject.isIntersting':         { type: 'TextArea', validators: ['required']},
-                        'subject.isConcordantWithProfessionalProject':      { type: 'TextArea', validators: ['required']},
-                        contactWithRespUtt:     { type: 'Select', validators: ['required'], options: ['none', 'mail', 'phone', 'mail + phone'] },
-                        whoseInitiative:        { type: 'Select', validators: ['required'], options: ['mine', 'his/her'] }
+                        openingDate:    { type: 'Text', validators: ['required'] },
+                        deadline:       { type: 'Text', validators: ['required'] },
+                        'subject.description':          { type: 'TextArea'},
+                        'subject.objectives':           { type: 'TextArea'},
+                        'subject.conditions':           { type: 'TextArea'},
+                        'subject.isIntersting':         { type: 'TextArea'},
+                        'subject.isConcordantWithProfessionalProject':      { type: 'TextArea'},
+                        contactWithRespUtt:     { type: 'Select', options: [polyglot.t('none.m'), 'Mail', polyglot.t('phone'), 'Mail + '+polyglot.t('phone')] },
+                        whoseInitiative:        { type: 'Select', options: [polyglot.t('mine'), polyglot.t('his/her')] }
                     }
                 });
 
@@ -51,7 +51,7 @@ define([
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet2Form.el);
+                    $('button.js-submit').parent().before(sheet2Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -62,16 +62,58 @@ define([
                     //  To init datepicker
                     API.misc.initDatepicker();
                     
+                    //  To set specifications (input disabled etc)
+                    self.setUserCategorySpec();
+                    
                 },300);
                 
             },
             
+            setUserCategorySpec : function(){
+                switch (this.options.userCategory) {
+                    case 'teachers':
+                        $('input, select, textarea').prop('disabled', true);
+                        break;
+                    
+                    case 'internship_managers':
+                        $('button.js-submit').before('<button class="btn btn-success js-validate"><i class="icon-checkmark3"></i>'+polyglot.t('validate')+'</button>');
+                        break;
+                    
+                    case 'students':
+                        $('input[name="openingDate"], input[name="deadline"]').prop('disabled', true);
+                        
+                        var openingDate = this.options.model.get('sheets').sheet2.openingDate;
+                        API.views.sheets.checkOpeningDate(openingDate);
+                        
+                        var deadline = this.options.model.get('sheets').sheet2.deadline;
+                        API.views.sheets.checkDeadline(deadline);
+                        
+                        var sheetValidation = this.options.model.get('sheets').sheet2.validation;
+                        API.views.sheets.checkValidation(sheetValidation);
+                        
+                        break;
+                }
+
+            },
+            
             formatSpecificData : function(_data){
-                //nothing to format
+                    
+                //  To set to format DD/MM/YYYY
+                _data.openingDate = _data.openingDate;
+                _data.deadline = _data.deadline;
+                
+                _data['subject.description'] = _data.description;
+                _data['subject.objectives'] = _data.objectives;
+                _data['subject.conditions'] = _data.conditions;
+                _data['subject.isInteresting'] = _data.isInteresting;
+                _data['subject.isConcordantWithProfessionalProject'] = _data.isConcordantWithProfessionalProject;
+                            
                 return _data
+            
             },
             
             events: {
+                'click button.js-validate': API.views.events.validateSheet,
                 'click button.js-submit': 'eSubmitClicked'
             },
             
@@ -82,6 +124,21 @@ define([
                 if( API.views.forms.isFormValid(sheet2Form) ){
                     var data = sheet2Form.getValue();
 
+                    data = {
+                        openingDate: data.openingDate,
+                        deadline: data.deadline,
+
+                        subject : {
+                            description : data['subject.description'],
+                            objectives : data['subject.objectives'],
+                            conditions : data['subject.conditions'],
+                            isInteresting : data['subject.isInteresting'],
+                            isConcordantWithProfessionalProject : data['subject.isConcordantWithProfessionalProject'],
+                        },
+                        contactWithRespUtt : data.contactWithRespUtt,
+                        whoseInitiative: data.whoseInitiative
+                    }
+                    
                     this.trigger('form:submit',data)
                 }
                 

@@ -16,7 +16,7 @@
             <form role="form" action="#" class="form-horizontal form-bordered">
 
                 <div class="row" style="margin-top: 20px;">
-                    <label class="col-lg-1 col-md-2 col-sm-3 control-label">Departments :</label>
+                    <label class="col-lg-2 col-md-2 col-sm-3 control-label"><%=polyglot.t('department')%> :</label>
                     <div class="col-md-9">
                         <div class="block-inner" id="form-department" data-editors="department">
                         </div>
@@ -24,7 +24,7 @@
                 </div>
                 
                 <div class="row">
-                    <label class="col-lg-1 col-md-2 col-sm-3 control-label">Types : </label>
+                    <label class="col-lg-2 col-md-2 col-sm-3 control-label"><%=polyglot.t('internship.type')%> : </label>
                     <div class="col-md-9">
                         <div class="block-inner" id="form-type" data-editors="type">
         
@@ -45,9 +45,9 @@
             
             <thead>
                 <tr>
-                    <th class="center">Student</th>
-                    <th class="center">Offer</th>
-                    <th class="center">Type</th>
+                    <th class="center"><%=polyglot.t('student')%></th>
+                    <th class="center"><%=polyglot.t('offer')%></th>
+                    <th class="center"><%=polyglot.t('internship.type')%></th>
                     <th class="center">0</th>
                     <th class="center">1</th>
                     <th class="center">2</th>

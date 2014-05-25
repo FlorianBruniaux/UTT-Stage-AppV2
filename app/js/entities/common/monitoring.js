@@ -18,35 +18,20 @@ define([
                 offer: {},
                 sheets : {
                     sheet0: {
-                        name: 'Global information',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
                         
                         dates: {
                             from: '',
                             to: ''
                         },
                         semester: '',//A12,P13 ..
-                        uttResp: {}//object
+                        uttResp: ''
                     },
                     sheet1 : {
-                        name : 'Installation',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
-                        
-                        
+
                         naf: '',//52 - Commerce de détail..
                         workforce: '',// <5, 5-10, 10-20, 20-50, 50-100, 100-500, >500
                         administrativeResp: {
@@ -65,15 +50,8 @@ define([
                         }
                     },
                     sheet2 : {
-                        name : 'Definition',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
                         
                         subject : {
                             description : '',
@@ -86,33 +64,19 @@ define([
                         whoseInitiative: ''//student/resp
                     },
                     sheet3 : {
-                        name : 'Progress',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
                         
-                        subjectHasBeenModified: false, //if true subject object
+                        subjectHasBeenModified: '',
                         planningDesc: '',
                         progress: '',
                         difficulties: '',
                         observations: ''
                     },
                     sheet4 : {
-                        name : 'Company Opinion',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
-                         
+                        
                         isConcordantWithWork: '',
                         satisfaction: '',
                         globalOpinion: '',
@@ -132,15 +96,8 @@ define([
                         }                                     
                     },
                     sheet5 : {
-                        name : 'Student Opinion',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
                         
                         project: '',
                         team: '',
@@ -150,22 +107,15 @@ define([
                         odds: '',
                         rem: 0,
                         bonus: 0,
-                        HelpFromUttResp : {
-                            enough: true,
+                        helpFromUttResp : {
+                            enough: 'yes',
                             explanations: ''
                         }
                         
                     },
                     sheet6 : {
-                        name : 'Auto evaluation',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
                         
                         adaptability: '',
                         initiative: '',
@@ -184,16 +134,9 @@ define([
 
                     },
                     sheet7 : {
-                        name : 'Company evaluation',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
-                        
+
                         adaptability: '',
                         initiative: '',
                         abilityToInform: '',
@@ -210,61 +153,31 @@ define([
                         evolution: ''
                     },
                     sheet8 : {
-                        name : 'Record privacy',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
                         
                         receptionDate: '',
                         reportIsConfidential: 'no',
                         presentationIsConfidential: 'no',
                     },
                     sheet9 : {
-                        name : 'Report',
                         openingDate: '',
                         deadline: '',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
-                        
+
                         receptionDate: '',
                         remark: ''
                     },
                     sheet10 : {
-                        name : 'Presentation',
-                        validation: {
-                            validated: false,
-                            msg: '',
-                            by: '',
-                            date: ''
-                        },
-
                         date: '',
                         time: '',
                         room: '',
                         
-                        jury: [
-                            {}//object
-                        ],
+                        jury1: '',
+                        jury2: '',
                         
-                        participants : [
-                            {
-                                firstName: '',
-                                lastName: '',
-                                position: '',
-                                email: '',
-                                phone: '',
-                                lunch: true
-                            }
-                        ]
+                        nbParticipants: '',
+                        
+                        participants : ''
                     }
                 }
             }

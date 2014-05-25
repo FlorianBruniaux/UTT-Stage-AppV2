@@ -1,8 +1,9 @@
 define([
     'app',
     'utt.stages',
-    'common/roots/root_view'
-], function(AppManager, UttStages, View){
+    'common/roots/root_view',
+    'socket.io'
+], function(AppManager, UttStages, View, io){
 
     // OffersModule Root Controller
     AppManager.module('OffersModule.Root', function(Root, AppManager, Backbone, Marionette, $, _){
@@ -39,29 +40,67 @@ define([
                     });
                     
                     view.on('rendered', function(){
-
-
-                        // When all the offers are fetched (CF use of defer.promise() )
-                        var fetchingOffers = AppManager.request('offers:entities'),
-                            fetchingUser = AppManager.request('user:entity', $('#user-id').html());
-                        $.when(fetchingOffers, fetchingUser).done(function(_offers, _user){
+                        
+                        //  To update view when a new offer is created
+                        socket = io.connect("http://127.0.0.1:8080");
                             
-                            var filteredOffers = API.entities.filterCollection(_offers);
-                            filteredOffers.filter('validation.state', '[NOT]validated');
-                            if (filteredOffers.length > 0) {
-                                $('.info-blocks a[href="#offers/validation"]').parent().find('span').html(filteredOffers.length+" offres à contrôler.").removeClass('bg-info').addClass('bg-danger');
-                            }
+                        var showInfoInInfoBlockBottom = function(){
                             
-                            filteredOffers = API.entities.filterCollection(_offers);
-                            filteredOffers.filter(['creationDate', 'validation.state'], ['[Created:after]'+_user.get('penultimateConnexion'), 'validated']);
-                            if (filteredOffers.length > 0) {
-                                $('.info-blocks a[href="#offers/list"]').parent().find('span').html(filteredOffers.length+" nouvelle(s) offre(s)").removeClass('bg-info').addClass('bg-success');
-                            }
+                            // When all the offers are fetched (CF use of defer.promise() )
+                            var fetchingOffers = AppManager.request('offers:entities'),
+                                fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                                
+                            $.when(fetchingOffers, fetchingUser).done(function(_offers, _user){
+                                
+                                var target,
+                                    filteredOffers;
+                                
+                                target = $('.info-blocks a[href="#offers/validation"]');
+                                console.log(target);
+                                if (target) {
+                                    filteredOffers = API.entities.filterCollection(_offers);
+                                    filteredOffers.filter('validation.state', '[NOT]validated');
+                                    
+                                    console.log(filteredOffers.length);
+                                    
+                                    if (filteredOffers.length > 0) {
+                                        target.parent().find('span').html(filteredOffers.length+" offres à contrôler.").removeClass('bg-info').addClass('bg-danger');
+                                    }
+                                    else{
+                                        target.parent().find('span').html('<br />').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
+                                    }
+                                }
 
+                                target = $('.info-blocks a[href="#offers/list"]');
+                                if (target) {
+                                    filteredOffers = API.entities.filterCollection(_offers);
+                                    filteredOffers.filter(
+                                        ['validation.date', 'validation.state', 'provided.by.firstName'],
+                                        ['[Created:after]'+_user.get('penultimateConnexion'), 'validated', '[isEmpty]']
+                                    );
+
+                                    if (filteredOffers.length > 0) {
+                                        target.parent().find('span').html(filteredOffers.length+" nouvelle(s) offre(s)").removeClass('bg-info').addClass('bg-success');
+                                    }
+                                    else{
+                                        target.parent().find('span').html('<br />').removeClass('bg-danger').removeClass('bg-success').addClass('bg-info');
+                                    }
+                                }
+
+                            });
+                            
+                        }
+                        
+                        showInfoInInfoBlockBottom();
+                        
+                        socket.on('update:offers:root:views', function () {
+                            
+                            setTimeout(function(){
+                                showInfoInInfoBlockBottom();
+                            }, 500)
                             
                         });
 
-                        
                     });
                     
                     

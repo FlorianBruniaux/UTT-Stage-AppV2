@@ -1,4 +1,4 @@
-<div id="offers-form">
+<div>
     
     <!-- script tag needed for backbone template -->
     <script id="sheet3FormTemplate" type="text/html">
@@ -14,51 +14,55 @@
                     </h6>
                 </div>
                 
+                <div id="info-div" class="bg-danger with-padding block-inner" style="display: none;">
+                    
+                </div>
+                
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opening Date :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-openingDate" data-editors="openingDate" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('opening.date')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-openingDate" data-editors="openingDate" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Deadline :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-deadline" data-editors="deadline" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('deadline')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-deadline" data-editors="deadline" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">If the subject has changed, please describe it :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-subjectHasBeenModified" data-editors="subjectHasBeenModified" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('subject.hasBeenModified')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-subjectHasBeenModified" data-editors="subjectHasBeenModified" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Describe your planning : </label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-planningDesc" data-editors="planningDesc" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('planning.description')%> : </label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-planningDesc" data-editors="planningDesc" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Describe your difficulties : </label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-difficulties" data-editors="difficulties" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('difficulties.description')%> : </label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-difficulties" data-editors="difficulties" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Specific observations ? </label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-observations" data-editors="observations" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('observations')%> ? </label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-observations" data-editors="observations" >
                           
                         </div>
                         <span class="msg"></span>
@@ -74,7 +78,7 @@
 
     
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit" >Submit</button>
+        <button class="btn btn-primary js-submit"><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

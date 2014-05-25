@@ -53,10 +53,12 @@ define([
                 //  To update view when a new offer is created
                 socket = io.connect("http://127.0.0.1:8080");
                 socket.on('update:offers:list:view', function () {
-                    $('#new-offer-msg').fadeIn(800).fadeOut(800);
-                    setTimeout(function(){
-                        AppManager.trigger('offers:list')
-                    }, 1600);
+                    if (AppManager.getCurrentRoute() == 'offers/list') {
+                        $('#new-offer-msg').fadeIn(500);
+                        setTimeout(function(){
+                            AppManager.trigger('offers:list')
+                        }, 1000);
+                    }
                 });
                 
                 isProvidedMode = this.options.isProvidedMode;

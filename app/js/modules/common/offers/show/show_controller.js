@@ -1,8 +1,9 @@
 define([
     'app',
     'utt.stages',
-    'modules/common/offers/show/show_view'
-], function(AppManager, UttStages, View){
+    'modules/common/offers/show/show_view',
+    'socket.io'
+], function(AppManager, UttStages, View, io){
   
     // OffersModule Show Controller
     AppManager.module('OffersModule.Show', function(Show, AppManager, Backbone, Marionette, $, _){
@@ -19,10 +20,15 @@ define([
                 
                 // Gets the offer
                 // When the offer is fetched (CF use of defer.promise() )
-                var fetchingOffer = AppManager.request('offer:entity', _options.offerId);
-                $.when(fetchingOffer).done(function(_offer){
+                var fetchingOffer = AppManager.request('offer:entity', _options.offerId),
+                    fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                    
+                $.when(fetchingOffer, fetchingUser).done(function(_offer, _user){
 
                     if (_offer !== undefined) {
+                        
+                        //  To inform listeners
+                        var socket = io.connect("http://127.0.0.1:8080");
                         
                         _offer.set('userCategory', _options.userCategory);
                         
@@ -43,7 +49,21 @@ define([
                         }
                         
                         AppManager.trigger('breadcrumb:update', path);
+                        
 
+                        
+                        if ( _user.get('favorites') ) {
+                            var favoritesIds = _user.get('favorites');
+
+                            if (_.indexOf(favoritesIds, _offer.get('_id')) > -1) {
+                                _offer.set('isUserFavorite', true);
+                            }
+                            else{
+                                _offer.set('isUserFavorite', false);
+                            }
+                        }
+                        
+                    
                         var view = new View.Offer({
                             model: _offer
                         });
@@ -51,11 +71,43 @@ define([
                         
                         //  Students events
                         view.on('students:offer:postulate', function(){
-                            console.log('POSTULATE');
+                            
+                            //  FEATURE n°XX
+                            alert('An email will be sent to the company');
+                            
                         });
                         
                         view.on('students:offer:favorites', function(){
-                            console.log('ADD TO FAVORITES');
+                            
+                            var fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                            $.when(fetchingUser).done(function(_user){
+                                
+                                var favorites = _user.get('favorites');
+                                favorites.push(_offer.get('_id'));
+                                _user.set('favorites', favorites);
+                                
+                                _user.save();
+                                
+                                AppManager.trigger('offer:show', {offerId: _offer.get('_id')});
+                            });
+                            
+                        });
+                        
+                        view.on('students:offer:favorites:delete', function(){
+                            
+                            var fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                            $.when(fetchingUser).done(function(_user){
+                                
+                                var favorites = _user.get('favorites');
+                                favorites = _.without(favorites, _offer.get('_id'));
+                                _user.set('favorites', favorites);
+                                
+                                _user.save();
+                                
+                                AppManager.trigger('offer:show', {offerId: _offer.get('_id')});
+                                
+                            });
+                            
                         });
                         
                         
@@ -69,52 +121,52 @@ define([
                         });
                         
                         
+                        
                         //  Teachers
                         view.on('teachers:offer:deny', function(_msg){
-                            $.ajax({
-                                url: '/auth/isauth',
-                                type: 'GET',
-                                success: function(_userLogged) {
-                                    
-                                    _offer.get('validation').state = 'denied';
-                                    _offer.get('validation').by = _userLogged;
-                                    _offer.get('validation').msg = _msg;
-                                    _offer.get('validation').date = new Date();
-                                    
-                                    _offer.save();
-                                    
-                                    AppManager.trigger('offers:validation');
-                                    
-                                }
+                            
+                            var fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                            $.when(fetchingUser).done(function(_user){
+                                
+                                _offer.get('validation').state = 'denied';
+                                _offer.get('validation').by = _user.attributes;
+                                _offer.get('validation').msg = _msg;
+                                _offer.get('validation').date = new Date();
+                                
+                                _offer.save();
+                                
+                                socket.emit('offer:state:changed', {});
+                                
+                                AppManager.trigger('offers:validation');
                             });
+                                
                         });
                         
                         view.on('teachers:offer:validate', function(_msg){
-                            $.ajax({
-                                url: '/auth/isauth',
-                                type: 'GET',
-                                success: function(_userLogged) {
+                            
+                            var fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                            $.when(fetchingUser).done(function(_user){
                                     
-                                    _offer.get('validation').state = 'validated';
-                                    _offer.get('validation').by = _userLogged;
-                                    _offer.get('validation').msg = _msg;
-                                    _offer.get('validation').date = new Date();
-                                    
-                                    _offer.save();
-                                    
-                                    //  To inform listeners
-                                    var socket = io.connect("http://127.0.0.1:8080");
-                                    socket.emit('offer:validated', {});
-                                    
-                                    AppManager.trigger('offers:validation');
-                                }
+                                _offer.get('validation').state = 'validated';
+                                _offer.get('validation').by = _user.attributes;
+                                _offer.get('validation').msg = _msg;
+                                _offer.get('validation').date = new Date();
+                                
+                                _offer.save();
+                                
+                                socket.emit('offer:state:changed', {});
+                                
+                                AppManager.trigger('offers:validation');
+                                
                             });
+                            
                         });
                         
                         AppManager.contentRegion.show(view);
                         
                     }
                     else{
+                        AppManager.trigger('breadcrumb:update', []);
                         API.errors.e404();
                     }
                 }); 

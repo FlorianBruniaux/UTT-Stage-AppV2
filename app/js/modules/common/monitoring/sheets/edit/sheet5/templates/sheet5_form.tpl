@@ -1,4 +1,4 @@
-<div id="offers-form">
+<div>
     
     <!-- script tag needed for backbone template -->
     <script id="sheet5FormTemplate" type="text/html">
@@ -14,99 +14,103 @@
                     </h6>
                 </div>
                 
+                <div id="info-div" class="bg-danger with-padding block-inner" style="display: none;">
+                    
+                </div>
+                
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opening Date :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-openingDate" data-editors="openingDate" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('opening.date')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-openingDate" data-editors="openingDate" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Deadline :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-deadline" data-editors="deadline" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('deadline')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-deadline" data-editors="deadline" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opinion on the subject ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-project" data-editors="project" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('subject.opinion')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-project" data-editors="project" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opinion on the team ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-team" data-editors="team" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('team.opinion')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-team" data-editors="team" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opinion on the company ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-company" data-editors="company" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('company.opinion')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-company" data-editors="company" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">What kind of help have you received ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-help" data-editors="help" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('kindOfHelpReceived')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-help" data-editors="help" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">What have you learn ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-internshipContribution" data-editors="internshipContribution" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('internshipContribution')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-internshipContribution" data-editors="internshipContribution" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                      <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Net monthly remuneration :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-rem" data-editors="rem" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('remuneration.monthly.net')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-rem" data-editors="rem" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Bonus :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-bonus" data-editors="bonus" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('bonus')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-bonus" data-editors="bonus" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Odds :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-odds" data-editors="odds" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('odds')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-odds" data-editors="odds" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Have you received enough help from your UTT responsible ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-HelpFromUttResp-enough" data-editors="HelpFromUttResp.enough" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('helpFromUttResp.enough')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-helpFromUttResp-enough" data-editors="helpFromUttResp.enough" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Explain how does he helped you ?</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-HelpFromUttResp-explanations" data-editors="HelpFromUttResp.explanations" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('helpFromUttResp.explanations')%> ?</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-helpFromUttResp-explanations" data-editors="helpFromUttResp.explanations" >
                           
                         </div>
                         <span class="msg"></span>
@@ -122,7 +126,7 @@
 
     
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit" >Submit</button>
+        <button class="btn btn-primary js-submit"><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

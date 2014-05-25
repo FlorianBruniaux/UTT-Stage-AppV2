@@ -283,6 +283,38 @@ define([
             }
             
             return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+        },
+        
+        getDatesBetween : function (startDate, stopDate) {
+            
+            Date.prototype.addDays = function(days) {
+                var dat = new Date(this.valueOf())
+                dat.setDate(dat.getDate() + days);
+                return dat;
+            };
+            
+            var dateArray = new Array();
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                dateArray.push( new Date(currentDate).valueOf() )
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        },
+        
+        formatDDMMYYYY : {
+            
+            convertToDate: function(_date){
+                var arr = _date.split('/');
+                return new Date(arr[2], arr[1]-1, arr[0]);
+            }
+            
+        },
+        
+        nowPlus: function(_nbDays){
+            var now = new Date()
+            now.setTime(now.getTime() + (_nbDays * (1000 * 60 * 60 * 24)));
+            return now;
         }
         
     };
@@ -607,9 +639,6 @@ define([
                                             //  Returns only if date after 
                                             else if (valueArr[i].indexOf('[Created:after]') > -1 ) {
                                                 
-                                                console.log(valueArr[i]);
-                                                console.log(obj);
-                                                
                                                 if (new Date(obj) > new Date(valueArr[i].replace('[Created:after]',''))) {
                                                     return _model;
                                                 }
@@ -617,6 +646,10 @@ define([
                                             }
                                             //  Returns _model if obj == value
                                             else{
+                                                if (_.isObject(obj)) {
+                                                    obj = JSON.stringify(obj);
+                                                    
+                                                }
                                                 if (obj.toLowerCase().indexOf(valueArr[i].trim().toLowerCase()) > -1) {
                                                     return _model;
                                                 }
@@ -923,83 +956,66 @@ define([
                 this.trigger('navigate', this.model);
             },
             
-            showClicked: function(_e){
-                _e.preventDefault();
-                _e.stopPropagation();
-                
-                this.trigger(this.model.get('_objectType')+':show', this.model);
-            },
-            
-            editClicked: function(_e){
-                _e.preventDefault();
-                _e.stopPropagation();
-                
-                this.trigger(this.model.get('_objectType')+':edit', this.model);
-            },
-            
-            deleteClicked: function(_e){
+            validateSheet : function(_e){
                 
                 _e.preventDefault();
-                _e.stopPropagation();
                 
                 var self = this;
- 
+                
                 Bootbox.dialog({
-                    message: 'Supprimer cette annonce supprimera également le suivi qui lui est lié (dans le cas où il y en a un)',
-                    title: 'Justification de la suppression',
+                    message:'<input class="form-control" type="text" id="prompt-message" placeholder="'+polyglot.t('yourMessage')+'"></input>',
+                    title: 'Justification',
                     buttons: {
-                        default: {
-                            label: 'Annuler',
-                            className: 'btn-default',
-                            callback: function() {
-                                this.close();
-                            }
+                        cancel: {
+                            label: polyglot.t('cancel'),
+                            className: 'btn-default'
                         },
-                        danger: {
-                            label: 'Supprimer',
-                            className: 'btn-danger',
+                        main: {
+                            label: polyglot.t('sheet.validate'),
+                            className: 'btn-success',
                             callback: function() {
-                                
-                                switch ( self.model.get('_objectType') ) {
-                                    
-                                    case 'offer':
-                                        
-                                        var fetchingMonitoring = APPMANAGER.request('monitoring:entities');
-                                        $.when(fetchingMonitoring).done(function(_monitoring){
-                    
-                                            var filteredMonitoring = ENTITIES.filterCollection(_monitoring);
-                                            filteredMonitoring.filter('offer._id', self.model.get('_id'));
-                                            
-                                            filteredMonitoring.each(function(_monitoring){
-                                                _monitoring.destroy();
-                                            });
-                                        });
-                                        
-                                        self.model.destroy();
-                                
-                                        setTimeout(function(){
-                                            APPMANAGER.trigger('offers:list')
-                                        },50);
-                                        break;
-                                    
-                                    default:
-                                        //self.model.destroy();
-                                
-                                        setTimeout(function(){
-                                            
-                                        },50);
-                                        break;
-                                } 
-                               
+                                self.trigger('internship_managers:sheet:validate', $('#prompt-message').val())
                             }
                         }
                     }
                 });
-                
+            },
+            
+            
+        },
+    
+        sheets: {
+            checkOpeningDate: function(_sheetOpeningDate){
+                if (
+                    DATES.formatDDMMYYYY.convertToDate(_sheetOpeningDate) > new Date()
+                    || _sheetOpeningDate == ''
+                ) {
+                    $('input, select, textarea').prop('disabled', true);
+                    $('button.js-submit').remove();
+                    $('#info-div').html('<h3>'+polyglot.t('sheet.not.open')+'</h3>').fadeIn(500);
+                }
+            },
+            
+            checkDeadline: function(_sheetDeadline){
+                if (
+                    DATES.formatDDMMYYYY.convertToDate(_sheetDeadline) < new Date()
+                ) {
+                    $('input, select, textarea').prop('disabled', true);
+                    $('button.js-submit').remove();
+                    $('#info-div').html('<h3>'+polyglot.t('sheet.deadline.exceeded')+'</h3>').fadeIn(500);
+                }
+            },
+            
+            checkValidation: function(_sheetValidation){
+                if (
+                    _sheetValidation   
+                ) {
+                    $('input, select, textarea').prop('disabled', true);
+                    $('button.js-submit').remove();
+                    $('#info-div').html('<h3>'+polyglot.t('sheet.already.validated')+'</h3>').fadeIn(500);
+                }
             }
         }
-    
-        
     };
     
     var UTT = API.Application.prototype.utt = {

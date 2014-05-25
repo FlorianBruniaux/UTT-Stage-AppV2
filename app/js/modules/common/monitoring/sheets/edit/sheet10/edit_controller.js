@@ -21,9 +21,10 @@ define([
                 
                 // Gets the monitoring
                 // When the monitoring is fetched (CF use of defer.promise() )
-                var fetchingMonitoring = AppManager.request('monitoring:entity', _options.monitoringId);
+                var fetchingMonitoring = AppManager.request('monitoring:entity', _options.monitoringId),
+                    fetchingUsers = AppManager.request('users:entities');
                     
-                $.when(fetchingMonitoring).done(function(_monitoring){
+                $.when(fetchingMonitoring, fetchingUsers).done(function(_monitoring, _users){
                     
                     if (_monitoring !== undefined && _options.userCategory != 'students') {
                         
@@ -32,8 +33,8 @@ define([
                             case 'teachers':
                                 path.push(
                                     { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'teachers:monitoring:list'},
-                                    { name: 'monitoring.show', url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'teachers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
-                                    { name: 'monitoring.sheet.edit.sheet10', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet10', navigationTrigger: 'teachers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet10'} }
+                                    { name: _monitoring.get('offer').provided.by.firstName +' '+ _monitoring.get('offer').provided.by.lastName, url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'teachers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
+                                    { name: 'monitoring.sheets.sheet10.name', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet10', navigationTrigger: 'teachers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet10'} }
                                 )
                                 break;
                             
@@ -41,24 +42,76 @@ define([
                                 path.push(
                                     { name: 'monitoring', url: 'monitoring', navigationTrigger: 'internship_managers:monitoring:root' },
                                     { name: 'monitoring.list', url: 'monitoring/list', navigationTrigger: 'internship_managers:monitoring:list'},
-                                    { name: 'monitoring.show', url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'internship_managers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
-                                    { name: 'monitoring.sheet.edit.sheet10', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet10', navigationTrigger: 'internship_managers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet10'} }
+                                    { name: _monitoring.get('offer').provided.by.firstName +' '+ _monitoring.get('offer').provided.by.lastName, url: 'monitoring/'+_monitoring.get('_id'), navigationTrigger: 'internship_managers:monitoring:show', options: {monitoringId: _monitoring.get('_id')} },
+                                    { name: 'monitoring.sheets.sheet10.name', url: 'monitoring/'+_monitoring.get('_id')+'/edit/sheet10', navigationTrigger: 'internship_managers:monitoring:edit:sheet', options: {monitoringId: _monitoring.get('_id'), sheet:'sheet10'} }
                                 )
                                 break;
                         }
                         AppManager.trigger('breadcrumb:update', path);
 
+                        var filteredUsers = API.entities.filterCollection(_users);
+                        filteredUsers.filter('userCategory', 'teachers');
+                        
+                        var teach = {};
+                        filteredUsers.each(function(_teacher){
+                            teach[_teacher.get('firstName')+' '+_teacher.get('lastName')] = _teacher;
+                        });
+                        
                         var view = new View.sheet10({
                             model: _monitoring,
-                            title: polyglot.t('monitoring.edit')+' - '+ _monitoring.get('sheets').sheet10.name
+                            title: polyglot.t('monitoring.edit.sheet')+' - '+ polyglot.t('monitoring.sheets.sheet10.name'),
+                            userCategory: _options.userCategory,
+                            teachers: teach
+                        });
+                        
+                        view.on('internship_managers:sheet:validate', function(_msg){
+
+                            var fetchingUser = AppManager.request('user:entity', $('#user-id').html());
+                            $.when(fetchingUser).done(function(_user){
+                                
+                                API.misc.showLoader();
+
+                                var temp = _monitoring.get('sheets').sheet10;
+
+                                _monitoring.get('sheets').sheet10 = {
+                                    //  Old value
+                                    //  Fix because there is a bug when _monitoring.get('sheets').sheet0.validation = {}
+                                    //  --> Invalid JSON ?!
+                                    date: temp.date,
+                                    time: temp.time,
+                                    room: temp.room,
+                                    jury1: teach[temp.jury1],
+                                    jury2: teach[temp.jury2],
+                                    nbParticipants: temp.nbParticipants,
+                                    participants : temp.participants,
+                                    //  Update
+                                    validation : {
+                                        state : 'validated',
+                                        by : _user.attributes,
+                                        msg : _msg,
+                                        date : API.dates.convertToDDMMYYYY(new Date())
+                                    }
+                                }
+
+                                if(_monitoring.save()){
+                                    AppManager.trigger('internship_managers:monitoring:show', {monitoringId : _monitoring.get('_id')});
+                                }
+
+                            });
+
                         });
                         
                         view.on('form:submit', function(_data){
                             
                             API.misc.showLoader();
 
-                            if (_monitoring.save(_data)) {
-                                AppManager.trigger("monitoring:show", _options.monitoringId);
+                            _data.jury1= teach[_data.jury1],
+                            _data.jury2= teach[_data.jury2],
+                            
+                            _monitoring.get('sheets').sheet10 = _data;
+                            
+                            if(_monitoring.save()){
+                                AppManager.trigger(_options.userCategory+':monitoring:show', {monitoringId : _monitoring.get('_id')});
                             }
                             
                         });

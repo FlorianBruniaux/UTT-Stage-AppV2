@@ -121,10 +121,26 @@ requirejs([
         
         socket.on('offer:new', function (socket) {
             io.sockets.emit('update:offers:validation:view');
+            io.sockets.emit('update:offers:root:views');//  teacher and intership_managers
         });
         
-        socket.on('offer:validated', function (socket) {
+        socket.on('offer:deleted', function (socket) {
+            io.sockets.emit('update:offers:validation:view');
+            io.sockets.emit('update:students:home:view');
+            io.sockets.emit('update:offers:root:views');//  teacher and intership_managers
+        });
+        
+        socket.on('offer:provided', function (socket) {
             io.sockets.emit('update:offers:list:view');
+            io.sockets.emit('update:students:home:view');
+            io.sockets.emit('update:offers:root:views');
+        });
+        
+        socket.on('offer:state:changed', function (socket) {
+            io.sockets.emit('update:offers:validation:view');
+            io.sockets.emit('update:offers:list:view');
+            io.sockets.emit('update:students:home:view');
+            io.sockets.emit('update:offers:root:views');//  teacher and intership_managers
         });
         
     });

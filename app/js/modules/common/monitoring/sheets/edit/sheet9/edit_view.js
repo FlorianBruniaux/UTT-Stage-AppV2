@@ -20,15 +20,15 @@ define([
 
                 var title = this.options.title;
 
-                data = this.options.model.attributes;
+                data = this.options.model.get('sheets').sheet9;
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        openingDate:    { type: 'Text', validators: ['required']},
-                        deadline:       { type: 'Text', validators: ['required']},
-                        receptionDate:  { type: 'Text', validators: ['required']},
-                        remark:         { type: 'TextArea', validators: ['required']},
+                        openingDate:    { type: 'Text', validators: ['required'] },
+                        deadline:       { type: 'Text', validators: ['required'] },
+                        receptionDate:  { type: 'Text'},
+                        remark:         { type: 'TextArea'},
                     }
                 });
 
@@ -45,7 +45,7 @@ define([
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet9Form.el);
+                    $('button.js-submit').parent().before(sheet9Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -56,16 +56,38 @@ define([
                     //  To init datepicker
                     API.misc.initDatepicker();
                     
+                    //  To set specifications (input disabled etc)
+                    self.setUserCategorySpec();
+                    
                 },300);
                 
             },
             
+            setUserCategorySpec : function(){
+                switch (this.options.userCategory) {
+                    case 'teachers':
+                        $('input, select, textarea').prop('disabled', true);
+                        break;
+                    
+                    case 'internship_managers':
+                        $('button.js-submit').before('<button class="btn btn-success js-validate"><i class="icon-checkmark3"></i>'+polyglot.t('validate')+'</button>');
+                        break;
+                }
+
+            },
+            
             formatSpecificData : function(_data){
-                //nothing to format
+                    
+                //  To set to format DD/MM/YYYY
+                _data.openingDate = _data.openingDate;
+                _data.deadline = _data.deadline;
+                
                 return _data
+            
             },
             
             events: {
+                'click button.js-validate': API.views.events.validateSheet,
                 'click button.js-submit': 'eSubmitClicked'
             },
             
@@ -75,7 +97,7 @@ define([
 
                 if( API.views.forms.isFormValid(sheet9Form) ){
                     var data = sheet9Form.getValue();
-
+                    
                     this.trigger('form:submit',data)
                 }
                 

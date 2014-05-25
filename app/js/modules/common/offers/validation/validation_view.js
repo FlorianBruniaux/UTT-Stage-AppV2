@@ -25,19 +25,26 @@ define([
             itemViewContainer: 'tbody',
             initialize: function(){
                 
+                var self = this;
+                
                 //  To update view when a new offer is created
                 socket = io.connect("http://127.0.0.1:8080");
                 socket.on('update:offers:validation:view', function () {
-                    $('#new-offer-msg').fadeIn(500);
-                    setTimeout(function(){
-                        AppManager.trigger('offers:validation')
-                    }, 1000);
+                    if (AppManager.getCurrentRoute() == 'offers/validation') {
+                        $('#new-offer-msg').fadeIn(500);
+                        setTimeout(function(){
+                            AppManager.trigger('offers:validation')
+                        }, 1000);
+                    }
                 });
                 
                 setTimeout(function(){
                     API.misc.initDataTable();
                 }, 100);
                 
+            },
+            onClose: function(){
+                this.remove();
             }
         });
     });

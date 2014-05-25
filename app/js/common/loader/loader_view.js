@@ -11,8 +11,8 @@ define([
             
             initialize: function(_options){
                 var options = _options || {};
-                this.title = options.title || 'Chargement des données';
-                this.message = options.message || 'Merci de patienter, nous chargeons vos données';
+                this.title = options.title || polyglot.t('data.loading');
+                this.message = options.message || polyglot.t('data.loading.msg');
             },
             
             serializeData: function(){

@@ -20,16 +20,16 @@ define([
 
                 var title = this.options.title;
 
-                data = this.options.model.attributes;
+                data = this.options.model.get('sheets').sheet8;
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({
                     schema: {
-                        openingDate:    { type: 'Text', validators: ['required']},
-                        deadline:       { type: 'Text', validators: ['required']},
-                        receptionDate:       { type: 'Text', validators: ['required']},
-                        reportIsConfidential:   { type: 'Select', validators: ['required'], options: ['yes','no'] },
-                        presentationIsConfidential:     { type: 'Select', validators: ['required'], options: ['yes','no'] }
+                        openingDate:    { type: 'Text', validators: ['required'] },
+                        deadline:       { type: 'Text', validators: ['required'] },
+                        receptionDate:       { type: 'Text'},
+                        reportIsConfidential:   { type: 'Select', options: ['yes','no'] },
+                        presentationIsConfidential:     { type: 'Select', options: ['yes','no'] }
                     }
                 });
 
@@ -46,7 +46,7 @@ define([
                     }).render();
 
                     //  Put the form before submit btn
-                    $('button.js-submit').before(sheet8Form.el);
+                    $('button.js-submit').parent().before(sheet8Form.el);
                     
                     //  Add title
                     $('h6.panel-title').append(title);
@@ -57,16 +57,52 @@ define([
                     //  To init datepicker
                     API.misc.initDatepicker();
                     
+                    //  To set specifications (input disabled etc)
+                    self.setUserCategorySpec();
+                    
                 },300);
                 
             },
             
+            setUserCategorySpec : function(){
+                switch (this.options.userCategory) {
+                    case 'teachers':
+                        $('input, select, textarea').prop('disabled', true);
+                        break;
+                    
+                    case 'internship_managers':
+                        $('button.js-submit').before('<button class="btn btn-success js-validate"><i class="icon-checkmark3"></i>'+polyglot.t('validate')+'</button>');
+                        break;
+                    
+                    case 'students':
+                        $('input[name="openingDate"], input[name="deadline"]').prop('disabled', true);
+                        
+                        var openingDate = this.options.model.get('sheets').sheet8.openingDate;
+                        API.views.sheets.checkOpeningDate(openingDate);
+                        
+                        var deadline = this.options.model.get('sheets').sheet8.deadline;
+                        API.views.sheets.checkDeadline(deadline);
+                        
+                        var sheetValidation = this.options.model.get('sheets').sheet8.validation;
+                        API.views.sheets.checkValidation(sheetValidation);
+                        
+                        break;
+                }
+
+            },
+            
             formatSpecificData : function(_data){
-                //nothing to format
+                    
+                //  To set to format DD/MM/YYYY
+                _data.openingDate = _data.openingDate;
+                _data.deadline = _data.deadline;
+
                 return _data
+            
             },
             
             events: {
+                'click button.js-validate': API.views.events.validateSheet,
                 'click button.js-submit': 'eSubmitClicked'
             },
             
@@ -75,6 +111,7 @@ define([
                 _e.preventDefault();
 
                 if( API.views.forms.isFormValid(sheet8Form) ){
+                    
                     var data = sheet8Form.getValue();
 
                     this.trigger('form:submit',data)

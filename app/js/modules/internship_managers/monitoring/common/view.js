@@ -17,7 +17,7 @@ define([
             template : emptyTpl,
             onRender: function(){
                 setTimeout(function(){
-                    AppManager.trigger('internship_managers:monitoring:list');
+                    AppManager.trigger('internship_managers:monitoring:root');
                 },2000);
             }
         });

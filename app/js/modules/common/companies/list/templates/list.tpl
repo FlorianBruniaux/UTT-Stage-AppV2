@@ -12,9 +12,9 @@
             
             <thead>
                 <tr>
-                    <th style="width:200px;">Name</th>
-                    <th style="width:100px;">Address</th>
-                    <th style="width:300px;">Website</th>
+                    <th style="width:200px;"><%=polyglot.t('name')%></th>
+                    <th style="width:100px;"><%=polyglot.t('localization')%></th>
+                    <th style="width:300px;"><%=polyglot.t('website')%></th>
                 </tr>
             </thead>
             

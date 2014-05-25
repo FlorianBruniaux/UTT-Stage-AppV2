@@ -1,4 +1,4 @@
-<div id="offers-form">
+<div>
     
     <!-- script tag needed for backbone template -->
     <script id="sheet9FormTemplate" type="text/html">
@@ -14,35 +14,39 @@
                     </h6>
                 </div>
                 
+                <div id="info-div" class="bg-danger with-padding block-inner" style="display: none;">
+                    
+                </div>
+                
                 <div class="panel-body">
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Opening Date :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-openingDate" data-editors="openingDate" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('opening.date')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-openingDate" data-editors="openingDate" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Deadline :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-deadline" data-editors="deadline" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('deadline')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-deadline" data-editors="deadline" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Reception date :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10 datepicker" id="form-receptionDate" data-editors="receptionDate" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('receptionDate')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20 datepicker" id="form-receptionDate" data-editors="receptionDate" >
                           
                         </div>
                         <span class="msg"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-1 control-label">Remark :</label>
-                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-10" id="form-remark" data-editors="remark" >
+                        <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label"><%=polyglot.t('remarks')%> :</label>
+                        <div class="col-xs-6 col-sm-8 col-md-8 col-lg-20" id="form-remark" data-editors="remark" >
                           
                         </div>
                         <span class="msg"></span>
@@ -59,7 +63,7 @@
 
     
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit" >Submit</button>
+        <button class="btn btn-primary js-submit"><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

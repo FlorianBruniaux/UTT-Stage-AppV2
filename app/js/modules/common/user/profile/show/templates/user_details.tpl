@@ -11,19 +11,20 @@
     </div>
 
     <div class="bg-info with-padding block-inner">
-        <p>Certains champs ne peuvent être remplis qu'en synchronisant votre profil linkedin</p>
+        <p><%=polyglot.t('someFieldsMustBeFilledWithLinkedin')%></p>
     </div>
+    
     <div class="panel-body">
 
         <div class="user-desc">
             
             <p class="desc">
-                <label>Prénom :</label>
+                <label><%=polyglot.t('firstName')%> :</label>
                 <%=firstName%>
             </p>
             
             <p class="desc">
-                <label>Nom :</label>
+                <label><%=polyglot.t('lastName')%> :</label>
                 <%=lastName%>
             </p>
             
@@ -31,7 +32,7 @@
                 if(userCategory == 'students'){
             %>
                 <p class="desc">
-                    <label>Department - Department specialization :</label>
+                    <label><%=polyglot.t('department')%> - <%=polyglot.t('departmentSpec')%> :</label>
                     <%=specificToCategory.department%> - <%=specificToCategory.departmentSpec%>
                 </p>
             <%
@@ -40,23 +41,23 @@
             
             
             <p class="desc">
-                <label>Email :</label>
+                <label><%=polyglot.t('email')%> :</label>
                 <%=email%>
             </p>
             
             <p class="desc">
-                <label>Tel :</label>
+                <label><%=polyglot.t('phone.number')%> :</label>
                 <%=mobile%>
             </p>
             
             <p class="desc">
-                <label>A propos de moi :</label>
+                <label><%=polyglot.t('about.me')%> :</label>
                 <p><%=headline%></p>
                 <%=summary%>
             </p>
             
             <p class="desc">
-                <label>Compétences :</label>
+                <label><%=polyglot.t('skillset')%> :</label>
                 <div class="tags">
                     <%
                         _.each(skills.values, function(_value){
@@ -69,7 +70,7 @@
             <div class="tags_clear"></div>
             
             <p class="desc">
-                <label>Formation :</label>
+                <label><%=polyglot.t('education')%> :</label>
                 <%
                     _.each(educations.values, function(_value){
                         print(
@@ -88,7 +89,7 @@
             </p>
             
             <p class="desc">
-                <label>Expérience professionnelle :</label>
+                <label><%=polyglot.t('professional.experiences')%> :</label>
                 <%
                     _.each(positions.values, function(_value){
                         print(
@@ -111,10 +112,10 @@
         <div class="pull-right">
             <a href="/auth/linkedin">
                 <button class="btn btn-info">
-                    <i class="icon-linkedin"></i>Import Linkedin data
+                    <i class="icon-linkedin"></i><%=polyglot.t('linkedin.sync')%>
                 </button>
             </a>
-            <button class="btn btn-success js-modify"><i class="icon-pencil3"></i> Modifier</button>
+            <button class="btn btn-success js-modify"><i class="icon-pencil3"></i><%=polyglot.t('modify')%></button>
         </div>
         
     </div>

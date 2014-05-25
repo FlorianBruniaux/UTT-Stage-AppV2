@@ -45,6 +45,7 @@ define([
                         
                     }
                     else{
+                        AppManager.trigger('breadcrumb:update', []);
                         API.errors.e404();
                     }
                 });
