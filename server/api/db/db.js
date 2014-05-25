@@ -69,7 +69,8 @@ var Schema = mongoose.Schema,
             tags:                   { type: String },
             educations:             Schema.Types.Mixed,
             positions:              Schema.Types.Mixed,
-            skills:                 Schema.Types.Mixed
+            skills:                 Schema.Types.Mixed,
+            favorites:              [String]
         })
         
     };
@@ -101,7 +102,7 @@ exports.controller = {
             var objectType = _req.params.objectType;
 
             models[objectType].find({}, function(err, objects) {
-                _res.json(objects);
+                _res.json(200, objects);
             });
             
         },
@@ -109,11 +110,12 @@ exports.controller = {
         byId:  function(_req, _res){
             var objectType = _req.params.objectType;
             
-            models[objectType].findOne({ _id: _req.params.id }, function(err, objects) {
-                if (err) {
-                    _res.json({error: 'Not found.'});
-                } else {
-                    _res.json(objects);
+            models[objectType].findOne({ _id: _req.params.id }, function(err, object) {
+                if (err || object == null) {
+                    _res.json(400, undefined);
+                }
+                else {
+                    _res.json(200, object);
                 }
             });
             
@@ -128,9 +130,10 @@ exports.controller = {
             
         newObject.save(function(err, object) {
             if (err) {
-                _res.json({error: 'Error adding object.'});
-            } else {
-                _res.json(object);
+                _res.json(400, {error: 'Error adding object.'});
+            }
+            else {
+                _res.json(200, object);
             }
         });
         
@@ -138,7 +141,6 @@ exports.controller = {
     
     update: function(_req, _res){
         
-        console.log('update');
         
         delete _req.body._id;
         
@@ -148,9 +150,10 @@ exports.controller = {
         models[objectType].update({ _id: _req.params.id }, _req.body, function(err, updated) {
             if (err) {
                 console.log(err);
-                _res.json({error: 'Object not found.'});
-            } else {
-                _res.json('Object updated ! ');
+                _res.json(400, {error: 'Object not found.'});
+            }
+            else {
+                _res.json(200, {status: 'Object updated'});
             }
         })
         
@@ -163,7 +166,7 @@ exports.controller = {
 
         models[objectType].findOne({ _id: id }, function(err, object) {
             if (err) {
-                _res.json({error: 'object not found.'});
+                _res.json(400, {error: 'object not found.'});
             }
             else {
                 object.remove(function(err, object){
