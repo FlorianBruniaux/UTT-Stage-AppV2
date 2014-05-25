@@ -6640,3 +6640,32 @@ ul.checkbox-inline li {
 .education-title {
     color: #3CA2BB;
 }
+
+.details {
+    
+}
+
+.details p {
+    
+}
+
+.details p label {
+    margin-right:10px;
+}
+
+.details div.sheets {
+    margin-left:30px;
+}
+
+.details div.sheets p{
+    margin-top:20px;
+}
+
+.details div.sheets p label{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.details div.sheets p span{
+    margin-left:20px; 
+}
