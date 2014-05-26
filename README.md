@@ -62,7 +62,28 @@ Les principaux composants Backbone :
 
 ####[Marionette.js](http://marionettejs.com/):
 
-Une extension Backbone.js permettant de structurer facilement une application
+C’est une bibliothèque d'applications composites pour Backbone.js permettant de simplifier la mise en place d’applications « SPA » (Single Page Application). Marionette.js se place au-dessus de Backbone et lui apporte un système d’architecture optimisant la gestion des vues et de la mémoire utilisée. C’est une librairie flexible composée de nombreux outils qui facilite grandement le développement d’applications évolutives.
+
+Principaux avantages apportés par Marionette.js :
+
+- Application évolutive : une application est divisée en module. Chaque module étant indépendant des autres.
+- Architecture basée sur la gestion d’événements via Backbone.Wreqr.EventAggregator
+- Gestion des vues optimisées via le système de templates d’Underscore.js
+- Rendu en temps réels grâce aux  objets « Region » et « Layout »
+- Mécanisme de gestion de la mémoire permettant de supprimer automatiquement les « zombies », c’est-à-dire les vues, regions et layouts qui ne sont plus utilisés
+- Réduction du nombre de lignes de codes nécessaire
+- Etc…
+
+Pour en découvrir plus rendez-vous directement sur le site officiel ou le git:
+
+- http://marionettejs.com 
+- https://github.com/derickbailey/backbone.marionette 
+
+Durant mon apprentissage de Marionette.js, je me suis principalement basé sur le travail de David Sulc. Et particulièrement de ses 2 livres que je recommande fortement :
+
+- [Marionette.js : a gentle introduction](https://leanpub.com/marionette-gentle-introduction)
+- [Structuring Backbone with Require.js et Marionette.js](https://leanpub.com/structuring-backbone-with-requirejs-and-marionette)
+
 
 ####[Node.js](http://nodejs.org) : 
 	
