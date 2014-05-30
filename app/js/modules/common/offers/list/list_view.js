@@ -50,6 +50,8 @@ define([
             
             initialize: function(){
 
+                $('#form-tags input').val('');
+                
                 //  To update view when a new offer is created
                 socket = io.connect("http://127.0.0.1:8080");
                 socket.on('update:offers:list:view', function () {
@@ -84,19 +86,18 @@ define([
                 });
                 
                 var params = this.options.params;
-                
+
                 if ( _.isEmpty(params)) {
                     this.data = this.defaultFilters;
                 }
                 else{
-                    params.department = (params.department && params.department != 'all') ? params.department.split(',') : this.defaultFilters.department;
-                    params.type = (params.type && params.type != 'all') ? params.type.split(',') : this.defaultFilters.type;
+                    params.department = (params.department && params.department != 'all') ? params.department.split(',') : API.utt.getDepartments();
+                    params.type = (params.type && params.type != 'all') ? params.type.split(',') : API.utt.getInternshipTypes();
                     params.tags = (params.tags) ? params.tags : this.defaultFilters.tags;
                     params.fullAddress = (params.fullAddress) ? params.fullAddress : this.defaultFilters.fullAddress;
                     params.perimeter = ((params.loc) ? params.loc.split(',')[2]+' km' : this.defaultFilters.perimeter);
                     this.data = params;
                 }
-                
                 
                 //  The schema of the future bbform
                 var bbformModel = new bbformSchema(this.data);
@@ -115,6 +116,9 @@ define([
                     API.views.forms.initUniformPlugin();
                     
                     setTimeout(function(){
+                        
+                        
+                        
                         $('#form-tags input').tagsInput({
                             'width'     :'100%',
                             'onAddTag'  : function(){
@@ -226,6 +230,8 @@ define([
                 
                 params = this.cleanParams(params, ['&',',']);
 
+                console.log(params);
+                
                 //  To filter the offers with new params
                 AppManager.trigger('offers:filter', params);
                 

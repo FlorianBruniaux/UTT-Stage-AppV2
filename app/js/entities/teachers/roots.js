@@ -20,7 +20,7 @@ define([
                 Entities.homeRootListItems = new Entities.RootsCollection([
                     { name: "home.panel.actions.offers.monitoring", url: "offers", icon: "icon-newspaper", navigationTrigger: "teachers:offers:root", bg_class:"bg-info", msg: "<br />" },
                     { name: "home.panel.actions.monitoring.teachers", url: "monitoring/list", icon: "icon-list", navigationTrigger: "teachers:monitoring:list", bg_class:"bg-info", msg: "<br />" },
-                    { name: "home.panel.actions.messages", url: "messages/list", icon: "icon-bubble4", navigationTrigger: "messages:list", bg_class:"bg-success", msg: "2 nouveaux messages" },
+                    { name: "home.panel.actions.messages", url: "messages/list", icon: "icon-bubble4", navigationTrigger: "messages:list", bg_class:"bg-info", msg: "<br />" },
                     { name: "home.panel.actions.contacts", url: "contacts/list", icon: "icon-address-book", navigationTrigger: "contacts:list", bg_class:" bg-info", msg: "<br />" },
                     { name: "home.panel.actions.companies.list", url: "companies/list", icon: "icon-office", navigationTrigger: "companies:list", bg_class:" bg-info", msg: "<br />" }
                 ]);
