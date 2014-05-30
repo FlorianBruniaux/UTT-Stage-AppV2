@@ -408,33 +408,34 @@ define([
                             
                                 require(_.union(common, _data.modules), function(mainPageView, rightCornerView){
                                     
-                                    require([
-                                        'common/menu/list/list_controller'
-                                    ],function(MenuController){
-                                        MenuController.init(_res.userCategory);
-                                    })
-                                    
-                                    APPMANAGER.mainlayoutRegion.show(
-                                        new mainPageView.mainPage({
-                                            userCategory : _res.userCategory
-                                        })
-                                    );
+                                    var fetchingUser = APPMANAGER.request('user:entity', _res._id);
+                                    $.when(fetchingUser).done(function(_user){
                                         
+                                        require([
+                                            'common/menu/list/list_controller'
+                                        ],function(MenuController){
+                                            MenuController.init(_res.userCategory);
+                                        })
+                                        
+                                        APPMANAGER.mainlayoutRegion.show(
+                                            new mainPageView.mainPage({
+                                                userCategory : _res.userCategory
+                                            })
+                                        );
+
+                                        _user.set('penultimateConnexion', _user.get('lastConnexion'));
+                                        _user.set('lastConnexion', new Date());
+                                        _user.save();
+                                        
+                                        //  Show user infos in top right corner
+                                        APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: _user}));
     
-                                    //  Create and Get Backbone user model (from the object sent by server)
-                                    var user = APPMANAGER.request('user:entity:new', _res);
-                                    user.set('penultimateConnexion', user.get('lastConnexion'));
-                                    user.set('lastConnexion', new Date());
-                                    user.save();
-                                    
-                                    //  Show user infos in top right corner
-                                    APPMANAGER.profileRegion.show(new rightCornerView.rightCorner({model: user}));
-
-                                    Backbone.history.start({pushState: false});
-
-                                    if (APPMANAGER.getCurrentRoute() === "") {
-                                        APPMANAGER.trigger(_res.userCategory+':home:root');
-                                    }
+                                        Backbone.history.start({pushState: false});
+    
+                                        if (APPMANAGER.getCurrentRoute() === "") {
+                                            APPMANAGER.trigger(_user.get('userCategory')+':home:root');
+                                        }
+                                    })
                                     
                                 });
                             

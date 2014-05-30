@@ -30,7 +30,7 @@ define([
                 headline: '',
                 summary: '',
                 photoUrl: '',
-                favorites:[],
+                //favorites:[],
                 positions: {},
                 educations: {},
                 skills: {}
