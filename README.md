@@ -5,7 +5,7 @@ Prototype application de gestion des stages UTT (v2) (Backbone, Marionette, Node
 
 #Contexte 
 
-Comme toutes les écoles du supérieur, l’UTT propose à ces étudiants de partir en stage en entreprise pour compléter leur formation. Elle dispose donc d’un outil interne permettant aux différents acteurs  d’intervenir dans ce processus.
+Comme toutes les écoles du supérieur, l’UTT propose à ses étudiants de partir en stage en entreprise pour compléter leur formation. Elle dispose donc d’un outil interne permettant aux différents acteurs  d’intervenir dans ce processus.
 
 Cet outil prend la forme d’une application disponible en ligne.
 
