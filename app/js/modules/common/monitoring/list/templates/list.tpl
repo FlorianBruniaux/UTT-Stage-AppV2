@@ -46,19 +46,20 @@
             <thead>
                 <tr>
                     <th class="center"><%=polyglot.t('student')%></th>
-                    <th class="center"><%=polyglot.t('offer')%></th>
+                    <th class="center"><%=polyglot.t('department')%></th>
                     <th class="center"><%=polyglot.t('internship.type')%></th>
-                    <th class="center">0</th>
-                    <th class="center">1</th>
-                    <th class="center">2</th>
-                    <th class="center">3</th>
-                    <th class="center">4</th>
-                    <th class="center">5</th>
-                    <th class="center">6</th>
-                    <th class="center">7</th>
-                    <th class="center">8</th>
-                    <th class="center">9</th>
-                    <th class="center">10</th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet0.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet1.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet2.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet3.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet4.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet5.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet6.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet7.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet8.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet9.name')%></th>
+                    <th class="center"><%=polyglot.t('monitoring.sheets.sheet10.name')%></th>
+                    <th class="center"></th>
                 </tr>
             </thead>
             
