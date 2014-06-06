@@ -7,3 +7,4 @@ npm-debug.log
 
 # Bower
 bower_components
+app/js/vendors/bower
