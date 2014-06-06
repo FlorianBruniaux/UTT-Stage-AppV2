@@ -82,7 +82,7 @@
     </script>
     
     <div class="form-actions text-right">
-        <button class="btn btn-primary js-submit"><%=polyglot.t('submit')%></button>
+        <button class="btn btn-primary js-submit"><%=polyglot.t('form.submit')%></button>
     </div>
     
 </div>

@@ -116,9 +116,7 @@ define([
                     API.views.forms.initUniformPlugin();
                     
                     setTimeout(function(){
-                        
-                        
-                        
+
                         $('#form-tags input').tagsInput({
                             'width'     :'100%',
                             'onAddTag'  : function(){
@@ -230,8 +228,6 @@ define([
                 
                 params = this.cleanParams(params, ['&',',']);
 
-                console.log(params);
-                
                 //  To filter the offers with new params
                 AppManager.trigger('offers:filter', params);
                 

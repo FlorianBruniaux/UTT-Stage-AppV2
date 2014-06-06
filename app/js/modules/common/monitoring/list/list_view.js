@@ -34,6 +34,8 @@ define([
             
             initialize: function(){
                 
+                $('#form-tags input').val('');
+                
                 setTimeout(function(){
                     API.misc.initDataTable();
                 }, 100);
@@ -56,8 +58,8 @@ define([
                     this.data = this.defaultFilters;
                 }
                 else{
-                    params.department = (params.department && params.department != 'all') ? params.department.split(',') : this.defaultFilters.department;
-                    params.type = (params.type && params.type != 'all') ? params.type.split(',') : this.defaultFilters.type;
+                    params.department = (params.department && params.department != 'all') ? params.department.split(',') : API.utt.getDepartments();
+                    params.type = (params.type && params.type != 'all') ? params.type.split(',') : API.utt.getInternshipTypes();
                     this.data = params;
                 }
                 
