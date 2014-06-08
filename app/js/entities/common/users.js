@@ -16,10 +16,6 @@ define([
                 _id: null,
                 _objectType : 'user',
                 userCategory: 'students',
-                specificToCategory : { //if student
-                    department: '',
-                    departmentSpec: ''
-                },
                 penultimateConnexion: '',
                 lastConnexion: '',
                 linkedinId: '',
@@ -30,7 +26,6 @@ define([
                 headline: '',
                 summary: '',
                 photoUrl: '',
-                //favorites:[],
                 positions: {},
                 educations: {},
                 skills: {}

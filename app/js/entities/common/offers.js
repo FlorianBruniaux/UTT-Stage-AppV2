@@ -18,7 +18,7 @@ define([
                 creationDate: '',
                 lastModifDate: '',
                 validation: {
-                    state: 'not yet treated', // not yet treated, validated, denied, provided
+                    state: 'not yet treated', //    not yet treated, validated, denied, provided
                     msg: '',
                     by: '',
                     date: ''
@@ -28,10 +28,10 @@ define([
                     date: ''
                 },
                 alreadyMonitored: 'no',
-                type:'',//TN05/TN09/TN10/TN07/Alternance
+                type:'', // TN05/TN09/TN10/TN07/Alternance
                 ref:'',
-                department:'',//ISI/SRT/SM/SI/MTE/Master
-                departmentSpec:'',// empty/MPL/MSI/MRI etc.
+                department:'', //   ISI/SRT/SM/SI/MTE/Master
+                departmentSpec:'', //   empty/MPL/MSI/MRI etc.
                 lat: '',
                 lng: '',
                 fullAddress: '',

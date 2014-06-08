@@ -25,15 +25,15 @@ define([
                             from: '',
                             to: ''
                         },
-                        semester: '',//A12,P13 ..
+                        semester: '',
                         uttResp: ''
                     },
                     sheet1 : {
                         openingDate: '',
                         deadline: '',
 
-                        naf: '',//52 - Commerce de détail..
-                        workforce: '',// <5, 5-10, 10-20, 20-50, 50-100, 100-500, >500
+                        naf: '',
+                        workforce: '',
                         administrativeResp: {
                             firstName: '',
                             lastName: '',
@@ -60,8 +60,8 @@ define([
                             isInteresting : '',
                             isConcordantWithProfessionalProject : '',
                         },
-                        contactWithRespUtt : '',//None, Mail, Tel, Mail+Tel
-                        whoseInitiative: ''//student/resp
+                        contactWithRespUtt : '',
+                        whoseInitiative: ''
                     },
                     sheet3 : {
                         openingDate: '',
