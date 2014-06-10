@@ -83,3 +83,21 @@ et enfin pour copier uniquement les scripts nécéssaires dans le dossier vendor
 grunt init:dev
 ```
 
+# Lancement
+
+Pour lancer l'application vous devez :
+
+- Démarrer votre serveur local MongoDB
+- Puis tapper la commande (toujours à la racine)
+```bash
+grunt server
+```
+
+Le démarrage prend entre 10 et 60 secondes.
+
+Si tout se déroule sans erreur votre console devrait afficher un message similaire à la copie d'écran ci dessous :
+![console](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/console.PNG)
+
+Une fenêtre s'ouvre sur votre navigateur (celui défini par défaut)
+
+![login](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/login.PNG)
