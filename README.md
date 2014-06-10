@@ -48,3 +48,18 @@ On retrouve également trois fichiers :
   - Un ou plusieurs templates **xxx.tpl** appelés par la vue en fonction des informations à afficher.
 
 ##Back
+
+La structure back est composée d’un fichier principal server.js instrumentant toute la partie serveur. Il se base sur différents paquets node.js mais aussi sur des outils maison. Ces outils sont inclus dans une 'API' fournissant un ensemble normalisé de classes, méthodes et fonctions etc. 
+
+Cette API est configurée via config.js et contient plusieurs modules : 
+
+- **auth** : les fonctions nécessaires pour gérer le système d’authentification.
+- **db** : tout ce qui va permettre d’interagir avec la base de données (opérations CRUD : Create Read Update Delete etc.).
+- **express** : configuration du serveur express.js
+- **tools** : divers outils ou fonctions spécifiques mais communes à plusieurs actions.
+- **upload** : tout le système permettant de gérer les mécanismes d’upload et de sauvegarde d’images (en fonction des formats, base64, png, jpg etc).
+
+
+#L'application
+
+
