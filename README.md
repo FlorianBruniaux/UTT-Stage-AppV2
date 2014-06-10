@@ -60,6 +60,26 @@ Cette API est configurée via config.js et contient plusieurs modules :
 - **upload** : tout le système permettant de gérer les mécanismes d’upload et de sauvegarde d’images (en fonction des formats, base64, png, jpg etc).
 
 
-#L'application
+# Installation
 
+Pour faire fonctionner l'application vous devez au préalable installer :
+- [node.js](http://nodejs.org/)
+- [mongodb](http://www.mongodb.com/)
+
+Ensuite placez vous à la racine de l'application.
+
+Pour installer les packages node.js utilisez la commande
+```bash
+npm install
+```
+
+puis pour installer les packages bower
+```bash
+bower install
+```
+
+et enfin pour copier uniquement les scripts nécéssaires dans le dossier vendors (cf [grunt-bower-task](https://github.com/yatskevich/grunt-bower-task))
+```bash
+grunt init:dev
+```
 
