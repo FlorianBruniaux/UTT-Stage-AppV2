@@ -110,3 +110,7 @@ Rq: La connexion via LinkedIn fera apparaitre l'écran ci dessous :
 
 ![login LinkedIn](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/login%20linkedin.PNG)
 
+# Démonstration
+
+Une présentation de l'application avec de nombreuses explications est disponible en cliquant ici :
+[screencast de présentation](http://florian-bruniaux.fr/projets/UTT/Screencast_Prototype_Application_stages_UTT.flv)
