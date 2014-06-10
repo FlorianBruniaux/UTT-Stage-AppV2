@@ -101,3 +101,12 @@ Si tout se déroule sans erreur votre console devrait afficher un message simila
 Une fenêtre s'ouvre sur votre navigateur (celui défini par défaut)
 
 ![login](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/login.PNG)
+
+Vous pouvez alors vous connecter de plusieurs façon
+- Avec un login/mot de passe (nécessite une inscription au préalable)
+- Avec votre compte LinkedIn 
+
+Rq: La connexion via LinkedIn fera apparaitre l'écran ci dessous :
+
+![login LinkedIn](http://florian-bruniaux.fr/UTT/UTT-Stage-AppV2/login%20linkedin.PNG)
+
