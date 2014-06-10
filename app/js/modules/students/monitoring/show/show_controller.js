@@ -14,6 +14,8 @@ define([
             // To show a specific monitoring
             showMonitoring: function(_options){
 
+                if(DEBUG) console.info('modules/students/monitoring/show/show_controller.js -> showMonitoring()');
+                
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 

@@ -116,30 +116,7 @@ define([
             })
           
         },
-        /*
-        initTimePicker: function(){
-            
-            require([
-                'bootstrap',
-                'bootstrapTimePicker',
-                'css!vendors/bower/bootstrap-timepicker/css/bootstrap-timepicker.css'
-            ], function(){
-                
-                setTimeout(function(){
-                    return  $('#timepicker').timepicker({
-                        minuteStep: 1,
-                        template: 'modal',
-                        appendWidgetTo: 'body',
-                        showSeconds: true,
-                        showMeridian: false,
-                        defaultTime: false
-                    })
-                }, 500);
-                
-            });
-          
-        },
-        */
+
         showLoader : function(){
             if (LOADER.view) {
                 APPMANAGER.contentRegion.show(new LOADER.view.Loading());
@@ -445,8 +422,7 @@ define([
                                     window.location.reload();
                                 },2000);
                             });
-
-                            
+ 
                            
                         }
                         else{
@@ -504,8 +480,6 @@ define([
     var ENTITIES = API.Application.prototype.entities = {
         
         getEntities : function(_collection){
-    
-            if(DEBUG) console.info('common.entities_helpers.API.getEntities()');
             
             var defer = $.Deferred();  
             _collection.fetch({
@@ -517,8 +491,6 @@ define([
         },
         
         getEntity : function(_entity){
-            
-            if(DEBUG) console.info('common.entities_helpers.API.getEntity()');
             
             var defer = $.Deferred();  
             setTimeout(function(){
@@ -986,6 +958,7 @@ define([
         },
     
         sheets: {
+            
             checkOpeningDate: function(_sheetOpeningDate){
                 if (
                     DATES.formatDDMMYYYY.convertToDate(_sheetOpeningDate) > new Date()

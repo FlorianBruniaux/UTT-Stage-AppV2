@@ -6,7 +6,7 @@ define([
 
     'use strict';
     
-    // Create new Marionnette App
+    //  Creates new Marionnette App
     var AppManager = new Marionette.Application();
     
     if(DEBUG) console.info('AppManager started');
@@ -20,8 +20,8 @@ define([
         contentRegion: '#content-region'
     })
     
-    // All navigation that is relative should be passed through the navigate
-    // method, to be processed by the router.
+    //  All navigation that is relative should be passed through the navigate
+    //  method, to be processed by the router.
     AppManager.navigate = function(route, options){
         
         if(DEBUG) console.info('AppManager.navigate('+route+')');
@@ -30,7 +30,7 @@ define([
         Backbone.history.navigate(route, options);
     };
     
-    // To get the current route (backbone url)
+    //  To get the current route (backbone url)
     AppManager.getCurrentRoute = function(){
         
         if(DEBUG) console.info('AppManager.getCurrentRoute()');
@@ -38,7 +38,7 @@ define([
         return Backbone.history.fragment;
     };
     
-    // Starts the chosen module
+    //  Starts the chosen module
     AppManager.startModule = function(module, args){
         
         if(DEBUG) console.info('AppManager.startModule('+module+')');
@@ -59,13 +59,12 @@ define([
         }   
     };
     
-    // After initialization, run backbone history method
+    //  After initialization, run backbone history method
     AppManager.on('initialize:after', function(){
         
         if (Backbone.history) {
             
             require([
-                //Common
                 'common/breadcrumb/breadcrumb_module'
             ], function(){
                 
@@ -75,8 +74,8 @@ define([
                 API.misc.initDropDown();
 
                 //  To check if user is auth
-                //  If yes -> load the modules that correspond to his user category
-                //  If no -> login page
+                //      If yes -> load the modules that correspond to his user category
+                //      If no -> login page
                 API.ajax.auth.isAuth();
                 
             });

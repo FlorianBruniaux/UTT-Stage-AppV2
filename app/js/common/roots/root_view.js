@@ -23,7 +23,7 @@ define([
             itemView: View.optionsListItem,
             itemViewContainer: '.info-blocks',
             onRender: function(){
-                this.$('h6.panel-title').append('Voici les actions disponibles :');
+                this.$('h6.panel-title').append(polyglot.t('actions.available'));
                 this.trigger('rendered');
             }
         });

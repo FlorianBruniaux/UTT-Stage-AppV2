@@ -14,7 +14,7 @@ define([
             // To add a new user
             addNewMonitoring: function(){
                 
-                if(DEBUG) console.info("internship_managers.monitoring.new.new_controller.addNewMonitoring()");
+                if(DEBUG) console.info('modules/internship_managers/monitoring/new/new_controller.js -> addNewMonitoring()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

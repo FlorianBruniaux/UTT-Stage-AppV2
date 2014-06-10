@@ -15,7 +15,7 @@ define([
             // To add a new user
             addNewOffer: function(){
                 
-                if(DEBUG) console.info("internship_managers.offers.new.new_controller.addNewOffer()");
+                if(DEBUG) console.info('modules/internship_managers/offers/new/new_controller.js -> addNewOffer()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

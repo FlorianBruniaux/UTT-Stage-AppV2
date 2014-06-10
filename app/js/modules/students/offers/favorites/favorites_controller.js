@@ -11,25 +11,23 @@ define([
         
         Validation.Controller = {
             
-            // To list all the offers
+            //  To list all the offers
             listFavoritesOffers: function(_options){
                 
-                if(DEBUG) console.info('offers.validation.validation_controller.listFavoritesOffers()');
+                if(DEBUG) console.info('modules/students/monitoring/favorites/favorites_controller.js -> listFavoritesOffers()');
                 
-                // Displays loader while data is loading
+                //  Displays loader while data is loading
                 API.misc.showLoader();
                 
-                // Updates breadcrumb
+                //  Updates breadcrumb
                 var path = [
                     { name: 'offers', url: 'offers/list', navigationTrigger: 'students:offers:list' },
                     { name: 'offers.favorites', url: 'offers/favorites', navigationTrigger: 'students:offers:favorites' }
                 ];
                 AppManager.trigger('breadcrumb:update', path);
- 
                 
-                
-                // Gets all the offers (CF entities folder)
-                // When all the offers are fetched (CF use of defer.promise() )
+                //  Gets all the offers (CF entities folder)
+                //  When all the offers are fetched (CF use of defer.promise() )
                 var fetchingOffers = AppManager.request('offers:entities'),
                     fetchingUser = AppManager.request('user:entity', $('#user-id').html());
                     

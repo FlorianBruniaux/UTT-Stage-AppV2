@@ -14,12 +14,11 @@ define([
             // To edit an company
             editCompany: function(_options){
                 
-                if(DEBUG) console.info("internship_managers.companies.edit.edit_controller.editCompany()");
+                if(DEBUG) console.info('modules/internship_managers/companies/edit/edit_controller.js -> editCompany()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 
-
                 // Gets the company
                 // When the company is fetched (CF use of defer.promise() )
                 var fetchingCompany = AppManager.request('company:entity', _options.companyId);
@@ -27,7 +26,7 @@ define([
                     
                     if (_company !== undefined) {
                         
-                         // Updates breadcrumb
+                        // Updates breadcrumb
                         var path = [
                             { name: 'companies', url: 'companies', navigationTrigger: 'internship_managers:companies:root' },
                             { name: 'companies.list', url: 'companies/list', navigationTrigger: 'companies:list' },

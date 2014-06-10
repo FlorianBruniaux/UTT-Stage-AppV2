@@ -14,7 +14,7 @@ define([
             // To edit an monitoring
             editSheet: function(_options){
                 
-                if(DEBUG) console.info("internship_managers.monitoring.edit.edit_controller.editSheet()");
+                if(DEBUG) console.info('modules/common/monitoring/sheets/edit/sheet6/edit_controller.js -> editSheet()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

@@ -12,7 +12,6 @@ define([
         };
 
         AppManager.on('breadcrumb:update',function(_path){
-            if(DEBUG) console.info("common.breadcrumb.breadcrumb_module.update("+_path+")")
             API.updateBreadcrumb(_path);
         });
 

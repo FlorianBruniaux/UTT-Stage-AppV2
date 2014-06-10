@@ -23,9 +23,7 @@ define([
                 var title = this.options.title;
 
                 data = this.options.model.attributes;
-                
-                //  TO DO : LOAD Companies model                
-                var companies = ['EDF'];   
+   
                 
                 //  New model with just a schema
                 var bbformSchema = Backbone.Model.extend({

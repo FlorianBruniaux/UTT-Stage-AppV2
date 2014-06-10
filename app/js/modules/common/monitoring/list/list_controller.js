@@ -4,19 +4,19 @@ define([
     'modules/common/monitoring/list/list_view'
 ], function(AppManager, UttStages, View){
     
-    // MonitoringModule List Controller
+    //  MonitoringModule List Controller
     AppManager.module('MonitoringModule.List', function(List, AppManager, Backbone, Marionette, $, _){
         
         var API = new UttStages.Application(AppManager);
         
         List.Controller = {
             
-            // To list all the monitoring
+            //  To list all the monitoring
             listMonitoring: function(_options){
                 
-                if(DEBUG) console.info('monitoring.list.list_controller.listMonitoring()');
+                if(DEBUG) console.info('modules/common/monitoring/list/list_controller.js -> listMonitoring()');
                 
-                // Displays loader while data is loading
+                //  Displays loader while data is loading
                 API.misc.showLoader();
                  
                 var path = [];
@@ -36,8 +36,8 @@ define([
                 }
                 AppManager.trigger('breadcrumb:update', path);
  
-                // Gets all the monitoring (CF entities folder)
-                // When all the monitoring are fetched (CF use of defer.promise() )
+                //  Gets all the monitoring (CF entities folder)
+                //  When all the monitoring are fetched (CF use of defer.promise() )
                 var fetchingMonitoring = AppManager.request('monitoring:entities');
                 $.when(fetchingMonitoring).done(function(_monitoring){
                     

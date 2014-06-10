@@ -1,7 +1,7 @@
 {
   "name": "UTT-Stage-AppV2",
   "description": "Prototype de la version 2 de l'application des stages de l'UTT",
-  "version": "0.0.1",
+  "version": "2.1.0",
   "keywords": [
     "UTT",
     "stages",

@@ -14,7 +14,7 @@ define([
             // To list all the offers
             listNotValidatedOffers: function(_options){
                 
-                if(DEBUG) console.info('offers.validation.validation_controller.listOffers()');
+                if(DEBUG) console.info('modules/common/offers/validation/validation_controller.js -> listNotValidatedOffers()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
@@ -37,15 +37,6 @@ define([
                         //  We only display offers that are not yet validated
                         criterions = ['validation.state'],
                         values = ['not yet treated,denied'];
-                    
-                    /*
-                    _.each(prms, function(_value, _key){
-                        if (_value != 'all' && _value != '' && _key != 'fullAddress') {
-                            criterions.push(_key);
-                            values.push(_value);
-                        }
-                    });
-                    */
                     
                     if (criterions.length > 0 && values.length > 0) {
                         filteredOffers.filter(criterions, values);

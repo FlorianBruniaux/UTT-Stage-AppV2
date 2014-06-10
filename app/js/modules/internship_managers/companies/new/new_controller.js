@@ -14,7 +14,7 @@ define([
             // To add a new user
             addNewCompany: function(){
                 
-                if(DEBUG) console.info("internship_managers.companies.new.new_controller.addNewCompany()");
+                if(DEBUG) console.info('modules/internship_managers/companies/new/new_controller.js -> addNewCompany()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

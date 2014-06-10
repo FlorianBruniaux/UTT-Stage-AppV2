@@ -16,11 +16,13 @@ define([
                 var self = this;
                 
                 setTimeout(function(){
+                    
                     AppManager.trigger('menu:start');
 
                     API.misc.initCollapsibleMenu();
                     
-                    $('#app-version').html("<b>Version</b> : "+polyglot.t(self.options.userCategory))
+                    $('#app-version').html("<b>Version</b> : "+polyglot.t(self.options.userCategory));
+                    
                 },50)
             }
         });

@@ -14,13 +14,13 @@ define([
             // To edit an monitoring
             editSheet: function(_options){
                 
-                if(DEBUG) console.info("internship_managers.monitoring.edit.edit_controller.editSheet()");
+                if(DEBUG) console.info('modules/common/monitoring/sheets/edit/sheet0/edit_controller.js -> editSheet()');
                 
-                // Displays loader while data is loading
+                //  Displays loader while data is loading
                 API.misc.showLoader();
                 
-                // Gets the monitoring
-                // When the monitoring is fetched (CF use of defer.promise() )
+                //  Gets the monitoring
+                //  When the monitoring is fetched (CF use of defer.promise() )
                 var fetchingMonitoring = AppManager.request('monitoring:entity', _options.monitoringId),
                     fetchingUsers = AppManager.request('users:entities');
                     
@@ -28,7 +28,7 @@ define([
                     
                     if (_monitoring !== undefined && _options.userCategory != 'students') {
                         
-                        // Updates breadcrumb
+                        //  Updates breadcrumb
                         
                         var path = [];
                         switch (_options.userCategory) {

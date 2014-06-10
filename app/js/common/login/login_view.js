@@ -11,6 +11,7 @@ define([
         
         var API = new UttStages.Application(AppManager);
         
+        //  Sign on view
         View.signOn = Marionette.ItemView.extend({
             template: signOnTpl,
             onRender: function(){
@@ -18,6 +19,7 @@ define([
             },
         });
         
+        //  Forgot password view
         View.forgotPassword = Marionette.ItemView.extend({
             template: forgotPasswordTpl,
             onRender: function(){
@@ -25,9 +27,9 @@ define([
             },
         });
         
+        //  Login view
         View.login = Marionette.ItemView.extend({
             template: loginTpl,
-            
             onRender: function(){
                 API.views.forms.checkBeforeSubmit('#login-form');
             },

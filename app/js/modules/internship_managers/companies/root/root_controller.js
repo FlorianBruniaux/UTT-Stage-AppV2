@@ -11,7 +11,7 @@ define([
             // To list all the options of root.
             listRootOptions: function(){
                 
-                if(DEBUG) console.info('internship_managers.companies.root.list_controller.listRootOptions()');
+                if(DEBUG) console.info('modules/internship_managers/companies/root/root_controller.js -> listRootOptions()');
                 
                 // Updates breadcrumb
                 var path = [

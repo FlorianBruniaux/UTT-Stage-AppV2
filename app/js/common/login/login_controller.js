@@ -11,7 +11,7 @@ define([
             // To list all the options of root.
             showLogin: function(){
                 
-                if(DEBUG) console.info('common.login.showLogin()');
+                if(DEBUG) console.info('common/login/login_controller.js -> showLogin()');
 
                 var view = new View.login();
                 
@@ -23,7 +23,6 @@ define([
                     AppManager.mainlayoutRegion.show(new View.forgotPassword());
                 });
                 
-                // Displays the view
                 AppManager.mainlayoutRegion.show(view);
                 
             }  

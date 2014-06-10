@@ -12,6 +12,7 @@ define([
             init: function(_userCategory){
                 
                 this.userCategory = _userCategory;
+                
                 var self = this;
                 
                 AppManager.commands.setHandler("set:active:menu", function(_name){
@@ -23,7 +24,7 @@ define([
             
             listMenu: function(){
                 
-                if(DEBUG) console.info("common.menu.list.list_controller.listMenu()")
+                if(DEBUG) console.info('common/menu/list/list_controller.js -> listMenu()');
                 
                 var self = this;
                 
@@ -32,12 +33,12 @@ define([
                 ], function(){
 
                     var links = AppManager.request(self.userCategory+':menu:entities'),
-                    menu = new View.Menu({collection: links});
+                    menu = new View.Menu({
+                        collection: links
+                    });
                 
                     menu.on('itemview:navigate', function(childView, model){
-
                         var trigger = model.get('navigationTrigger');
-
                         AppManager.trigger(trigger);
                     });
 

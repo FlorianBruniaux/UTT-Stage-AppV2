@@ -4,8 +4,11 @@ requirejs([
 ], function(AppManager, UttStages){
     
     var API = new UttStages.Application(AppManager);
+    
+    //  To init internasionalization plugin
     API.i18n.init();
     
-    // Start the application manager
+    //  Starts the application manager
     AppManager.start()
+    
 });

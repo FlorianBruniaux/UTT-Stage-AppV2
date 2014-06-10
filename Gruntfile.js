@@ -2,14 +2,15 @@
 
 var LIVERELOAD_PORT = 35729,
     SERVER_PORT = 8080 ,
+    //  !! It's important to use 127.0.0.1 and not localhost
     URL = "http://127.0.0.1:"+SERVER_PORT;
 
 module.exports = function (grunt) {
     
-    // Load Grunt tasks declared in the package.json file
+    //  Load Grunt tasks declared in the package.json file
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     
-    // configurable paths
+    //  Configurable paths
     var yeomanConfig = {
         dev: 'app',
         prod: 'dist'

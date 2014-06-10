@@ -15,7 +15,7 @@ define([
             // To list all the options of root.
             listRootOptions: function(){
                 
-                if(DEBUG) console.info('teachers.offers.root.list_controller.listRootOptions()');
+                if(DEBUG) console.info('modules/teachers/offers/root/root_controller.js -> listRootOptions()');
                 
                 // Updates breadcrumb
                 var path = [
@@ -60,8 +60,6 @@ define([
                                 if (target) {
                                     filteredOffers = API.entities.filterCollection(_offers);
                                     filteredOffers.filter('validation.state', '[NOT]validated');
-                                    
-                                    console.log(filteredOffers.length);
                                     
                                     if (filteredOffers.length > 0) {
                                         target.parent().find('span').html(filteredOffers.length+" offres à contrôler.").removeClass('bg-info').addClass('bg-danger');

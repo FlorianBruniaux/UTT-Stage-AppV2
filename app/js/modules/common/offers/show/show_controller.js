@@ -15,6 +15,8 @@ define([
             // To show a specific offer
             showOffer: function(_options){
 
+                if(DEBUG) console.info('modules/common/offers/show/show_controller.js -> showOffer()');
+                
                 // Displays loader while data is loading
                 API.misc.showLoader();
                 

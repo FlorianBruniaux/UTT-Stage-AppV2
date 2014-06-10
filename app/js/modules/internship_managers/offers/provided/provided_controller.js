@@ -14,7 +14,7 @@ define([
             // To provided all the offers
             listProvidedOffers: function(_options){
                 
-                if(DEBUG) console.info('offers.provided.provided_controller.listProvidedOffers()');
+                if(DEBUG) console.info('modules/internship_managers/offers/provided/provided_controller.js -> listProvidedOffers()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

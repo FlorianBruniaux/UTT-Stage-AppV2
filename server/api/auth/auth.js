@@ -8,7 +8,6 @@ var passport = require('passport'),
     pwdGenerator = require('password-generator');
 
 var dbModels = db.getModels();
-//console.log(dbModels['user']);
 
 // To logout
 exports.logout =  function(req, res){
@@ -271,8 +270,8 @@ exports.local = {
                 /****************************************/
                 /********* Need to be configured ********/
                 /****************************************/
-                var SENDER_EMAIL = '',
-                    SENDER_PWD = '';
+                var SENDER_EMAIL = '',//email address
+                    SENDER_PWD = '';//password
                 /****************************************/
                 
                 // create reusable transport method (opens pool of SMTP connections)

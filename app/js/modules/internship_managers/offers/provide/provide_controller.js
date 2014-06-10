@@ -15,7 +15,7 @@ define([
             // To provide an offer
             provideOffer: function(_options){
                 
-                if(DEBUG) console.info("internship_managers.offers.provide.provide_controller.provideOffer()");
+                if(DEBUG) console.info('modules/internship_managers/offers/provide/provide_controller.js -> provideOffer()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

@@ -5,7 +5,7 @@ define([
     'tpl!modules/common/companies/list/templates/list_item.tpl'
 ], function(AppManager, UttStages, listTpl, listItemTpl){
     
-    // CompaniesModule List View
+    //  CompaniesModule List View
     AppManager.module('CompaniesModule.List.View', function(View, AppManager, Backbone, Marionette, $, _){
     
         var API = new UttStages.Application(AppManager);

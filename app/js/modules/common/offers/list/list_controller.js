@@ -14,7 +14,7 @@ define([
             // To list all the offers
             listOffers: function(_options){
                 
-                if(DEBUG) console.info('offers.list.list_controller.listOffers()');
+                if(DEBUG) console.info('modules/common/offers/list/list_controller.js -> listOffers()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();

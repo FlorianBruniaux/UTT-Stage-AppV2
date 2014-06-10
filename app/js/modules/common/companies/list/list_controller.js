@@ -11,15 +11,15 @@ define([
         
         List.Controller = {
             
-            // To list all the companies
+            //  To list all the companies
             listCompanies: function(_options){
                 
-                if(DEBUG) console.info('companies.list.list_controller.listCompanies()');
+                if(DEBUG) console.info('modules/common/companies/list/list_controller.js -> listCompanies()');
                 
-                // Displays loader while data is loading
+                //  Displays loader while data is loading
                 API.misc.showLoader();
                  
-                // Updates breadcrumb
+                //  Updates breadcrumb
                 var path = [
                     { name: 'companies.list', url: 'companies/list', navigationTrigger: 'companies:list' }
                 ];
@@ -32,8 +32,8 @@ define([
                 
                 AppManager.trigger('breadcrumb:update', path);
  
-                // Gets all the companies (CF entities folder)
-                // When all the companies are fetched (CF use of defer.promise() )
+                //  Gets all the companies (CF entities folder)
+                //  When all the companies are fetched (CF use of defer.promise() )
                 var fetchingCompanies = AppManager.request('companies:entities');
                 $.when(fetchingCompanies).done(function(_companies){
                     

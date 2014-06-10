@@ -9,7 +9,7 @@ define([
 
             updateBreadcrumb: function(_path){
                 
-                if(DEBUG) console.info("common.breadcrumb.list.list_controller.updateBreadcrumb()")
+                if(DEBUG) console.info('common/breadcrumb/list/list_controller.js -> updateBreadcrumb()');
 
                 require([
                     'entities/common/breadcrumb'

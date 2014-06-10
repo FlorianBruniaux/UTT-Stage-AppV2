@@ -4,21 +4,23 @@ define([
     'modules/common/companies/show/show_view'
 ], function(AppManager, UttStages, View){
   
-    // CompaniesModule Show Controller
+    //  CompaniesModule Show Controller
     AppManager.module('CompaniesModule.Show', function(Show, AppManager, Backbone, Marionette, $, _){
     
         var API = new UttStages.Application(AppManager);
         
         Show.Controller = {
             
-            // To show a specific company
+            //  To show a specific company
             showCompany: function(_options){
 
-                // Displays loader while data is loading
+                if(DEBUG) console.info('modules/common/companies/show/show_controller.js -> showCompany()');
+                
+                //  Displays loader while data is loading
                 API.misc.showLoader();
                 
-                // Gets the company
-                // When the company is fetched (CF use of defer.promise() )
+                //  Gets the company
+                //  When the company is fetched (CF use of defer.promise() )
                 var fetchingCompany = AppManager.request('company:entity', _options.companyId);
                 $.when(fetchingCompany).done(function(_company){
 
@@ -26,7 +28,7 @@ define([
                         
                         _company.set('userCategory', _options.userCategory);
                         
-                        // Updates breadcrumb
+                        //  Updates breadcrumb
                         var path = [
                             { name: 'companies.list', url: 'companies/list', navigationTrigger: 'companies:list' },
                             { name: _company.get('cname'), url: 'companies/'+_company.get('_id'), navigationTrigger: 'company:show', options: {companyId: _company.get('_id')} }

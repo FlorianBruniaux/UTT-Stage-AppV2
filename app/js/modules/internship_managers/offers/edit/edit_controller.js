@@ -14,7 +14,7 @@ define([
             // To edit an offer
             editOffer: function(_options){
                 
-                if(DEBUG) console.info("internship_managers.offers.edit.edit_controller.editOffer()");
+                if(DEBUG) console.info('modules/internship_managers/offers/edit/edit_controller.js -> editOffer()');
                 
                 // Displays loader while data is loading
                 API.misc.showLoader();
